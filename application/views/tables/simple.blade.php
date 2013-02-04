@@ -189,7 +189,7 @@
   <div class="container">
      <div class="row">
         <div class="span6 align-left">
-           <a class="win-command" href="dashboard.html">
+           <a class="win-command" href="{{ URL::base()}}">
               <span class="win-commandimage win-commandring">!</span>
               <span class="win-label">Home</span>
            </a>
@@ -201,10 +201,13 @@
               <span class="win-label">Filter</span>
            </button>
 
-           <button class="win-command">
-              <span class="win-commandimage win-commandring">&#xe03e;</span>
-              <span class="win-label">Add</span>
-           </button>
+		   	@if(isset($addurl) && $addurl != '')
+				<a class="win-command" href="{{URL::to($addurl)}}">
+					<span class="win-commandimage win-commandring">&#xe03e;</span>
+					<span class="win-label">Add</span>
+				</a>
+			@endif
+
         </div>
         
      </div>
@@ -222,7 +225,7 @@
    $('.activity-list').tooltip();
 //-->
 </script>
-  <!--<script type="text/javascript">
+  <script type="text/javascript">
     $(document).ready(function(){
 		var asInitVals = new Array();
         var oTable = $('.dataTable').DataTable(
@@ -379,6 +382,6 @@
 		});
 
     });
-  </script>-->
+  </script>
 
 @endsection
