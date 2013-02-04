@@ -78,7 +78,7 @@ class Register_Controller extends Base_Controller {
 			$data['creatorName'] = Auth::user()->fullname;
 			$data['creatorId'] = Auth::user()->id;
 
-			$user = new Employee();
+			$user = new Attendee();
 
 			if($user->insert($data)){
 		    	return Redirect::to('/')->with('notify_success',Config::get('site.register_success'));
