@@ -1,7 +1,7 @@
 <?php
 
 function getavatar($id,$alt = 'avatar-image',$class = 'avatar'){
-	if(file_exists(Config::get('parama.avatarstorage').$id.'/avatar.jpg')){
+	if(file_exists(Config::get('kickstart.avatarstorage').$id.'/avatar.jpg')){
 		$photo = HTML::image('avatar/'.$id.'/avatar.jpg', $alt, array('class' => $class));
 	}else{
 		$photo = HTML::image('images/no-avatar.jpg', 'no-avatar', array('class' => $class));				
@@ -17,7 +17,7 @@ function getavatarbyemail($email,$alt = 'avatar-image',$class = 'avatar'){
 
 	$id = $usr['_id'];
 
-	if(file_exists(Config::get('parama.avatarstorage').$id.'/avatar.jpg')){
+	if(file_exists(Config::get('kickstart.avatarstorage').$id.'/avatar.jpg')){
 		$photo = HTML::image('avatar/'.$id.'/avatar.jpg', $alt, array('class' => $class));
 	}else{
 		$photo = HTML::image('images/no-avatar.jpg', 'no-avatar', array('class' => $class));				
@@ -29,7 +29,7 @@ function getavatarbyemail($email,$alt = 'avatar-image',$class = 'avatar'){
 // get employee formal photo
 
 function getphoto($id,$alt = 'avatar-image',$class = 'avatar'){
-	if(file_exists(Config::get('parama.photostorage').$id.'/formal.jpg')){
+	if(file_exists(Config::get('kickstart.photostorage').$id.'/formal.jpg')){
 		$photo = HTML::image('employees/'.$id.'/formal.jpg', $alt, array('class' => $class));
 	}else{
 		$photo = HTML::image('images/no-avatar.jpg', 'no-avatar', array('class' => $class));				
@@ -45,7 +45,7 @@ function getphotobyemail($email,$alt = 'avatar-image',$class = 'avatar'){
 
 	$id = $usr['_id'];
 
-	if(file_exists(Config::get('parama.photostorage').$id.'/avatar.jpg')){
+	if(file_exists(Config::get('kickstart.photostorage').$id.'/avatar.jpg')){
 		$photo = HTML::image('employees/'.$id.'/formal.jpg', $alt, array('class' => $class));
 	}else{
 		$photo = HTML::image('images/no-avatar.jpg', 'no-avatar', array('class' => $class));				
@@ -83,12 +83,12 @@ function getproject($id){
 }
 
 function roletitle($role){
-	$roletitles = Config::get('parama.roles');
+	$roletitles = Config::get('kickstart.roles');
 	return $roletitles[$role];
 }
 
 function depttitle($dept){
-	$depttitles = Config::get('parama.department');
+	$depttitles = Config::get('kickstart.department');
 	return $depttitles[$dept];
 }
 

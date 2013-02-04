@@ -260,7 +260,7 @@ class Qc_Controller extends Base_Controller {
 
 					$newid = $newobj['_id']->__toString();
 
-					$newdir = realpath(Config::get('parama.storage')).'/'.$newid;
+					$newdir = realpath(Config::get('kickstart.storage')).'/'.$newid;
 
 					Input::upload('docupload',$newdir,$docupload['name']);
 					
@@ -506,7 +506,7 @@ class Qc_Controller extends Base_Controller {
 
 		$doc = $document->get(array('_id'=>$_id));
 
-		$file = URL::to(Config::get('parama.storage').$id.'/'.$doc['docFilename']);
+		$file = URL::to(Config::get('kickstart.storage').$id.'/'.$doc['docFilename']);
 
 		return View::make('document.fileview')->with('doc',$doc)->with('href',$file);
 	}

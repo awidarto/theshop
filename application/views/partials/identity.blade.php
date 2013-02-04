@@ -8,7 +8,7 @@
 	    <p>Logged in as, <strong>{{ Auth::user()->fullname }}</strong>
 	      	<br/>{{ (isset(Auth::user()->employee_jobtitle))?Auth::user()->employee_jobtitle:'no title' }} , {{Auth::user()->email}}
 	      	<?php
-	      		$roles = Config::get('parama.roles');
+	      		$roles = Config::get('kickstart.roles');
 	      		$role = $roles[Auth::user()->role];
 	      	?>
 	      	<br/>Role : {{ $role }}

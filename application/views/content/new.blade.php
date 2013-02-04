@@ -21,9 +21,9 @@
 
     {{ $form->text('slug','Permalink','',array('class'=>'twelve')) }}
 
-    {{ $form->select('section','Section',Config::get('parama.contentsection'),array('class'=>'one'))}}
+    {{ $form->select('section','Section',Config::get('kickstart.contentsection'),array('class'=>'one'))}}
 
-    {{ $form->select('category','Category',Config::get('parama.contentcategory'),array('class'=>'one'))}}
+    {{ $form->select('category','Category',Config::get('kickstart.contentcategory'),array('class'=>'one'))}}
 
     {{ $form->checkbox('published','Published',1)}}
 

@@ -209,7 +209,7 @@ class User_Controller extends Base_Controller {
 		foreach ($documents as $doc) {
 
 			/*
-			if(file_exists(Config::get('parama.avatarstorage').$doc['_id'].'/avatar.jpg')){
+			if(file_exists(Config::get('kickstart.avatarstorage').$doc['_id'].'/avatar.jpg')){
 				$photo = HTML::image('avatar/'.$doc['_id'].'/avatar.jpg', $doc['fullname'], array('class' => 'avatar-list'));
 			}else{
 				$photo = HTML::image('images/no-avatar.jpg', $doc['fullname'], array('class' => 'avatar-list'));				
@@ -293,7 +293,7 @@ class User_Controller extends Base_Controller {
 
 		if($picupload['name'] != ''){
 
-			$newdir = realpath(Config::get('parama.avatarstorage')).'/'.$id;
+			$newdir = realpath(Config::get('kickstart.avatarstorage')).'/'.$id;
 
 			if(!file_exists($newdir)){
 				mkdir($newdir,0777);
@@ -301,7 +301,7 @@ class User_Controller extends Base_Controller {
 
 			$success = Resizer::open( $picupload )
         		->resize( 200 , 200 , 'crop' )
-        		->save( Config::get('parama.avatarstorage').$id.'/avatar.jpg' , 90 );
+        		->save( Config::get('kickstart.avatarstorage').$id.'/avatar.jpg' , 90 );
 
 			Input::upload('picupload',$newdir,$picupload['name']);
 
@@ -453,7 +453,7 @@ class User_Controller extends Base_Controller {
 
 			$data = Input::get();
 	    	
-			$obj = Config::get('parama.department');
+			$obj = Config::get('kickstart.department');
 
 			$pitem = Config::get('acl.permissions');
 
@@ -546,7 +546,7 @@ class User_Controller extends Base_Controller {
 
 			$data = Input::get();
 	    	
-			$obj = Config::get('parama.department');
+			$obj = Config::get('kickstart.department');
 
 			$pitem = Config::get('acl.permissions');
 

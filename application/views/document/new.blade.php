@@ -12,7 +12,7 @@
     <h4>Document Info</h4>
     {{ $form->text('title','Title.req','',array('class'=>'text')) }}
 
-    {{$form->select('docFormat','Original Document Format',Config::get('parama.doc_format'),array('class'=>'four'))}}
+    {{$form->select('docFormat','Original Document Format',Config::get('kickstart.doc_format'),array('class'=>'four'))}}
 
     {{ $form->file('docupload','Document File')}}
     <div id="upload-indicator" style="display:none" >Uploading file, please wait.</div>
@@ -40,14 +40,14 @@
     <h4>Metadata</h4>
 
     @if(is_null($type))
-      {{$form->select('docDepartment','Department of Origin',Config::get('parama.department'),array('class'=>'four'))}}
+      {{$form->select('docDepartment','Department of Origin',Config::get('kickstart.department'),array('class'=>'four'))}}
     @else
       {{ Form::label('docDepartment','Department of Origin : '.depttitle($type))}}
       {{ $form->hidden('docDepartment',$type)}}
     @endif
 
 
-    {{ $form->select('docCategory','Category',Config::get('parama.doc_type'),array('class'=>'four'))}}
+    {{ $form->select('docCategory','Category',Config::get('kickstart.doc_type'),array('class'=>'four'))}}
 
     <hr />
     

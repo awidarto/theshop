@@ -281,7 +281,7 @@ class Message_Controller extends Base_Controller {
 
 					$newid = $newobj['_id']->__toString();
 
-					$newdir = realpath(Config::get('parama.storage')).'/'.$newid;
+					$newdir = realpath(Config::get('kickstart.storage')).'/'.$newid;
 
 					Input::upload('docupload',$newdir,$docupload['name']);
 					

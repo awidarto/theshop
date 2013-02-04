@@ -8,7 +8,7 @@
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width" />
 
-  <title>ParamaNusa</title>
+  <title>{{ Config::get('site.title') }}</title>
 
   <!-- Included CSS Files -->
   {{ HTML::style('css/foundation.min.css') }}
@@ -29,7 +29,7 @@
   <!-- Header and Nav -->
   <header class="row mainheader">
     
-      <h1 id="paramanusaLogo">ParamaNusa</h1>
+      <h1 id="paramanusaLogo">{{ Config::get('site.title') }}</h1>
     
   </header>
   <div class="row container-content">

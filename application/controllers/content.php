@@ -33,7 +33,7 @@ class Content_Controller extends Base_Controller {
 	public $restful = true;
 
 	public function __construct(){
-		$this->filter('before','auth');
+		//$this->filter('before','auth');
 		$this->crumb = new Breadcrumb();
 		$this->crumb->add('content','Articles');
 	}
@@ -578,44 +578,36 @@ class Content_Controller extends Base_Controller {
 
 	}
 
+	public function get_public($slug = null){
 
-	public function get_scheduleitems($id)
-	{
-		$project = new Project();
+		if(is_null($slug)){
+			return Response::error('404');
+		}else{
 
-		$_id = new MongoId($id);
+			$content = new Content();
 
-		$schedule = $project->get(array('_id'=>$_id),array('schedules'));
+			$article = $content->get(array('slug'=>$slug));
 
-		$schedules = array();
+			if(empty($article)){
+				return Response::error('404');
+			}else{
 
-		if(isset($schedule)){
-			$seq = 0;
-			foreach ($schedule['schedules'] as $val) {
-				$from = $val['values'][0]['from']->sec * 1000;
-				$val['values'][0]['from'] = '/Date('.$from.')/';
-				
-				$to = $val['values'][0]['to']->sec * 1000;
-				$val['values'][0]['to'] = '/Date('.$to.')/';
+				$this->crumb = new Breadcrumb();
+				$this->crumb->add('content/view/'.$slug,$article['title']);
 
-				$val['values'][0]['dataObj'] = array('item_id'=>$id.'_'.$seq);
+				return View::make('content.publicview')
+					->with('crumb',$this->crumb)
+					->with('title',$article['title'])
+					->with('body', $article['body']);
 
-				$schedules[] = $val;
+			}
 
-				$seq++;
 
-			}			
 		}
 
-		return Response::json($schedules);
-	}
 
-	public function get_addscitem(){
 
 	}
 
-	public function get_postscitem(){
-		
-	}
 
 }

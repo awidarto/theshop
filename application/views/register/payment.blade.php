@@ -1,4 +1,4 @@
-@layout('master')
+@layout('public')
 
 
 @section('content')
@@ -6,7 +6,7 @@
 <h3>{{$title}}</h3>
 </div>
 
-{{$form->open('employee/add','POST',array('class'=>'custom'))}}
+{{$form->open('register/add','POST',array('class'=>'custom'))}}
 <div class="row">
   <div class="six columns left">
     <h4>Employee Info</h4>

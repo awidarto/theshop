@@ -315,7 +315,7 @@ class Approval_Controller extends Base_Controller {
 
 					$newid = $newobj['_id']->__toString();
 
-					$newdir = realpath(Config::get('parama.storage')).'/'.$newid;
+					$newdir = realpath(Config::get('kickstart.storage')).'/'.$newid;
 
 					Input::upload('docupload',$newdir,$docupload['name']);
 					
@@ -506,7 +506,7 @@ class Approval_Controller extends Base_Controller {
 		$heads = array('#','Title','Created','Last Update','Creator','Attachment','Tags','Action');
 		$searchinput = array(false,'title','created','last update','creator','filename','tags',false);
 
-		$dept = Config::get('parama.department');
+		$dept = Config::get('kickstart.department');
 
 		$title = $dept[$type];
 
@@ -795,7 +795,7 @@ class Approval_Controller extends Base_Controller {
 
 		$doc = $document->get(array('_id'=>$_id));
 
-		$file = URL::to(Config::get('parama.storage').$id.'/'.$doc['docFilename']);
+		$file = URL::to(Config::get('kickstart.storage').$id.'/'.$doc['docFilename']);
 
 		return View::make('document.fileview')->with('doc',$doc)->with('href',$file);
 	}

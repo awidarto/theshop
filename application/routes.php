@@ -32,12 +32,27 @@
 |
 */
 
-Route::controller(array('document','user','message','project','tender','opportunity','search','activity','finance','hr','qc','warehouse','employee','requests','approval','category','content','ajax'));
+Route::controller(array('register','document','user','message','project','tender','opportunity','search','activity','finance','hr','qc','warehouse','employee','requests','approval','category','content','ajax'));
 
+Route::get('/',function(){
+    if(Auth::check()){
+        if(Auth::user()->role == 'root'){
+           return Redirect::to('document');
+        }else if(Auth::user()->role == 'onsite'){
+           return Redirect::to('document');
+        }
+    }else{
+       return Redirect::to('content/public/general');
+    }
+});
 
-Route::get('/',  array('before'=>'auth', function()
-{
-    $heads = array('Event','Action');
+Route::get('general',array('uses'=>'content@public'));
+
+Route::get('payment',array('as'=>'register/payment','uses'=>'register@payment'));
+
+/*
+Route::get('/',  function(){
+    $heads = array('Home','Action');
     //$searchinput = array(false,'title','created','last update','creator','project manager','tags',false);
     $searchinput = array(false,'project','tags',false);
 
@@ -50,7 +65,8 @@ Route::get('/',  array('before'=>'auth', function()
         ->with('crumb',$crumb)
         ->with('searchinput',$searchinput)
         ->with('ajaxsource',URL::to('activity'));
-}));
+});
+*/
 
 Route::get('hashme/(:any)',function($mypass){
 
@@ -120,7 +136,7 @@ Route::post('passwd', function()
 
 Route::get('logout',function(){
 	Auth::logout();
-	return Redirect::to('login');
+	return Redirect::to('/');
 });
 
 

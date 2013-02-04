@@ -46,9 +46,7 @@
   <header class="row mainheader">
     
       <h1 id="paramanusaLogo" class="six columns">{{ Config::get('site.title') }}</h1>
-      <div class="four columns">
-            @yield('identity')
-      </div>
+
   </header>
 
   <!-- End Header and Nav -->
@@ -57,7 +55,6 @@
 
     <!-- Nav Sidebar -->
     <!-- This is source ordered to be pulled to the left on larger screens -->
-@if(Auth::check())
     <nav class="top-bar main-bar">
 
       @yield('topnav');
@@ -89,26 +86,8 @@
 
         </aside>
     </div>
-  <!-- End Grid Section -->
-@else
 
-  <nav class="top-bar twelve columns">
-    <section>
-      <!-- Right Nav Section -->
-        <ul class="left">
-          <li>
-              <!--<li>{{ HTML::link('login', 'Login') }}</li>-->
-              <li><h3 class="loginHeader">Login</h3></li>
-          </li>
-        </ul>
-    </section>
-  </nav>
-    <div class="row center">
-        <div class="eight columns">
-            @yield('content')
-        </div>
-    </div>
-@endif
+
   <!-- Footer -->
 
 

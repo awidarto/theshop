@@ -112,7 +112,7 @@ class Activity_Controller extends Base_Controller {
 
 		foreach ($documents as $doc) {
 
-			$eventtitle = Config::get('parama.eventtitle');
+			$eventtitle = Config::get('kickstart.eventtitle');
 
 			$doc['title'] = $eventtitle[$doc['event']];
 

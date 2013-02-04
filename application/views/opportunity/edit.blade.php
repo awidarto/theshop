@@ -22,7 +22,7 @@
 
     {{ $form->text('opportunityShare','Shared to','',array('class'=>'tag_email four','style'=>'width:100%')) }}
 
-    {{ $form->select('opportunityDepartment','Department of Origin',Config::get('parama.department'),array('class'=>'four'))}}
+    {{ $form->select('opportunityDepartment','Department of Origin',Config::get('kickstart.department'),array('class'=>'four'))}}
 
     {{ $form->text('opportunityTender','Related Tender','',array('class'=>'tag_tender four','rows'=>'1', 'style'=>'width:100%')) }}
 
@@ -45,7 +45,7 @@
 
     {{ $form->text('opportunityClient','Client','',array('class'=>'four','rows'=>'1', 'style'=>'width:100%')) }}
 
-    {{ $form->select('opportunityCurrency','Currency',Config::get('parama.currencies'),array('class'=>'one'))}}
+    {{ $form->select('opportunityCurrency','Currency',Config::get('kickstart.currencies'),array('class'=>'one'))}}
     
     {{ $form->text('opportunityGrossValue','Gross Value','',array('class'=>'four','rows'=>'1', 'style'=>'width:100%')) }}
 

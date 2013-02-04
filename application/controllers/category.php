@@ -44,7 +44,7 @@ class Category_Controller extends Base_Controller {
 	}
 
 	public function post_json(){
-		return Response::json(Config::get('parama.doc_type'));
+		return Response::json(Config::get('kickstart.doc_type'));
 	}
 
 }

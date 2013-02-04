@@ -22,7 +22,7 @@
 
     {{ $form->text('tenderShare','Shared to','',array('class'=>'tag_email four','style'=>'width:100%')) }}
 
-    {{ $form->select('tenderDepartment','Department of Origin',Config::get('parama.department'),array('class'=>'four'))}}
+    {{ $form->select('tenderDepartment','Department of Origin',Config::get('kickstart.department'),array('class'=>'four'))}}
 
     {{ $form->text('tenderTender','Related Tender','',array('class'=>'tag_tender four','rows'=>'1', 'style'=>'width:100%')) }}
 
@@ -47,7 +47,7 @@
 
     {{ $form->text('tenderClient','Client','',array('class'=>'four','rows'=>'1', 'style'=>'width:100%')) }}
 
-    {{ $form->select('tenderCurrency','Currency',Config::get('parama.currencies'),array('class'=>'one'))}}
+    {{ $form->select('tenderCurrency','Currency',Config::get('kickstart.currencies'),array('class'=>'one'))}}
     
     {{ $form->text('tenderGrossValue','Gross Value','',array('class'=>'four','rows'=>'1', 'style'=>'width:100%')) }}
 

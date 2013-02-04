@@ -23,7 +23,7 @@
 
     {{ $form->text('projectShare','Shared to','',array('class'=>'tag_email four','style'=>'width:100%')) }}
 
-    {{ $form->select('projectDepartment','Department of Origin',Config::get('parama.department'),array('class'=>'four'))}}
+    {{ $form->select('projectDepartment','Department of Origin',Config::get('kickstart.department'),array('class'=>'four'))}}
 
     {{ $form->text('projectTender','Related Tender','',array('class'=>'tag_tender four','rows'=>'1', 'style'=>'width:100%')) }}
 
@@ -45,7 +45,7 @@
 
     {{ $form->text('projectClient','Client','',array('class'=>'four','rows'=>'1', 'style'=>'width:100%')) }}
 
-    {{ $form->select('projectCurrency','Currency',Config::get('parama.currencies'),array('class'=>'one'))}}
+    {{ $form->select('projectCurrency','Currency',Config::get('kickstart.currencies'),array('class'=>'one'))}}
     
     {{ $form->text('projectGrossValue','Gross Value','',array('class'=>'four','rows'=>'1', 'style'=>'width:100%')) }}
 

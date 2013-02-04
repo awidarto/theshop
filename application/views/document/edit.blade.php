@@ -13,7 +13,7 @@
     {{ $form->hidden('id',$doc['_id'])}}
     {{ $form->text('title','Title.req','',array('class'=>'text')) }}
 
-    {{$form->select('docFormat','Original Document Format',Config::get('parama.doc_format'),array('class'=>'four'))}}
+    {{$form->select('docFormat','Original Document Format',Config::get('kickstart.doc_format'),array('class'=>'four'))}}
 
     <p><strong>Current Active Attachment :</strong><br />{{ (isset($doc['docFiledata']['uploadTime']))?date('d-m-Y h:i:s',$doc['docFiledata']['uploadTime']->sec):'' }} <strong>{{$doc['docFiledata']['name']}}</strong></p>
 
@@ -54,9 +54,9 @@
   <div class="five columns right">
     <h4>Metadata</h4>
 
-    {{$form->select('docDepartment','Department of Origin',Config::get('parama.department'),null,array('class'=>'ten'))}}
+    {{$form->select('docDepartment','Department of Origin',Config::get('kickstart.department'),null,array('class'=>'ten'))}}
 
-    {{ $form->select('docCategory','Category',Config::get('parama.doc_type'),null,array('class'=>'ten'))}}
+    {{ $form->select('docCategory','Category',Config::get('kickstart.doc_type'),null,array('class'=>'ten'))}}
     
     <hr />
 
