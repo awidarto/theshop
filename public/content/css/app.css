@@ -124,3 +124,6 @@ a.icon- span{
 span.activity-list[rel="tooltip"]{
 	font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
 }
+.dropdown-menu ul li{
+	list-style-type: none;
+}
