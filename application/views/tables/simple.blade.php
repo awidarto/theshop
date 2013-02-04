@@ -34,15 +34,15 @@
 	    <tbody>
 	    </tbody>
 	    <tfoot>
-	    <tr>
-	    	@foreach($searchinput as $in)
-	    		@if($in)
-	        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
-	    		@else
-	        		<td>&nbsp;</td>
-	    		@endif
-	    	@endforeach        	
-	    </tr>
+		    <tr>
+		    	@foreach($searchinput as $in)
+		    		@if($in)
+		        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
+		    		@else
+		        		<td>&nbsp;</td>
+		    		@endif
+		    	@endforeach        	
+		    </tr>
 	    </tfoot>
 	</table>
 </div>-->
@@ -112,22 +112,28 @@
               <li><a href="#">Next</a></li>
             </ul>
           </div>
-          <table class="table table-condensed">
-             <thead>
-             <tr>
-                <th class="span1">ID</th>
-                <th>Company</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th class="span3">Email</th>
-                <th class="span1">Phone</th>
-                <th class="span1">Reg.Date</th>
-                <th class="span3 text align-center">Status</th>
-                <th>Industrial Dinner</th>
-                <th class="span2">Action</th>
-                
-             </tr>
-             </thead>
+          <table class="table table-condensed dataTable">
+
+			    <thead>
+			        <tr>
+			        	<?php
+				        	if(!isset($colclass)){
+				        		$colclass = array();
+				        	}
+			        		$hid = 0;
+			        	?>
+			        	@foreach($heads as $head)
+			        		<th 
+			        			@if(isset($colclass[$hid]))
+			        				class="{{$colclass[$hid]}}"
+			        			@endif
+			        			<?php $hid++ ?>
+			        		>
+			        			{{ $head }}
+			        		</th>
+			        	@endforeach
+			        </tr>
+			    </thead>
              <tbody>
              <tr>
                 <td class="span1">2707</td>
@@ -179,6 +185,20 @@
 
              
              </tbody>
+
+		    <tfoot>
+			    <tr>
+			    	@foreach($searchinput as $in)
+			    		@if($in)
+			        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
+			    		@else
+			        		<td>&nbsp;</td>
+			    		@endif
+			    	@endforeach        	
+			    </tr>
+		    </tfoot>
+
+
           </table>
 
        </div>
@@ -214,19 +234,20 @@
   </div>
 </footer>
 <script type="text/javascript">
-<!--
-   function toggle_visibility(id) {
-      var e = document.getElementById(id);
-      if(e.style.display == 'block')
-         e.style.display = 'none';
-      else
-         e.style.display = 'block';
-   }
-   $('.activity-list').tooltip();
-//-->
-</script>
-  <script type="text/javascript">
+
+	function toggle_visibility(id) {
+		var e = document.getElementById(id);
+		if(e.style.display == 'block'){
+			e.style.display = 'none';
+		}else{
+			e.style.display = 'block';
+		}
+	}
+
     $(document).ready(function(){
+
+		$('.activity-list').tooltip();
+
 		var asInitVals = new Array();
         var oTable = $('.dataTable').DataTable(
 			{
@@ -235,7 +256,7 @@
 		        "sAjaxSource": "{{$ajaxsource}}",
 				"oLanguage": { "sSearch": "Search "},
 				"sPaginationType": "full_numbers",
-				"sDom": 'T<"clear">lfrtip',
+				"sDom": 'lfriptT',
 				"oTableTools": {
 					"sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
 				},

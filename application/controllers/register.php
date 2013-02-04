@@ -57,7 +57,7 @@ class Register_Controller extends Base_Controller {
 		//print_r(Session::get('permission'));
 
 	    $rules = array(
-	        'fullname'  => 'required|max:150',
+	        'firstname'  => 'required|max:150',
 	        'email' => 'required|email'
 	    );
 
@@ -65,7 +65,7 @@ class Register_Controller extends Base_Controller {
 
 	    if($validation->fails()){
 
-	    	return Redirect::to('employee/add')->with_errors($validation)->with_input(Input::all());
+	    	return Redirect::to('register')->with_errors($validation)->with_input(Input::all());
 
 	    }else{
 
@@ -75,8 +75,6 @@ class Register_Controller extends Base_Controller {
 
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
-			$data['creatorName'] = Auth::user()->fullname;
-			$data['creatorId'] = Auth::user()->id;
 
 			$user = new Attendee();
 
@@ -85,7 +83,6 @@ class Register_Controller extends Base_Controller {
 			}else{
 		    	return Redirect::to('register')->with('notify_success',Config::get('site.register_failed'));
 			}
-			
 
 	    }
 

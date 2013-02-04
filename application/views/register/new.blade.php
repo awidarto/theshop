@@ -6,7 +6,7 @@
 <h3>{{$title}}</h3>
 </div>
 
-{{$form->open('register/add','POST',array('class'=>'custom'))}}
+{{$form->open('register','POST',array('class'=>'custom'))}}
 
 <div class="row">
     <div class="twelve columns">
@@ -30,8 +30,8 @@
                 </div>
 
 
-                {{ $form->text('firstname','Full Name.req','',array('class'=>'text','id'=>'firstname')) }}
-                {{ $form->text('lastname','Full Name.req','',array('class'=>'text','id'=>'lastname')) }}
+                {{ $form->text('firstname','First Name.req','',array('class'=>'text','id'=>'firstname')) }}
+                {{ $form->text('lastname','Last Name.req','',array('class'=>'text','id'=>'lastname')) }}
                 {{ $form->text('position','Position / Division.req','',array('class'=>'text','id'=>'positionname')) }}
                 {{ $form->text('email','Email.req','',array('class'=>'text','id'=>'email')) }}
 

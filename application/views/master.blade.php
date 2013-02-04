@@ -32,7 +32,7 @@
    <!--  these two css are to use only for documentation -->
    
    {{ HTML::style('content/css/demo.css') }}
-   <link rel="stylesheet" type="text/css" href="scripts/google-code-prettify/prettify.css" >
+   <link rel="stylesheet" type="text/css" href="{{URL::base()}}/scripts/google-code-prettify/prettify.css" >
 
    <!-- Le fav and touch icons -->
   
@@ -42,6 +42,7 @@
       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
    
    {{ HTML::script('scripts/modernizr-2.6.1.min.js') }}
+   {{ HTML::script('js/jquery-1.8.3.min.js') }}
    
 </head>
 
@@ -105,20 +106,24 @@
     </div>
   </div>-->
 
-  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
- <!--<script>window.jQuery || document.write("<script src='scripts/jquery-1.8.2.min.js'>\x3C/script>")</script>-->
+  {{ HTML::script('js/jquery.dataTables.min.js') }}
 
- {{ HTML::script('scripts/google-code-prettify/prettify.js') }}
- {{ HTML::script('scripts/jquery.mousewheel.js') }}
- {{ HTML::script('scripts/jquery.scrollTo.js') }}
- {{ HTML::script('scripts/bootstrap.min.js') }}
- {{ HTML::script('scripts/bootmetro.js') }}
- {{ HTML::script('scripts/bootmetro-charms.js') }}
- {{ HTML::script('scripts/demo.js') }}
- {{ HTML::script('scripts/holder.js') }}
+  {{ HTML::script('js/underscore-1.1.5.js') }}
+
+  {{ HTML::script('js/jquery.tagsinput.min.js') }}
+  {{ HTML::script('js/select2.min.js') }}
+
+  {{ HTML::script('js/jquery.fancybox.js') }}
+
+  {{ HTML::script('scripts/google-code-prettify/prettify.js') }}
+  {{ HTML::script('scripts/jquery.mousewheel.js') }}
+  {{ HTML::script('scripts/jquery.scrollTo.js') }}
+  {{ HTML::script('scripts/bootstrap.min.js') }}
+  {{ HTML::script('scripts/bootmetro.js') }}
+  {{ HTML::script('scripts/bootmetro-charms.js') }}
+  {{ HTML::script('scripts/demo.js') }}
+  {{ HTML::script('scripts/holder.js') }}
  
-
  <script type="text/javascript">
     $(".metro").metro();
  </script>

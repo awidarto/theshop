@@ -48,6 +48,8 @@ Route::get('/',function(){
 
 Route::get('general',array('uses'=>'content@public'));
 
+Route::post('register',array('uses'=>'register@add'));
+
 Route::get('payment',array('as'=>'register/payment','uses'=>'register@payment'));
 
 /*
