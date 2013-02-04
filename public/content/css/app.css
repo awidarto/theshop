@@ -1,0 +1,126 @@
+.logo-header{
+	float:left;
+	margin-right:8px;
+	display: inline-block;
+	width: 40px;
+}
+#header-container h5{
+	display: inline-block;
+	float: left;
+}
+#login-form{
+	margin:0 auto;
+	text-align: center;
+}
+#login-form form{
+	width: 400px;
+	margin:0 auto;
+	text-align: left;
+	padding-left: 140px;
+	padding-top:50px;
+
+}
+.imagetext .text-big{
+font-size: 50px;
+line-height: 76px;
+text-align: left;
+overflow: hidden;
+padding-left: 7px;
+}
+.image-wrapper .text-big{
+	font-size: 50px;
+	line-height: 76px;
+}
+.imagetext .text-biggest{
+	font-size: 65px;
+	line-height: 76px;
+}
+.imagetext .text{
+	padding-left: 20px;
+}
+.metro-sections h5{
+	margin-left: 5px;
+	margin-top:5px;
+}
+.metro .tile.statistic{
+	cursor: text;
+}
+.metro .tile.statistic:hover,.metro .tile.bg-color-empty:hover{
+	cursor: text;
+	outline: none;
+}
+.metro .tile.fullwidth.imagetext{
+	width: 92%;
+	height: 80px;
+}
+
+.metro .tile.fullwidth.imagetext .image-wrapper{
+	width: 50%;
+}
+.metro .tile .text-small{
+	font-size: 15px;
+	padding-left: 5px;
+}
+.metro .tile.bg-color-empty{
+	background-color:transparent;
+}
+.fontGreen{
+	color: #3cad39;
+}
+.fontRed{
+	color: #BC1C4B;
+}
+.fontBold{
+	font-weight: bold;
+}
+.fontRed{
+	color:#bc1c48;
+}
+th.align-center{
+	text-align: center;
+}
+#content-filters{
+	border-top: 1px solid #BEBEBE;
+	padding-top: 7px;
+	margin-bottom: 7px;
+}
+#content-filters h5{
+	margin-top: -23px;
+	background-color: #fff;
+	padding: 5px 5px 5px 10px;
+	width: 68px;
+	margin-bottom: 10px;
+}
+td a.icon-{
+	display: block;
+	width: 120px;
+	padding-bottom:9px; 
+}
+td a.icon-:hover span{
+	text-decoration: underline;
+}
+td a.icon- i{
+	float: left;
+	width: 20px;
+	color: #717171;
+}
+td a.icon-:hover i{
+	color: #CD4900;	
+}
+
+a.icon- span{
+	font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+	font-weight: 300;
+	color: #333;
+	font-size: 12px;
+	display: inline-block;
+	float: left;
+
+}
+.rightPosition{
+	float: right;
+	margin-right: 10px;
+}
+span.activity-list[rel="tooltip"]{
+	font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+}

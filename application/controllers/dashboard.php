@@ -1,6 +1,6 @@
 <?php
 
-class Document_Controller extends Base_Controller {
+class Dashboard_Controller extends Base_Controller {
 
 	/*
 	|--------------------------------------------------------------------------
