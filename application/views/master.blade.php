@@ -56,7 +56,7 @@
             <div id="header-container">
               {{ HTML::image('images/ipa-logo-small.png','ipalogo',array('class'=>'logo-header')) }}
               <h5>THE 37th IPA CONVENTION and EXHIBITION 2013</h5>
-              @yield('topnav');
+              @yield('topnav')
             </div>
          </div>
          <div id="top-info" class="pull-right">
