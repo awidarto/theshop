@@ -32,14 +32,14 @@
 |
 */
 
-Route::controller(array('register','document','user','message','project','tender','opportunity','search','activity','finance','hr','qc','warehouse','employee','requests','approval','category','content','ajax'));
+Route::controller(array('register','document','dashboard','user','message','project','tender','opportunity','search','activity','finance','hr','qc','warehouse','employee','requests','approval','category','content','ajax'));
 
 Route::get('/',function(){
     if(Auth::check()){
         if(Auth::user()->role == 'root'){
-           return Redirect::to('document');
+           return Redirect::to('dashboard');
         }else if(Auth::user()->role == 'onsite'){
-           return Redirect::to('document');
+           return Redirect::to('dashboard');
         }
     }else{
        return Redirect::to('content/public/general');
