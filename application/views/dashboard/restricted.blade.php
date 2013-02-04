@@ -82,7 +82,7 @@
 
 	   <div id="section2" class="metro-section tile-span-4">
 	      <h2>Quick Access</h2>
-	      <a class="tile wide imagetext bg-color-greenDark" href="master-data.html">
+	      <a class="tile wide imagetext bg-color-greenDark" href="{{ URL::to('attendee')}}">
 	         <div class="image-wrapper">
 	         	{{ HTML::image('content/img/My Apps.png') }}
 	         </div>
@@ -103,7 +103,7 @@
 	         </div>
 	         
 	      </a>
-	      <a class="tile app bg-color-blueDark" href="./icons.html">
+	      <a class="tile app bg-color-blueDark" href="{{ URL::to('attendee/add') }}">
 	         <div class="image-wrapper">
 	            <span class="icon icon-user-2"></span>
 	         </div>

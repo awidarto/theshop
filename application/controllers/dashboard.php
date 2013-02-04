@@ -67,7 +67,7 @@ class Dashboard_Controller extends Base_Controller {
 			return View::make('document.restricted')
 							->with('title',$title);			
 		}*/
-		return View::make('document.restricted')
+		return View::make('dashboard.restricted')
 							->with('title','Dashboard');
 	}
 
