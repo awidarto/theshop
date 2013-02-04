@@ -7,7 +7,10 @@
         {{ Form::open('login') }}
         <!-- check for login errors flash var -->
         @if (Session::has('login_errors'))
-            <span class="error">Email or password incorrect.</span>
+            <div class="alert alert-error">
+                 <button type="button" class="close" data-dismiss="alert"></button>
+                 Email or password incorrect.
+            </div>
         @endif
         <!-- username field -->
         <p>{{ Form::label('username', 'Email') }}</p>

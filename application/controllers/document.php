@@ -45,7 +45,7 @@ class Document_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		/*$this->crumb->add('document','Super Manager');
+		$this->crumb->add('document','Super Manager');
 
 		//print_r(Auth::user());
 
@@ -66,9 +66,8 @@ class Document_Controller extends Base_Controller {
 		}else{
 			return View::make('document.restricted')
 							->with('title',$title);			
-		}*/
-		return View::make('document.restricted')
-							->with('title','Dashboard');
+		}
+		
 	}
 
 	public function post_index()

@@ -1,7 +1,7 @@
 @layout('master')
 
 @section('content')
-<div class="tableHeader">
+<!--<div class="tableHeader">
 	@if($title != '')
 		<h3>{{$title}}</h3>
 	@endif
@@ -45,9 +45,184 @@
 	    </tr>
 	    </tfoot>
 	</table>
-</div>
+</div>-->
+<div class="span12">
+   
+    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
 
-  <script type="text/javascript">
+    <div id="content-filters" class="row-fluid" style="display:none;">
+       <div class="span12">
+          <h5>Filter Data</h5>
+          <ul class="nav nav-pills">
+             <li class="dropdown">
+                <a class="dropdown-toggle accent-color" data-toggle="dropdown" href="#">
+                   All projects
+                   <b class="caret" href="#"></b>
+                </a>
+                <ul id="projects-filter" class="dropdown-menu">
+                   <li><a href="#">All projects</a></li>
+                   <li><a href="#">ACME</a></li>
+                   <li><a href="#">Surface</a></li>
+                   <li><a href="#">OSX</a></li>
+                   <li><a href="#">WinRT</a></li>
+                </ul>
+             </li>
+             <li class="dropdown">
+                <a class="dropdown-toggle accent-color" data-toggle="dropdown" href="#">
+                   All budgets
+                   <b class="caret" href="#"></b>
+                </a>
+                <ul id="budget-filter" class="dropdown-menu">
+                   <li><a href="#">All budgets</a></li>
+                   <li><a href="#">Budget &lt; 1.000</a></li>
+                   <li><a href="#">Budget 1.000 - 10.000</a></li>
+                   <li><a href="#">Budget 10.000 - 45.000</a></li>
+                   <li><a href="#">Budget 45.000 - 100.000</a></li>
+                   <li><a href="#">Budget &gt; 100.000</a></li>
+                </ul>
+             </li>
+             <li class="">
+                <a>&nbsp;|&nbsp;</a><span>Sort by&nbsp;</span>
+             </li>
+             <li class="dropdown">
+
+                <a class="dropdown-toggle accent-color" data-toggle="dropdown" href="#">
+                   Project name
+                   <b class="caret" href="#"></b>
+                </a>
+                <ul id="sort-filter" class="dropdown-menu">
+                   <li><a href="#">Project name</a></li>
+                   <li><a href="#">Budget Cost</a></li>
+                   <li><a href="#">Duration</a></li>
+                </ul>
+             </li>
+          </ul>
+       </div>
+    </div>
+
+    <div class="row-fluid">
+       <div class="span12">
+          <div class="pagination pagination-small rightPosition">
+            <ul>
+              <li><a href="#">Prev</a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">Next</a></li>
+            </ul>
+          </div>
+          <table class="table table-condensed">
+             <thead>
+             <tr>
+                <th class="span1">ID</th>
+                <th>Company</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th class="span3">Email</th>
+                <th class="span1">Phone</th>
+                <th class="span1">Reg.Date</th>
+                <th class="span3 text align-center">Status</th>
+                <th>Industrial Dinner</th>
+                <th class="span2">Action</th>
+                
+             </tr>
+             </thead>
+             <tbody>
+             <tr>
+                <td class="span1">2707</td>
+                <td>VICO Indonesia<br/><small>Indonesia</small></td>
+                <td>Mohammad</td>
+                <td>Irvan</td>
+                <td class="span3">mohammadirvan@yahoo.com</td>
+                <td class="span1">423423499</td>
+                <td class="span1">08-05-2012 05:05:34</td>
+                <td class="span3 align-center">Professional Overseas<br/><span class="fontGreen fontBold">PAID</span></td>
+                <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
+                <td class="span2">
+                   <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
+                   <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
+                </td>
+             </tr>
+
+             <tr>
+                <td class="span1">2707</td>
+                <td>VICO Indonesia<br/><small>Indonesia</small></td>
+                <td>Mohammad</td>
+                <td>Irvan</td>
+                <td class="span3">mohammadirvan@yahoo.com</td>
+                <td class="span1">423423499</td>
+                <td class="span1">08-05-2012 05:05:34</td>
+                <td class="span3 align-center">Professional Domestic<br/><span class="fontGreen fontBold">PAID</span></td>
+                <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
+                <td class="span2">
+                   <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
+                   <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
+                </td>
+             </tr>
+             <tr>
+                <td class="span1">2707</td>
+                <td>VICO Indonesia<br/><small>Indonesia</small></td>
+                <td>Mohammad</td>
+                <td>Irvan</td>
+                <td class="span3">mohammadirvan@yahoo.com</td>
+                <td class="span1">423423499</td>
+                <td class="span1">08-05-2012 05:05:34</td>
+                <td class="span3 align-center">Professional Domestic<br/><span class="fontRed fontBold">UNPAID</span></td>
+                <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
+                <td class="span2">
+                   <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
+                   <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
+                </td>
+             </tr>
+             
+
+             
+             </tbody>
+          </table>
+
+       </div>
+    </div>
+
+ </div>
+<footer class="win-ui-dark win-commandlayout navbar-fixed-bottom">
+  <div class="container">
+     <div class="row">
+        <div class="span6 align-left">
+           <a class="win-command" href="dashboard.html">
+              <span class="win-commandimage win-commandring">!</span>
+              <span class="win-label">Home</span>
+           </a>
+
+           <hr class="win-command" />
+
+           <button class="win-command" onclick="toggle_visibility('content-filters');">
+              <span class="win-commandimage win-commandring">&#x0067;</span>
+              <span class="win-label">Filter</span>
+           </button>
+
+           <button class="win-command">
+              <span class="win-commandimage win-commandring">&#xe03e;</span>
+              <span class="win-label">Add</span>
+           </button>
+        </div>
+        
+     </div>
+  </div>
+</footer>
+<script type="text/javascript">
+<!--
+   function toggle_visibility(id) {
+      var e = document.getElementById(id);
+      if(e.style.display == 'block')
+         e.style.display = 'none';
+      else
+         e.style.display = 'block';
+   }
+   $('.activity-list').tooltip();
+//-->
+</script>
+  <!--<script type="text/javascript">
     $(document).ready(function(){
 		var asInitVals = new Array();
         var oTable = $('.dataTable').DataTable(
@@ -204,6 +379,6 @@
 		});
 
     });
-  </script>
+  </script>-->
 
 @endsection

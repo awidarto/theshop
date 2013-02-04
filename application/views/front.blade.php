@@ -58,23 +58,16 @@
             <div id="header-container">
               {{ HTML::image('images/ipa-logo-small.png','ipalogo',array('class'=>'logo-header')) }}
               <h5>THE 37th IPA CONVENTION and EXHIBITION 2013</h5>
-              <a class="header-dropdown dropdown-toggle accent-color" data-toggle="dropdown" href="#">
-                Start
-                <b class="caret"></b>
-              </a>
+              <div class="dropdown">
+                <a class="header-dropdown dropdown-toggle accent-color" data-toggle="dropdown" href="#">
+                  Login
+                  
+                </a>
+              </div>
             </div>
          </div>
          <div id="top-info" class="pull-right">
-           <a href="#" class="pull-left">
-              @yield('identity')
-              <div class="top-info-block">
-                 <b class="icon-user"></b>
-              </div>
-           </a>
-           <hr class="separator pull-left"/>
-           <a id="settings" class="pull-left" href="#">
-              <b class="icon-settings"></b>
-           </a>
+           
         </div>
     </div>
   </header>

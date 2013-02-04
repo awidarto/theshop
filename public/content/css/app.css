@@ -17,7 +17,7 @@
 	margin:0 auto;
 	text-align: left;
 	padding-left: 140px;
-	padding-top:50px;
+	padding-top:30px;
 
 }
 .imagetext .text-big{
@@ -126,4 +126,7 @@ span.activity-list[rel="tooltip"]{
 }
 .dropdown-menu ul li{
 	list-style-type: none;
+}
+.navbar-fixed-bottom .row{
+	padding-left: 30px;
 }

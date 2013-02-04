@@ -33,7 +33,9 @@
             </li>
 
         @endif
-        <li>{{ HTML::link('logout', 'Logout') }}</li>    
+        <li class="divider"></li>
+        <li>{{ HTML::link('dashboard', 'Home') }}</li>
+        <li>{{ HTML::link('logout', 'Logout') }}</li>
     </ul>
 
 
