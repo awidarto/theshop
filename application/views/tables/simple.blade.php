@@ -9,43 +9,7 @@
 		<a class="foundicon-add-doc button right newdoc action clearfix" href="{{URL::to($addurl)}}">&nbsp;&nbsp;<span>{{$newbutton}}</span></a>
 	@endif
 </div>
-<div class="row">
-	<table class="dataTable">
-	    <thead>
-	        <tr>
-	        	<?php
-		        	if(!isset($colclass)){
-		        		$colclass = array();
-		        	}
-	        		$hid = 0;
-	        	?>
-	        	@foreach($heads as $head)
-	        		<th 
-	        			@if(isset($colclass[$hid]))
-	        				class="{{$colclass[$hid]}}"
-	        			@endif
-	        			<?php $hid++ ?>
-	        		>
-	        			{{ $head }}
-	        		</th>
-	        	@endforeach
-	        </tr>
-	    </thead>
-	    <tbody>
-	    </tbody>
-	    <tfoot>
-		    <tr>
-		    	@foreach($searchinput as $in)
-		    		@if($in)
-		        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
-		    		@else
-		        		<td>&nbsp;</td>
-		    		@endif
-		    	@endforeach        	
-		    </tr>
-	    </tfoot>
-	</table>
-</div>-->
+-->
 <div class="span12">
    
     <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
@@ -181,23 +145,21 @@
                    <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
                 </td>
              </tr>
-             
 
-             
              </tbody>
-
-		    <tfoot>
-			    <tr>
-			    	@foreach($searchinput as $in)
-			    		@if($in)
-			        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
-			    		@else
-			        		<td>&nbsp;</td>
-			    		@endif
-			    	@endforeach        	
-			    </tr>
-		    </tfoot>
-
+		    	@if($searchinput)
+				    <tfoot>
+					    <tr>
+				    	@foreach($searchinput as $in)
+				    		@if($in)
+				        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
+				    		@else
+				        		<td>&nbsp;</td>
+				    		@endif
+				    	@endforeach
+					    </tr>
+				    </tfoot>
+			    @endif
 
           </table>
 
@@ -236,12 +198,7 @@
 <script type="text/javascript">
 
 	function toggle_visibility(id) {
-		var e = document.getElementById(id);
-		if(e.style.display == 'block'){
-			e.style.display = 'none';
-		}else{
-			e.style.display = 'block';
-		}
+		$('#' + id).toggle();
 	}
 
     $(document).ready(function(){
@@ -256,7 +213,7 @@
 		        "sAjaxSource": "{{$ajaxsource}}",
 				"oLanguage": { "sSearch": "Search "},
 				"sPaginationType": "full_numbers",
-				"sDom": 'lfriptT',
+				"sDom": 'lfrpitiT',
 				"oTableTools": {
 					"sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
 				},

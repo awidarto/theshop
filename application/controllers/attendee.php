@@ -54,6 +54,8 @@ class Attendee_Controller extends Base_Controller {
 		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
 		$searchinput = array(false,'First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
 
+		$searchinput = false; // no searchinput form on footer
+
 		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
 			return View::make('tables.simple')
 				->with('title','Master Data')
@@ -225,13 +227,13 @@ class Attendee_Controller extends Base_Controller {
 	public function get_add($type = null){
 
 		if(is_null($type)){
-			$this->crumb->add('attendee/add','New Document');
+			$this->crumb->add('attendee/add','New Attendee');
 		}else{
 			$this->crumb = new Breadcrumb();
-			$this->crumb->add('attendee/type/'.$type,'Document');
+			$this->crumb->add('attendee/type/'.$type,'Attendee');
 
 			$this->crumb->add('attendee/type/'.$type,depttitle($type));
-			$this->crumb->add('attendee/add','New Document');
+			$this->crumb->add('attendee/add','New Attendee');
 		}
 
 
@@ -240,7 +242,7 @@ class Attendee_Controller extends Base_Controller {
 					->with('form',$form)
 					->with('type',$type)
 					->with('crumb',$this->crumb)
-					->with('title','New Document');
+					->with('title','New Attendee');
 
 	}
 

@@ -6,91 +6,129 @@
 <h3>{{$title}}</h3>
 </div>
 
-{{$form->open_for_files('document/add/'.$type,'POST',array('class'=>'custom','id'=>'newdoc'))}}
+{{$form->open('attendee/add','POST',array('class'=>'custom'))}}
+
 <div class="row">
-  <div class="six columns left">
-    <h4>Document Info</h4>
-    {{ $form->text('title','Title.req','',array('class'=>'text')) }}
+    <div class="span6">
+        <fieldset>
+            <legend>Personal Information</legend>
 
-    {{$form->select('docFormat','Original Document Format',Config::get('kickstart.doc_format'),array('class'=>'four'))}}
+                {{ Form::label('salutation','Salutation')}}
 
-    {{ $form->file('docupload','Document File')}}
-    <div id="upload-indicator" style="display:none" >Uploading file, please wait.</div>
+                <div class="row">
+                    <div class="span2">
+                      {{ $form->radio('salutation','Mr','Mr')}} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('salutation','Mrs','Mrs')}} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('salutation','Ms','Ms')}} 
+                    </div>
+                    <div class="span6"></div>
+                </div>
 
-    {{ $form->text('docRevisionOf','Revision of','',array('class'=>'tag_revision four','rows'=>'1', 'style'=>'width:100%')) }}
 
-    <div class="row">
-      <div class="five columns left">
-        {{ $form->text('effectiveDate','Effective Date','',array('class'=>'twelve date')) }}
-      </div>
-      <div class="five columns right">
-        {{ $form->text('expiryDate','Expiry Date','',array('class'=>'twelve date')) }}
-      </div>
+                {{ $form->text('firstname','First Name.req','',array('class'=>'text span6','id'=>'firstname')) }}
+                {{ $form->text('lastname','Last Name.req','',array('class'=>'text span6','id'=>'lastname')) }}
+                {{ $form->text('position','Position / Division.req','',array('class'=>'text span6','id'=>'positionname')) }}
+                {{ $form->text('email','Email.req','',array('class'=>'text span6','id'=>'email')) }}
+
+                {{ $form->text('mobile','Mobile Phone Number','',array('class'=>'text span6','id'=>'mobile')) }}
+
+        </fieldset>
+
     </div>
 
-    {{ Form::label('access','This document is')}}
-    <div class="row">
-      <div class="five columns left">
-        {{ $form->radio('access','Confidential','confidential',true)}} 
-      </div>   
-      <div class="five columns right">
-        {{ $form->radio('access','General','general')}} 
-      </div>   
+    <div class="span6">
+
+        <fieldset>
+            <legend>Company Information</legend>
+                {{ $form->text('company','Company / Institution.req','',array('class'=>'text span6','id'=>'company')) }}
+                {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text span6','id'=>'company')) }}
+
+
+                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text span6','id'=>'companyphone')) }}
+                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text span6','id'=>'companyfax')) }}
+
+                {{ Form::label('invoiceaddress','Invoice address same with Company Address ?') }}
+
+                <div class="row">
+                    <div class="span2">
+                      {{ $form->radio('invoiceaddress','Yes','Yes') }} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('invoiceaddress','No','No') }} 
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+
+
+        </fieldset>
+
     </div>
-    <p>
-      <strong>Private</strong> document ( default ) can only be seen by its creator and people it was shared with.<br />
-      <strong>Public</strong> document will be able to be seen by creator's peers at the same department, and superiors with higher access level. 
-    </p>
-
-
-    {{ $form->text('docShare','Shared to','',array('class'=>'tag_shared four','style'=>'width:100%')) }}
-
-    {{ $form->text('docApprovalRequest','Request Approval From','',array('class'=>'tag_email four', 'style'=>'width:100%')) }}
-
-    {{ $form->text('docTag','Search Keyword','',array('class'=>'tag_keyword four','rows'=>'1', 'style'=>'width:100%')) }}
-
-  </div>
-  <div class="five columns right">
-    <h4>Metadata</h4>
-
-    @if(is_null($type))
-      {{$form->select('docDepartment','Department of Origin',Config::get('kickstart.department'),array('class'=>'four'))}}
-    @else
-      {{ Form::label('docDepartment','Department of Origin : '.depttitle($type))}}
-      {{ $form->hidden('docDepartment',$type)}}
-    @endif
-
-
-    {{ $form->select('docCategory','Category',Config::get('kickstart.doc_type'),array('class'=>'four'))}}
-
-    <hr />
-    
-    <!-- related project -->
-    {{ $form->text('docProject','Related Project Number','',array('id'=>'project_number','class'=>'auto_project_number four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    {{ $form->hidden('docProjectId','',array('id'=>'project_id')) }}
-
-    {{ $form->text('docProjectTitle','Project Name','',array('id'=>'project_title','class'=>'auto_project_name four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    <hr />
-    <!-- related tender -->
-    {{ $form->text('docTender','Related Tender Number','',array('id'=>'tender_number','class'=>'auto_tender_number four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    {{ $form->hidden('docTenderId','',array('id'=>'tender_id')) }}
-
-    {{ $form->text('docTenderTitle','Tender Name','',array('id'=>'tender_title','class'=>'auto_tender_name four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    <hr />
-    <!-- related opportunity -->
-    {{ $form->text('docOpportunity','Related Opportunity Number','',array('id'=>'opportunity_number','class'=>'auto_opportunity_number four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    {{ $form->hidden('docOpportunityId','',array('id'=>'opportunity_id')) }}
-
-    {{ $form->text('docOpportunityTitle','Opportunity Name','',array('id'=>'opportunity_title','class'=>'auto_opportunity_name four','rows'=>'1', 'style'=>'width:100%')) }}
-
-  </div>
 </div>
+
+<div class="row">
+    <div class="span6">
+        <fieldset>
+            <legend>Registration Type</legend>
+                <div class="row">
+                    <div class="span6">
+                        Professional / Delegate Domestic
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','IDR 4.500.000','PD') }} 
+                    </div>   
+                </div>
+
+                <div class="row">
+                    <div class="span6">
+                        Professional / Delegate Overseas
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','USD 500','PO') }} 
+                    </div>   
+                </div>
+
+                <div class="row">
+                    <div class="span6">
+                        Student Domestic
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','IDR 400.000','SD') }} 
+                    </div>   
+                </div>
+
+                <div class="row">
+                    <div class="span6">
+                        Student Overseas
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','USD 120','SO') }} 
+                    </div>   
+                </div>
+        </fieldset>
+    </div>
+    <div class="span6">
+             
+
+                {{ Form::label('attenddinner','I will attend the Industrial Dinner on 16 May 2012') }}
+
+                <div class="row">
+                    <div class="span4">
+                      {{ $form->radio('attenddinner','Yes','Yes') }} 
+                    </div>   
+                    <div class="span4">
+                      {{ $form->radio('attenddinner','No','No') }} 
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+    </div>
+</div>
+
 <hr />
+
 <div class="row right">
 {{ Form::submit('Save',array('class'=>'button'))}}&nbsp;&nbsp;
 {{ Form::reset('Reset',array('class'=>'button'))}}
@@ -104,12 +142,6 @@
       //alert($('#field_role').val());
       // load default permission here
   });
-
-  $('#newdoc').submit(function() {
-    $('#upload-indicator').toggle();
-    $('#newdoc').submit();
-  });
-
 </script>
 
 @endsection
