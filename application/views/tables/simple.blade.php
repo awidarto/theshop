@@ -112,17 +112,17 @@
               <li><a href="#">Next</a></li>
             </ul>
           </div>
-          <table class="table table-condensed">
+          <table class="table table-condensed masterDataTable">
              <thead>
              <tr>
                 <th class="span1">ID</th>
                 <th>Company</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th class="span3">Email</th>
+                <th class="span4">Email</th>
                 <th class="span1">Phone</th>
                 <th class="span1">Reg.Date</th>
-                <th class="span3 text align-center">Status</th>
+                <th class="span4 text align-center">Status</th>
                 <th>Industrial Dinner</th>
                 <th class="span2">Action</th>
                 
@@ -130,30 +130,33 @@
              </thead>
              <tbody>
              <tr>
-                <td class="span1">2707</td>
-                <td>VICO Indonesia<br/><small>Indonesia</small></td>
+                <td class="span1"><a href="#myModal" data-toggle="modal">2707</a></td>
+                <td class="nationality">VICO Indonesia<br/><small>Indonesia</small></td>
                 <td>Mohammad</td>
                 <td>Irvan</td>
-                <td class="span3">mohammadirvan@yahoo.com</td>
+                <td class="span4">mohammadirvan@yahoo.com</td>
                 <td class="span1">423423499</td>
                 <td class="span1">08-05-2012 05:05:34</td>
-                <td class="span3 align-center">Professional Overseas<br/><span class="fontGreen fontBold">PAID</span></td>
+                <td class="span4 align-center">Professional Overseas<br/><span class="fontGreen fontBold">PAID</span></td>
                 <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
                 <td class="span2">
                    <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
                    <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
                 </td>
+                
              </tr>
+             
+             
 
              <tr>
-                <td class="span1">2707</td>
-                <td>VICO Indonesia<br/><small>Indonesia</small></td>
+                <td class="span1"><a href="#myModal2" data-toggle="modal">2707</a></td>
+                <td class="nationality">VICO Indonesia<br/><small>Indonesia</small></td>
                 <td>Mohammad</td>
                 <td>Irvan</td>
-                <td class="span3">mohammadirvan@yahoo.com</td>
+                <td class="span4">mohammadirvan@yahoo.com</td>
                 <td class="span1">423423499</td>
                 <td class="span1">08-05-2012 05:05:34</td>
-                <td class="span3 align-center">Professional Domestic<br/><span class="fontGreen fontBold">PAID</span></td>
+                <td class="span4 align-center">Professional Domestic<br/><span class="fontRed fontBold">UNPAID</span></td>
                 <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
                 <td class="span2">
                    <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
@@ -161,14 +164,14 @@
                 </td>
              </tr>
              <tr>
-                <td class="span1">2707</td>
-                <td>VICO Indonesia<br/><small>Indonesia</small></td>
+                <td class="span1"><a href="#myModal" data-toggle="modal">2707</a></td>
+                <td class="nationality">VICO Indonesia<br/><small>Indonesia</small></td>
                 <td>Mohammad</td>
                 <td>Irvan</td>
-                <td class="span3">mohammadirvan@yahoo.com</td>
+                <td class="span4">mohammadirvan@yahoo.com</td>
                 <td class="span1">423423499</td>
                 <td class="span1">08-05-2012 05:05:34</td>
-                <td class="span3 align-center">Professional Domestic<br/><span class="fontRed fontBold">UNPAID</span></td>
+                <td class="span4 align-center">Professional Domestic<br/><span class="fontGreen fontBold">PAID</span></td>
                 <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
                 <td class="span2">
                    <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
@@ -200,16 +203,121 @@
               <span class="win-commandimage win-commandring">&#x0067;</span>
               <span class="win-label">Filter</span>
            </button>
-
-           <button class="win-command">
-              <span class="win-commandimage win-commandring">&#xe03e;</span>
-              <span class="win-label">Add</span>
-           </button>
+           	@if(isset($addurl) && $addurl != '')
+				<a class="win-command" href="{{URL::to($addurl)}}">
+					<span class="win-commandimage win-commandring">&#xe03e;</span>
+              		<span class="win-label">Add</span>
+				</a>
+			@endif
+           
         </div>
         
      </div>
   </div>
 </footer>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+   <h3 id="myModalLabel">Attendee Details</h3>
+ </div>
+ <div class="modal-body">
+ 	<div class="attendeeDetails">
+ 		<span class="paidStatus"><strong>PAID</strong></span>
+ 		<div class="row-fluid">
+ 			{{ HTML::image('images/2705_bar.png','bar',array('class'=>'barcode')) }}
+ 		</div>
+		<div class="row-fluid">
+			<div class="span4">Registration Number</div>
+			<div class="span8">: 10-00-002147</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Name</div>
+			<div class="span8">: Mr Hazman Hazman</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Cellphone</div>
+			<div class="span8">: 081932416264</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">E-mail Address</div>
+			<div class="span8">: vicohh@email.com</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Nationality</div>
+			<div class="span8">: Domestic</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Company</div>
+			<div class="span8">: VICO Indonesia</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Company Address</div>
+			<div class="span8">: VICO Indonesia Wisma Mulia, 48th - 49th Floor Jl. Jend. Gatot Subroto No. 42, , Jakarta 12710, Indonesia</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Company Phone</div>
+			<div class="span8">: (021) 523-6000</div>
+		</div>
+	</div>
+ </div>
+ <div class="modal-footer">
+   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   <button class="btn btn-primary">Save changes</button>
+ </div>
+</div>
+
+
+<div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+   <h3 id="myModalLabel">Attendee Details</h3>
+ </div>
+ <div class="modal-body">
+
+ 	<div class="attendeeDetails">
+ 		{{ HTML::image('images/2705_bar.png','bar',array('class'=>'barcode2')) }}
+ 		<span class="paidStatus unpaid"><strong>UNPAID</strong></span>
+		<div class="row-fluid">
+			<div class="span4">Registration Number</div>
+			<div class="span8">: 10-00-002147</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Name</div>
+			<div class="span8">: Mr Hazman Hazman</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Cellphone</div>
+			<div class="span8">: 081932416264</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">E-mail Address</div>
+			<div class="span8">: vicohh@email.com</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Nationality</div>
+			<div class="span8">: Domestic</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Company</div>
+			<div class="span8">: VICO Indonesia</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Company Address</div>
+			<div class="span8">: VICO Indonesia Wisma Mulia, 48th - 49th Floor Jl. Jend. Gatot Subroto No. 42, , Jakarta 12710, Indonesia</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span4">Company Phone</div>
+			<div class="span8">: (021) 523-6000</div>
+		</div>
+	</div>
+ </div>
+ <div class="modal-footer">
+   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   <button class="btn btn-primary">Save changes</button>
+ </div>
+</div>
+
 <script type="text/javascript">
 <!--
    function toggle_visibility(id) {

@@ -130,3 +130,47 @@ span.activity-list[rel="tooltip"]{
 .navbar-fixed-bottom .row{
 	padding-left: 30px;
 }
+.masterDataTable .nationality small{
+	color: #7f7f7f;
+}
+.attendeeDetails .span4{
+	color: #7f7f7f;
+}
+.attendeeDetails .span8{
+	margin-bottom: 5px;
+}
+.paidStatus{
+	padding:18px 12px;
+	background-color: #2c965e;
+	-moz-transform: rotate(355deg);
+	-o-transform: rotate(355deg);
+	-webkit-transform: rotate(355deg);
+	transform: rotate(355deg);
+	display: inline-block;
+	position: absolute;
+	top:50px;
+	right: 20px;
+
+}
+
+.paidStatus strong{
+	color: #fff;
+	margin-top: 3px;
+	border: 1px solid #fff;
+	padding:7px 25px;
+}
+.paidStatus.unpaid{
+	background-color: #bc1c48;
+}
+.attendeeDetails img.barcode2{
+	width: 150px;
+	
+	position: absolute;
+	top:140px;
+	right: 20px;
+}
+
+.attendeeDetails img.barcode{
+	width: 160px;
+	margin-bottom: 10px;
+}
