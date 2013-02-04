@@ -401,6 +401,71 @@ class User_Controller extends Base_Controller {
 
 	}
 
+	public function get_editprofile(){
+
+		$user = new User();
+
+		$id = Auth::user()->id;
+
+		$_id = new MongoId($id);
+
+		$user_profile = $user->get(array('_id'=>$_id));
+
+
+		$this->crumb = new Breadcrumb();
+		$this->crumb->add('user/profile','Profile');
+		$this->crumb->add('user/editprofile','Edit');
+		$this->crumb->add('user/profile',$user_profile['fullname']);
+
+
+		$form = Formly::make($user_profile);
+
+		return View::make('user.editprofile')
+					->with('user',$user_profile)
+					->with('form',$form)
+					->with('crumb',$this->crumb)
+					->with('title','Edit Profile');
+
+	}
+
+	public function post_editprofile(){
+
+		//print_r(Session::get('permission'));
+
+	    $rules = array(
+	        'fullname'  => 'required|max:50'
+	    );
+
+	    $validation = Validator::make($input = Input::all(), $rules);
+
+	    if($validation->fails()){
+
+	    	return Redirect::to('user/edit/'.$id)->with_errors($validation)->with_input(Input::all());
+
+	    }else{
+
+			$data = Input::get();
+	    	
+			$id = new MongoId($data['id']);
+			$data['lastUpdate'] = new MongoDate();
+
+			unset($data['csrf_token']);
+			unset($data['id']);
+
+			$user = new User();
+			
+			if($user->update(array('_id'=>$id),array('$set'=>$data))){
+		    	return Redirect::to('users/profile')->with('notify_success','User profile saved successfully');
+			}else{
+		    	return Redirect::to('users/profile')->with('notify_success','User profile saving failed');
+			}
+			
+	    }
+
+		
+	}
+
+
 	public function get_edit($id = null){
 
 		$this->crumb->add('user/edit','Edit',false);
@@ -416,13 +481,15 @@ class User_Controller extends Base_Controller {
 		$this->crumb->add('user/edit',$user_profile['fullname']);
 
 		foreach($user_profile['permissions'] as $key=>$val){
-			$user_profile[$key] = ($val)?1:0;
-			/*
-			foreach($val as $k=>$v){
-				$user_profile[$key.'_'.$k] = $v;
+			//$user_profile[$key] = ($val)?1:0;
+			if(is_array($val)){
+				foreach($val as $k=>$v){
+					$user_profile[$key.'_'.$k] = $v;
+				}
 			}
-			*/
 		}
+
+		//print_r($user_profile);
 
 		$form = Formly::make($user_profile);
 
@@ -460,20 +527,21 @@ class User_Controller extends Base_Controller {
 			$permissions = array();
 
 			foreach($obj as $o=>$t){
+
+				/*
 				if(isset($data[$o])){
 					$permissions[$o] = true;
 					unset($data[$o]);
 				}else{
 					$permissions[$o] = false;
 				}
-
-				/*
 				if(isset($data[$o.'_set'])){
 					$permissions[$o]['set'] = $data[$o.'_set'];
 					unset($data[$o.'_set']);
 				}else{
 					$permissions[$o]['set'] = 0;
 				}
+				*/
 				foreach($pitem as $p){
 					if(isset($data[$o.'_'.$p])){
 						$permissions[$o][$p] = $data[$o.'_'.$p];
@@ -482,7 +550,6 @@ class User_Controller extends Base_Controller {
 						$permissions[$o][$p] = 0;
 					}
 				}
-				*/
 			}
 
 			$data['permissions'] = $permissions;
@@ -503,7 +570,7 @@ class User_Controller extends Base_Controller {
 			}else{
 		    	return Redirect::to('users')->with('notify_success','User saving failed');
 			}
-
+			
 	    }
 
 		
