@@ -45,6 +45,8 @@ class Register_Controller extends Base_Controller {
 		$this->crumb->add('register','Visitor Registration');
 
 		$form = new Formly();
+		$form->framework = 'zurb';
+		
 		return View::make('register.new')
 					->with('form',$form)
 					->with('crumb',$this->crumb)

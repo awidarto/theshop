@@ -18,7 +18,7 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('salutation','Mr','Mr')}} 
+                      {{ $form->radio('salutation','Mr','Mr',true)}} 
                     </div>   
                     <div class="two columns">
                       {{ $form->radio('salutation','Mrs','Mrs')}} 
@@ -52,7 +52,7 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('invoiceaddress','Yes','Yes') }} 
+                      {{ $form->radio('invoiceaddress','Yes','Yes',true) }} 
                     </div>   
                     <div class="two columns">
                       {{ $form->radio('invoiceaddress','No','No') }} 
@@ -70,7 +70,7 @@
                         Professional / Delegate Domestic
                     </div>   
                     <div class="four columns">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD') }} 
+                      {{ $form->radio('regtype','IDR 4.500.000','PD',true) }} 
                     </div>   
                     <div class="four columns"></div>
                 </div>
@@ -114,7 +114,7 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('attenddinner','Yes','Yes') }} 
+                      {{ $form->radio('attenddinner','Yes','Yes',true) }} 
                     </div>   
                     <div class="two columns">
                       {{ $form->radio('attenddinner','No','No') }} 
