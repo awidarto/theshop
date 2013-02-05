@@ -241,10 +241,31 @@ span.activity-list[rel="tooltip"]{
 .formNewAttendee .row-fluid{
 	margin-bottom: 7px;
 }
-form label{
+ label{
 	font-size: 12px;
 	font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
 }
 .right{
 	float: right;
+}
+.formHead{
+	margin-bottom: 7px;
+}
+.inputInline .row-fluid{
+	width: auto;
+	display: inline-block;
+}
+.inputInline .row-fluid:first{
+	width:70%;
+}
+.inputInline #city{
+	width: 340px;
+}
+.inputInline #zip{
+	width: 76px;
+}
+span.error{
+	display: block;
+	color: #b94a48;
+	margin-bottom: 4px;
 }
