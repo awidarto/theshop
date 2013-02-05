@@ -19,7 +19,7 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('salutation','Mr','Mr',true)}} 
+                      {{ $form->radio('salutation','Mr','Mr')}} 
                     </div>   
                     <div class="two columns">
                       {{ $form->radio('salutation','Mrs','Mrs')}} 
@@ -59,13 +59,13 @@
                     </div>
                 </div>
 
-                {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'four'))}}
+                {{$form->select('country','Country of Origin',Config::get('country.countries'),null,array('class'=>'four'))}}
 
                 {{ Form::label('invoiceaddress','Invoice address same with Company Address ?') }}
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('invoiceaddress','Yes','Yes',true) }} 
+                      {{ $form->radio('invoiceaddress','Yes','Yes') }} 
                     </div>   
                     <div class="two columns">
                       {{ $form->radio('invoiceaddress','No','No') }} 
@@ -83,7 +83,7 @@
                         Professional / Delegate Domestic
                     </div>   
                     <div class="four columns">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD',true) }} 
+                      {{ $form->radio('regtype','IDR 4.500.000','PD') }} 
                     </div>   
                     <div class="four columns"></div>
                 </div>
@@ -127,7 +127,7 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('attenddinner','Yes','Yes',true) }} 
+                      {{ $form->radio('attenddinner','Yes','Yes') }} 
                     </div>   
                     <div class="two columns">
                       {{ $form->radio('attenddinner','No','No') }} 

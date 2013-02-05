@@ -100,6 +100,9 @@ class Register_Controller extends Base_Controller {
 		$this->crumb->add('register','Payment Confirmation');
 
 		$form = new Formly();
+
+		$form->framework = 'zurb';
+
 		return View::make('register.payment')
 					->with('form',$form)
 					->with('crumb',$this->crumb)
@@ -161,11 +164,13 @@ class Register_Controller extends Base_Controller {
 
 		$form = Formly::make($user_profile);
 
+		$form->framework = 'zurb';
+
 		return View::make('register.edit')
 					->with('user',$user_profile)
 					->with('form',$form)
 					->with('crumb',$this->crumb)
-					->with('title','Edit User');
+					->with('title','Edit My Profile');
 
 	}
 
