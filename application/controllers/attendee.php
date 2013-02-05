@@ -78,24 +78,6 @@ class Attendee_Controller extends Base_Controller {
 
 	public function post_index()
 	{
-		/*
-		   "salutation": "Mr",
-		   "firstname": "Jon",
-		   "lastname": "Anderson",
-		   "position": "Vocalist",
-		   "email": "jon@abwh.org",
-		   "mobile": "628989898989",
-		   "company": "Anderson Bruford Wakeman Howe Foundation",
-		   "npwp": "0897654321",
-		   "companyphone": "622123456789",
-		   "companyfax": "622123456789",
-		   "invoiceaddress": "Yes",
-		   "regtype": "PD",
-		   "attenddinner": "Yes",
-		   "createdDate": ISODate("2013-02-04T17:17:17.997Z"),
-		   "lastUpdate": ISODate("2013-02-04T17:17:17.997Z")
-
-		*/
 
 
 		$fields = array('firstname','lastname','email','company','position','mobile','companyphone','companyfax','createdDate','lastUpdate');

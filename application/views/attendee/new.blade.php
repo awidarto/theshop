@@ -39,54 +39,6 @@
 
         </fieldset>
 
-    </div>
-
-    <div class="span6">
-
-        <fieldset>
-            <legend>Company Information</legend>
-                {{ $form->text('company','Company / Institution.req','',array('class'=>'text span6','id'=>'company')) }}
-                {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text span6','id'=>'company')) }}
-
-
-                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text span6','id'=>'companyphone')) }}
-                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text span6','id'=>'companyfax')) }}
-
-                {{ $form->text('address','Address.req','',array('class'=>'text span9','id'=>'address','placeholder'=>'Company Address')) }}
-
-
-                <div class="row-fluid inputInline">
-                    
-                        {{ $form->text('city','','',array('class'=>'text span12','id'=>'city','placeholder'=>'City')) }}
-                    
-                    
-                        {{ $form->text('zip','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
-                    
-                </div>
-
-                {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'span12'))}}
-
-                <div class="row-fluid">
-                {{ Form::label('invoiceaddress','Invoice address same with Company Address ?') }}
-
-                
-                    <div class="span2">
-                      {{ $form->radio('invoiceaddress','Yes','Yes',true) }} 
-                    </div>   
-                    <div class="span2">
-                      {{ $form->radio('invoiceaddress','No','No') }} 
-                    </div>   
-                    <div class="span8"></div>
-                </div>
-
-
-        </fieldset>
-
-    </div>
-</div>
-
-<div class="row-fluid">
-    <div class="span6">
         <fieldset>
             <legend>Registration Type</legend>
                 <div class="row-fluid">
@@ -125,11 +77,9 @@
                     </div>   
                 </div>
         </fieldset>
-    </div>
-    <div class="span6">
-             
 
-                {{ Form::label('attenddinner','I will attend the Industrial Dinner on 16 May 2012') }}
+        <fieldset>
+            <legend>Will attend the Industrial Dinner on 16 May 2012</legend>
 
                 <div class="row-fluid">
                     <div class="span4">
@@ -140,7 +90,6 @@
                     </div>   
                     <div class="span8"></div>
                 </div>
-<<<<<<< HEAD
 
         </fieldset>
 
@@ -157,23 +106,25 @@
                 {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text span6','id'=>'companyphone')) }}
                 {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text span6','id'=>'companyfax')) }}
 
-                {{ $form->text('address','Address.req','',array('class'=>'text','id'=>'address','placeholder'=>'Company Address')) }}
+                {{ $form->text('address','Address.req','',array('class'=>'text span9','id'=>'address','placeholder'=>'Company Address')) }}
 
 
-                <div class="row-fluid">
+                <div class="row-fluid inputInline">
                     
-                        {{ $form->text('city','','',array('class'=>'text span7','id'=>'city','placeholder'=>'City')) }}
-                                        
+                        {{ $form->text('city','','',array('class'=>'text span12','id'=>'city','placeholder'=>'City')) }}
+                    
+                    
                         {{ $form->text('zip','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
                     
                 </div>
 
                 {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'span12'))}}
 
-                <div class="row-fluid">
-                {{ Form::label('invoiceaddress','Invoice address same with Company Address ?') }}
+        </fieldset>
 
-                
+        <fieldset>
+            <legend>Invoice address same with Company Address ?</legend>
+                <div class="row-fluid">
                     <div class="span2">
                       {{ $form->radio('invoiceaddress','Yes','Yes',true) }} 
                     </div>   
@@ -182,12 +133,10 @@
                     </div>   
                     <div class="span8"></div>
                 </div>
-
-
         </fieldset>
 
-=======
->>>>>>> 68a62faf4dda677f7ea7b8b1ba38665144378329
+
+
     </div>
 </div>
 
