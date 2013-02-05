@@ -49,9 +49,8 @@ class Attendee_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
-
-
 		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
+
 		$searchinput = array(false,'First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
 
 		$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
@@ -69,7 +68,8 @@ class Attendee_Controller extends Base_Controller {
 				->with('ajaxsource',URL::to('attendee'))
 				->with('ajaxdel',URL::to('attendee/del'))
 				->with('crumb',$this->crumb)
-				->with('heads',$heads);
+				->with('heads',$heads)
+				->nest('row','attendee.rowdetail');
 		}else{
 			return View::make('attendee.restricted')
 							->with('title',$title);			
@@ -172,6 +172,8 @@ class Attendee_Controller extends Base_Controller {
 		$counter = 1 + $pagestart;
 		foreach ($attendees as $doc) {
 
+			$extra = $doc;
+
 			$aadata[] = array(
 				$counter,
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
@@ -185,7 +187,8 @@ class Attendee_Controller extends Base_Controller {
 				date('Y-m-d H:i:s', $doc['createdDate']->sec),
 				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
 				'<a href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i class="foundicon-edit action"></i></a>&nbsp;'.
-				'<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>'
+				'<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>',
+				'extra'=>$extra
 			);
 			$counter++;
 		}
