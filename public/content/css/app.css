@@ -238,3 +238,9 @@ span.activity-list[rel="tooltip"]{
 	display: block;
 	float: left;
 }
+.formNewAttendee .row-fluid{
+	margin-bottom: 7px;
+}
+.right{
+	float: right;
+}

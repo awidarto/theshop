@@ -13,7 +13,7 @@ print Former::horizontal_open()
   ->method('GET');
 ?>
 
-<div class="row">
+<div class="row-fluid">
   <div class="six columns">
     <?php
     print Former::xlarge_text('name')

@@ -8,14 +8,14 @@
 
 {{$form->open('attendee/add','POST',array('class'=>'custom'))}}
 
-<div class="row">
+<div class="row-fluid formNewAttendee">
     <div class="span6">
         <fieldset>
             <legend>Personal Information</legend>
 
                 {{ Form::label('salutation','Salutation')}}
 
-                <div class="row">
+                <div class="row-fluid radioInput">
                     <div class="span2">
                       {{ $form->radio('salutation','Mr','Mr',true)}} 
                     </div>   
@@ -28,8 +28,9 @@
                     <div class="span6"></div>
                 </div>
 
-
+                
                 {{ $form->text('firstname','First Name.req','',array('class'=>'text span6','id'=>'firstname')) }}
+                
                 {{ $form->text('lastname','Last Name.req','',array('class'=>'text span6','id'=>'lastname')) }}
                 {{ $form->text('position','Position / Division.req','',array('class'=>'text span6','id'=>'positionname')) }}
                 {{ $form->text('email','Email.req','',array('class'=>'text span6','id'=>'email')) }}
@@ -54,21 +55,21 @@
                 {{ $form->text('address','Address.req','',array('class'=>'text','id'=>'address','placeholder'=>'Company Address')) }}
 
 
-                <div class="row">
-                    <div class="span8">
-                        {{ $form->text('city','','',array('class'=>'text','id'=>'city','placeholder'=>'City')) }}
-                    </div>
-                    <div class="span3">
-                        {{ $form->text('zip','','',array('class'=>'text','id'=>'zip','placeholder'=>'ZIP Code')) }}
-                    </div>
+                <div class="row-fluid">
+                    
+                        {{ $form->text('city','','',array('class'=>'text span8','id'=>'city','placeholder'=>'City')) }}
+                    
+                    
+                        {{ $form->text('zip','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
+                    
                 </div>
 
                 {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'span12'))}}
 
-
+                <div class="row-fluid">
                 {{ Form::label('invoiceaddress','Invoice address same with Company Address ?') }}
 
-                <div class="row">
+                
                     <div class="span2">
                       {{ $form->radio('invoiceaddress','Yes','Yes',true) }} 
                     </div>   
@@ -84,11 +85,11 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row-fluid">
     <div class="span6">
         <fieldset>
             <legend>Registration Type</legend>
-                <div class="row">
+                <div class="row-fluid">
                     <div class="span6">
                         Professional / Delegate Domestic
                     </div>   
@@ -97,7 +98,7 @@
                     </div>   
                 </div>
 
-                <div class="row">
+                <div class="row-fluid">
                     <div class="span6">
                         Professional / Delegate Overseas
                     </div>   
@@ -106,7 +107,7 @@
                     </div>   
                 </div>
 
-                <div class="row">
+                <div class="row-fluid">
                     <div class="span6">
                         Student Domestic
                     </div>   
@@ -115,7 +116,7 @@
                     </div>   
                 </div>
 
-                <div class="row">
+                <div class="row-fluid">
                     <div class="span6">
                         Student Overseas
                     </div>   
@@ -130,7 +131,7 @@
 
                 {{ Form::label('attenddinner','I will attend the Industrial Dinner on 16 May 2012') }}
 
-                <div class="row">
+                <div class="row-fluid">
                     <div class="span4">
                       {{ $form->radio('attenddinner','Yes','Yes',true) }} 
                     </div>   
