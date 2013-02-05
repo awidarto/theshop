@@ -1,6 +1,6 @@
 <?php
 
-class Import_Controller extends Base_Controller {
+class Report_Controller extends Base_Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -37,6 +37,7 @@ class Import_Controller extends Base_Controller {
 
 	public function __construct(){
 		$this->crumb = new Breadcrumb();
+		$this->crumb->add('report','Report');
 
 		date_default_timezone_set('Asia/Jakarta');
 		$this->filter('before','auth');
@@ -44,15 +45,9 @@ class Import_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-
-		$this->crumb->add('import','Import Data');
-		$form = new Formly();
-
-		return View::make('import.import')
-			->with('title','Import Data')
-			->with('form',$form)
+		return View::make('report.summary')
+			->with('title','Report')
 			->with('crumb',$this->crumb);
-
 	}
 
 }

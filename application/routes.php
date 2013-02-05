@@ -32,7 +32,7 @@
 |
 */
 
-Route::controller(array('register','document','import','dashboard','attendee','user','message','project','tender','opportunity','search','activity','finance','hr','qc','warehouse','employee','requests','approval','category','content','ajax'));
+Route::controller(array('register','report','import','dashboard','attendee','official','visitor','user','message','search','activity','category','content','ajax'));
 
 Route::get('/',function(){
     if(Auth::check()){
