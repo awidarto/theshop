@@ -103,6 +103,18 @@ class Register_Controller extends Base_Controller {
 
 	}
 
+	public function get_success(){
+
+		$this->crumb->add('register','Register');
+
+		$form = new Formly();
+		return View::make('register.success')
+					->with('form',$form)
+					->with('crumb',$this->crumb)
+					->with('title','Successfully Registered');
+
+	}
+
 
 }
 ?>

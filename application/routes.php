@@ -52,6 +52,8 @@ Route::post('register',array('uses'=>'register@add'));
 
 Route::get('payment',array('as'=>'register/payment','uses'=>'register@payment'));
 
+Route::get('register-success',array('as'=>'register/success','uses'=>'register@success'));
+
 /*
 Route::get('/',  function(){
     $heads = array('Home','Action');
