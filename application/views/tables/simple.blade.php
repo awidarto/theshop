@@ -9,43 +9,7 @@
 		<a class="foundicon-add-doc button right newdoc action clearfix" href="{{URL::to($addurl)}}">&nbsp;&nbsp;<span>{{$newbutton}}</span></a>
 	@endif
 </div>
-<div class="row">
-	<table class="dataTable">
-	    <thead>
-	        <tr>
-	        	<?php
-		        	if(!isset($colclass)){
-		        		$colclass = array();
-		        	}
-	        		$hid = 0;
-	        	?>
-	        	@foreach($heads as $head)
-	        		<th 
-	        			@if(isset($colclass[$hid]))
-	        				class="{{$colclass[$hid]}}"
-	        			@endif
-	        			<?php $hid++ ?>
-	        		>
-	        			{{ $head }}
-	        		</th>
-	        	@endforeach
-	        </tr>
-	    </thead>
-	    <tbody>
-	    </tbody>
-	    <tfoot>
-	    <tr>
-	    	@foreach($searchinput as $in)
-	    		@if($in)
-	        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
-	    		@else
-	        		<td>&nbsp;</td>
-	    		@endif
-	    	@endforeach        	
-	    </tr>
-	    </tfoot>
-	</table>
-</div>-->
+-->
 <div class="span12">
    
     <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
@@ -112,6 +76,7 @@
               <li><a href="#">Next</a></li>
             </ul>
           </div>
+<<<<<<< HEAD
           <table class="table table-condensed masterDataTable">
              <thead>
              <tr>
@@ -128,6 +93,30 @@
                 
              </tr>
              </thead>
+=======
+          <table class="table table-condensed dataTable">
+
+			    <thead>
+			        <tr>
+			        	<?php
+				        	if(!isset($colclass)){
+				        		$colclass = array();
+				        	}
+			        		$hid = 0;
+			        	?>
+			        	@foreach($heads as $head)
+			        		<th 
+			        			@if(isset($colclass[$hid]))
+			        				class="{{$colclass[$hid]}}"
+			        			@endif
+			        			<?php $hid++ ?>
+			        		>
+			        			{{ $head }}
+			        		</th>
+			        	@endforeach
+			        </tr>
+			    </thead>
+>>>>>>> 2d475d6a00f6f5ed8fe880c1d903da17e66d4b57
              <tbody>
              <tr>
                 <td class="span1"><a href="#myModal" data-toggle="modal">2707</a></td>
@@ -178,10 +167,22 @@
                    <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
                 </td>
              </tr>
-             
 
-             
              </tbody>
+		    	@if($searchinput)
+				    <tfoot>
+					    <tr>
+				    	@foreach($searchinput as $in)
+				    		@if($in)
+				        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
+				    		@else
+				        		<td>&nbsp;</td>
+				    		@endif
+				    	@endforeach
+					    </tr>
+				    </tfoot>
+			    @endif
+
           </table>
 
        </div>
@@ -192,7 +193,7 @@
   <div class="container">
      <div class="row">
         <div class="span6 align-left">
-           <a class="win-command" href="dashboard.html">
+           <a class="win-command" href="{{ URL::base()}}">
               <span class="win-commandimage win-commandring">!</span>
               <span class="win-label">Home</span>
            </a>
@@ -203,6 +204,7 @@
               <span class="win-commandimage win-commandring">&#x0067;</span>
               <span class="win-label">Filter</span>
            </button>
+<<<<<<< HEAD
            	@if(isset($addurl) && $addurl != '')
 				<a class="win-command" href="{{URL::to($addurl)}}">
 					<span class="win-commandimage win-commandring">&#xe03e;</span>
@@ -210,6 +212,16 @@
 				</a>
 			@endif
            
+=======
+
+		   	@if(isset($addurl) && $addurl != '')
+				<a class="win-command" href="{{URL::to($addurl)}}">
+					<span class="win-commandimage win-commandring">&#xe03e;</span>
+					<span class="win-label">Add</span>
+				</a>
+			@endif
+
+>>>>>>> 2d475d6a00f6f5ed8fe880c1d903da17e66d4b57
         </div>
         
      </div>
@@ -319,19 +331,15 @@
 </div>
 
 <script type="text/javascript">
-<!--
-   function toggle_visibility(id) {
-      var e = document.getElementById(id);
-      if(e.style.display == 'block')
-         e.style.display = 'none';
-      else
-         e.style.display = 'block';
-   }
-   $('.activity-list').tooltip();
-//-->
-</script>
-  <!--<script type="text/javascript">
+
+	function toggle_visibility(id) {
+		$('#' + id).toggle();
+	}
+
     $(document).ready(function(){
+
+		$('.activity-list').tooltip();
+
 		var asInitVals = new Array();
         var oTable = $('.dataTable').DataTable(
 			{
@@ -340,7 +348,7 @@
 		        "sAjaxSource": "{{$ajaxsource}}",
 				"oLanguage": { "sSearch": "Search "},
 				"sPaginationType": "full_numbers",
-				"sDom": 'T<"clear">lfrtip',
+				"sDom": 'lfrpitiT',
 				"oTableTools": {
 					"sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
 				},
@@ -487,6 +495,6 @@
 		});
 
     });
-  </script>-->
+  </script>
 
 @endsection

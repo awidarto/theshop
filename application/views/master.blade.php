@@ -5,46 +5,47 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-   <meta charset="utf-8" />
-   <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
-   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-   <!-- Mobile viewport optimized: h5bp.com/viewport -->
-   <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- Mobile viewport optimized: h5bp.com/viewport -->
+    <meta name="viewport" content="width=device-width">
 
-   <title>{{ Config::get('site.title') }}</title>
+    <title>{{ Config::get('site.title') }}</title>
 
-   
-   
-   <!-- remove or comment this line if you want to use the local fonts -->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 
-   
 
-   {{ HTML::style('content/css/bootstrap.css') }}
-   {{ HTML::style('content/css/bootstrap-responsive.css') }}
-   {{ HTML::style('content/css/bootmetro.css') }}
-   {{ HTML::style('content/css/bootmetro-tiles.css') }}
-   {{ HTML::style('content/css/bootmetro-charms.css') }}
-   {{ HTML::style('content/css/metro-ui-light.css') }}
-   {{ HTML::style('content/css/icomoon.css') }}
-   {{ HTML::style('content/css/app.css') }}
+    <!-- remove or comment this line if you want to use the local fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 
-   <!--  these two css are to use only for documentation -->
-   
-   {{ HTML::style('content/css/demo.css') }}
-   <link rel="stylesheet" type="text/css" href="scripts/google-code-prettify/prettify.css" >
 
-   <!-- Le fav and touch icons -->
-  
-  
-   <!-- All JavaScript at the bottom, except for Modernizr and Respond.
+
+    {{ HTML::style('content/css/bootstrap.css') }}
+    {{ HTML::style('content/css/bootstrap-responsive.css') }}
+    {{ HTML::style('content/css/bootmetro.css') }}
+    {{ HTML::style('content/css/bootmetro-tiles.css') }}
+    {{ HTML::style('content/css/bootmetro-charms.css') }}
+    {{ HTML::style('content/css/metro-ui-light.css') }}
+    {{ HTML::style('content/css/icomoon.css') }}
+    {{ HTML::style('content/css/app.css') }}
+
+    <!--  these two css are to use only for documentation -->
+
+    {{ HTML::style('content/css/demo.css') }}
+    <link rel="stylesheet" type="text/css" href="{{URL::base()}}/scripts/google-code-prettify/prettify.css" >
+
+    <!-- Le fav and touch icons -->
+
+
+    <!-- All JavaScript at the bottom, except for Modernizr and Respond.
       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
-   
-   {{ HTML::script('scripts/modernizr-2.6.1.min.js') }}
-   
-</head>
 
+    {{ HTML::script('scripts/modernizr-2.6.1.min.js') }}
+    {{ HTML::script('js/jquery-1.8.3.min.js') }}
+
+    {{ HTML::script('js/select2.min.js') }}   
+</head>
 
 <body>
 
@@ -55,7 +56,7 @@
          <div class="span8">
             <div id="header-container">
               {{ HTML::image('images/ipa-logo-small.png','ipalogo',array('class'=>'logo-header')) }}
-              <h5>THE 37th IPA CONVENTION and EXHIBITION 2013</h5>
+              <h5>{{ Config::get('site.title')}}</h5>
               @yield('topnav')
             </div>
          </div>
@@ -105,20 +106,24 @@
     </div>
   </div>-->
 
-  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
- <!--<script>window.jQuery || document.write("<script src='scripts/jquery-1.8.2.min.js'>\x3C/script>")</script>-->
+  {{ HTML::script('js/jquery.dataTables.min.js') }}
 
- {{ HTML::script('scripts/google-code-prettify/prettify.js') }}
- {{ HTML::script('scripts/jquery.mousewheel.js') }}
- {{ HTML::script('scripts/jquery.scrollTo.js') }}
- {{ HTML::script('scripts/bootstrap.min.js') }}
- {{ HTML::script('scripts/bootmetro.js') }}
- {{ HTML::script('scripts/bootmetro-charms.js') }}
- {{ HTML::script('scripts/demo.js') }}
- {{ HTML::script('scripts/holder.js') }}
+  {{ HTML::script('js/underscore-1.1.5.js') }}
+
+  {{ HTML::script('js/jquery.tagsinput.min.js') }}
+  {{ HTML::script('js/select2.min.js') }}
+
+  {{ HTML::script('js/jquery.fancybox.js') }}
+
+  {{ HTML::script('scripts/google-code-prettify/prettify.js') }}
+  {{ HTML::script('scripts/jquery.mousewheel.js') }}
+  {{ HTML::script('scripts/jquery.scrollTo.js') }}
+  {{ HTML::script('scripts/bootstrap.min.js') }}
+  {{ HTML::script('scripts/bootmetro.js') }}
+  {{ HTML::script('scripts/bootmetro-charms.js') }}
+  {{ HTML::script('scripts/demo.js') }}
+  {{ HTML::script('scripts/holder.js') }}
  
-
  <script type="text/javascript">
     $(".metro").metro();
  </script>

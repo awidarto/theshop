@@ -77,6 +77,13 @@ class Formly
 	 */
 	public $display_inline_errors = true;
 
+
+	/**
+	 * CSS Framework choice
+	 */
+	public $framework = 'bootstrap';
+
+
 	/**
 	 * Class constructor
 	 *
@@ -339,37 +346,80 @@ class Formly
 
 		$out = '<div class="row">'.PHP_EOL;
 
-			if($checkbox === true || $radio === true){
+			if($this->framework == 'bootstrap'){
 
-				$out .= '<div class="twelve columns"><label for="'.$name.'" class="check" >';
+				if($checkbox === true || $radio === true){
 
-				$checked = (strpos($field, 'checked') > 0)?'checked':'';
-				$disabled = (strpos($field, 'disabled') > 0)?'disabled':'';
+					$out .= '<div class="span12">';
 
-				if($checkbox === true && $radio === false ){
-					$out .= $field.'<span class="custom '.$checked.' '.$disabled.' checkbox"></span>';
-				}else if($checkbox === false && $radio === true ){
-					$out .= $field.'<span class="custom '.$checked.' '.$disabled.' radio"></span>';
+					$checked = (strpos($field, 'checked') > 0)?'checked':'';
+					$disabled = (strpos($field, 'disabled') > 0)?'disabled':'';
+
+					if($checkbox === true && $radio === false ){
+						$out .= '<label for="'.$name.'" class="checkbox" >';
+						$out .= $field;
+						$out .= '<span class="custom '.$checked.' '.$disabled.' metro-checkbox">'.$label.'</span>';
+					}else if($checkbox === false && $radio === true ){
+						$out .= '<label for="'.$name.'" class="radio" >';
+						$out .= $field;
+						$out .= '<span class="custom '.$checked.' '.$disabled.' metro-radio">'.$label.'</span>';
+					}
+
+					$out .= '</label>';
+
+					if ($this->display_inline_errors && ! empty($error))
+					{
+						$out .= '<span class="error">'.$error.'</span>';
+					}
+
+					$out .= '</div>';
+
+				}else{
+					$out .= $this->build_label($name, $label);
+					$out .= $field;
+
+					if ($this->display_inline_errors && ! empty($error))
+					{
+						$out .= '<span class="error">'.$error.'</span>';
+					}
+					
 				}
 
-				$out .= $label.'</label>';
+			}else if($this->framework == 'zurb'){
 
-				if ($this->display_inline_errors && ! empty($error))
-				{
-					$out .= '<span class="error">'.$error.'</span>';
+				if($checkbox === true || $radio === true){
+
+					$out .= '<div class="twelve columns"><label for="'.$name.'" class="check" >';
+
+					$checked = (strpos($field, 'checked') > 0)?'checked':'';
+					$disabled = (strpos($field, 'disabled') > 0)?'disabled':'';
+
+					if($checkbox === true && $radio === false ){
+						$out .= $field.'<span class="custom '.$checked.' '.$disabled.' checkbox"></span>';
+					}else if($checkbox === false && $radio === true ){
+						$out .= $field.'<span class="custom '.$checked.' '.$disabled.' radio"></span>';
+					}
+
+					$out .= $label.'</label>';
+
+					if ($this->display_inline_errors && ! empty($error))
+					{
+						$out .= '<span class="error">'.$error.'</span>';
+					}
+
+					$out .= '</div>';
+
+				}else{
+					$out .= $this->build_label($name, $label);
+					$out .= $field;
+
+					if ($this->display_inline_errors && ! empty($error))
+					{
+						$out .= '<span class="error">'.$error.'</span>';
+					}
+					
 				}
 
-				$out .= '</div>';
-
-			}else{
-				$out .= $this->build_label($name, $label);
-				$out .= $field;
-
-				if ($this->display_inline_errors && ! empty($error))
-				{
-					$out .= '<span class="error">'.$error.'</span>';
-				}
-				
 			}
 
 

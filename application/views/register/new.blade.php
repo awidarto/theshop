@@ -6,7 +6,7 @@
 <h3>{{$title}}</h3>
 </div>
 
-{{$form->open('register/add','POST',array('class'=>'custom'))}}
+{{$form->open('register','POST',array('class'=>'custom'))}}
 
 <div class="row">
     <div class="twelve columns">
@@ -18,7 +18,7 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('salutation','Mr','Mr')}} 
+                      {{ $form->radio('salutation','Mr','Mr',true)}} 
                     </div>   
                     <div class="two columns">
                       {{ $form->radio('salutation','Mrs','Mrs')}} 
@@ -30,8 +30,8 @@
                 </div>
 
 
-                {{ $form->text('firstname','Full Name.req','',array('class'=>'text','id'=>'firstname')) }}
-                {{ $form->text('lastname','Full Name.req','',array('class'=>'text','id'=>'lastname')) }}
+                {{ $form->text('firstname','First Name.req','',array('class'=>'text','id'=>'firstname')) }}
+                {{ $form->text('lastname','Last Name.req','',array('class'=>'text','id'=>'lastname')) }}
                 {{ $form->text('position','Position / Division.req','',array('class'=>'text','id'=>'positionname')) }}
                 {{ $form->text('email','Email.req','',array('class'=>'text','id'=>'email')) }}
 
@@ -52,7 +52,7 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('invoiceaddress','Yes','Yes') }} 
+                      {{ $form->radio('invoiceaddress','Yes','Yes',true) }} 
                     </div>   
                     <div class="two columns">
                       {{ $form->radio('invoiceaddress','No','No') }} 
@@ -70,7 +70,7 @@
                         Professional / Delegate Domestic
                     </div>   
                     <div class="four columns">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD') }} 
+                      {{ $form->radio('regtype','IDR 4.500.000','PD',true) }} 
                     </div>   
                     <div class="four columns"></div>
                 </div>
@@ -114,7 +114,7 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('attenddinner','Yes','Yes') }} 
+                      {{ $form->radio('attenddinner','Yes','Yes',true) }} 
                     </div>   
                     <div class="two columns">
                       {{ $form->radio('attenddinner','No','No') }} 

@@ -49,8 +49,12 @@ class Attendee_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
-		$heads = array('#','Title','Created','Last Update','Creator','Access','Attachment','Tags','Action');
-		$searchinput = array(false,'title','created','last update','creator','access','filename','tags',false);
+
+
+		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
+		$searchinput = array(false,'First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
+
+		$searchinput = false; // no searchinput form on footer
 
 		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
 			return View::make('tables.simple')
@@ -71,12 +75,31 @@ class Attendee_Controller extends Base_Controller {
 
 	public function post_index()
 	{
+		/*
+		   "salutation": "Mr",
+		   "firstname": "Jon",
+		   "lastname": "Anderson",
+		   "position": "Vocalist",
+		   "email": "jon@abwh.org",
+		   "mobile": "628989898989",
+		   "company": "Anderson Bruford Wakeman Howe Foundation",
+		   "npwp": "0897654321",
+		   "companyphone": "622123456789",
+		   "companyfax": "622123456789",
+		   "invoiceaddress": "Yes",
+		   "regtype": "PD",
+		   "attenddinner": "Yes",
+		   "createdDate": ISODate("2013-02-04T17:17:17.997Z"),
+		   "lastUpdate": ISODate("2013-02-04T17:17:17.997Z")
 
-		$fields = array('title','createdDate','lastUpdate','creatorName','access','docFilename','docTag');
+		*/
 
-		$rel = array('like','like','like','like','like','like','like');
 
-		$cond = array('both','both','both','both','both','both','both');
+		$fields = array('firstname','lastname','email','company','position','mobile','companyphone','companyfax','createdDate','lastUpdate');
+
+		$rel = array('like','like','like','like','like','like','like','like','like');
+
+		$cond = array('both','both','both','both','both','both','both','both','both');
 
 		$pagestart = Input::get('iDisplayStart');
 		$pagelength = Input::get('iDisplayLength');
@@ -117,7 +140,7 @@ class Attendee_Controller extends Base_Controller {
 
 		//print_r($q)
 
-		$attendee = new Document();
+		$attendee = new Attendee();
 
 		/* first column is always sequence number, so must be omitted */
 		$fidx = Input::get('iSortCol_0');
@@ -145,31 +168,19 @@ class Attendee_Controller extends Base_Controller {
 
 		$counter = 1 + $pagestart;
 		foreach ($attendees as $doc) {
-			if(isset($doc['tags'])){
-				$tags = array();
-
-				foreach($doc['tags'] as $t){
-					$tags[] = '<span class="tagitem">'.$t.'</span>';
-				}
-
-				$tags = implode('',$tags);
-
-			}else{
-				$tags = '';
-			}
-
-			$doc['title'] = str_ireplace($hilite, $hilite_replace, $doc['title']);
-			$doc['creatorName'] = str_ireplace($hilite, $hilite_replace, $doc['creatorName']);
 
 			$aadata[] = array(
 				$counter,
-				'<span class="metaview" id="'.$doc['_id'].'">'.$doc['title'].'</span>',
+				'<span class="metaview" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
+				$doc['lastname'],
+				$doc['email'],
+				$doc['company'],
+				$doc['position'],
+				$doc['mobile'],
+				$doc['companyphone'],
+				$doc['companyfax'],
 				date('Y-m-d H:i:s', $doc['createdDate']->sec),
 				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
-				$doc['creatorName'],
-				isset($doc['access'])?ucfirst($doc['access']):'',
-				isset($doc['docFilename'])?'<span class="fileview" id="'.$doc['_id'].'">'.$doc['docFilename'].'</span>':'',
-				$tags,
 				'<a href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i class="foundicon-edit action"></i></a>&nbsp;'.
 				'<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>'
 			);
@@ -216,13 +227,13 @@ class Attendee_Controller extends Base_Controller {
 	public function get_add($type = null){
 
 		if(is_null($type)){
-			$this->crumb->add('attendee/add','New Document');
+			$this->crumb->add('attendee/add','New Attendee');
 		}else{
 			$this->crumb = new Breadcrumb();
-			$this->crumb->add('attendee/type/'.$type,'Document');
+			$this->crumb->add('attendee/type/'.$type,'Attendee');
 
 			$this->crumb->add('attendee/type/'.$type,depttitle($type));
-			$this->crumb->add('attendee/add','New Document');
+			$this->crumb->add('attendee/add','New Attendee');
 		}
 
 
@@ -231,7 +242,7 @@ class Attendee_Controller extends Base_Controller {
 					->with('form',$form)
 					->with('type',$type)
 					->with('crumb',$this->crumb)
-					->with('title','New Document');
+					->with('title','New Attendee');
 
 	}
 
