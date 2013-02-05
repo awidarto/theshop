@@ -37,43 +37,6 @@
 
                 {{ $form->text('mobile','Mobile Phone Number','',array('class'=>'text span6','id'=>'mobile')) }}
 
-                <label class="radioLabel">Registration Type :</label>
-                <div class="row-fluid">
-                    <div class="span6">
-                        Professional / Delegate Domestic
-                    </div>   
-                    <div class="span6">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD',true) }} 
-                    </div>   
-                </div>
-
-                <div class="row-fluid">
-                    <div class="span6">
-                        Professional / Delegate Overseas
-                    </div>   
-                    <div class="span6">
-                      {{ $form->radio('regtype','USD 500','PO') }} 
-                    </div>   
-                </div>
-
-                <div class="row-fluid">
-                    <div class="span6">
-                        Student Domestic
-                    </div>   
-                    <div class="span6">
-                      {{ $form->radio('regtype','IDR 400.000','SD') }} 
-                    </div>   
-                </div>
-
-                <div class="row-fluid">
-                    <div class="span6">
-                        Student Overseas
-                    </div>   
-                    <div class="span6">
-                      {{ $form->radio('regtype','USD 120','SO') }} 
-                    </div>   
-                </div>
-
         </fieldset>
 
     </div>
@@ -124,7 +87,44 @@
 
 <div class="row-fluid">
     <div class="span6">
-        
+        <fieldset>
+            <legend>Registration Type</legend>
+                <div class="row-fluid">
+                    <div class="span6">
+                        Professional / Delegate Domestic
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','IDR 4.500.000','PD',true) }} 
+                    </div>   
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span6">
+                        Professional / Delegate Overseas
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','USD 500','PO') }} 
+                    </div>   
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span6">
+                        Student Domestic
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','IDR 400.000','SD') }} 
+                    </div>   
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span6">
+                        Student Overseas
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','USD 120','SO') }} 
+                    </div>   
+                </div>
+        </fieldset>
     </div>
     <div class="span6">
              
