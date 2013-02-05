@@ -241,6 +241,10 @@ span.activity-list[rel="tooltip"]{
 .formNewAttendee .row-fluid{
 	margin-bottom: 7px;
 }
+form label{
+	font-size: 12px;
+	font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+}
 .right{
 	float: right;
 }
