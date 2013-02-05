@@ -49,11 +49,13 @@ class Attendee_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
-		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
+		//$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
+		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Created','Last Update','Action');
 
 		$searchinput = array(false,'First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
 
-		$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
+		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
+		$colclass = array('','span3','span3','span1','span1','span1','','','','','','','');
 
 		$searchinput = false; // no searchinput form on footer
 
@@ -164,12 +166,16 @@ class Attendee_Controller extends Base_Controller {
 				$doc['company'],
 				$doc['position'],
 				$doc['mobile'],
-				$doc['companyphone'],
-				$doc['companyfax'],
-				date('Y-m-d H:i:s', $doc['createdDate']->sec),
-				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
-				'<a href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i class="foundicon-edit action"></i></a>&nbsp;'.
-				'<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>',
+				//$doc['companyphone'],
+				//$doc['companyfax'],
+				//date('Y-m-d H:i:s', $doc['createdDate']->sec),
+				//isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
+				date('Y-m-d', $doc['createdDate']->sec),
+				isset($doc['lastUpdate'])?date('Y-m-d', $doc['lastUpdate']->sec):'',
+				'<a class="icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe14c;</i><span>Print Badge</span>'.
+				'<a class="icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
+				'<a class="action del icon-" id="'.$doc['_id'].'"><i>&#xe001;</i><span>Delete</span>',
+				
 				'extra'=>$extra
 			);
 			$counter++;
