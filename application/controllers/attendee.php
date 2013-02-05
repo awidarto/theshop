@@ -174,7 +174,7 @@ class Attendee_Controller extends Base_Controller {
 
 			$aadata[] = array(
 				$counter,
-				'<span class="metaview" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
+				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
 				$doc['lastname'],
 				$doc['email'],
 				$doc['company'],

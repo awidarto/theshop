@@ -322,8 +322,23 @@
 
 <script type="text/javascript">
 
+	var oTable;
+
 	function toggle_visibility(id) {
 		$('#' + id).toggle();
+	}
+
+	/* Formating function for row details */
+	function fnFormatDetails ( nTr )
+	{
+	    var aData = oTable.fnGetData( nTr );
+	    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+	    sOut += '<tr><td>Rendering engine:</td><td>'+aData[2]+' '+aData[5]+'</td></tr>';
+	    sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
+	    sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
+	    sOut += '</table>';
+	     
+	    return sOut;
 	}
 
     $(document).ready(function(){
@@ -331,7 +346,8 @@
 		$('.activity-list').tooltip();
 
 		var asInitVals = new Array();
-        var oTable = $('.dataTable').DataTable(
+        
+        oTable = $('.dataTable').DataTable(
 			{
 				"bProcessing": true,
 		        "bServerSide": true,
@@ -356,6 +372,25 @@
 		        }
 			}
         );
+
+		$('.dataTable tbody td .expander').live( 'click', function () {
+
+			console.log('click');
+
+		    var nTr = $(this).parents('tr')[0];
+		    if ( oTable.fnIsOpen(nTr) )
+		    {
+		        /* This row is already open - close it */
+		        //this.src = "../examples_support/details_open.png";
+		        oTable.fnClose( nTr );
+		    }
+		    else
+		    {
+		        /* Open this row */
+		        //this.src = "../examples_support/details_close.png";
+		        oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details' );
+		    }
+		} );        
 
 		$('tfoot input').keyup( function () {
 			/* Filter on the column (the index) of this element */

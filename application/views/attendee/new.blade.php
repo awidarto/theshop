@@ -111,7 +111,7 @@
 
                 <div class="row-fluid">
                     
-                        {{ $form->text('city','','',array('class'=>'text span8','id'=>'city','placeholder'=>'City')) }}
+                        {{ $form->text('city','','',array('class'=>'text span7','id'=>'city','placeholder'=>'City')) }}
                                         
                         {{ $form->text('zip','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
                     
