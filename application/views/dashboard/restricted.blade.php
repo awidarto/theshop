@@ -82,32 +82,70 @@
 
 	   <div id="section2" class="metro-section tile-span-4">
 	      <h2>Quick Access</h2>
-	      <a class="tile wide imagetext bg-color-greenDark" href="{{ URL::to('attendee')}}">
+	      <a class="tile app imagetext bg-color-greenDark" href="{{ URL::to('attendee')}}">
 	         <div class="image-wrapper">
 	         	{{ HTML::image('content/img/My Apps.png') }}
 	         </div>
 	         <div class="column-text">
-	            <div class="text">Master</div>
-	            <div class="text">Data</div>
+	            <div class="text">Attendees</div>
 	         </div>
 	      </a>
+
+	      <a class="tile app bg-color-blueDark" href="{{ URL::to('attendee/add') }}">
+	         <div class="image-wrapper">
+	            <span class="icon icon-user-2"></span>
+	         </div>
+	         <span class="app-label">Register New Attendee</span>
+	      </a>
+
 	      <a class="tile app bg-color-empty" href="#"></a>
 	      <a class="tile app bg-color-empty" href="#"></a>
+
+	      <a class="tile app imagetext bg-color-greenDark" href="{{ URL::to('visitor')}}">
+	         <div class="image-wrapper">
+	         	{{ HTML::image('content/img/My Apps.png') }}
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Visitors</div>
+	         </div>
+	      </a>
+
+	      <a class="tile app bg-color-blueDark" href="{{ URL::to('visitor/add') }}">
+	         <div class="image-wrapper">
+	            <span class="icon icon-user-2"></span>
+	         </div>
+	         <span class="app-label">Register New Visitor</span>
+	      </a>
+
+
+	      <a class="tile app bg-color-empty" href="#"></a>
+	      <a class="tile app bg-color-empty" href="#"></a>
+
+	      <a class="tile app imagetext bg-color-greenDark" href="{{ URL::to('official')}}">
+	         <div class="image-wrapper">
+	         	{{ HTML::image('content/img/My Apps.png') }}
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Officials</div>
+	         </div>
+	      </a>
+
+	      <a class="tile app bg-color-blueDark" href="{{ URL::to('official/add') }}">
+	         <div class="image-wrapper">
+	            <span class="icon icon-user-2"></span>
+	         </div>
+	         <span class="app-label">Register New Official</span>
+	      </a>
+
 	      <a class="tile imagetext bg-color-orange" href="#">
 	         <div class="image-wrapper text-big">
 	            <div class="text-big">5</div>
 	         </div>
 	         <div class="column-text">
-	            <div class="text-small">Confirmation Payment</div>
-	            <div class="text-small">Request to Process</div>
+	            <div class="text-small">Payment Confirmation</div>
+	            <div class="text-small">to Process</div>
 	         </div>
 	         
-	      </a>
-	      <a class="tile app bg-color-blueDark" href="{{ URL::to('attendee/add') }}">
-	         <div class="image-wrapper">
-	            <span class="icon icon-user-2"></span>
-	         </div>
-	         <span class="app-label">Register new attendee</span>
 	      </a>
 	   </div>
 	</div>

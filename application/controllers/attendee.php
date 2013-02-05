@@ -37,7 +37,7 @@ class Attendee_Controller extends Base_Controller {
 
 	public function __construct(){
 		$this->crumb = new Breadcrumb();
-		$this->crumb->add('attendee','Master Data');
+		$this->crumb->add('attendee','Attendees');
 
 		date_default_timezone_set('Asia/Jakarta');
 		$this->filter('before','auth');
