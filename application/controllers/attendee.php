@@ -45,7 +45,7 @@ class Attendee_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		$this->crumb->add('attendee','Master Data');
+		//$this->crumb->add('attendee','Master Data');
 
 		//print_r(Auth::user());
 
@@ -246,7 +246,47 @@ class Attendee_Controller extends Base_Controller {
 
 	}
 
-	public function post_add($type = null){
+
+	public function post_add(){
+
+		//print_r(Session::get('permission'));
+
+	    $rules = array(
+	        'firstname'  => 'required|max:150',
+	        'email' => 'required|email'
+	    );
+
+	    $validation = Validator::make($input = Input::all(), $rules);
+
+	    if($validation->fails()){
+
+	    	return Redirect::to('attendee/add')->with_errors($validation)->with_input(Input::all());
+
+	    }else{
+
+			$data = Input::get();
+	    	
+			unset($data['csrf_token']);
+
+			$data['createdDate'] = new MongoDate();
+			$data['lastUpdate'] = new MongoDate();
+
+			$user = new Attendee();
+
+			if($user->insert($data)){
+		    	return Redirect::to('attendee')->with('notify_success',Config::get('site.register_success'));
+			}else{
+		    	return Redirect::to('attendee')->with('notify_success',Config::get('site.register_failed'));
+			}
+
+	    }
+
+		
+	}
+
+
+
+	public function _post_add($type = null){
 
 		//print_r(Session::get('permission'));
 

@@ -51,6 +51,21 @@
                 {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text span6','id'=>'companyphone')) }}
                 {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text span6','id'=>'companyfax')) }}
 
+                {{ $form->text('address','Address.req','',array('class'=>'text','id'=>'address','placeholder'=>'Company Address')) }}
+
+
+                <div class="row">
+                    <div class="span8">
+                        {{ $form->text('city','','',array('class'=>'text','id'=>'city','placeholder'=>'City')) }}
+                    </div>
+                    <div class="span3">
+                        {{ $form->text('zip','','',array('class'=>'text','id'=>'zip','placeholder'=>'ZIP Code')) }}
+                    </div>
+                </div>
+
+                {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'span12'))}}
+
+
                 {{ Form::label('invoiceaddress','Invoice address same with Company Address ?') }}
 
                 <div class="row">
@@ -136,7 +151,9 @@
 {{$form->close()}}
 
 <script type="text/javascript">
-  $('select').select2();
+  $('select').select2({
+    width : 'resolve'
+  });
 
   $('#field_role').change(function(){
       //alert($('#field_role').val());

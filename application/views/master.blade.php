@@ -31,6 +31,7 @@
 
     <!--  these two css are to use only for documentation -->
 
+    {{ HTML::style('css/select2.css') }}
     {{ HTML::style('content/css/demo.css') }}
     <link rel="stylesheet" type="text/css" href="{{URL::base()}}/scripts/google-code-prettify/prettify.css" >
 
@@ -76,6 +77,10 @@
   </header>
 
   <div class="container-fluid">
+      @if(isset($crumb))
+        {{ $this->crumb->generate('bootstrap') }}
+      @endif
+
       <div class="row-fluid">
         @yield('content')
       </div>

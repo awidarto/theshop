@@ -360,9 +360,14 @@ class Formly
 						$out .= $field;
 						$out .= '<span class="custom '.$checked.' '.$disabled.' metro-checkbox">'.$label.'</span>';
 					}else if($checkbox === false && $radio === true ){
-						$out .= '<label for="'.$name.'" class="radio" >';
+						
+						$out .= '<label class="radio">';
 						$out .= $field;
-						$out .= '<span class="custom '.$checked.' '.$disabled.' metro-radio">'.$label.'</span>';
+						$out .= '<span class="metro-radio">'.$label.'</span>';
+						
+						//$out .= '<label for="'.$name.'" class="radio" >';
+						//print $field;
+						//$out .= '<span class="custom '.$checked.' '.$disabled.' metro-radio">'.$label.'</span>';
 					}
 
 					$out .= '</label>';

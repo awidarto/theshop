@@ -44,13 +44,10 @@
                 {{ $form->text('company','Company / Institution.req','',array('class'=>'text','id'=>'company')) }}
                 {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text','id'=>'company')) }}
 
-
                 {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text','id'=>'companyphone')) }}
                 {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text','id'=>'companyfax')) }}
 
-
                 {{ $form->text('address','Address.req','',array('class'=>'text','id'=>'address','placeholder'=>'Company Address')) }}
-
 
                 <div class="row">
                     <div class="eight columns">
