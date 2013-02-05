@@ -13,16 +13,15 @@
         @endif
 
 
-        <li>{{ HTML::link('attendee','Master Data')}}
+        <li>{{ HTML::link('attendee','Attendees')}}
         
         @if(Auth::user()->role == 'root' || Auth::user()->role == 'super')
-            <li>{{ HTML::link('report','Reports')}}
-            <li>{{ HTML::link('import','Import Data')}}
-
             <li>{{ HTML::link('visitor','Visitors')}}</li>
             
             <li>{{ HTML::link('official','Officials')}}</li>
 
+            <li>{{ HTML::link('report','Reports')}}
+            <li>{{ HTML::link('import','Import Data')}}
             
             <li class="has-dropdown">
               <a href="#">Sys Admin</a>
