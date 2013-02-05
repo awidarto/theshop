@@ -54,6 +54,8 @@ class Attendee_Controller extends Base_Controller {
 		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
 		$searchinput = array(false,'First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
 
+		$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
+
 		$searchinput = false; // no searchinput form on footer
 
 		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
@@ -62,6 +64,7 @@ class Attendee_Controller extends Base_Controller {
 				->with('newbutton','New Visitor')
 				->with('disablesort','0,5,6')
 				->with('addurl','attendee/add')
+				->with('colclass',$colclass)
 				->with('searchinput',$searchinput)
 				->with('ajaxsource',URL::to('attendee'))
 				->with('ajaxdel',URL::to('attendee/del'))
