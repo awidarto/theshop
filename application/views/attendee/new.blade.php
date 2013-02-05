@@ -124,10 +124,10 @@
             <legend>Will attend the Industrial Dinner on 16 May 2012</legend>
 
                 <div class="row-fluid">
-                    <div class="span4">
+                    <div class="span2">
                       {{ $form->radio('attenddinner','Yes','Yes',true) }} 
                     </div>   
-                    <div class="span4">
+                    <div class="span2">
                       {{ $form->radio('attenddinner','No','No') }} 
                     </div>   
                     <div class="span8"></div>
