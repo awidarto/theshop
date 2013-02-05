@@ -332,10 +332,13 @@
 	function fnFormatDetails ( nTr )
 	{
 	    var aData = oTable.fnGetData( nTr );
+
+	    console.log(aData);
+
 	    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-	    sOut += '<tr><td>Rendering engine:</td><td>'+aData[2]+' '+aData[5]+'</td></tr>';
-	    sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
-	    sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
+
+	    @yield('row')
+
 	    sOut += '</table>';
 	     
 	    return sOut;
