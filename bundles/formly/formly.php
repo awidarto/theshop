@@ -344,7 +344,7 @@ class Formly
 
 		//$out  = '<div class="'.$class.'"'.$id.'>';
 
-		$out = '<div class="row">'.PHP_EOL;
+		$out = '<div class="row-fluid">'.PHP_EOL;
 
 			if($this->framework == 'bootstrap'){
 
