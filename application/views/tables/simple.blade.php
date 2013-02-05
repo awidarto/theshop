@@ -66,17 +66,7 @@
 
     <div class="row-fluid">
        <div class="span12">
-          <div class="pagination pagination-small rightPosition">
-            <ul>
-              <li><a href="#">Prev</a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">Next</a></li>
-            </ul>
-          </div>
-<<<<<<< HEAD
+<!--<<<<<<< 
           <table class="table table-condensed masterDataTable">
              <thead>
              <tr>
@@ -93,7 +83,7 @@
                 
              </tr>
              </thead>
-=======
+=======-->
           <table class="table table-condensed dataTable">
 
 			    <thead>
@@ -116,7 +106,7 @@
 			        	@endforeach
 			        </tr>
 			    </thead>
->>>>>>> 2d475d6a00f6f5ed8fe880c1d903da17e66d4b57
+
              <tbody>
              <tr>
                 <td class="span1"><a href="#myModal" data-toggle="modal">2707</a></td>
@@ -204,7 +194,7 @@
               <span class="win-commandimage win-commandring">&#x0067;</span>
               <span class="win-label">Filter</span>
            </button>
-<<<<<<< HEAD
+<!--<<<<<<< 
            	@if(isset($addurl) && $addurl != '')
 				<a class="win-command" href="{{URL::to($addurl)}}">
 					<span class="win-commandimage win-commandring">&#xe03e;</span>
@@ -212,7 +202,7 @@
 				</a>
 			@endif
            
-=======
+-->
 
 		   	@if(isset($addurl) && $addurl != '')
 				<a class="win-command" href="{{URL::to($addurl)}}">
@@ -221,7 +211,7 @@
 				</a>
 			@endif
 
->>>>>>> 2d475d6a00f6f5ed8fe880c1d903da17e66d4b57
+
         </div>
         
      </div>
@@ -348,7 +338,7 @@
 		        "sAjaxSource": "{{$ajaxsource}}",
 				"oLanguage": { "sSearch": "Search "},
 				"sPaginationType": "full_numbers",
-				"sDom": 'lfrpitiT',
+				"sDom": 'lfrpitT',
 				"oTableTools": {
 					"sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
 				},
