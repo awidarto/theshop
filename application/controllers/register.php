@@ -59,8 +59,9 @@ class Register_Controller extends Base_Controller {
 		//print_r(Session::get('permission'));
 
 	    $rules = array(
-	        'firstname'  => 'required|max:150',
-	        'email' => 'required|email'
+	        'email' => 'required|email|unique:attendee',
+	        'pass' => 'required|same:repass',
+	        'repass'=> 'required'
 	    );
 
 	    $validation = Validator::make($input = Input::all(), $rules);
@@ -72,9 +73,12 @@ class Register_Controller extends Base_Controller {
 	    }else{
 
 			$data = Input::get();
-	    	
-			unset($data['csrf_token']);
 
+			$data['pass'] = Hash::make($data['pass']);
+
+			unset($data['repass']);
+			unset($data['csrf_token']);
+			$data['role'] = 'attendee';
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
 
@@ -103,6 +107,10 @@ class Register_Controller extends Base_Controller {
 
 	}
 
+	public function post_payment(){
+
+	}
+
 	public function get_success(){
 
 		$this->crumb->add('register','Register');
@@ -114,6 +122,95 @@ class Register_Controller extends Base_Controller {
 					->with('title','Successfully Registered');
 
 	}
+
+	public function get_profile($id = null){
+
+		if(is_null($id)){
+			$this->crumb = new Breadcrumb();
+		}
+
+		$user = new Attendee();
+
+		$id = (is_null($id))?Auth::attendee()->id:$id;
+
+		$id = new MongoId($id);
+
+		$user_profile = $user->get(array('_id'=>$id));
+
+		$this->crumb->add('project/profile','Profile',false);
+		$this->crumb->add('project/profile',$user_profile['firstname'].' '.$user_profile['lastname']);
+
+		return View::make('register.profile')
+			->with('crumb',$this->crumb)
+			->with('profile',$user_profile);
+	}
+
+	public function get_edit(){
+
+		$this->crumb->add('user/edit','Edit',false);
+
+		$user = new Attendee();
+
+		$id = Auth::attendee()->id;
+
+		$id = new MongoId($id);
+
+		$user_profile = $user->get(array('_id'=>$id));
+
+		//print_r($user_profile);
+
+		$form = Formly::make($user_profile);
+
+		return View::make('register.edit')
+					->with('user',$user_profile)
+					->with('form',$form)
+					->with('crumb',$this->crumb)
+					->with('title','Edit User');
+
+	}
+
+
+	public function post_edit(){
+
+		//print_r(Session::get('permission'));
+
+	    $rules = array(
+	        'email'  => 'required'
+	    );
+
+	    $validation = Validator::make($input = Input::all(), $rules);
+
+	    if($validation->fails()){
+
+	    	return Redirect::to('myprofile/edit')->with_errors($validation)->with_input(Input::all());
+
+	    }else{
+
+			$data = Input::get();
+	    	
+			$id = new MongoId($data['id']);
+			$data['lastUpdate'] = new MongoDate();
+
+			unset($data['csrf_token']);
+			unset($data['id']);
+
+			$user = new Attendee();
+
+			//print_r($data);
+
+			
+			if($user->update(array('_id'=>$id),array('$set'=>$data))){
+		    	return Redirect::to('myprofile')->with('notify_success','User saved successfully');
+			}else{
+		    	return Redirect::to('myprofile')->with('notify_success','User saving failed');
+			}
+			
+	    }
+
+		
+	}
+
+
 
 
 }

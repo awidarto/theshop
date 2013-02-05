@@ -130,23 +130,37 @@
                 <td style="padding:5px 10px 0 15px;" width="255">
                   <div id="login-form">
                      <section>
-                          {{ Form::open('login') }}
-                          <!-- check for login errors flash var -->
-                          @if (Session::has('login_errors'))
-                              <div class="alert alert-error">
-                                   <button type="button" class="close" data-dismiss="alert"></button>
-                                   Email or password incorrect.
-                              </div>
+                          @if(Auth::attendeecheck())
+
+                            <p>Logged in as {{ Auth::attendee()->firstname.' '.Auth::attendee()->lastname}}</p>
+
+                            <p>{{ HTML::link('myprofile','My Profile')}}</p>
+
+                            <p>{{ HTML::link('myprofile/edit','Edit My Profile')}}</p>
+
+                            <p>{{ HTML::link('logout','Logout')}}</p>
+
+                          @else
+
+                            {{ Form::open('attendee/login') }}
+                            <!-- check for login errors flash var -->
+                            @if (Session::has('login_errors'))
+                                <div class="alert alert-error">
+                                     <button type="button" class="close" data-dismiss="alert"></button>
+                                     Email or password incorrect.
+                                </div>
+                            @endif
+                            <!-- username field -->
+                            {{ Form::label('username', 'Email') }}
+                            {{ Form::text('username') }}
+                            <!-- password field -->
+                            {{ Form::label('password', 'Password') }}
+                            {{ Form::password('password') }}
+                            <!-- submit button -->
+                            {{ Form::submit('Login',array('class' => 'button')) }}
+                            {{ Form::close() }}
+
                           @endif
-                          <!-- username field -->
-                          {{ Form::label('username', 'Email') }}
-                          {{ Form::text('username') }}
-                          <!-- password field -->
-                          {{ Form::label('password', 'Password') }}
-                          {{ Form::password('password') }}
-                          <!-- submit button -->
-                          {{ Form::submit('Login',array('class' => 'button')) }}
-                          {{ Form::close() }}
                      </section>
                   </div>
                   <h2 style="color:#A70405">General Information</h2>

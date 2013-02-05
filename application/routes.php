@@ -50,6 +50,13 @@ Route::get('general',array('uses'=>'content@public'));
 
 Route::post('register',array('uses'=>'register@add'));
 
+Route::get('myprofile/edit',array('uses'=>'register@edit'));
+
+Route::post('myprofile/edit',array('uses'=>'register@edit'));
+
+Route::get('myprofile',array('uses'=>'register@profile'));
+
+
 Route::get('payment',array('as'=>'register/payment','uses'=>'register@payment'));
 
 Route::get('register-success',array('as'=>'register/success','uses'=>'register@success'));
@@ -107,6 +114,31 @@ Route::post('login', function()
     }
 
 });
+
+Route::post('attendee/login', function()
+{
+    // get POST data
+    $username = Input::get('username');
+    $password = Input::get('password');
+
+    if ( $userdata = Auth::attendeeattempt(array('username'=>$username, 'password'=>$password)) )
+    {
+        //print_r($userdata);
+        // we are now logged in, go to home
+        return Redirect::to('/');
+
+    }
+    else
+    {
+        // auth failure! lets go back to the login
+        return Redirect::to('/')
+            ->with('login_errors', true);
+        // pass any error notification you want
+        // i like to do it this way  
+    }
+
+});
+
 
 Route::get('passwd', array('before'=>'auth',function(){
     return View::make('auth.password');

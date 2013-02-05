@@ -5,7 +5,8 @@ return array(
       'super'=>'Superuser',
       'administrator'=>'Administrator',
       'onsite'=>'Onsite Officer',
-      'registration'=>'Registration Officer'
+      'registration'=>'Registration Officer',
+      'attendee'=>'Attendee'
     ),
   'access'=>array( 
       'all'=>'all',
