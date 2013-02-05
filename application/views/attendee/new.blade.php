@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="tableHeader">
-<h3>{{$title}}</h3>
+<h3 class="formHead">{{$title}}</h3>
 </div>
 
 {{$form->open('attendee/add','POST',array('class'=>'custom'))}}
@@ -29,13 +29,13 @@
                 </div>
 
                 
-                {{ $form->text('firstname','First Name.req','',array('class'=>'text span6','id'=>'firstname')) }}
+                {{ $form->text('firstname','First Name.req','',array('class'=>'text span8','id'=>'firstname')) }}
                 
-                {{ $form->text('lastname','Last Name.req','',array('class'=>'text span6','id'=>'lastname')) }}
-                {{ $form->text('position','Position / Division.req','',array('class'=>'text span6','id'=>'positionname')) }}
-                {{ $form->text('email','Email.req','',array('class'=>'text span6','id'=>'email')) }}
+                {{ $form->text('lastname','Last Name.req','',array('class'=>'text span8','id'=>'lastname')) }}
+                {{ $form->text('position','Position / Division.req','',array('class'=>'text span8','id'=>'positionname')) }}
+                {{ $form->text('email','Email.req','',array('class'=>'text span8','id'=>'email')) }}
 
-                {{ $form->text('mobile','Mobile Phone Number','',array('class'=>'text span6','id'=>'mobile')) }}
+                {{ $form->text('mobile','Mobile Phone Number','',array('class'=>'text span8','id'=>'mobile')) }}
 
         </fieldset>
 
@@ -52,12 +52,12 @@
                 {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text span6','id'=>'companyphone')) }}
                 {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text span6','id'=>'companyfax')) }}
 
-                {{ $form->text('address','Address.req','',array('class'=>'text','id'=>'address','placeholder'=>'Company Address')) }}
+                {{ $form->text('address','Address.req','',array('class'=>'text span9','id'=>'address','placeholder'=>'Company Address')) }}
 
 
-                <div class="row-fluid">
+                <div class="row-fluid inputInline">
                     
-                        {{ $form->text('city','','',array('class'=>'text span8','id'=>'city','placeholder'=>'City')) }}
+                        {{ $form->text('city','','',array('class'=>'text span12','id'=>'city','placeholder'=>'City')) }}
                     
                     
                         {{ $form->text('zip','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
