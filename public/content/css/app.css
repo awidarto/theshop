@@ -269,3 +269,20 @@ span.error{
 	color: #b94a48;
 	margin-bottom: 4px;
 }
+.dataTable{
+	position: relative;
+}
+.dataTables_processing{
+	display: inline-block;
+	width: 23px;
+	height: 27px;
+	margin: 4px 10px 5px;
+	background: transparent url("../img/progress-indeterminate-ring-light-small.gif") no-repeat 0 0;
+	padding-left: 30px;
+	padding-top: 4px;
+	position: absolute;
+	left: 40%;
+    top:50%;
+    background-color: #fff;
+    border: 1px solid #464646;
+}
