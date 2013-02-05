@@ -1,4 +1,4 @@
-@layout('public')
+@layout('master')
 
 
 @section('content')
