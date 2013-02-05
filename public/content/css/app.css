@@ -248,3 +248,6 @@ form label{
 .right{
 	float: right;
 }
+.radioLabel{
+	padding-bottom: 7px;
+}
