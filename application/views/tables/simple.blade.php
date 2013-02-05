@@ -190,10 +190,10 @@
 
            <hr class="win-command" />
 
-           <button class="win-command" onclick="toggle_visibility('content-filters');">
+           <!--<button class="win-command" onclick="toggle_visibility('content-filters');">
               <span class="win-commandimage win-commandring">&#x0067;</span>
               <span class="win-label">Filter</span>
-           </button>
+           </button>-->
 <!--<<<<<<< 
            	@if(isset($addurl) && $addurl != '')
 				<a class="win-command" href="{{URL::to($addurl)}}">
@@ -391,7 +391,7 @@
 		    {
 		        /* Open this row */
 		        //this.src = "../examples_support/details_close.png";
-		        oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details' );
+		        oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details-expand' );
 		    }
 		} );        
 

@@ -1,6 +1,9 @@
 @section('row')
 		var extra = aData['extra'];
-	    sOut += '<tr><td>Company Address :</td><td>'+ extra.address + ',' + extra.city + ',' + extra.country +'</td></tr>';
-	    sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
-	    sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
+		sOut += '<tr class="irc_pc"></tr>';
+	    sOut += '<tr><td>Company Address </td><td>&nbsp;&nbsp;&nbsp;&nbsp;: '+ extra.address + ',' + extra.city + ',' + extra.country +'</td></tr>';
+	    sOut += '<tr><td>Company Phone </td><td>&nbsp;&nbsp;&nbsp;&nbsp;: '+ extra.companyphone+'</td></tr>';
+	    sOut += '<tr><td>Company Fax </td><td>&nbsp;&nbsp;&nbsp;&nbsp;: '+ extra.companyfax+'</td></tr>';
+	    sOut += '<tr><td>Industrial Dinner</td><td class="icon- fontGreen align-center">&nbsp;&nbsp;&nbsp;&nbsp;<small>&#xe20c;</small></td></tr>';
+	    
 @endsection
