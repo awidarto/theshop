@@ -116,7 +116,7 @@
   {{ HTML::script('js/underscore-1.1.5.js') }}
 
   {{ HTML::script('js/jquery.tagsinput.min.js') }}
-  {{ HTML::script('js/select2.min.js') }}
+  
 
   {{ HTML::script('js/jquery.fancybox.js') }}
 
