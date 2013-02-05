@@ -388,7 +388,7 @@
 		    {
 		        /* Open this row */
 		        //this.src = "../examples_support/details_close.png";
-		        oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details' );
+		        oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details-expand' );
 		    }
 		} );        
 
