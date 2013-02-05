@@ -101,4 +101,5 @@ function limitwords($string, $word_limit)
 	    return implode(" ",array_splice($words,0,$word_limit)).'...';
     }
 }
+
 ?>

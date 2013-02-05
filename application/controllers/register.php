@@ -85,6 +85,18 @@ class Register_Controller extends Base_Controller {
 			$user = new Attendee();
 
 			if($user->insert($data)){
+
+
+				Message::to($data['email'])
+				    ->from('admin@ipaconvex.com', 'Bob Marley')
+				    ->subject('Registration Successful')
+				    ->body('view: email.regsuccess')
+				    ->body('name:'.$data['firstname'].' '.$data['lastname'])
+				    ->html(true)
+				    ->send();
+
+				//    $message->body->name = $data['firstname'].' '.$data['lastname'];
+
 		    	return Redirect::to('/')->with('notify_success',Config::get('site.register_success'));
 			}else{
 		    	return Redirect::to('register')->with('notify_success',Config::get('site.register_failed'));

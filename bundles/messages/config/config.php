@@ -38,11 +38,11 @@ return array(
 	'transports' => array(
 
 		'smtp' => array(
-			'host'       => 'smtp.example.com',
-			'port'       => 25,
-			'username'   => 'username',
-			'password'   => 'password',
-			'encryption' => null,
+			'host'       =>	'smtp.gmail.com', 
+			'username'   =>	'bolongsox@gmail.com',
+			'password'   =>	'masukajadeh',
+			'port'       =>	465,
+			'encryption' =>	'ssl',
 		),
 
 		'sendmail' => array(
