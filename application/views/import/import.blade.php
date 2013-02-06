@@ -11,6 +11,17 @@
 <div class="row-fluid formNewAttendee">
     <div class="span6">
         <fieldset>
+            <legend>Import excel form</legend>
+
+                
+
+                
+                {{ $form->file('firstname','Please select file.req','',array('class'=>'text span8','id'=>'firstname')) }}
+                
+                {{ Form::submit('Save',array('class'=>'button'))}}&nbsp;&nbsp;
+
+        </fieldset>
+        <!--<fieldset>
             <legend>Personal Information</legend>
 
                 {{ Form::label('salutation','Salutation')}}
@@ -133,16 +144,15 @@
                     <div class="span8"></div>
                 </div>
 
-        </fieldset>
+        </fieldset>-->
 
     </div>
 </div>
 
 <hr />
 
-<div class="row right">
-{{ Form::submit('Save',array('class'=>'button'))}}&nbsp;&nbsp;
-{{ Form::reset('Reset',array('class'=>'button'))}}
+<div class="row">
+
 </div>
 {{$form->close()}}
 

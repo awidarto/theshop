@@ -175,8 +175,7 @@
 <hr />
 
 <div class="row right">
-{{ Form::submit('Save',array('class'=>'button'))}}&nbsp;&nbsp;
-{{ Form::reset('Reset',array('class'=>'button'))}}
+{{ Form::submit('Save Changes',array('class'=>'button'))}}&nbsp;&nbsp;
 </div>
 {{$form->close()}}
 
