@@ -249,4 +249,10 @@ h5.headIpaSite{
 .profile-info td{
   font-size: 12px;
 }
+
+.attendeeNav{
+  background-color: #f3f3f3;
+  border: 1px solid #767676;
+  padding: 10px;
+}
   

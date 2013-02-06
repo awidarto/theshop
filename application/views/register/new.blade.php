@@ -44,11 +44,11 @@
 
         <fieldset>
             <legend>Company Information</legend>
-                {{ $form->text('company','Company / Institution.req','',array('class'=>'text','id'=>'company')) }}
-                {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text','id'=>'company')) }}
+                {{ $form->text('company','Company / Institution.req','',array('class'=>'text','id'=>'companyName')) }}
+                {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text','id'=>'companyNPWP')) }}
 
-                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text','id'=>'companyphone')) }}
-                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text','id'=>'companyfax')) }}
+                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text','id'=>'companyPhone')) }}
+                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text','id'=>'companyFax')) }}
 
                 {{ $form->text('address','Address.req','',array('class'=>'text','id'=>'address','placeholder'=>'Company Address')) }}
 
@@ -63,7 +63,7 @@
 
                 {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'four'))}}
 
-                {{ Form::label('invoiceaddress','Invoice address same with Company Address ?') }}
+                <!--{{ Form::label('invoiceaddress','Invoice address same with Company Address ?') }}
 
                 <div class="row">
                     <div class="two columns">
@@ -73,7 +73,37 @@
                       {{ $form->radio('invoiceaddress','No','No') }} 
                     </div>   
                     <div class="eight columns"></div>
+                </div>-->
+                <div class="row">
+                  <label for="checkbox2"><input type="checkbox" style="display: none;"><span class="custom checkbox" id="invoiceSame" ></span> Invoice address same with Company Address</label>
                 </div>
+                
+
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Invoice Address</legend>
+                {{ $form->text('company','Company / Institution.req','',array('class'=>'text invAdress','id'=>'companyNameInv')) }}
+                {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text invAdress','id'=>'companyNPWPInv')) }}
+
+                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text invAdress','id'=>'companyPhoneInv')) }}
+                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text invAdress','id'=>'companyFaxInv')) }}
+
+                {{ $form->text('address','Address.req','',array('class'=>'text invAdress','id'=>'addressInv','placeholder'=>'Company Address')) }}
+
+                <div class="row">
+                    <div class="eight columns">
+                        {{ $form->text('city','','',array('class'=>'text invAdress','id'=>'cityInv','placeholder'=>'City')) }}
+                    </div>
+                    <div class="three columns">
+                        {{ $form->text('zip','','',array('class'=>'text invAdress','id'=>'zipInv','placeholder'=>'ZIP Code')) }}
+                    </div>
+                </div>
+
+                {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'four'))}}
+
+                
 
 
         </fieldset>
@@ -189,6 +219,51 @@
       //alert($('#field_role').val());
       // load default permission here
   });
+</script>
+
+<script type="text/javascript">
+$(function() {
+
+  
+  
+  function fillsame(){
+    var companyName = $("#companyName").val();
+    var companyNPWP = $("#companyNPWP").val();
+    var companyPhone = $("#companyPhone").val();
+    var companyFax = $("#companyFax").val();
+    var companyAddress = $("#address").val();
+    var companyCity = $("#city").val();
+    var companyZip = $("#zip").val();
+
+    $("#companyNameInv").val(companyName);
+    $("#companyNPWPInv").val(companyNPWP);
+    $("#companyPhoneInv").val(companyPhone);
+    $("#companyFaxInv").val(companyFax);
+    $("#addressInv").val(companyAddress);
+    $("#cityInv").val(companyCity);
+    $("#zipInv").val(companyZip);
+  }
+
+  function resetinput(){
+    $('.invAdress')
+     .not(':button, :submit, :reset, :hidden')
+     .val('')
+     .removeAttr('checked')
+     .removeAttr('selected');
+  }
+  
+  $("#invoiceSame").live("click", function(){
+    if($('#invoiceSame').hasClass('checked')){
+      fillsame();
+      
+    }else{
+      resetinput();
+    }
+  });
+
+  
+});
+
 </script>
 
 @endsection

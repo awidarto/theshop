@@ -26,25 +26,7 @@
   {{ HTML::script('js/select2.min.js') }}
   <script src="http://www.ipaconvex.com/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
   <script type="text/javascript" src="http://www.ipaconvex.com/css/jquery.cycle.all.js"></script>
-  <script type="text/javascript">
-    $.fn.cycle.defaults.speed   = 1000 //900
-    $.fn.cycle.defaults.timeout = 7000;     
-    $(function() {
-      $('#slideshow').cycle({
-        fx: 'fade', 
-        width:390,
-        height:285,
-        timeout:9000
-      });
-    });
-    </script>
-    <script type="text/javascript">
-    <!--
-    function popup(mylink, windowname)
-    {if (! window.focus)return true;  var href; if (typeof(mylink) == 'string') href=mylink; else href=mylink.href;
-    window.open(href, windowname, 'width=1024,height=768,scrollbars=yes'); return false;}
-    //-->
-  </script>
+  
   <script type="text/javascript" src="http://www.ipaconvex.com/stmenu.js"></script>
   </head>
   
@@ -131,14 +113,16 @@
                   <div id="login-form">
                      <section>
                           @if(Auth::attendeecheck())
+                            <div class="attendeeNav">
+                            <p>Logged in as <strong>{{ Auth::attendee()->firstname.' '.Auth::attendee()->lastname}}</strong></p>
 
-                            <p>Logged in as {{ Auth::attendee()->firstname.' '.Auth::attendee()->lastname}}</p>
+                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('myprofile','My Profile')}}</p>
 
-                            <p>{{ HTML::link('myprofile','My Profile')}}</p>
+                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('myprofile/edit','Edit My Profile')}}</p>
 
-                            <p>{{ HTML::link('myprofile/edit','Edit My Profile')}}</p>
+                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('logout','Logout')}}</p>
 
-                            <p>{{ HTML::link('logout','Logout')}}</p>
+                            </div>
 
                           @else
 

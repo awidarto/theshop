@@ -41,6 +41,14 @@
 						
 					</td>
 				</tr>
+
+				<tr>
+					<td class="detail-title">Status</td>
+					<td>:&nbsp;</td>
+					<td class="detail-info">
+						<span style="color: #BC1C4B;">{{ $profile['paymentStatus'] }}</span>
+					</td>
+				</tr>
 				<tr>
 					<td class="detail-title">Industrial Dinner RSPV</td>
 					<td>: </td>
