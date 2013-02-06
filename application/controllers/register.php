@@ -81,20 +81,35 @@ class Register_Controller extends Base_Controller {
 			$data['role'] = 'attendee';
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
+			$data['paymentStatus'] = 'unpaid';
+
+
+			$reg_number[] = 'A';
+			$reg_number[] = $data['regtype'];
+			$reg_number[] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+
+			$seq = new Sequence();
+
+			$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+			$reg_number[] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+
+			$data['registrationnumber'] = implode('-',$reg_number);
 
 			$user = new Attendee();
 
-			if($user->insert($data)){
+			if($obj = $user->insert($data)){
 
+				$body = View::make('email.regsuccess')->with('data',$data)->render();
 
+				/*
 				Message::to($data['email'])
-				    ->from('admin@ipaconvex.com', 'Bob Marley')
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 				    ->subject('Registration Successful')
-				    ->body('view: email.regsuccess')
-				    ->body('name:'.$data['firstname'].' '.$data['lastname'])
+				    ->body( $body )
 				    ->html(true)
 				    ->send();
-
+				*/
 				//    $message->body->name = $data['firstname'].' '.$data['lastname'];
 
 		    	return Redirect::to('/')->with('notify_success',Config::get('site.register_success'));
@@ -213,6 +228,13 @@ class Register_Controller extends Base_Controller {
 
 			$user = new Attendee();
 
+			$reg_number = explode('-',$data['registrationnumber']);			
+
+			$reg_number[0] = 'A';
+			$reg_number[1] = $data['regtype'];
+			$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+
+			$data['registrationnumber'] = implode('-',$reg_number);
 			//print_r($data);
 
 			

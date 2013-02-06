@@ -1,1 +1,1 @@
-Hello, {{ $name }} !
+Hello, {{ $data['firstname'].' '.$data['lastname'] }} !

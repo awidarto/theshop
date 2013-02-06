@@ -15,6 +15,9 @@
   <div class="six columns left">
     <h4>Document Info</h4>
     {{ $form->hidden('id',$doc['_id'])}}
+
+    {{ $form->hidden('registrationnumber',$doc['registrationnumber'])}}
+
     {{ $form->text('title','Title.req','',array('class'=>'text')) }}
 
     {{$form->select('docFormat','Original Document Format',Config::get('kickstart.doc_format'),array('class'=>'four'))}}
