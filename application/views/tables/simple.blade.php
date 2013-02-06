@@ -66,24 +66,7 @@
 
     <div class="row-fluid">
        <div class="span12">
-<!--<<<<<<< 
-          <table class="table table-condensed masterDataTable">
-             <thead>
-             <tr>
-                <th class="span1">ID</th>
-                <th>Company</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th class="span4">Email</th>
-                <th class="span1">Phone</th>
-                <th class="span1">Reg.Date</th>
-                <th class="span4 text align-center">Status</th>
-                <th>Industrial Dinner</th>
-                <th class="span2">Action</th>
-                
-             </tr>
-             </thead>
-=======-->
+
           <table class="table table-condensed dataTable">
 
 			    <thead>
@@ -189,20 +172,6 @@
            </a>
 
            <hr class="win-command" />
-
-           <!--<button class="win-command" onclick="toggle_visibility('content-filters');">
-              <span class="win-commandimage win-commandring">&#x0067;</span>
-              <span class="win-label">Filter</span>
-           </button>-->
-<!--<<<<<<< 
-           	@if(isset($addurl) && $addurl != '')
-				<a class="win-command" href="{{URL::to($addurl)}}">
-					<span class="win-commandimage win-commandring">&#xe03e;</span>
-              		<span class="win-label">Add</span>
-				</a>
-			@endif
-           
--->
 
 		   	@if(isset($addurl) && $addurl != '')
 				<a class="win-command" href="{{URL::to($addurl)}}">
