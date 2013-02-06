@@ -9,6 +9,8 @@
 {{$form->open('myprofile/edit','POST',array('class'=>'custom'))}}
 
     {{ $form->hidden('id',$user['_id'])}}
+    {{ $form->hidden('registrationnumber',$user['registrationnumber'])}}
+
 <div class="row">
     <div class="twelve columns">
 

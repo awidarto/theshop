@@ -19,7 +19,10 @@ return array(
 			'VIP'=>'VIP',
 			'VVIP'=>'VVIP',
 			'OC'=>'Other Complimentary'
-		)
+		),
+		'galadinner'=>1,
+		'reg_admin_email'=>'register@ipaconvex.com',
+		'reg_admin_name'=>'37th IPA Convex Register',
 	);
 
 

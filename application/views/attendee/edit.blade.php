@@ -3,107 +3,145 @@
 
 @section('content')
 <div class="tableHeader">
-<h3>{{$title}}</h3>
+<h3 class="formHead">{{$title}}</h3>
 </div>
 
-<?php
-  //print_r($doc);
-?>
+{{$form->open('attendee/edit/'.$user['_id'],'POST',array('class'=>'custom'))}}
 
-{{$form->open_for_files('document/edit/'.$doc['_id'].'/'.$type,'POST',array('class'=>'custom'))}}
-<div class="row">
-  <div class="six columns left">
-    <h4>Document Info</h4>
-    {{ $form->hidden('id',$doc['_id'])}}
-    {{ $form->text('title','Title.req','',array('class'=>'text')) }}
+    {{ $form->hidden('id',$user['_id'])}}
+    {{ $form->hidden('registrationnumber',$user['registrationnumber'])}}
 
-    {{$form->select('docFormat','Original Document Format',Config::get('kickstart.doc_format'),array('class'=>'four'))}}
+<div class="row-fluid formNewAttendee">
+    <div class="span6">
+        <fieldset>
+            <legend>Personal Information</legend>
 
-    <p><strong>Current Active Attachment :</strong><br />{{ (isset($doc['docFiledata']['uploadTime']))?date('d-m-Y h:i:s',$doc['docFiledata']['uploadTime']->sec):'' }} <strong>{{$doc['docFiledata']['name']}}</strong></p>
+                {{ Form::label('salutation','Salutation')}}
 
-    <p><strong>Attachment History :</strong><br />
-      @if(isset($doc['docFileList']))
-        <ol>
-          @foreach($doc['docFileList'] as $f)
-          <li>
-            {{ (isset($f['uploadTime']))?date('d-m-Y h:i:s',$f['uploadTime']->sec):'' }} <strong>{{$f['name']}}</strong>
-          </li>
-          @endforeach
-        </ol>
-      @endif
-    </p>
+                <div class="row-fluid radioInput">
+                    <div class="span2">
+                      {{ $form->radio('salutation','Mr','Mr')}} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('salutation','Mrs','Mrs')}} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('salutation','Ms','Ms')}} 
+                    </div>
+                    <div class="span6"></div>
+                </div>
 
-    {{ $form->file('docupload','Document File')}}
+                {{ $form->text('firstname','First Name.req','',array('class'=>'text span8','id'=>'firstname')) }}
+                
+                {{ $form->text('lastname','Last Name.req','',array('class'=>'text span8','id'=>'lastname')) }}
+                {{ $form->text('position','Position / Division.req','',array('class'=>'text span8','id'=>'positionname')) }}
+                {{ $form->text('email','Email.req','',array('class'=>'text span8','id'=>'email')) }}
 
-    {{ $form->text('docRevisionOf','Revision of','',array('class'=>'tag_revision four','rows'=>'1', 'style'=>'width:100%')) }}
+                {{ $form->text('mobile','Mobile Phone Number','',array('class'=>'text span8','id'=>'mobile')) }}
 
-    <div class="row">
-      <div class="five columns left">
-        {{ $form->text('effectiveDate','Effective Date','',array('class'=>'twelve date')) }}
-      </div>
-      <div class="five columns right">
-        {{ $form->text('expiryDate','Expiry Date','',array('class'=>'twelve date')) }}
-      </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Registration Type</legend>
+                <div class="row-fluid">
+                    <div class="span6">
+                        Professional / Delegate Domestic
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','IDR 4.500.000','PD') }} 
+                    </div>   
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span6">
+                        Professional / Delegate Overseas
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','USD 500','PO') }} 
+                    </div>   
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span6">
+                        Student Domestic
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','IDR 400.000','SD') }} 
+                    </div>   
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span6">
+                        Student Overseas
+                    </div>   
+                    <div class="span6">
+                      {{ $form->radio('regtype','USD 120','SO') }} 
+                    </div>   
+                </div>
+        </fieldset>
+
     </div>
 
-    {{ Form::label('access','This document is')}}
-    <div class="row">
-      <div class="five columns left">
-        {{ $form->radio('access','Confidential','confidential')}} 
-      </div>   
-      <div class="five columns right">
-        {{ $form->radio('access','General','general')}} 
-      </div>   
+    <div class="span6">
+
+        <fieldset>
+            <legend>Company Information</legend>
+                {{ $form->text('company','Company / Institution.req','',array('class'=>'text span6','id'=>'company')) }}
+                {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text span6','id'=>'company')) }}
+
+
+                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text span6','id'=>'companyphone')) }}
+                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text span6','id'=>'companyfax')) }}
+
+                {{ $form->text('address','Address.req','',array('class'=>'text span9','id'=>'address','placeholder'=>'Company Address')) }}
+
+
+                <div class="row-fluid inputInline">
+                    
+                        {{ $form->text('city','','',array('class'=>'text span12','id'=>'city','placeholder'=>'City')) }}
+                    
+                    
+                        {{ $form->text('zip','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
+                    
+                </div>
+
+                {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'span12'))}}
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Invoice address same with Company Address ?</legend>
+                <div class="row-fluid">
+                    <div class="span2">
+                      {{ $form->radio('invoiceaddress','Yes','Yes') }} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('invoiceaddress','No','No') }} 
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Will attend the Industrial Dinner on 16 May 2012</legend>
+
+                <div class="row-fluid">
+                    <div class="span2">
+                      {{ $form->radio('attenddinner','Yes','Yes') }} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('attenddinner','No','No') }} 
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+
+        </fieldset>
+
     </div>
-    <p>
-      <strong>Private</strong> document ( default ) can only be seen by its creator and people it was shared with.<br />
-      <strong>Public</strong> document will be able to be seen by creator's peers at the same department, and superiors with higher access level. 
-    </p>
-
-    {{ $form->text('docShare','Shared to ( default to all department member )','',array('class'=>'tag_email four','style'=>'width:100%')) }}
-
-    {{ $form->text('docApprovalRequest','Request Approval From','',array('class'=>'tag_email four', 'style'=>'width:100%')) }}
-
-    {{ $form->hidden('oldTag',$doc['oldTag'])}}
-
-    {{ $form->text('docTag','Search Keyword','',array('class'=>'tag_keyword four','rows'=>'1', 'style'=>'width:100%')) }}
-
-  </div>
-  <div class="five columns right">
-    <h4>Metadata</h4>
-
-    {{$form->select('docDepartment','Department of Origin',Config::get('kickstart.department'),null,array('class'=>'ten'))}}
-
-    {{ $form->select('docCategory','Category',Config::get('kickstart.doc_type'),null,array('class'=>'ten'))}}
-    
-    <hr />
-
-    <!-- related project -->
-    {{ $form->text('docProject','Related Project Number','',array('id'=>'project_number','class'=>'auto_project_number four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    {{ $form->hidden('docProjectId','',array('id'=>'project_id')) }}
-
-    {{ $form->text('docProjectTitle','Project Name','',array('id'=>'project_title','class'=>'auto_project_name four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    <hr />
-    <!-- related tender -->
-    {{ $form->text('docTender','Related Tender Number','',array('id'=>'tender_number','class'=>'auto_tender_number four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    {{ $form->hidden('docTenderId','',array('id'=>'tender_id')) }}
-
-    {{ $form->text('docTenderTitle','Tender Name','',array('id'=>'tender_title','class'=>'auto_tender_name four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    <hr />
-    <!-- related opportunity -->
-    {{ $form->text('docOpportunity','Related Opportunity Number','',array('id'=>'opportunity_number','class'=>'auto_opportunity_number four','rows'=>'1', 'style'=>'width:100%')) }}
-
-    {{ $form->hidden('docOpportunityId','',array('id'=>'opportunity_id')) }}
-
-    {{ $form->text('docOpportunityTitle','Opportunity Name','',array('id'=>'opportunity_title','class'=>'auto_opportunity_name four','rows'=>'1', 'style'=>'width:100%')) }}
-
-  </div>
 </div>
+
 <hr />
+
 <div class="row right">
 {{ Form::submit('Save',array('class'=>'button'))}}&nbsp;&nbsp;
 {{ Form::reset('Reset',array('class'=>'button'))}}
@@ -111,7 +149,9 @@
 {{$form->close()}}
 
 <script type="text/javascript">
-  $('select').select2();
+  $('select').select2({
+    width : 'resolve'
+  });
 
   $('#field_role').change(function(){
       //alert($('#field_role').val());
