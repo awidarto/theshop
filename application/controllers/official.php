@@ -49,11 +49,11 @@ class Official_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
-		$heads = array('#','First Name','Last Name','Email','Company','Role','Mobile','Created','Last Update','Action');
+		$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Role','Mobile','Created','Last Update','Action');
 
-		$searchinput = array(false,'First Name','Last Name','Email','Company','Position','Role','Mobile','Created','Last Update',false);
+		$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Role','Mobile','Created','Last Update',false);
 
-		$colclass = array('','span1','span1','span3','span3','span1','span1','span1','span1','');
+		$colclass = array('','span1','span1','span1','span3','span3','span1','span1','span1','span1','');
 
 		$searchinput = false; // no searchinput form on footer
 
@@ -80,11 +80,11 @@ class Official_Controller extends Base_Controller {
 	{
 
 
-		$fields = array('firstname','lastname','email','company','role','mobile','createdDate','lastUpdate');
+		$fields = array('registrationnumber','firstname','lastname','email','company','role','mobile','createdDate','lastUpdate');
 
-		$rel = array('like','like','like','like','like','like','like','like');
+		$rel = array('like','like','like','like','like','like','like','like','like');
 
-		$cond = array('both','both','both','both','both','both','both','both');
+		$cond = array('both','both','both','both','both','both','both','both','both');
 
 		$pagestart = Input::get('iDisplayStart');
 		$pagelength = Input::get('iDisplayLength');
@@ -158,6 +158,7 @@ class Official_Controller extends Base_Controller {
 
 			$aadata[] = array(
 				$counter,
+				(isset($doc['registrationnumber']))?$doc['registrationnumber']:'',
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
 				$doc['lastname'],
 				$doc['email'],
@@ -166,8 +167,8 @@ class Official_Controller extends Base_Controller {
 				$doc['mobile'],
 				date('Y-m-d H:i:s', $doc['createdDate']->sec),
 				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
-				'<a href="'.URL::to('official/edit/'.$doc['_id']).'"><i class="foundicon-edit action"></i></a>&nbsp;'.
-				'<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>',
+				'<a class="icon-"  href="'.URL::to('official/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
+				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
 				'extra'=>$extra
 			);
 			$counter++;
@@ -188,7 +189,7 @@ class Official_Controller extends Base_Controller {
 	public function post_del(){
 		$id = Input::get('id');
 
-		$user = new Document();
+		$user = new Official();
 
 		if(is_null($id)){
 			$result = array('status'=>'ERR','data'=>'NOID');
@@ -248,6 +249,20 @@ class Official_Controller extends Base_Controller {
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
 
+			$data['paymentStatus'] = 'unpaid';
+
+			$reg_number[0] = 'A';
+			$reg_number[1] = $data['role'];
+			$reg_number[2] = '00';
+
+			$seq = new Sequence();
+
+			$rseq = $seq->find_and_modify(array('_id'=>'official'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+			$reg_number[] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+
+			$data['registrationnumber'] = implode('-',$reg_number);
+
 			$user = new Official();
 
 			if($user->insert($data)){
@@ -261,202 +276,93 @@ class Official_Controller extends Base_Controller {
 		
 	}
 
-	public function get_edit($id = null,$type = null){
 
-		if(is_null($type)){
-			$this->crumb->add('official/add','Edit',false);
-		}else{
-			$this->crumb = new Breadcrumb();
-			$this->crumb->add('official/type/'.$type,'Document');
+	public function get_edit($id){
 
-			$this->crumb->add('official/type/'.$type,depttitle($type),false);
-			$this->crumb->add('official/edit/'.$id,'Edit',false);
-		}
+		$this->crumb->add('official/edit','Edit',false);
 
+		$user = new Official();
 
-		$doc = new Document();
+		$_id = new MongoId($id);
 
-		$id = (is_null($id))?Auth::user()->id:$id;
+		$user_profile = $user->get(array('_id'=>$_id));
 
-		$id = new MongoId($id);
+		//print_r($user_profile);
+		$user_profile['registrationnumber'] = (isset($user_profile['registrationnumber']))?$user_profile['registrationnumber']:'';
 
-		$doc_data = $doc->get(array('_id'=>$id));
+		$form = Formly::make($user_profile);
 
-		$doc_data['oldTag'] = $doc_data['docTag'];
-
-		$doc_data['effectiveDate'] = date('Y-m-d', $doc_data['effectiveDate']->sec);
-		$doc_data['expiryDate'] = date('Y-m-d', $doc_data['expiryDate']->sec);
-
-
-		if(is_null($type)){
-			$this->crumb->add('official/edit/'.$id,$doc_data['title']);
-		}else{
-			$this->crumb->add('official/edit/'.$id.'/'.$type,$doc_data['title']);
-		}
-
-		$form = Formly::make($doc_data);
+		$this->crumb->add('official/edit/'.$id,$user_profile['registrationnumber'],false);
 
 		return View::make('official.edit')
-					->with('doc',$doc_data)
+					->with('user',$user_profile)
 					->with('form',$form)
-					->with('type',$type)
 					->with('crumb',$this->crumb)
-					->with('title','Edit Document');
+					->with('title','Edit Official');
 
 	}
 
 
-	public function post_edit($id,$type = null){
+	public function post_edit($id){
 
 		//print_r(Session::get('permission'));
 
-		if(is_null($type)){
-			$back = 'official';
-		}else{
-			$back = 'official/type/'.$type;
-		}
-
 	    $rules = array(
-	        'title'  => 'required|max:50'
+	        'email'  => 'required'
 	    );
 
 	    $validation = Validator::make($input = Input::all(), $rules);
 
 	    if($validation->fails()){
 
-	    	return Redirect::to('official/edit/'.$id.'/'.$type)->with_errors($validation)->with_input(Input::all());
+	    	return Redirect::to('official/edit/'.$id)->with_errors($validation)->with_input(Input::all());
 
 	    }else{
 
 			$data = Input::get();
 	    	
 			$id = new MongoId($data['id']);
-
-			$data['effectiveDate'] = new MongoDate(strtotime($data['effectiveDate']." 00:00:00"));
-			$data['expiryDate'] = new MongoDate(strtotime($data['expiryDate']." 00:00:00"));
 			$data['lastUpdate'] = new MongoDate();
 
 			unset($data['csrf_token']);
-
-			$docId = $data['id'];
 			unset($data['id']);
 
-			$sharelist = explode(',', $data['docShare']);
-			if(is_array($sharelist)){
-				$usr = new User();
-				$shd = array();
-				foreach($sharelist as $sh){
-					$shd[] = array('email'=>$sh);
-				}
-				$shared_ids = $usr->find(array('$or'=>$shd),array('id'));
+			$user = new Official();
 
-				$data['sharedEmails'] = $sharelist ;
-				$data['sharedIds'] = array_values($shared_ids) ;
-			}
+			if(isset($data['registrationnumber']) && $data['registrationnumber'] != ''){
+				$reg_number = explode('-',$data['registrationnumber']);			
 
-			$approvallist = explode(',', $data['docApprovalRequest']);
-			if(is_array($approvallist)){
-				$usr = new User();
-				$shd = array();
-				foreach($approvallist as $sh){
-					$appval[] = array('email'=>$sh);
-				}
-				$approval_ids = $usr->find(array('$or'=>$appval),array('id','fullname'));
+				$reg_number[0] = 'O';
+				$reg_number[1] = $data['role'];
+				$reg_number[2] = '00';
 
-				$data['approvalRequestEmails'] = $approvallist ;
-				$data['approvalRequestIds'] = array_values($approval_ids) ;
+
+			}else if($data['registrationnumber'] == ''){
+				$reg_number = array();
+				$seq = new Sequence();
+				$rseq = $seq->find_and_modify(array('_id'=>'official'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+				$reg_number[0] = 'O';
+				$reg_number[1] = $data['role'];
+				$reg_number[2] = '00';
+
+				$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 			}
 
 
-			$data['tags'] = explode(',',$data['docTag']);
-
-			$doc = new Document();
-
-			//print_r($data);
-			$oldtags = explode(',',$data['oldTag']);
-
-			if(count($data['tags']) > 0){
-				$tag = new Tag();
-				foreach($data['tags'] as $t){
-					if(in_array($t, $oldtags)){
-						$add = 0;
-					}else{
-						$add = 1;
-					}
-					$tag->update(array('tag'=>$t),array('$inc'=>array('count'=>$add)),array('upsert'=>true));
-				}
-			}
-
-			unset($data['oldTag']);
-
-			// upload new file , additive
-
-			$docupload = Input::file('docupload');
-
-			$withfile = false;
-
-			if($docupload['name'] != ''){
-
-				$docupload['uploadTime'] = new MongoDate();
-
-				$dirname = $docId;
-
-				$dirname = realpath(Config::get('kickstart.storage')).'/'.$dirname;
-
-				$uploadresult = Input::upload('docupload',$dirname,$docupload['name']);
-
-				if($uploadresult){
-
-					$data['docFilename'] = $docupload['name'];
-
-					$data['docFiledata'] = $docupload;
-
-					$withfile = true;
-
-				}
-
-			}
-
-			if($withfile == true){
-				$updatequery = array('$set'=>$data,'$push'=>array('docFileList'=>$docupload));
+			$data['registrationnumber'] = implode('-',$reg_number);
+			
+			if($user->update(array('_id'=>$id),array('$set'=>$data))){
+		    	return Redirect::to('official')->with('notify_success','Official saved successfully');
 			}else{
-				$updatequery = array('$set'=>$data);
+		    	return Redirect::to('official')->with('notify_success','Official saving failed');
 			}
-
-			//print_r($data);
-
-			if($doc->update(array('_id'=>$id),$updatequery)){
-
-				Event::fire('official.update',array('id'=>$id,'result'=>'OK'));
-
-				$sharedto = explode(',',$data['docShare']);
-
-				if(count($sharedto) > 0  && $data['docShare'] != ''){
-					foreach($sharedto as $to){
-						Event::fire('official.share',array('id'=>$id,'sharer_id'=>Auth::user()->id,'shareto'=>$to));
-					}
-				}
-
-				$approvalby = explode(',',$data['docApprovalRequest']);
-
-				if(count($approvalby) > 0 && $data['docApprovalRequest'] != ''){
-					foreach($approvalby as $to){
-						Event::fire('request.approval',array('id'=>$id,'approvalby'=>$to));
-					}
-				}				
-
-		    	return Redirect::to($back)->with('notify_success','Document saved successfully');
-			}else{
-
-				Event::fire('official.update',array('id'=>$id,'result'=>'FAILED'));
-
-		    	return Redirect::to($back)->with('notify_success','Document saving failed');
-			}
-
+			
 	    }
 
 		
 	}
+
 
 
 	public function get_type($type = null)

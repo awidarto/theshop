@@ -105,7 +105,7 @@
                     
                 </div>
 
-                {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'span12'))}}
+                {{$form->select('country','Country of Origin',Config::get('country.countries'),null)}}
 
         </fieldset>
 

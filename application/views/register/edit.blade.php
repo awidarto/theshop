@@ -182,7 +182,9 @@
 {{$form->close()}}
 
 <script type="text/javascript">
-  $('select').select2();
+  $('select').select2({
+    width : 'resolve'
+  });
 
   $('#field_role').change(function(){
       //alert($('#field_role').val());
