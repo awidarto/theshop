@@ -74,8 +74,9 @@
 
 <hr />
 
-<div class="row">
-
+<div class="row right">
+    {{ Form::submit('Save',array('class'=>'button'))}}&nbsp;&nbsp;
+    {{ Form::reset('Reset',array('class'=>'button'))}}
 </div>
 {{$form->close()}}
 
