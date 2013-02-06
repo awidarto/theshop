@@ -104,15 +104,89 @@ class Register_Controller extends Base_Controller {
 
 				/*
 				Message::to($data['email'])
+<<<<<<< HEAD
+				    ->from('admin@ipaconvex.com', 'IPA ')
+				    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – Reg. No.)')
+				    ->body('view: email.regsuccess')
+				    ->body('name:'.$data['firstname'].' '.$data['lastname'].'Jakarta, dd/mm/2013<br/>
+
+Attention to:</br>
+Name</br>
+Position</br>
+Company</br>
+Address</br>
+</br>
+</br>
+Registration Number</br>
+
+Dear Sir/Madam,</br>
+
+Thank you for register in 37th IPA Convention & Exhibition. Please find below summary of your registration:</br>
+</br>
+</br>
+CONVENTION REGISTRATION</br>
+
+Type of registration fee (Delegate – Domestic) : IDR 5.000.000,-</br>
+Attend on Industrial Dinner (16 May 2012)</br>
+: Yes / No
+
+*Convention registration fee includes admission to all Plenary & Technical Sessions, Conference Kits, Opening and
+Closing Ceremony, Lunches, Coffee Breaks, Industrial Cocktail, Industrial Dinner, and Entrance to Exhibition Area.
+</br>
+For the registration payment, you can settle it by bank transfer to:
+</br>
+IDR Account:
+BCA - Mangga Dua Branch
+Acc. No.
+: 335.302.7677
+Acc. Name : PT Dyandra Promosindo
+</br>
+USD Account:
+BCA - Wisma Nusantara Branch
+Acc. No.
+: 734.038.5700
+Acc. Name : PT Dyandra Promosindo
+Swiftcode : CENAIDJA
+</br>
+Please send us copy of your bank transfer to our secretariat by email to conventionipa2013@dyandra.com or
+fax 62-21-31997176. Confirmation of Registration will be sent once the payment received. Please bring the
+confirmation of registration to the registration counter when you re-register on the conference day.
+</br>
+: xx – xx - xxxxxx
+</br>
+IMPORTANT NOTES
+1. Early Bird rates only valid for both registration and payment received until 15 March 2013 at the latest.
+Normal rate will be applied for the registration with payment settlement after 15 March 2013.</br>
+2. Registration is subject to acceptance on a first-come-first-served basis.</br>
+3. Registration Forms received without registration fees will not be processed.</br>
+4. No refund will be granted for cancellation after 14 April 2013. All cancellations must be made in writing to the</br>
+Secretariat and the refund will be made after the conference.</br>
+5. If billing address for sending the invoice is different from participant’s company information, please send
+billing address information along with the registration form.</br>
+6. Registration counter will be open in front of JCC Main Lobby on:</br>
+7. Registered participants must wear ID badges all the times for sessions and function access</br>
+
+If you need further information regarding the conference, please feel free to contact us.</br>
+Thank you very much for your participation and we look forward to see you on 37 th IPA Convex.</br>
+
+Regards,</br>
+Name</br>
+37th IPA Convex Secretariat</br>
+PT Dyandra Promosindo</br>
+The City Tower, 7th Floor | Jl. M.H. Thamrin No. 81 | Jakarta 10310 - Indonesia</br>
+T. +62-21-31996077, 31997174 (direct) | F. +62-21-31997176</br>
+E. ipaconvention@dyandra.com | W. www.ipaconvex.com</br>')
+=======
 				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 				    ->subject('Registration Successful')
 				    ->body( $body )
+>>>>>>> ab002215db3b37fff649e07e59e87b26d99b0637
 				    ->html(true)
 				    ->send();
 				*/
 				//    $message->body->name = $data['firstname'].' '.$data['lastname'];
 
-		    	return Redirect::to('/')->with('notify_success',Config::get('site.register_success'));
+		    	return Redirect::to('register-success')->with('notify_success',Config::get('site.register_success'));
 			}else{
 		    	return Redirect::to('register')->with('notify_success',Config::get('site.register_failed'));
 			}
@@ -166,6 +240,7 @@ class Register_Controller extends Base_Controller {
 		$id = new MongoId($id);
 
 		$user_profile = $user->get(array('_id'=>$id));
+		//$user_type = $user_profile['regtype'];
 
 		$this->crumb->add('project/profile','Profile',false);
 		$this->crumb->add('project/profile',$user_profile['firstname'].' '.$user_profile['lastname']);
@@ -173,6 +248,7 @@ class Register_Controller extends Base_Controller {
 		return View::make('register.profile')
 			->with('crumb',$this->crumb)
 			->with('profile',$user_profile);
+			//->with('type',$this->user_type);
 	}
 
 	public function get_edit(){

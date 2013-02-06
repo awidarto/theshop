@@ -16,10 +16,9 @@
 
 
     <!-- remove or comment this line if you want to use the local fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 
 
-
+    {{ HTML::style('content/css/opensans.css') }}
     {{ HTML::style('content/css/bootstrap.css') }}
     {{ HTML::style('content/css/bootstrap-responsive.css') }}
     {{ HTML::style('content/css/bootmetro.css') }}
