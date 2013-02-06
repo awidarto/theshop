@@ -78,21 +78,21 @@ class Register_Controller extends Base_Controller {
 
 			unset($data['repass']);
 			unset($data['csrf_token']);
-			$data['role'] = 'attendee';
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
+			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
 
 
-			$reg_number[] = 'A';
-			$reg_number[] = $data['regtype'];
-			$reg_number[] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+			$reg_number[0] = 'A';
+			$reg_number[1] = $data['regtype'];
+			$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
 			$seq = new Sequence();
 
 			$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
 
-			$reg_number[] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+			$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 
 			$data['registrationnumber'] = implode('-',$reg_number);
 
@@ -228,15 +228,20 @@ class Register_Controller extends Base_Controller {
 
 			$user = new Attendee();
 
-			$reg_number = explode('-',$data['registrationnumber']);			
+			if(isset($data['registrationnumber'])){
+				$reg_number = explode('-',$data['registrationnumber']);			
+			}else{
+				$reg_number = array();
+				$seq = new Sequence();
+				$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+				$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+			}
 
 			$reg_number[0] = 'A';
 			$reg_number[1] = $data['regtype'];
 			$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
 			$data['registrationnumber'] = implode('-',$reg_number);
-			//print_r($data);
-
 			
 			if($user->update(array('_id'=>$id),array('$set'=>$data))){
 		    	return Redirect::to('myprofile')->with('notify_success','User saved successfully');

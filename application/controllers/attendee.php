@@ -259,11 +259,28 @@ class Attendee_Controller extends Base_Controller {
 	    }else{
 
 			$data = Input::get();
+
+			$data['pass'] = Hash::make(time());
 	    	
 			unset($data['csrf_token']);
 
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
+
+			$data['role'] = 'attendee';
+			$data['paymentStatus'] = 'unpaid';
+
+			$reg_number[] = 'A';
+			$reg_number[] = $data['regtype'];
+			$reg_number[] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+
+			$seq = new Sequence();
+
+			$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+			$reg_number[] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+
+			$data['registrationnumber'] = implode('-',$reg_number);
 
 			$user = new Attendee();
 
@@ -279,138 +296,96 @@ class Attendee_Controller extends Base_Controller {
 	}
 
 
+	public function get_edit($id){
 
-	public function _post_add($type = null){
+		$this->crumb->add('attendee/edit','Edit',false);
+
+		$user = new Attendee();
+
+		$_id = new MongoId($id);
+
+		$user_profile = $user->get(array('_id'=>$_id));
+
+		//print_r($user_profile);
+		$user_profile['registrationnumber'] = (isset($user_profile['registrationnumber']))?$user_profile['registrationnumber']:'';
+
+		$form = Formly::make($user_profile);
+
+		$this->crumb->add('attendee/edit/'.$id,$user_profile['registrationnumber'],false);
+
+		return View::make('attendee.edit')
+					->with('user',$user_profile)
+					->with('form',$form)
+					->with('crumb',$this->crumb)
+					->with('title','Edit Attendee');
+
+	}
+
+
+	public function post_edit(){
 
 		//print_r(Session::get('permission'));
 
-		if(is_null($type)){
-			$back = 'attendee';
-		}else{
-			$back = 'attendee/type/'.$type;
-		}
-
 	    $rules = array(
-	        'title'  => 'required|max:50'
+	        'email'  => 'required'
 	    );
 
 	    $validation = Validator::make($input = Input::all(), $rules);
 
 	    if($validation->fails()){
 
-	    	return Redirect::to('attendee/add/'.$type)->with_errors($validation)->with_input(Input::all());
+	    	return Redirect::to('attendee/edit')->with_errors($validation)->with_input(Input::all());
 
 	    }else{
 
 			$data = Input::get();
 	    	
-	    	//print_r($data);
-
-			//pre save transform
-			unset($data['csrf_token']);
-
-			$data['effectiveDate'] = new MongoDate(strtotime($data['effectiveDate']." 00:00:00"));
-			$data['expiryDate'] = new MongoDate(strtotime($data['expiryDate']." 00:00:00"));
-
-			$data['createdDate'] = new MongoDate();
+			$id = new MongoId($data['id']);
 			$data['lastUpdate'] = new MongoDate();
-			$data['creatorName'] = Auth::user()->fullname;
-			$data['creatorId'] = Auth::user()->id;
+
+			unset($data['csrf_token']);
+			unset($data['id']);
+
+			$user = new Attendee();
+
+			if(isset($data['registrationnumber']) && $data['registrationnumber'] != ''){
+				$reg_number = explode('-',$data['registrationnumber']);			
+
+				$reg_number[0] = 'A';
+				$reg_number[1] = $data['regtype'];
+				$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
 
-			$sharelist = explode(',', $data['docShare']);
-			if(is_array($sharelist)){
-				$usr = new User();
-				$shd = array();
-				foreach($sharelist as $sh){
-					$shd[] = array('email'=>$sh);
-				}
-				$shared_ids = $usr->find(array('$or'=>$shd),array('id'));
+			}else if($data['registrationnumber'] == ''){
+				$reg_number = array();
+				$seq = new Sequence();
+				$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
 
-				$data['sharedEmails'] = $sharelist ;
-				$data['sharedIds'] = array_values($shared_ids) ;
+				$reg_number[0] = 'A';
+				$reg_number[1] = $data['regtype'];
+				$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+
+				$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 			}
 
-			$approvallist = explode(',', $data['docApprovalRequest']);
-			if(is_array($approvallist)){
-				$usr = new User();
-				$shd = array();
-				foreach($approvallist as $sh){
-					$appval[] = array('email'=>$sh);
-				}
-				$approval_ids = $usr->find(array('$or'=>$appval),array('id','fullname'));
 
-				$data['approvalRequestEmails'] = $approvallist ;
-				$data['approvalRequestIds'] = array_values($approval_ids) ;
+			$data['registrationnumber'] = implode('-',$reg_number);
+			
+			if($user->update(array('_id'=>$id),array('$set'=>$data))){
+		    	return Redirect::to('attendee')->with('notify_success','Attendee saved successfully');
+			}else{
+		    	return Redirect::to('attendee')->with('notify_success','Attendee saving failed');
 			}
 			
-			$docupload = Input::file('docupload');
-
-			$docupload['uploadTime'] = new MongoDate();
-
-			$data['docFilename'] = $docupload['name'];
-
-			$data['docFiledata'] = $docupload;
-
-			$data['docFileList'][] = $docupload;
-
-			$data['tags'] = explode(',',$data['docTag']);
-
-			$attendee = new Document();
-
-			$newobj = $attendee->insert($data);
-
-
-			if($newobj){
-
-
-				if($docupload['name'] != ''){
-
-					$newid = $newobj['_id']->__toString();
-
-					$newdir = realpath(Config::get('kickstart.storage')).'/'.$newid;
-
-					Input::upload('docupload',$newdir,$docupload['name']);
-					
-				}
-
-				if(count($data['tags']) > 0){
-					$tag = new Tag();
-					foreach($data['tags'] as $t){
-						$tag->update(array('tag'=>$t),array('$inc'=>array('count'=>1)),array('upsert'=>true));
-					}
-				}
-
-				$sharedto = explode(',',$data['docShare']);
-
-				if(count($sharedto) > 0  && $data['docShare'] != ''){
-					foreach($sharedto as $to){
-						Event::fire('attendee.share',array('id'=>$newobj['_id'],'sharer_id'=>Auth::user()->id,'shareto'=>$to));
-					}
-				}
-
-				$approvalby = explode(',',$data['docApprovalRequest']);
-
-				if(count($approvalby) > 0 && $data['docApprovalRequest'] != ''){
-					foreach($approvalby as $to){
-						Event::fire('request.approval',array('id'=>$newobj['_id'],'approvalby'=>$to));
-					}
-				}
-
-				Event::fire('attendee.create',array('id'=>$newobj['_id'],'result'=>'OK','department'=>Auth::user()->department,'creator'=>Auth::user()->id));
-
-		    	return Redirect::to($back)->with('notify_success','Document saved successfully');
-			}else{
-				Event::fire('attendee.create',array('id'=>$id,'result'=>'FAILED'));
-		    	return Redirect::to($back)->with('notify_success','Document saving failed');
-			}
-
 	    }
 
 		
 	}
 
-	public function get_edit($id = null,$type = null){
+
+
+
+	public function __get_edit($id = null,$type = null){
 
 		if(is_null($type)){
 			$this->crumb->add('attendee/add','Edit',false);
@@ -455,7 +430,7 @@ class Attendee_Controller extends Base_Controller {
 	}
 
 
-	public function post_edit($id,$type = null){
+	public function __post_edit($id,$type = null){
 
 		//print_r(Session::get('permission'));
 
@@ -834,116 +809,6 @@ class Attendee_Controller extends Base_Controller {
 
 		return Response::json($result);
 	}
-
-
-	public function __get_type($type = null)
-	{
-		$menutitle = array(
-			'opportunity'=>'Opportunity',
-			'tender'=>'Tender',
-			'commbid'=>'Commercial Bid',
-			'proposal'=>'Tech Proposal',
-			'techbid'=>'Tech Bid',
-			'contract'=>'Contracts',
-			'legal'=>'Legal Docs',
-			'qc'=>'QA / QC',
-			'warehouse'=>'Warehouse'
-			);
-
-		$heads = array('#','Title','Created','Creator','Owner','Tags','Action');
-		$fields = array('seq','title','created','creator','owner','tags','action');
-		$searchinput = array(false,'title','created','creator','owner','tags',false);
-
-		return View::make('tables.simple')
-			->with('title',(is_null($type))?'Document - All':'Document - '.$menutitle[$type])
-			->with('newbutton','New Document')
-			->with('disablesort','0,5,6')
-			->with('addurl','attendee/add')
-			->with('searchinput',$searchinput)
-			->with('ajaxsource',URL::to('attendee/type/'.$type))
-			->with('ajaxdel',URL::to('attendee/del'))
-			->with('heads',$heads);
-	}
-
-	public function __post_type($type = null)
-	{
-		$fields = array('title','createdDate','creatorName','creatorName','tags');
-
-		$rel = array('like','like','like','like','equ');
-
-		$cond = array('both','both','both','both','equ');
-
-		$idx = 0;
-		$q = array();
-		foreach($fields as $field){
-			if(Input::get('sSearch_'.$idx))
-			{
-				if($rel[$idx] == 'like'){
-					if($cond[$idx] == 'both'){
-						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'/');
-					}else if($cond[$idx] == 'before'){
-						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/');						
-					}else if($cond[$idx] == 'after'){
-						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/');						
-					}
-				}else if($rel[$idx] == 'equ'){
-					$q[$field] = Input::get('sSearch_'.$idx);
-				}
-			}
-			$idx++;
-		}
-
-		//print_r($q)
-
-		$attendee = new Document();
-
-		/* first column is always sequence number, so must be omitted */
-		$fidx = Input::get('iSortCol_0');
-		$fidx = ($fidx > 0)?$fidx - 1:$fidx;
-		$sort_col = $fields[$fidx];
-		$sort_dir = (Input::get('sSortDir_0') == 'asc')?1:-1;
-
-		$count_all = $attendee->count();
-
-		if(count($q) > 0){
-			$attendees = $attendee->find($q,array(),array($sort_col=>$sort_dir));
-			$count_display_all = $attendee->count($q);
-		}else{
-			$attendees = $attendee->find(array(),array(),array($sort_col=>$sort_dir));
-			$count_display_all = $attendee->count();
-		}
-
-
-
-
-		$aadata = array();
-
-		$counter = 1;
-		foreach ($attendees as $doc) {
-			$aadata[] = array(
-				$counter,
-				$doc['title'],
-				date('Y-m-d h:i:s',$doc['createdDate']),
-				$doc['creatorName'],
-				$doc['creatorName'],
-				implode(',',$doc['tag']),
-				'<i class="foundicon-edit action"></i>&nbsp;<i class="foundicon-trash action"></i>'
-			);
-			$counter++;
-		}
-
-		
-		$result = array(
-			'sEcho'=> Input::get('sEcho'),
-			'iTotalRecords'=>$count_all,
-			'iTotalDisplayRecords'=> $count_display_all,
-			'aaData'=>$aadata,
-			'qrs'=>$q
-		);
-
-		print json_encode($result);
-	}
-
 
 	public function get_view($id){
 		$id = new MongoId($id);
