@@ -49,13 +49,13 @@ class Attendee_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
-		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
+		$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Position','Status','Mobile','Created','Last Update','Action');
 
 
-		$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
+		$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Status','Mobile','Created','Last Update',false);
 
 		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
-		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','');
+		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','','');
 
 		$searchinput = false; // no searchinput form on footer
 
@@ -158,6 +158,12 @@ class Attendee_Controller extends Base_Controller {
 
 			$extra = $doc;
 
+			if(isset($doc['paymentStatus'])){
+				$status = ($doc['paymentStatus'] == 'unpaid')?'<span class="fontRed fontBold">UNPAID</span>':'<span class="fontGreen fontBold">PAID</span>';
+			}else{
+				$status = '<span class="fontRed fontBold">-</span>';
+			}
+
 			$aadata[] = array(
 				$counter,
 				(isset($doc['registrationnumber']))?$doc['registrationnumber']:'',
@@ -166,12 +172,11 @@ class Attendee_Controller extends Base_Controller {
 				$doc['email'],
 				$doc['company'],
 				$doc['position'],
-				//$doc['mobile'],
-				'<span class="fontRed fontBold">UNPAID</span>',
+				$status,
+				$doc['mobile'],
 				//$doc['companyphone'],
 				//$doc['companyfax'],
 				//date('Y-m-d H:i:s', $doc['createdDate']->sec),
-				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
 				date('Y-m-d', $doc['createdDate']->sec),
 				isset($doc['lastUpdate'])?date('Y-m-d', $doc['lastUpdate']->sec):'',
 				'<a class="action icon-"  ><i>&#xe164;</i><span class="action pay" id="'.$doc['_id'].'" >Payment Status</span>'.
