@@ -50,12 +50,12 @@ class Attendee_Controller extends Base_Controller {
 		//print_r(Auth::user());
 
 		//$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
-		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Created','Last Update','Action');
+		$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Created','Last Update','Action');
 
-		$searchinput = array(false,'First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
+		$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
 
 		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
-		$colclass = array('','span3','span3','span1','span1','span1','','','','','','','');
+		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','');
 
 		$searchinput = false; // no searchinput form on footer
 
@@ -82,11 +82,11 @@ class Attendee_Controller extends Base_Controller {
 	{
 
 
-		$fields = array('firstname','lastname','email','company','position','mobile','companyphone','companyfax','createdDate','lastUpdate');
+		$fields = array('registrationnumber','firstname','lastname','email','company','position','mobile','companyphone','companyfax','createdDate','lastUpdate');
 
-		$rel = array('like','like','like','like','like','like','like','like','like');
+		$rel = array('like','like','like','like','like','like','like','like','like','like');
 
-		$cond = array('both','both','both','both','both','both','both','both','both');
+		$cond = array('both','both','both','both','both','both','both','both','both','both');
 
 		$pagestart = Input::get('iDisplayStart');
 		$pagelength = Input::get('iDisplayLength');
@@ -160,6 +160,7 @@ class Attendee_Controller extends Base_Controller {
 
 			$aadata[] = array(
 				$counter,
+				(isset($doc['registrationnumber']))?$doc['registrationnumber']:'',
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
 				$doc['lastname'],
 				$doc['email'],

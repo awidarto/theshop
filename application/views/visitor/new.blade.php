@@ -48,6 +48,8 @@
 
                 {{$form->select('role','Visitor Type',Config::get('eventreg.visitors'),array('class'=>'span12'))}}
 
+                {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'span12'))}}
+
         </fieldset>
 
     </div>

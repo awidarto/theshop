@@ -49,11 +49,11 @@ class Visitor_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
-		$heads = array('#','First Name','Last Name','Email','Company','Role','Mobile','Created','Last Update','Action');
+		$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Role','Mobile','Created','Last Update','Action');
 
-		$searchinput = array(false,'First Name','Last Name','Email','Company','Position','Role','Mobile','Created','Last Update',false);
+		$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Role','Mobile','Created','Last Update',false);
 
-		$colclass = array('','span1','span1','span3','span3','span1','span1','span1','span1','');
+		$colclass = array('','span2','span1','span1','span3','span3','span1','span1','span1','span1','');
 
 		$searchinput = false; // no searchinput form on footer
 
@@ -80,11 +80,11 @@ class Visitor_Controller extends Base_Controller {
 	{
 
 
-		$fields = array('firstname','lastname','email','company','role','mobile','createdDate','lastUpdate');
+		$fields = array('registrationnumber','firstname','lastname','email','company','role','mobile','createdDate','lastUpdate');
 
-		$rel = array('like','like','like','like','like','like','like','like');
+		$rel = array('like','like','like','like','like','like','like','like','like');
 
-		$cond = array('both','both','both','both','both','both','both','both');
+		$cond = array('both','both','both','both','both','both','both','both','both');
 
 		$pagestart = Input::get('iDisplayStart');
 		$pagelength = Input::get('iDisplayLength');
@@ -158,6 +158,7 @@ class Visitor_Controller extends Base_Controller {
 
 			$aadata[] = array(
 				$counter,
+				(isset($doc['registrationnumber']))?$doc['registrationnumber']:'',
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
 				$doc['lastname'],
 				$doc['email'],
@@ -166,8 +167,8 @@ class Visitor_Controller extends Base_Controller {
 				$doc['mobile'],
 				date('Y-m-d H:i:s', $doc['createdDate']->sec),
 				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
-				'<a href="'.URL::to('visitor/edit/'.$doc['_id']).'"><i class="foundicon-edit action"></i></a>&nbsp;'.
-				'<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>',
+				'<a class="icon-"  href="'.URL::to('visitor/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
+				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
 				'extra'=>$extra
 			);
 			$counter++;
@@ -188,7 +189,7 @@ class Visitor_Controller extends Base_Controller {
 	public function post_del(){
 		$id = Input::get('id');
 
-		$user = new Document();
+		$user = new Visitor();
 
 		if(is_null($id)){
 			$result = array('status'=>'ERR','data'=>'NOID');
@@ -248,6 +249,20 @@ class Visitor_Controller extends Base_Controller {
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
 
+			$data['paymentStatus'] = 'unpaid';
+
+			$reg_number[0] = 'A';
+			$reg_number[1] = $data['role'];
+			$reg_number[2] = '00';
+
+			$seq = new Sequence();
+
+			$rseq = $seq->find_and_modify(array('_id'=>'visitor'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+			$reg_number[] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+
+			$data['registrationnumber'] = implode('-',$reg_number);
+
 			$user = new Visitor();
 
 			if($user->insert($data)){
@@ -261,538 +276,92 @@ class Visitor_Controller extends Base_Controller {
 		
 	}
 
-	public function get_edit($id = null,$type = null){
-
-		if(is_null($type)){
-			$this->crumb->add('visitor/add','Edit',false);
-		}else{
-			$this->crumb = new Breadcrumb();
-			$this->crumb->add('visitor/type/'.$type,'Document');
-
-			$this->crumb->add('visitor/type/'.$type,depttitle($type),false);
-			$this->crumb->add('visitor/edit/'.$id,'Edit',false);
-		}
 
 
-		$doc = new Document();
+	public function get_edit($id){
 
-		$id = (is_null($id))?Auth::user()->id:$id;
+		$this->crumb->add('visitor/edit','Edit',false);
 
-		$id = new MongoId($id);
+		$user = new Visitor();
 
-		$doc_data = $doc->get(array('_id'=>$id));
+		$_id = new MongoId($id);
 
-		$doc_data['oldTag'] = $doc_data['docTag'];
+		$user_profile = $user->get(array('_id'=>$_id));
 
-		$doc_data['effectiveDate'] = date('Y-m-d', $doc_data['effectiveDate']->sec);
-		$doc_data['expiryDate'] = date('Y-m-d', $doc_data['expiryDate']->sec);
+		//print_r($user_profile);
+		$user_profile['registrationnumber'] = (isset($user_profile['registrationnumber']))?$user_profile['registrationnumber']:'';
 
+		$form = Formly::make($user_profile);
 
-		if(is_null($type)){
-			$this->crumb->add('visitor/edit/'.$id,$doc_data['title']);
-		}else{
-			$this->crumb->add('visitor/edit/'.$id.'/'.$type,$doc_data['title']);
-		}
-
-		$form = Formly::make($doc_data);
+		$this->crumb->add('visitor/edit/'.$id,$user_profile['registrationnumber'],false);
 
 		return View::make('visitor.edit')
-					->with('doc',$doc_data)
+					->with('user',$user_profile)
 					->with('form',$form)
-					->with('type',$type)
 					->with('crumb',$this->crumb)
-					->with('title','Edit Document');
+					->with('title','Edit Visitor');
 
 	}
 
 
-	public function post_edit($id,$type = null){
+	public function post_edit($id){
 
 		//print_r(Session::get('permission'));
 
-		if(is_null($type)){
-			$back = 'visitor';
-		}else{
-			$back = 'visitor/type/'.$type;
-		}
-
 	    $rules = array(
-	        'title'  => 'required|max:50'
+	        'email'  => 'required'
 	    );
 
 	    $validation = Validator::make($input = Input::all(), $rules);
 
 	    if($validation->fails()){
 
-	    	return Redirect::to('visitor/edit/'.$id.'/'.$type)->with_errors($validation)->with_input(Input::all());
+	    	return Redirect::to('visitor/edit/'.$id)->with_errors($validation)->with_input(Input::all());
 
 	    }else{
 
 			$data = Input::get();
 	    	
 			$id = new MongoId($data['id']);
-
-			$data['effectiveDate'] = new MongoDate(strtotime($data['effectiveDate']." 00:00:00"));
-			$data['expiryDate'] = new MongoDate(strtotime($data['expiryDate']." 00:00:00"));
 			$data['lastUpdate'] = new MongoDate();
 
 			unset($data['csrf_token']);
-
-			$docId = $data['id'];
 			unset($data['id']);
 
-			$sharelist = explode(',', $data['docShare']);
-			if(is_array($sharelist)){
-				$usr = new User();
-				$shd = array();
-				foreach($sharelist as $sh){
-					$shd[] = array('email'=>$sh);
-				}
-				$shared_ids = $usr->find(array('$or'=>$shd),array('id'));
+			$user = new Visitor();
 
-				$data['sharedEmails'] = $sharelist ;
-				$data['sharedIds'] = array_values($shared_ids) ;
-			}
+			if(isset($data['registrationnumber']) && $data['registrationnumber'] != ''){
+				$reg_number = explode('-',$data['registrationnumber']);			
 
-			$approvallist = explode(',', $data['docApprovalRequest']);
-			if(is_array($approvallist)){
-				$usr = new User();
-				$shd = array();
-				foreach($approvallist as $sh){
-					$appval[] = array('email'=>$sh);
-				}
-				$approval_ids = $usr->find(array('$or'=>$appval),array('id','fullname'));
+				$reg_number[0] = 'A';
+				$reg_number[1] = $data['role'];
+				$reg_number[2] = '00';
 
-				$data['approvalRequestEmails'] = $approvallist ;
-				$data['approvalRequestIds'] = array_values($approval_ids) ;
+
+			}else if($data['registrationnumber'] == ''){
+				$reg_number = array();
+				$seq = new Sequence();
+				$rseq = $seq->find_and_modify(array('_id'=>'visitor'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+				$reg_number[0] = 'A';
+				$reg_number[1] = $data['role'];
+				$reg_number[2] = '00';
+
+				$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 			}
 
 
-			$data['tags'] = explode(',',$data['docTag']);
-
-			$doc = new Document();
-
-			//print_r($data);
-			$oldtags = explode(',',$data['oldTag']);
-
-			if(count($data['tags']) > 0){
-				$tag = new Tag();
-				foreach($data['tags'] as $t){
-					if(in_array($t, $oldtags)){
-						$add = 0;
-					}else{
-						$add = 1;
-					}
-					$tag->update(array('tag'=>$t),array('$inc'=>array('count'=>$add)),array('upsert'=>true));
-				}
-			}
-
-			unset($data['oldTag']);
-
-			// upload new file , additive
-
-			$docupload = Input::file('docupload');
-
-			$withfile = false;
-
-			if($docupload['name'] != ''){
-
-				$docupload['uploadTime'] = new MongoDate();
-
-				$dirname = $docId;
-
-				$dirname = realpath(Config::get('kickstart.storage')).'/'.$dirname;
-
-				$uploadresult = Input::upload('docupload',$dirname,$docupload['name']);
-
-				if($uploadresult){
-
-					$data['docFilename'] = $docupload['name'];
-
-					$data['docFiledata'] = $docupload;
-
-					$withfile = true;
-
-				}
-
-			}
-
-			if($withfile == true){
-				$updatequery = array('$set'=>$data,'$push'=>array('docFileList'=>$docupload));
+			$data['registrationnumber'] = implode('-',$reg_number);
+			
+			if($user->update(array('_id'=>$id),array('$set'=>$data))){
+		    	return Redirect::to('visitor')->with('notify_success','Attendee saved successfully');
 			}else{
-				$updatequery = array('$set'=>$data);
+		    	return Redirect::to('visitor')->with('notify_success','Attendee saving failed');
 			}
-
-			//print_r($data);
-
-			if($doc->update(array('_id'=>$id),$updatequery)){
-
-				Event::fire('visitor.update',array('id'=>$id,'result'=>'OK'));
-
-				$sharedto = explode(',',$data['docShare']);
-
-				if(count($sharedto) > 0  && $data['docShare'] != ''){
-					foreach($sharedto as $to){
-						Event::fire('visitor.share',array('id'=>$id,'sharer_id'=>Auth::user()->id,'shareto'=>$to));
-					}
-				}
-
-				$approvalby = explode(',',$data['docApprovalRequest']);
-
-				if(count($approvalby) > 0 && $data['docApprovalRequest'] != ''){
-					foreach($approvalby as $to){
-						Event::fire('request.approval',array('id'=>$id,'approvalby'=>$to));
-					}
-				}				
-
-		    	return Redirect::to($back)->with('notify_success','Document saved successfully');
-			}else{
-
-				Event::fire('visitor.update',array('id'=>$id,'result'=>'FAILED'));
-
-		    	return Redirect::to($back)->with('notify_success','Document saving failed');
-			}
-
+			
 	    }
 
 		
-	}
-
-
-	public function get_type($type = null)
-	{
-		$this->crumb = new Breadcrumb();
-		$this->crumb->add('visitor/type/'.$type,'Document');
-		$this->crumb->add('visitor/type/'.$type,depttitle($type));
-
-		$heads = array('#','Title','Created','Last Update','Creator','Access','Attachment','Tags','Action');
-		$searchinput = array(false,'title','created','last update','creator','access','filename','tags',false);
-
-		$dept = Config::get('kickstart.department');
-
-		$title = $dept[$type];
-
-		$doc = new Document();
-
-		//check is shared
-		$sharecriteria = new MongoRegex('/'.Auth::user()->email.'/i');
-		$shared = $doc->count(array('docDepartment'=>$type,'docShare'=>$sharecriteria));
-
-		//check if creator
-		$created = $doc->count(array('docDepartment'=>$type,'creatorId'=>Auth::user()->id));
-
-		$permissions = Auth::user()->permissions;
-
-		$can_open = false;
-
-		if(	Auth::user()->role == 'root' || 
-			Auth::user()->role == 'super' || 
-			Auth::user()->department == $title || 
-			$permissions->{$type}->read == true ||
-			$shared > 0 ||
-			$created > 0
-		){
-			$can_open = true;
-		}
-
-		if( $can_open == true ){
-
-
-			if($permissions->{$type}->create == 1 || Auth::user()->department == $type ){
-				$addurl = 'visitor/add/'.$type;
-			}else{
-				$addurl = '';
-			}
-
-			return View::make('tables.simple')
-				->with('title',$title)
-				->with('newbutton','New Document')
-				->with('disablesort','0,5,6')
-				->with('addurl',$addurl)
-				->with('searchinput',$searchinput)
-				->with('ajaxsource',URL::to('visitor/type/'.$type))
-				->with('ajaxdel',URL::to('visitor/del'))
-				->with('crumb',$this->crumb)
-				->with('heads',$heads);			
-		}else{
-			return View::make('visitor.restricted')
-				->with('crumb',$this->crumb)
-				->with('title',$title);
-		}
-
-	}
-
-	public function post_type($type = null)
-	{
-
-		$fields = array('title','createdDate','lastUpdate','creatorName','docFilename','docTag');
-
-		$rel = array('like','like','like','like','like','like');
-
-		$cond = array('both','both','both','both','both','both');
-
-		$pagestart = Input::get('iDisplayStart');
-		$pagelength = Input::get('iDisplayLength');
-
-		$limit = array($pagelength, $pagestart);
-
-		$defsort = 1;
-		$defdir = -1;
-
-		$idx = 0;
-		$q = array();
-
-		$hilite = array();
-		$hilite_replace = array();
-
-		foreach($fields as $field){
-			if(Input::get('sSearch_'.$idx))
-			{
-
-				$hilite_item = Input::get('sSearch_'.$idx);
-				$hilite[] = $hilite_item;
-				$hilite_replace[] = '<span class="hilite">'.$hilite_item.'</span>';
-
-				if($rel[$idx] == 'like'){
-					if($cond[$idx] == 'both'){
-						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'/i');
-					}else if($cond[$idx] == 'before'){
-						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/i');						
-					}else if($cond[$idx] == 'after'){
-						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/i');						
-					}
-				}else if($rel[$idx] == 'equ'){
-					$q[$field] = Input::get('sSearch_'.$idx);
-				}
-			}
-			$idx++;
-		}
-
-		//print_r($q)
-		if(!is_null($type)){
-			$q['docDepartment'] = $type;
-		}
-
-		$sharecriteria = new MongoRegex('/'.Auth::user()->email.'/i');
-		
-		if(Auth::user()->department == $type){
-			$q['$or'] = array(
-				array('access'=>'general'),
-				array('docShare'=>$sharecriteria)
-			);
-		}else{
-			$q['docShare'] = $sharecriteria;
-		}
-
-		$permissions = Auth::user()->permissions;
-
-		$visitor = new Document();
-
-		/* first column is always sequence number, so must be omitted */
-		$fidx = Input::get('iSortCol_0');
-		if($fidx == 0){
-			$fidx = $defsort;			
-			$sort_col = $fields[$fidx];
-			$sort_dir = $defdir;
-		}else{
-			$fidx = ($fidx > 0)?$fidx - 1:$fidx;
-			$sort_col = $fields[$fidx];
-			$sort_dir = (Input::get('sSortDir_0') == 'asc')?1:-1;
-		}
-
-		$count_all = $visitor->count();
-
-		if(count($q) > 0){
-			$visitors = $visitor->find($q,array(),array($sort_col=>$sort_dir),$limit);
-			$count_display_all = $visitor->count($q);
-		}else{
-			$visitors = $visitor->find(array(),array(),array($sort_col=>$sort_dir),$limit);
-			$count_display_all = $visitor->count();
-		}
-
-
-
-
-		$aadata = array();
-
-		$counter = 1 + $pagestart;
-		foreach ($visitors as $doc) {
-
-
-			if(isset($doc['tags'])){
-				$tags = array();
-
-				foreach($doc['tags'] as $t){
-					$tags[] = '<span class="tagitem">'.$t.'</span>';
-				}
-
-				$tags = implode('',$tags);
-
-			}else{
-				$tags = '';
-			}
-
-			$doc['title'] = str_ireplace($hilite, $hilite_replace, $doc['title']);
-			$doc['creatorName'] = str_ireplace($hilite, $hilite_replace, $doc['creatorName']);
-
-
-			if($doc['creatorId'] == Auth::user()->id || $doc['docDepartment'] == Auth::user()->department){
-				$edit = '<a href="'.URL::to('visitor/edit/'.$doc['_id'].'/'.$type).'">'.
-						'<i class="foundicon-edit action"></i></a>&nbsp;';
-				$del = '<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>';
-			}else{
-				if($permissions->{$type}->edit == 1){
-					$edit = '<a href="'.URL::to('visitor/edit/'.$doc['_id'].'/'.$type).'">'.
-							'<i class="foundicon-edit action"></i></a>&nbsp;';
-				}else{
-					$edit = '';
-				}
-
-				if($permissions->{$type}->delete == 1){
-					$del = '<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>';
-				}else{
-					$del = '';
-				}
-			}
-
-			$aadata[] = array(
-				$counter,
-				'<span class="metaview" id="'.$doc['_id'].'">'.$doc['title'].'</span>',
-				date('Y-m-d H:i:s', $doc['createdDate']->sec),
-				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
-				$doc['creatorName'],
-				isset($doc['access'])?ucfirst($doc['access']):'',
-				isset($doc['docFilename'])?'<span class="fileview" id="'.$doc['_id'].'">'.$doc['docFilename'].'</span>':'',
-				$tags,
-				$edit.$del
-				/*
-				'<a href="'.URL::to('visitor/edit/'.$doc['_id'].'/'.$type).'">'.
-				'<i class="foundicon-edit action"></i></a>&nbsp;'.
-				'<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>'
-				*/
-			);
-			$counter++;
-		}
-
-		
-		$result = array(
-			'sEcho'=> Input::get('sEcho'),
-			'iTotalRecords'=>$count_all,
-			'iTotalDisplayRecords'=> $count_display_all,
-			'aaData'=>$aadata,
-			'qrs'=>$q
-		);
-
-		return Response::json($result);
-	}
-
-
-	public function __get_type($type = null)
-	{
-		$menutitle = array(
-			'opportunity'=>'Opportunity',
-			'tender'=>'Tender',
-			'commbid'=>'Commercial Bid',
-			'proposal'=>'Tech Proposal',
-			'techbid'=>'Tech Bid',
-			'contract'=>'Contracts',
-			'legal'=>'Legal Docs',
-			'qc'=>'QA / QC',
-			'warehouse'=>'Warehouse'
-			);
-
-		$heads = array('#','Title','Created','Creator','Owner','Tags','Action');
-		$fields = array('seq','title','created','creator','owner','tags','action');
-		$searchinput = array(false,'title','created','creator','owner','tags',false);
-
-		return View::make('tables.simple')
-			->with('title',(is_null($type))?'Document - All':'Document - '.$menutitle[$type])
-			->with('newbutton','New Document')
-			->with('disablesort','0,5,6')
-			->with('addurl','visitor/add')
-			->with('searchinput',$searchinput)
-			->with('ajaxsource',URL::to('visitor/type/'.$type))
-			->with('ajaxdel',URL::to('visitor/del'))
-			->with('heads',$heads);
-	}
-
-	public function __post_type($type = null)
-	{
-		$fields = array('title','createdDate','creatorName','creatorName','tags');
-
-		$rel = array('like','like','like','like','equ');
-
-		$cond = array('both','both','both','both','equ');
-
-		$idx = 0;
-		$q = array();
-		foreach($fields as $field){
-			if(Input::get('sSearch_'.$idx))
-			{
-				if($rel[$idx] == 'like'){
-					if($cond[$idx] == 'both'){
-						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'/');
-					}else if($cond[$idx] == 'before'){
-						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/');						
-					}else if($cond[$idx] == 'after'){
-						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/');						
-					}
-				}else if($rel[$idx] == 'equ'){
-					$q[$field] = Input::get('sSearch_'.$idx);
-				}
-			}
-			$idx++;
-		}
-
-		//print_r($q)
-
-		$visitor = new Document();
-
-		/* first column is always sequence number, so must be omitted */
-		$fidx = Input::get('iSortCol_0');
-		$fidx = ($fidx > 0)?$fidx - 1:$fidx;
-		$sort_col = $fields[$fidx];
-		$sort_dir = (Input::get('sSortDir_0') == 'asc')?1:-1;
-
-		$count_all = $visitor->count();
-
-		if(count($q) > 0){
-			$visitors = $visitor->find($q,array(),array($sort_col=>$sort_dir));
-			$count_display_all = $visitor->count($q);
-		}else{
-			$visitors = $visitor->find(array(),array(),array($sort_col=>$sort_dir));
-			$count_display_all = $visitor->count();
-		}
-
-
-
-
-		$aadata = array();
-
-		$counter = 1;
-		foreach ($visitors as $doc) {
-			$aadata[] = array(
-				$counter,
-				$doc['title'],
-				date('Y-m-d h:i:s',$doc['createdDate']),
-				$doc['creatorName'],
-				$doc['creatorName'],
-				implode(',',$doc['tag']),
-				'<i class="foundicon-edit action"></i>&nbsp;<i class="foundicon-trash action"></i>'
-			);
-			$counter++;
-		}
-
-		
-		$result = array(
-			'sEcho'=> Input::get('sEcho'),
-			'iTotalRecords'=>$count_all,
-			'iTotalDisplayRecords'=> $count_display_all,
-			'aaData'=>$aadata,
-			'qrs'=>$q
-		);
-
-		print json_encode($result);
 	}
 
 
