@@ -49,12 +49,8 @@ class Attendee_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
-		//$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
-<<<<<<< HEAD
-		$heads = array('#','First Name','Last Name','Email','Company','Position','Status','Created','Last Update','Action');
-=======
-		$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Created','Last Update','Action');
->>>>>>> d2cc2bd132a79f901150630d38a0f245cf8ba90a
+		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
+
 
 		$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
 
@@ -175,7 +171,7 @@ class Attendee_Controller extends Base_Controller {
 				//$doc['companyphone'],
 				//$doc['companyfax'],
 				//date('Y-m-d H:i:s', $doc['createdDate']->sec),
-				//isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
+				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
 				date('Y-m-d', $doc['createdDate']->sec),
 				isset($doc['lastUpdate'])?date('Y-m-d', $doc['lastUpdate']->sec):'',
 				'<a class="icon-"  href="#"><i>&#xe164;</i><span>Payment Status</span>'.
