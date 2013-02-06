@@ -187,106 +187,32 @@
   </div>
 </footer>
 
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
- <div class="modal-header">
-   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-   <h3 id="myModalLabel">Attendee Details</h3>
- </div>
- <div class="modal-body">
- 	<div class="attendeeDetails">
- 		<span class="paidStatus"><strong>PAID</strong></span>
- 		<div class="row-fluid">
- 			{{ HTML::image('images/2705_bar.png','bar',array('class'=>'barcode')) }}
- 		</div>
-		<div class="row-fluid">
-			<div class="span4">Registration Number</div>
-			<div class="span8">: 10-00-002147</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Name</div>
-			<div class="span8">: Mr Hazman Hazman</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Cellphone</div>
-			<div class="span8">: 081932416264</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">E-mail Address</div>
-			<div class="span8">: vicohh@email.com</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Nationality</div>
-			<div class="span8">: Domestic</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Company</div>
-			<div class="span8">: VICO Indonesia</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Company Address</div>
-			<div class="span8">: VICO Indonesia Wisma Mulia, 48th - 49th Floor Jl. Jend. Gatot Subroto No. 42, , Jakarta 12710, Indonesia</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Company Phone</div>
-			<div class="span8">: (021) 523-6000</div>
-		</div>
+<div id="updatePayment" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 id="myModalLabel">Modal header</h3>
 	</div>
- </div>
- <div class="modal-footer">
-   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-   <button class="btn btn-primary">Save changes</button>
- </div>
+	<div class="modal-body">
+		<p>One fine body…</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		<button class="btn btn-primary">Save changes</button>
+	</div>
 </div>
 
-
-<div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
- <div class="modal-header">
-   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-   <h3 id="myModalLabel">Attendee Details</h3>
- </div>
- <div class="modal-body">
-
- 	<div class="attendeeDetails">
- 		{{ HTML::image('images/2705_bar.png','bar',array('class'=>'barcode2')) }}
- 		<span class="paidStatus unpaid"><strong>UNPAID</strong></span>
-		<div class="row-fluid">
-			<div class="span4">Registration Number</div>
-			<div class="span8">: 10-00-002147</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Name</div>
-			<div class="span8">: Mr Hazman Hazman</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Cellphone</div>
-			<div class="span8">: 081932416264</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">E-mail Address</div>
-			<div class="span8">: vicohh@email.com</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Nationality</div>
-			<div class="span8">: Domestic</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Company</div>
-			<div class="span8">: VICO Indonesia</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Company Address</div>
-			<div class="span8">: VICO Indonesia Wisma Mulia, 48th - 49th Floor Jl. Jend. Gatot Subroto No. 42, , Jakarta 12710, Indonesia</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span4">Company Phone</div>
-			<div class="span8">: (021) 523-6000</div>
-		</div>
+<div id="deleteWarning" class="modal warning hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 id="myModalLabel">Confirm Delete</h3>
 	</div>
- </div>
- <div class="modal-footer">
-   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-   <button class="btn btn-primary">Save changes</button>
- </div>
+	<div class="modal-body">
+		<p>Are you sure you want to delete this item ?</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary">Yes</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -427,7 +353,7 @@
 
 		$('table.dataTable').click(function(e){
 
-			if ($(e.target).is('.del')) {
+			if ($(e.target).is('._del')) {
 				var _id = e.target.id;
 				var answer = confirm("Are you sure you want to delete this item ?");
 				if (answer){
@@ -441,6 +367,18 @@
 				}else{
 					alert("Deletion cancelled");
 				}
+		   	}
+
+			if ($(e.target).is('.pay')) {
+				var _id = e.target.id;
+
+				$('#updatePayment').modal();
+		   	}
+
+			if ($(e.target).is('.del')) {
+				var _id = e.target.id;
+
+				$('#deleteWarning').modal();
 		   	}
 
 			if ($(e.target).is('.pop')) {
