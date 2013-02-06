@@ -120,6 +120,10 @@ table.dataTable{
 	cursor:pointer;
 }
 
+span.action{
+	cursor:pointer;
+}
+
 .del{
 	color:red;
 }

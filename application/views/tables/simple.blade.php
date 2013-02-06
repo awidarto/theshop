@@ -91,56 +91,7 @@
 			    </thead>
 
              <tbody>
-             <tr>
-                <td class="span1"><a href="#myModal" data-toggle="modal">2707</a></td>
-                <td class="nationality">VICO Indonesia<br/><small>Indonesia</small></td>
-                <td>Mohammad</td>
-                <td>Irvan</td>
-                <td class="span4">mohammadirvan@yahoo.com</td>
-                <td class="span1">423423499</td>
-                <td class="span1">08-05-2012 05:05:34</td>
-                <td class="span4 align-center">Professional Overseas<br/><span class="fontGreen fontBold">PAID</span></td>
-                <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
-                <td class="span2">
-                   <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
-                   <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
-                </td>
-                
-             </tr>
-             
-             
-
-             <tr>
-                <td class="span1"><a href="#myModal2" data-toggle="modal">2707</a></td>
-                <td class="nationality">VICO Indonesia<br/><small>Indonesia</small></td>
-                <td>Mohammad</td>
-                <td>Irvan</td>
-                <td class="span4">mohammadirvan@yahoo.com</td>
-                <td class="span1">423423499</td>
-                <td class="span1">08-05-2012 05:05:34</td>
-                <td class="span4 align-center">Professional Domestic<br/><span class="fontRed fontBold">UNPAID</span></td>
-                <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
-                <td class="span2">
-                   <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
-                   <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
-                </td>
-             </tr>
-             <tr>
-                <td class="span1"><a href="#myModal" data-toggle="modal">2707</a></td>
-                <td class="nationality">VICO Indonesia<br/><small>Indonesia</small></td>
-                <td>Mohammad</td>
-                <td>Irvan</td>
-                <td class="span4">mohammadirvan@yahoo.com</td>
-                <td class="span1">423423499</td>
-                <td class="span1">08-05-2012 05:05:34</td>
-                <td class="span4 align-center">Professional Domestic<br/><span class="fontGreen fontBold">PAID</span></td>
-                <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
-                <td class="span2">
-                   <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
-                   <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
-                </td>
-             </tr>
-
+             	<!-- will be replaced by ajax content -->
              </tbody>
 		    	@if($searchinput)
 				    <tfoot>
@@ -398,7 +349,9 @@
 			if ($(e.target).is('.del')) {
 				var _id = e.target.id;
 
-				$('#deleteWarning').modal();
+				$('#deleteWarning').modal({
+					keyboard:true
+				});
 		   	}
 
 			if ($(e.target).is('.pop')) {
