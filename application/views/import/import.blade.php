@@ -11,7 +11,7 @@
 <div class="row-fluid formNewAttendee">
     <div class="span6">
 <fieldset>
-            <legend>Personal Information</legend>
+            <legend>Person In Charge Information</legend>
 
                 {{ Form::label('salutation','Salutation')}}
 
