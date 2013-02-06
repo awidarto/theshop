@@ -190,14 +190,28 @@
 <div id="updatePayment" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Modal header</h3>
+		<h3 id="myModalLabel">Payment Status</h3>
 	</div>
 	<div class="modal-body">
 		<p>One fine body…</p>
 	</div>
 	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		<button class="btn btn-primary">Save changes</button>
+		<button class="btn btn-primary">Save</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+</div>
+
+<div id="printBadge" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 id="myModalLabel">Print Badge</h3>
+	</div>
+	<div class="modal-body">
+		<p>badge to print</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary">Print</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	</div>
 </div>
 
@@ -367,6 +381,12 @@
 				}else{
 					alert("Deletion cancelled");
 				}
+		   	}
+
+			if ($(e.target).is('.pbadge')) {
+				var _id = e.target.id;
+
+				$('#printBadge').modal();
 		   	}
 
 			if ($(e.target).is('.pay')) {
