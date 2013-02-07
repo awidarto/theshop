@@ -68,6 +68,7 @@ class Official_Controller extends Base_Controller {
 				->with('ajaxsource',URL::to('official'))
 				->with('ajaxdel',URL::to('official/del'))
 				->with('ajaxpay',URL::to('official/paystatus'))
+				->with('printsource',URL::to('official/printbadge'))
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)
 				->nest('row','official.rowdetail');
@@ -727,6 +728,17 @@ class Official_Controller extends Base_Controller {
 
 		print json_encode($result);
 	}
+
+	public function get_printbadge($id){
+		$id = new MongoId($id);
+
+		$attendee = new Official();
+
+		$doc = $attendee->get(array('_id'=>$id));
+
+		return View::make('print.officialbadge')->with('profile',$doc);
+	}
+
 
 	public function get_view($id){
 		$id = new MongoId($id);

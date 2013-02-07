@@ -416,6 +416,16 @@ class Attendee_Controller extends Base_Controller {
 		
 	}
 
+	public function get_printbadge($id){
+		$id = new MongoId($id);
+
+		$attendee = new Attendee();
+
+		$doc = $attendee->get(array('_id'=>$id));
+
+		return View::make('print.attendeebadge')->with('profile',$doc);
+	}
+
 	public function get_view($id){
 		$id = new MongoId($id);
 
@@ -425,6 +435,7 @@ class Attendee_Controller extends Base_Controller {
 
 		return View::make('pop.docview')->with('profile',$doc);
 	}
+
 
 	public function get_fileview($id){
 		$_id = new MongoId($id);

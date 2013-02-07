@@ -10,7 +10,7 @@
 	      <h5>Convention Registration</h5>
 	      <a class="tile imagetext bg-color-blue statistic" href="#">
 	         <div class="image-wrapper text-big">
-	            <div class="text-big">1660</div>
+	            <div class="text-big">{{ $stat['PO']}}</div>
 	         </div>
 	         <div class="column-text">
 	            <div class="text">Professional</div>
@@ -20,7 +20,7 @@
 	      </a>
 	      <a class="tile imagetext bg-color-purple statistic" href="#">
 	         <div class="image-wrapper text-big">
-	            <div class="text-big">203</div>
+	            <div class="text-big">{{ $stat['PD']}}</div>
 	         </div>
 	         <div class="column-text">
 	            <div class="text">Professional</div>
@@ -28,19 +28,9 @@
 	            <div class="text">Convention Participant</div>
 	         </div>
 	      </a>
-	      <a class="tile imagetext bg-color-orange statistic" href="#">
-	         <div class="image-wrapper text-big">
-	            <div class="text-big">101</div>
-	         </div>
-	         <div class="column-text">
-	            <div class="text">Student</div>
-	            <div class="text">Domestic</div>
-	            <div class="text">Convention Participant</div>
-	         </div>
-	      </a>
 	      <a class="tile imagetext bg-color-red statistic" href="#">
 	         <div class="image-wrapper text-big">
-	            <div class="text-big">2</div>
+	            <div class="text-big">{{ $stat['SO']}}</div>
 	         </div>
 	         <div class="column-text">
 	            <div class="text">Student</div>
@@ -48,9 +38,19 @@
 	            <div class="text">Convention Participant</div>
 	         </div>
 	      </a>
+	      <a class="tile imagetext bg-color-orange statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['SD']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Student</div>
+	            <div class="text">Domestic</div>
+	            <div class="text">Convention Participant</div>
+	         </div>
+	      </a>
 	      <a class="tile fullwidth wide imagetext greenDark statistic" href="./scaffolding.html">
 	         <div class="image-wrapper">
-	            <div class="text-biggest">1973</div>
+	            <div class="text-biggest">{{ $stat['Attendee']}}</div>
 	         </div>
 	         <div class="column-text">
 	            <div class="text">Total Convention</div>
@@ -60,24 +60,35 @@
 	      </a>
 	      <a class="tile imagetext bg-color-blue statistic" href="#">
 	         <div class="image-wrapper text-big">
-	            <div class="text-big">721</div>
+	            <div class="text-big">{{ $stat['paidAttendee']}}</div>
 	         </div>
 	         <div class="column-text">
 	            <div class="text">Total</div>
-	            <div class="text">Exhibition</div>
-	            <div class="text">Registration</div>
+	            <div class="text">Paid</div>
+	            <div class="text">Participants</div>
 	         </div>
 	      </a>
 	      <a class="tile imagetext bg-color-purple statistic" href="#">
 	         <div class="image-wrapper text-big">
-	            <div class="text-big">44</div>
+	            <div class="text-big">{{ $stat['unpaidAttendee']}}</div>
 	         </div>
 	         <div class="column-text">
 	            <div class="text">Total</div>
-	            <div class="text">Judge</div>
+	            <div class="text">Unpaid</div>
 	            <div class="text">Participants</div>
 	         </div>
 	      </a>
+	      <a class="tile imagetext bg-color-red statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['cancelledAttendee']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Total</div>
+	            <div class="text">Canceled</div>
+	            <div class="text">Registration</div>
+	         </div>
+	      </a>
+
 	   </div>
 
 	   <div id="section2" class="metro-section tile-span-4">

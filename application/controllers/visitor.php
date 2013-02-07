@@ -68,6 +68,7 @@ class Visitor_Controller extends Base_Controller {
 				->with('ajaxsource',URL::to('visitor'))
 				->with('ajaxdel',URL::to('visitor/del'))
 				->with('ajaxpay',URL::to('visitor/paystatus'))
+				->with('printsource',URL::to('visitor/printbadge'))
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)
 				->nest('row','visitor.rowdetail');
@@ -391,6 +392,15 @@ class Visitor_Controller extends Base_Controller {
 		print json_encode($result);
 	}
 
+	public function get_printbadge($id){
+		$id = new MongoId($id);
+
+		$attendee = new Visitor();
+
+		$doc = $attendee->get(array('_id'=>$id));
+
+		return View::make('print.visitorbadge')->with('profile',$doc);
+	}
 
 	public function get_view($id){
 		$id = new MongoId($id);

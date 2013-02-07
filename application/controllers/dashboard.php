@@ -67,7 +67,27 @@ class Dashboard_Controller extends Base_Controller {
 			return View::make('document.restricted')
 							->with('title',$title);			
 		}*/
+
+		$attendee = new Attendee();
+
+		$stat['PO'] = $attendee->count(array('regtype'=>'PO'));
+
+		$stat['PD'] = $attendee->count(array('regtype'=>'PD'));
+
+		$stat['SO'] = $attendee->count(array('regtype'=>'SO'));
+
+		$stat['SD'] = $attendee->count(array('regtype'=>'SD'));
+
+		$stat['Attendee'] = $attendee->count();
+
+		$stat['paidAttendee'] = $attendee->count(array('paymentStatus'=>'paid'));
+
+		$stat['unpaidAttendee'] = $attendee->count(array('paymentStatus'=>'unpaid'));
+
+		$stat['cancelledAttendee'] = $attendee->count(array('paymentStatus'=>'cancel'));
+
 		return View::make('dashboard.restricted')
+							->with('stat',$stat)
 							->with('title','Dashboard');
 	}
 
