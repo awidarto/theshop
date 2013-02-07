@@ -67,6 +67,7 @@ class Official_Controller extends Base_Controller {
 				->with('searchinput',$searchinput)
 				->with('ajaxsource',URL::to('official'))
 				->with('ajaxdel',URL::to('official/del'))
+				->with('ajaxpay',URL::to('official/paystatus'))
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)
 				->nest('row','official.rowdetail');
@@ -702,6 +703,30 @@ class Official_Controller extends Base_Controller {
 		print json_encode($result);
 	}
 
+	public function post_paystatus(){
+		$id = Input::get('id');
+		$paystatus = Input::get('paystatus');
+
+		$user = new Official();
+
+		if(is_null($id)){
+			$result = array('status'=>'ERR','data'=>'NOID');
+		}else{
+
+			$id = new MongoId($id);
+
+
+			if($user->update(array('_id'=>$id),array('$set'=>array('paymentStatus'=>$paystatus)))){
+				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'OK'));
+				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
+			}else{
+				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'FAILED'));
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+			}
+		}
+
+		print json_encode($result);
+	}
 
 	public function get_view($id){
 		$id = new MongoId($id);

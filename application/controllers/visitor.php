@@ -67,6 +67,7 @@ class Visitor_Controller extends Base_Controller {
 				->with('searchinput',$searchinput)
 				->with('ajaxsource',URL::to('visitor'))
 				->with('ajaxdel',URL::to('visitor/del'))
+				->with('ajaxpay',URL::to('visitor/paystatus'))
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)
 				->nest('row','visitor.rowdetail');
@@ -363,6 +364,31 @@ class Visitor_Controller extends Base_Controller {
 	    }
 
 		
+	}
+
+	public function post_paystatus(){
+		$id = Input::get('id');
+		$paystatus = Input::get('paystatus');
+
+		$user = new Visitor();
+
+		if(is_null($id)){
+			$result = array('status'=>'ERR','data'=>'NOID');
+		}else{
+
+			$id = new MongoId($id);
+
+
+			if($user->update(array('_id'=>$id),array('$set'=>array('paymentStatus'=>$paystatus)))){
+				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'OK'));
+				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
+			}else{
+				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'FAILED'));
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+			}
+		}
+
+		print json_encode($result);
 	}
 
 

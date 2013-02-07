@@ -144,10 +144,11 @@
 		<h3 id="myModalLabel">Payment Status</h3>
 	</div>
 	<div class="modal-body">
-		<p>One fine body…</p>
+		{{ Form::select('paystatus', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselect'))}}
+		<span id="paystatusindicator"></span>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary">Save</button>
+		<button class="btn btn-primary" id="savepaystatus">Save</button>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	</div>
 </div>
@@ -172,10 +173,10 @@
 		<h3 id="myModalLabel">Confirm Delete</h3>
 	</div>
 	<div class="modal-body">
-		<p>Are you sure you want to delete this item ?</p>
+		<p id="delstatusindicator" >Are you sure you want to delete this item ?</p>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary">Yes</button>
+		<button class="btn btn-primary" id="confirmdelete">Yes</button>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
 	</div>
 </div>
@@ -183,6 +184,10 @@
 <script type="text/javascript">
 
 	var oTable;
+
+	var current_pay_id = 0;
+	var current_del_id = 0;
+	var current_print_id = 0;
 
 	function toggle_visibility(id) {
 		$('#' + id).toggle();
@@ -237,8 +242,6 @@
         );
 
 		$('.dataTable tbody td .expander').live( 'click', function () {
-
-			console.log('click');
 
 		    var nTr = $(this).parents('tr')[0];
 		    if ( oTable.fnIsOpen(nTr) )
@@ -316,6 +319,39 @@
 			}
 		} );
 
+		$('#savepaystatus').click(function(){
+			var paystat = $('#paystatusselect').val();
+
+			$.post('{{ URL::to($ajaxpay) }}',{'id':current_pay_id,'paystatus': paystat}, function(data) {
+				if(data.status == 'OK'){
+					//redraw table
+
+					oTable.fnDraw();
+					$('#paystatusindicator').html('Payment status updated');
+
+					$('#updatePayment').modal('toggle');
+
+				}
+			},'json');
+		});
+
+
+		$('#confirmdelete').click(function(){
+
+			$.post('{{ URL::to($ajaxdel) }}',{'id':current_del_id}, function(data) {
+				if(data.status == 'OK'){
+					//redraw table
+
+					oTable.fnDraw();
+
+					$('#delstatusindicator').html('Payment status updated');
+
+					$('#deleteWarning').modal('toggle');
+
+				}
+			},'json');
+		});
+
 		$('table.dataTable').click(function(e){
 
 			if ($(e.target).is('._del')) {
@@ -343,11 +379,16 @@
 			if ($(e.target).is('.pay')) {
 				var _id = e.target.id;
 
+				current_pay_id = _id;
+
 				$('#updatePayment').modal();
+
 		   	}
 
 			if ($(e.target).is('.del')) {
 				var _id = e.target.id;
+
+				current_del_id = _id;
 
 				$('#deleteWarning').modal({
 					keyboard:true
