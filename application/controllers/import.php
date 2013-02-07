@@ -56,21 +56,11 @@ class Import_Controller extends Base_Controller {
 
 	public function get_preview($id)
 	{
-		$imp = new Import();
+		$imp = new Importcache();
 
-		$_id = new MongoId($id);
+		$ihead = $imp->get(array('cache_id'=>$id, 'cache_head'=>true));
 
-		$imported = $imp->get(array('_id'=>$_id),array('docFilename'=>1,'_id'=>-1));
-
-		$filepath = Config::get('kickstart.storage').'/'.$id.'/'.$imported['docFilename'];
-
-		$excel = new Excel();
-
-		$xls = $excel->load($filepath);
-
-		$rows = $xls['cells'];
-
-		$heads = $rows[1];
+		$heads = $ihead['head_labels'];
 
 		//$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Created','Last Update','Action');
 
@@ -98,29 +88,14 @@ class Import_Controller extends Base_Controller {
 	public function post_loader($id)
 	{
 
+		$imp = new Importcache();
 
-		$imp = new Import();
+		$ihead = $imp->get(array('cache_id'=>$id, 'cache_head'=>true));
 
-		$_id = new MongoId($id);
+		$fields = $ihead['head_labels'];
 
-		$imported = $imp->get(array('_id'=>$_id),array('docFilename'=>1,'_id'=>-1));
 
-		$filepath = Config::get('kickstart.storage').'/'.$id.'/'.$imported['docFilename'];
-
-		$excel = new Excel();
-
-		$xls = $excel->load($filepath);
-
-		$rows = $xls['cells'];
-
-		$heads = $rows[1];
-
-		$adata = $rows;
-
-		unset($adata[0]);
-		unset($adata[1]);
-
-		$fields = $rows[1];
+		//$fields = array('registrationnumber','firstname','lastname','email','company','position','mobile','companyphone','companyfax','createdDate','lastUpdate');
 
 		$rel = array('like','like','like','like','like','like','like','like','like','like');
 
@@ -135,28 +110,87 @@ class Import_Controller extends Base_Controller {
 		$defdir = -1;
 
 		$idx = 0;
-		$q = array();
+		$q = array('cache_head'=>false,'cache_id'=>$id);
 
 		$hilite = array();
 		$hilite_replace = array();
 
-		$aaData = array();
+		foreach($fields as $field){
+			if(Input::get('sSearch_'.$idx))
+			{
 
-		foreach ($adata as $doc) {
+				$hilite_item = Input::get('sSearch_'.$idx);
+				$hilite[] = $hilite_item;
+				$hilite_replace[] = '<span class="hilite">'.$hilite_item.'</span>';
+
+				if($rel[$idx] == 'like'){
+					if($cond[$idx] == 'both'){
+						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'/i');
+					}else if($cond[$idx] == 'before'){
+						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/i');						
+					}else if($cond[$idx] == 'after'){
+						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/i');						
+					}
+				}else if($rel[$idx] == 'equ'){
+					$q[$field] = Input::get('sSearch_'.$idx);
+				}
+			}
+			$idx++;
+		}
+
+		//print_r($q)
+
+		$attendee = new Importcache();
+
+		/* first column is always sequence number, so must be omitted */
+		$fidx = Input::get('iSortCol_0');
+		if($fidx == 0){
+			$fidx = $defsort;			
+			$sort_col = $fields[$fidx];
+			$sort_dir = $defdir;
+		}else{
+			$fidx = ($fidx > 0)?$fidx - 1:$fidx;
+			$sort_col = $fields[$fidx];
+			$sort_dir = (Input::get('sSortDir_0') == 'asc')?1:-1;
+		}
+
+		$count_all = $attendee->count();
+
+		if(count($q) > 0){
+			$attendees = $attendee->find($q,array(),array($sort_col=>$sort_dir),$limit);
+			$count_display_all = $attendee->count($q);
+		}else{
+			$attendees = $attendee->find(array(),array(),array($sort_col=>$sort_dir),$limit);
+			$count_display_all = $attendee->count();
+		}
+
+		$aadata = array();
+
+		$counter = 1 + $pagestart;
+		foreach ($attendees as $doc) {
 
 			$extra = $doc;
 
-			$doc['extra'] = $extra;
+			$adata = array();
 
-			$aadata[] = $doc;
+			for($i = 0; $i < count($fields); $i++){
+				$adata[$i] = $doc[$fields[$i]];
+			}
+
+			$adata['extra'] = $extra;
+
+			$aadata[] = $adata;
+
+			$counter++;
 		}
+
 		
 		$result = array(
 			'sEcho'=> Input::get('sEcho'),
-			'iTotalRecords'=>count($adata),
-			'iTotalDisplayRecords'=> count($adata),
+			'iTotalRecords'=>$count_all,
+			'iTotalDisplayRecords'=> $count_display_all,
 			'aaData'=>$aadata,
-			'qrs'=>''
+			'qrs'=>$q
 		);
 
 		return Response::json($result);
@@ -224,6 +258,70 @@ class Import_Controller extends Base_Controller {
 
 					Input::upload('docupload',$newdir,$docupload['name']);
 					
+				}
+
+				if($newobj['docFilename'] != ''){
+
+					$icache = new Importcache();
+
+					$c_id = $newobj['_id']->__toString();
+
+					$filepath = Config::get('kickstart.storage').'/'.$c_id.'/'.$newobj['docFilename'];
+
+					$excel = new Excel();
+
+					$xls = $excel->load($filepath);
+
+					$rows = $xls['cells'];
+
+					$heads = $rows[1];
+
+
+					unset($rows[0]);
+					unset($rows[1]);
+
+					$inhead = array();
+
+					$chead = array();
+
+					foreach ($heads as $head) {
+						$label = str_replace(array('.','\''), '', $head);
+						$label = str_replace(array('/',' '), '_', $label);
+						$label = strtolower(trim($label));
+
+						$chead[] = $label;
+					}
+
+					$inhead['head_labels'] = $chead;
+					$inhead['cache_head'] = true;
+					$inhead['cache_id'] = $c_id;
+					$inhead['cache_commit'] = false;
+
+					$icache->insert($inhead);							
+
+					foreach($rows as $row){
+
+						if(implode('',$row) != ''){
+							$ins = array();
+							for($i = 0; $i < count($heads); $i++){
+
+								$label = str_replace(array('.','\''), '', $heads[$i]);
+								$label = str_replace(array('/',' '), '_', $label);
+
+								$label = strtolower(trim($label));
+
+								$ins[$label] = $row[$i];
+							}
+
+							$ins['cache_head'] = false;
+							$ins['cache_id'] = $c_id;
+							$ins['cache_commit'] = false;
+
+							$icache->insert($ins);							
+						}
+
+					}
+
 				}
 
 				Event::fire('import.create',array('id'=>$newobj['_id'],'result'=>'OK','department'=>Auth::user()->department,'creator'=>Auth::user()->id));
