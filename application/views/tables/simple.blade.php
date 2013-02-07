@@ -159,10 +159,10 @@
 		<h3 id="myModalLabel">Print Badge</h3>
 	</div>
 	<div class="modal-body">
-		<p>badge to print</p>
+		<iframe src="{{ URL::base().'/print/badge' }}" id="print_frame" class="span12"></iframe>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary">Print</button>
+		<button class="btn btn-primary" id="printstart">Print</button>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	</div>
 </div>
@@ -323,7 +323,7 @@
 			var paystat = $('#paystatusselect').val();
 
 			<?php
-			
+
 				$ajaxpay = (isset($ajaxpay))?$ajaxpay:'/';
 			?>
 
@@ -357,6 +357,14 @@
 			},'json');
 		});
 
+		$('#printstart').click(function(){
+
+			var pframe = document.getElementById('print_frame');
+			var pframeWindow = pframe.contentWindow;
+			pframeWindow.print();
+
+		});
+
 		$('table.dataTable').click(function(e){
 
 			if ($(e.target).is('._del')) {
@@ -377,6 +385,20 @@
 
 			if ($(e.target).is('.pbadge')) {
 				var _id = e.target.id;
+
+				current_print_id = _id;
+
+				$('#print_id').val(_id);
+
+				<?php
+
+					$printsource = (isset($printsource))?$printsource.'/': '/';
+
+				?>
+
+				var src = '{{ $printsource }}' + _id;
+
+				$('#print_frame').attr('src',src);
 
 				$('#printBadge').modal();
 		   	}

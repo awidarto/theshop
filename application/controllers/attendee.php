@@ -70,6 +70,7 @@ class Attendee_Controller extends Base_Controller {
 				->with('ajaxsource',URL::to('attendee'))
 				->with('ajaxdel',URL::to('attendee/del'))
 				->with('ajaxpay',URL::to('attendee/paystatus'))
+				->with('printsource',URL::to('attendee/printbadge'))
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)
 				->nest('row','attendee.rowdetail');
