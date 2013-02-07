@@ -322,6 +322,11 @@
 		$('#savepaystatus').click(function(){
 			var paystat = $('#paystatusselect').val();
 
+			<?php
+			
+				$ajaxpay = (isset($ajaxpay))?$ajaxpay:'/';
+			?>
+
 			$.post('{{ URL::to($ajaxpay) }}',{'id':current_pay_id,'paystatus': paystat}, function(data) {
 				if(data.status == 'OK'){
 					//redraw table
