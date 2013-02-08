@@ -94,6 +94,9 @@
             stm_bpx("p3","p1",[]);
             stm_aix("p3i0","p1i0",[0,"  How to Get There  ","","",-1,-1,0,"http://www.ipaconvex.com/content.php?go=howtogetthere"],0,26);
             stm_ep();
+            @if(Auth::attendeecheck() == false)
+            stm_aix("p0i6","p0i2",[0,"  LOGIN   ","","",-1,-1,0,"http://localhost/eventreg/public/index.php/register/login"],0,36);
+            @endif
             stm_em();
             </script>
 
@@ -138,27 +141,6 @@
                             <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('logout','Logout')}}</p>
 
                             </div>
-
-                          @else
-
-                            {{ Form::open('attendee/login') }}
-                            <!-- check for login errors flash var -->
-                            @if (Session::has('login_errors'))
-                                <div class="alert alert-error">
-                                     <button type="button" class="close" data-dismiss="alert"></button>
-                                     Email or password incorrect.
-                                </div>
-                            @endif
-                            <!-- username field -->
-                            {{ Form::label('username', 'Email') }}
-                            {{ Form::text('username') }}
-                            <!-- password field -->
-                            {{ Form::label('password', 'Password') }}
-                            {{ Form::password('password') }}
-                            <!-- submit button -->
-                            {{ Form::submit('Login',array('class' => 'button')) }}
-                            {{ Form::close() }}
-
                           @endif
                      </section>
                   </div>

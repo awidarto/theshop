@@ -342,6 +342,9 @@ thead #searchinput td{
 	min-height: 0;
 	
 }
+.icon- .pay,.icon- .del,.icon- .pbadge{
+	cursor: pointer;
+}
 
 table.table thead .sorting { background: url('../../images/sort_both.png') no-repeat center right; }
 table.table thead .sorting_asc { background: url('../../images/sort_asc.png') no-repeat center right; }
