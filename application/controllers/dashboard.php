@@ -80,6 +80,8 @@ class Dashboard_Controller extends Base_Controller {
 
 		$stat['Attendee'] = $attendee->count();
 
+		$stat['Golf'] = $attendee->count(array('golf'=>'Yes'));
+
 		$stat['paidAttendee'] = $attendee->count(array('paymentStatus'=>'paid'));
 
 		$stat['unpaidAttendee'] = $attendee->count(array('paymentStatus'=>'unpaid'));
