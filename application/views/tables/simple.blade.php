@@ -186,6 +186,24 @@
 	</div>
 </div>
 
+<div id="addToGroup" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 id="myModalLabel">Add Selected to Group</h3>
+	</div>
+	<div class="modal-body">
+
+		{{ Form::select('paystatus', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselect'))}}
+		<span id="paystatusindicator"></span>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" id="savepaystatus">Save</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+</div>
+
+
 <div id="printBadge" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -385,6 +403,14 @@
 			}
 		} );
 
+
+		$('#select_all').click(function(){
+			if($('#select_all').is(':checked')){
+				$('.selector').attr('checked', true);
+			}else{
+				$('.selector').attr('checked', false);
+			}
+		});
 		$('#savepaystatus').click(function(){
 			var paystat = $('#paystatusselect').val();
 
@@ -430,6 +456,12 @@
 			var pframe = document.getElementById('print_frame');
 			var pframeWindow = pframe.contentWindow;
 			pframeWindow.print();
+
+		});
+
+		$('#add_to_group').click(function(){
+
+				$('#addToGroup').modal();
 
 		});
 
