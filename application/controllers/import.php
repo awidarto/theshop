@@ -40,12 +40,13 @@ class Import_Controller extends Base_Controller {
 
 		date_default_timezone_set('Asia/Jakarta');
 		$this->filter('before','auth');
+
+		$this->crumb->add('import','Import Data');
 	}
 
 	public function get_index()
 	{
 
-		$this->crumb->add('import','Import Data');
 		$form = new Formly();
 
 		return View::make('import.import')
@@ -56,6 +57,9 @@ class Import_Controller extends Base_Controller {
 
 	public function get_preview($id)
 	{
+
+		$this->crumb->add('import/preview','Preview');
+
 		$imp = new Importcache();
 
 		$ihead = $imp->get(array('cache_id'=>$id, 'cache_head'=>true));
@@ -75,7 +79,9 @@ class Import_Controller extends Base_Controller {
 			->with('title','Data Preview')
 			->with('newbutton','Commit Import')
 			->with('disablesort','0,5,6')
-			->with('addurl','import/add')
+			->with('addurl','')
+			->with('commiturl','import/commit/'.$id)
+			->with('reimporturl','import')
 			->with('colclass',$colclass)
 			->with('searchinput',$searchinput)
 			->with('ajaxsource',URL::to('import/loader/'.$id))
@@ -196,6 +202,9 @@ class Import_Controller extends Base_Controller {
 		return Response::json($result);
 	}
 
+	public function get_commit(){
+
+	}
 
 	public function post_preview()
 	{

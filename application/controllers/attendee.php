@@ -57,7 +57,7 @@ class Attendee_Controller extends Base_Controller {
 		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
 		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','','');
 
-		$searchinput = false; // no searchinput form on footer
+		//$searchinput = false; // no searchinput form on footer
 
 		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
 			return View::make('tables.simple')

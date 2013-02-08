@@ -88,11 +88,29 @@
 			        		</th>
 			        	@endforeach
 			        </tr>
+
+
 			    </thead>
+
+		    	@if($searchinput)
+				    <thead id="searchinput">
+					    <tr>
+				    	@foreach($searchinput as $in)
+				    		@if($in)
+				        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
+				    		@else
+				        		<td>&nbsp;</td>
+				    		@endif
+				    	@endforeach
+					    </tr>
+				    </thead>
+			    @endif
 
              <tbody>
              	<!-- will be replaced by ajax content -->
              </tbody>
+
+             <!--
 		    	@if($searchinput)
 				    <tfoot>
 					    <tr>
@@ -106,7 +124,7 @@
 					    </tr>
 				    </tfoot>
 			    @endif
-
+			-->
           </table>
 
        </div>
@@ -131,6 +149,19 @@
 				</a>
 			@endif
 
+		   	@if(isset($reimporturl) && $reimporturl != '')
+				<a class="win-command" href="{{URL::to($reimporturl)}}">
+					<span class="win-commandimage win-commandring">&#x0055;</span>
+					<span class="win-label">Re-Import</span>
+				</a>
+			@endif
+
+		   	@if(isset($commiturl) && $commiturl != '')
+				<a class="win-command" href="{{URL::to($commiturl)}}">
+					<span class="win-commandimage win-commandring">&#x0056;&#x0054;</span>
+					<span class="win-label">Commit</span>
+				</a>
+			@endif
 
         </div>
         
@@ -288,6 +319,37 @@
 		} );
 
 
+		//header search
+
+		$('thead input').keyup( function () {
+			/* Filter on the column (the index) of this element */
+			oTable.fnFilter( this.value, $('thead input').index(this) );
+		} );
+
+		/*
+		 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in 
+		 * the footer
+		 */
+		$('thead input').each( function (i) {
+			asInitVals[i] = this.value;
+		} );
+
+		$('thead input').focus( function () {
+			if ( this.className == 'search_init' )
+			{
+				this.className = '';
+				this.value = '';
+			}
+		} );
+
+		$('thead input').blur( function (i) {
+			if ( this.value == '' )
+			{
+				this.className = 'search_init';
+				this.value = asInitVals[$('thead input').index(this)];
+			}
+		} );
+
 
 
 		$('.filter input').keyup( function () {
@@ -333,6 +395,8 @@
 
 					oTable.fnDraw();
 					$('#paystatusindicator').html('Payment status updated');
+
+					$('#paystatusselect').val('unpaid');
 
 					$('#updatePayment').modal('toggle');
 

@@ -576,3 +576,12 @@ a.paginate_button{
 #printBadge{
 	height: 800px;
 }
+
+thead#searchinput tr td{
+	border:none;
+}
+
+thead#searchinput tr td input.search_init{
+	border:none;
+	width:100%;
+}
