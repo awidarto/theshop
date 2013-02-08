@@ -82,6 +82,7 @@ class Register_Controller extends Base_Controller {
 			$data['lastUpdate'] = new MongoDate();
 			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
+			$data['confirmation'] = 'none';
 
 
 			$reg_number[0] = 'A';
@@ -121,20 +122,35 @@ class Register_Controller extends Base_Controller {
 
 	public function get_payment(){
 
-		$this->crumb->add('register','Payment Confirmation');
+		if(!Auth::attendee()){
+			return Redirect::to('/');
+		}
 
-		$form = new Formly();
+
+		$this->crumb->add('register/payment','Payment Confirmation');
+
+		$att = new Attendee();
+
+		//print_r(Auth::attendee());
+
+		$_id = new MongoId(Auth::attendee()->id);
+
+		$attendee = $att->get(array('_id'=>$_id));
+
+		$form = new Formly($attendee);
 
 		$form->framework = 'zurb';
 
 		return View::make('register.payment')
 					->with('form',$form)
+					->with('user',$attendee)
 					->with('crumb',$this->crumb)
 					->with('title','Payment Confirmation');
 
 	}
 
 	public function post_payment(){
+<<<<<<< HEAD
 		$data = Input::get();
 
 		$body = View::make('email.confirmsubmitted')->with('data',$data)->render();
@@ -147,6 +163,54 @@ class Register_Controller extends Base_Controller {
 		    ->send();
 		    
     	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.paymentsubmitted'));
+=======
+
+	    $rules = array(
+	        'email' => 'required|email|unique:attendee',
+	    );
+
+	    $validation = Validator::make($input = Input::all(), $rules);
+
+	    if($validation->fails()){
+
+	    	return Redirect::to('payment')->with_errors($validation)->with_input(Input::all());
+
+	    }else{
+
+			$data = Input::get();
+
+			$data['pass'] = Hash::make($data['pass']);
+
+			unset($data['repass']);
+			unset($data['csrf_token']);
+			$data['createdDate'] = new MongoDate();
+			$data['lastUpdate'] = new MongoDate();
+
+			$confirm = new Confirmation();
+
+			if($obj = $confirm->insert($data)){
+
+				$attendee = new Attendee();
+
+				//$attendee->update(array('_id'=>$_id),'$set'=>array(array('confirmation'=>'pending')));
+
+				$body = View::make('email.regpayment')->with('data',$data)->render();
+
+				Message::to($data['email'])
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->subject('Processed payment confirmation')
+				    ->body( $body )
+				    ->html(true)
+				    ->send();
+				    
+		    	return Redirect::to('register-success')->with('notify_success',Config::get('site.register_success'));
+			}else{
+		    	return Redirect::to('register')->with('notify_success',Config::get('site.register_failed'));
+			}
+		}
+
+
+>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
 	}
 
 	public function get_success(){

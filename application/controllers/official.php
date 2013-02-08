@@ -67,6 +67,8 @@ class Official_Controller extends Base_Controller {
 				->with('searchinput',$searchinput)
 				->with('ajaxsource',URL::to('official'))
 				->with('ajaxdel',URL::to('official/del'))
+				->with('ajaxpay',URL::to('official/paystatus'))
+				->with('printsource',URL::to('official/printbadge'))
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)
 				->nest('row','official.rowdetail');
@@ -167,9 +169,9 @@ class Official_Controller extends Base_Controller {
 				$doc['mobile'],
 				date('Y-m-d H:i:s', $doc['createdDate']->sec),
 				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
-				'<a class="icon-"  href="'.URL::to('official/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
-				'<a class="icon-"  ><i>&#xe14c;</i><span class="pbadge" id="'.$doc['_id'].'" >Print Badge</span>'.
-				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
+				'<a class="action icon-"  href="'.URL::to('official/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
+				'<a class="action icon-"  ><i>&#xe14c;</i><span class="action pbadge" id="'.$doc['_id'].'" >Print Badge</span>'.
+				'<a class="action icon-"><i>&#xe001;</i><span class="action del" id="'.$doc['_id'].'" >Delete</span>',
 				'extra'=>$extra
 			);
 			$counter++;
@@ -700,6 +702,41 @@ class Official_Controller extends Base_Controller {
 		);
 
 		print json_encode($result);
+	}
+
+	public function post_paystatus(){
+		$id = Input::get('id');
+		$paystatus = Input::get('paystatus');
+
+		$user = new Official();
+
+		if(is_null($id)){
+			$result = array('status'=>'ERR','data'=>'NOID');
+		}else{
+
+			$id = new MongoId($id);
+
+
+			if($user->update(array('_id'=>$id),array('$set'=>array('paymentStatus'=>$paystatus)))){
+				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'OK'));
+				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
+			}else{
+				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'FAILED'));
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+			}
+		}
+
+		print json_encode($result);
+	}
+
+	public function get_printbadge($id){
+		$id = new MongoId($id);
+
+		$attendee = new Official();
+
+		$doc = $attendee->get(array('_id'=>$id));
+
+		return View::make('print.officialbadge')->with('profile',$doc);
 	}
 
 

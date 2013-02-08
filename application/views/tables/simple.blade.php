@@ -88,60 +88,29 @@
 			        		</th>
 			        	@endforeach
 			        </tr>
+
+
 			    </thead>
 
+		    	@if($searchinput)
+				    <thead id="searchinput">
+					    <tr>
+				    	@foreach($searchinput as $in)
+				    		@if($in)
+				        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
+				    		@else
+				        		<td>&nbsp;</td>
+				    		@endif
+				    	@endforeach
+					    </tr>
+				    </thead>
+			    @endif
+
              <tbody>
-             <tr>
-                <td class="span1"><a href="#myModal" data-toggle="modal">2707</a></td>
-                <td class="nationality">VICO Indonesia<br/><small>Indonesia</small></td>
-                <td>Mohammad</td>
-                <td>Irvan</td>
-                <td class="span4">mohammadirvan@yahoo.com</td>
-                <td class="span1">423423499</td>
-                <td class="span1">08-05-2012 05:05:34</td>
-                <td class="span4 align-center">Professional Overseas<br/><span class="fontGreen fontBold">PAID</span></td>
-                <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
-                <td class="span2">
-                   <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
-                   <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
-                </td>
-                
-             </tr>
-             
-             
-
-             <tr>
-                <td class="span1"><a href="#myModal2" data-toggle="modal">2707</a></td>
-                <td class="nationality">VICO Indonesia<br/><small>Indonesia</small></td>
-                <td>Mohammad</td>
-                <td>Irvan</td>
-                <td class="span4">mohammadirvan@yahoo.com</td>
-                <td class="span1">423423499</td>
-                <td class="span1">08-05-2012 05:05:34</td>
-                <td class="span4 align-center">Professional Domestic<br/><span class="fontRed fontBold">UNPAID</span></td>
-                <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
-                <td class="span2">
-                   <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
-                   <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
-                </td>
-             </tr>
-             <tr>
-                <td class="span1"><a href="#myModal" data-toggle="modal">2707</a></td>
-                <td class="nationality">VICO Indonesia<br/><small>Indonesia</small></td>
-                <td>Mohammad</td>
-                <td>Irvan</td>
-                <td class="span4">mohammadirvan@yahoo.com</td>
-                <td class="span1">423423499</td>
-                <td class="span1">08-05-2012 05:05:34</td>
-                <td class="span4 align-center">Professional Domestic<br/><span class="fontGreen fontBold">PAID</span></td>
-                <td class="icon- fontGreen align-center"><small>&#xe20c;</small></td>
-                <td class="span2">
-                   <a class="icon-" href="#"><i>&#xe14c;</i><span>Print Badge</span></a>
-                   <a class="icon-" href="#"><i>&#xe164;</i><span>Edit Profile</span></a>
-                </td>
-             </tr>
-
+             	<!-- will be replaced by ajax content -->
              </tbody>
+
+             <!--
 		    	@if($searchinput)
 				    <tfoot>
 					    <tr>
@@ -155,7 +124,7 @@
 					    </tr>
 				    </tfoot>
 			    @endif
-
+			-->
           </table>
 
        </div>
@@ -180,6 +149,19 @@
 				</a>
 			@endif
 
+		   	@if(isset($reimporturl) && $reimporturl != '')
+				<a class="win-command" href="{{URL::to($reimporturl)}}">
+					<span class="win-commandimage win-commandring">&#x0055;</span>
+					<span class="win-label">Re-Import</span>
+				</a>
+			@endif
+
+		   	@if(isset($commiturl) && $commiturl != '')
+				<a class="win-command" href="{{URL::to($commiturl)}}">
+					<span class="win-commandimage win-commandring">&#x0056;&#x0054;</span>
+					<span class="win-label">Commit</span>
+				</a>
+			@endif
 
         </div>
         
@@ -193,15 +175,20 @@
 		<h3 id="myModalLabel">Payment Status</h3>
 	</div>
 	<div class="modal-body">
+<<<<<<< HEAD
 		<p>Change Payment Status</p>
 		<select>
           <option>PAID</option>
           <option>CONFIRMED</option>
           <option>CANCELED</option>
         </select>
+=======
+		{{ Form::select('paystatus', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselect'))}}
+		<span id="paystatusindicator"></span>
+>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary">Save</button>
+		<button class="btn btn-primary" id="savepaystatus">Save</button>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	</div>
 </div>
@@ -212,10 +199,10 @@
 		<h3 id="myModalLabel">Print Badge</h3>
 	</div>
 	<div class="modal-body">
-		<p>badge to print</p>
+		<iframe src="{{ URL::base().'/print/badge' }}" id="print_frame" class="span12"></iframe>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary">Print</button>
+		<button class="btn btn-primary" id="printstart">Print</button>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	</div>
 </div>
@@ -226,10 +213,10 @@
 		<h3 id="myModalLabel">Confirm Delete</h3>
 	</div>
 	<div class="modal-body">
-		<p>Are you sure you want to delete this item ?</p>
+		<p id="delstatusindicator" >Are you sure you want to delete this item ?</p>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary">Yes</button>
+		<button class="btn btn-primary" id="confirmdelete">Yes</button>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
 	</div>
 </div>
@@ -237,6 +224,10 @@
 <script type="text/javascript">
 
 	var oTable;
+
+	var current_pay_id = 0;
+	var current_del_id = 0;
+	var current_print_id = 0;
 
 	function toggle_visibility(id) {
 		$('#' + id).toggle();
@@ -292,8 +283,6 @@
 
 		$('.dataTable tbody td .expander').live( 'click', function () {
 
-			console.log('click');
-
 		    var nTr = $(this).parents('tr')[0];
 		    if ( oTable.fnIsOpen(nTr) )
 		    {
@@ -339,6 +328,42 @@
 		} );
 
 
+<<<<<<< HEAD
+=======
+		//header search
+
+		$('thead input').keyup( function () {
+			/* Filter on the column (the index) of this element */
+			oTable.fnFilter( this.value, $('thead input').index(this) );
+		} );
+
+		/*
+		 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in 
+		 * the footer
+		 */
+		$('thead input').each( function (i) {
+			asInitVals[i] = this.value;
+		} );
+
+		$('thead input').focus( function () {
+			if ( this.className == 'search_init' )
+			{
+				this.className = '';
+				this.value = '';
+			}
+		} );
+
+		$('thead input').blur( function (i) {
+			if ( this.value == '' )
+			{
+				this.className = 'search_init';
+				this.value = asInitVals[$('thead input').index(this)];
+			}
+		} );
+
+
+
+>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
 		$('.filter input').keyup( function () {
 			/* Filter on the column (the index) of this element */
 			oTable.fnFilter( this.value, $('.filter input').index(this) );
@@ -368,6 +393,54 @@
 			}
 		} );
 
+		$('#savepaystatus').click(function(){
+			var paystat = $('#paystatusselect').val();
+
+			<?php
+
+				$ajaxpay = (isset($ajaxpay))?$ajaxpay:'/';
+			?>
+
+			$.post('{{ URL::to($ajaxpay) }}',{'id':current_pay_id,'paystatus': paystat}, function(data) {
+				if(data.status == 'OK'){
+					//redraw table
+
+					oTable.fnDraw();
+					$('#paystatusindicator').html('Payment status updated');
+
+					$('#paystatusselect').val('unpaid');
+
+					$('#updatePayment').modal('toggle');
+
+				}
+			},'json');
+		});
+
+
+		$('#confirmdelete').click(function(){
+
+			$.post('{{ URL::to($ajaxdel) }}',{'id':current_del_id}, function(data) {
+				if(data.status == 'OK'){
+					//redraw table
+
+					oTable.fnDraw();
+
+					$('#delstatusindicator').html('Payment status updated');
+
+					$('#deleteWarning').modal('toggle');
+
+				}
+			},'json');
+		});
+
+		$('#printstart').click(function(){
+
+			var pframe = document.getElementById('print_frame');
+			var pframeWindow = pframe.contentWindow;
+			pframeWindow.print();
+
+		});
+
 		$('table.dataTable').click(function(e){
 
 			if ($(e.target).is('._del')) {
@@ -389,19 +462,40 @@
 			if ($(e.target).is('.pbadge')) {
 				var _id = e.target.id;
 
+				current_print_id = _id;
+
+				$('#print_id').val(_id);
+
+				<?php
+
+					$printsource = (isset($printsource))?$printsource.'/': '/';
+
+				?>
+
+				var src = '{{ $printsource }}' + _id;
+
+				$('#print_frame').attr('src',src);
+
 				$('#printBadge').modal();
 		   	}
 
 			if ($(e.target).is('.pay')) {
 				var _id = e.target.id;
 
+				current_pay_id = _id;
+
 				$('#updatePayment').modal();
+
 		   	}
 
 			if ($(e.target).is('.del')) {
 				var _id = e.target.id;
 
-				$('#deleteWarning').modal();
+				current_del_id = _id;
+
+				$('#deleteWarning').modal({
+					keyboard:true
+				});
 		   	}
 
 			if ($(e.target).is('.pop')) {

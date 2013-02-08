@@ -41,7 +41,7 @@ class Content_Controller extends Base_Controller {
 	public function get_index()
 	{
 		$heads = array('#','Articles','Category','Tags','Action');
-		$colclass = array('one','','two','one');
+		$colclass = array('','span9','span1','span1');
 		//$searchinput = array(false,'title','created','last update','creator','project manager','tags',false);
 		$searchinput = array(false,'project','tags',false);
 
