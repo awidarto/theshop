@@ -49,17 +49,23 @@ class Attendee_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
+		$form = new Formly();
+
+		$select_all = $form->checkbox('select_all','','',false,array('id'=>'select_all'));
+
+		$btn_add_to_group = '<span class="btn add_to_group" id="add_to_group">Add selected to group</span>';
+
 /*<<<<<<< HEAD*/
-		$heads = array('#','Reg. Number','Registered Date','First Name','Last Name','Company','Reg. Type','Country','Status Payment','Action');
+		$heads = array('#',$select_all,'Reg. Number','Registered Date','First Name','Last Name','Company','Reg. Type','Country','Payment Status',$btn_add_to_group);
 /*=======*/
 		
 /*>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
 
 
-		$searchinput = array(false,'Reg Number','Reg. Date','First Name','Last Name','Company',false,'Country',false,false);
+		$searchinput = array(false,false,'Reg Number','Reg. Date','First Name','Last Name','Company',false,'Country',false,false);
 
 		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
-		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','','');
+		$colclass = array('','span1','span3','span3','span3','span1','span1','span1','','','','','','','','');
 
 		//$searchinput = false; // no searchinput form on footer
 
@@ -67,7 +73,7 @@ class Attendee_Controller extends Base_Controller {
 			return View::make('tables.simple')
 				->with('title','Master Data')
 				->with('newbutton','New Visitor')
-				->with('disablesort','0,9')
+				->with('disablesort','0,1,9,10')
 				->with('addurl','attendee/add')
 				->with('colclass',$colclass)
 				->with('searchinput',$searchinput)
@@ -159,10 +165,14 @@ class Attendee_Controller extends Base_Controller {
 
 		$aadata = array();
 
+		$form = new Formly();
+
 		$counter = 1 + $pagestart;
 		foreach ($attendees as $doc) {
 
 			$extra = $doc;
+
+			$select = $form->checkbox('sel_'.$doc['_id'],'','',false,array('id'=>$doc['_id'],'class'=>'selector'));
 
 /*<<<<<<< HEAD*/
 			if($doc['paymentStatus'] == 'unpaid'){
@@ -183,6 +193,7 @@ class Attendee_Controller extends Base_Controller {
 >>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
 			$aadata[] = array(
 				$counter,
+				$select,
 				(isset($doc['registrationnumber']))?$doc['registrationnumber']:'',
 				date('Y-m-d', $doc['createdDate']->sec),
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
