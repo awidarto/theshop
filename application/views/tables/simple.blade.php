@@ -67,7 +67,7 @@
     <div class="row-fluid">
        <div class="span12">
 
-          <table class="table table-condensed dataTable">
+          <table class="table table-condensed dataTable attendeeTable">
 
 			    <thead>
 			        <tr>
@@ -569,6 +569,24 @@
 			}
 
 		});
+
+		//function to show add attendee to group
+		/*$(".selector").live("click", function(){
+			if ($('.selector').is(':checked')) {
+			    $(".add_to_group").show();
+			} else {
+			    $(".add_to_group").hide();
+			} 
+		});
+		$("#select_all").live("click", function(){
+			if ($('.selector').is(':checked')) {
+			    $(".add_to_group").show();
+			} else {
+			    $(".add_to_group").hide();
+			} 
+		});*/
+
+		
 
     });
   </script>

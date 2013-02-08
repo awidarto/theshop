@@ -24,7 +24,7 @@
 					<td>:&nbsp;</td>
 					<td class="detail-info">{{ $profile['mobile'] }}</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td class="detail-title">Registration Type</td>
 					<td>:&nbsp;</td>
 					<td class="detail-info">
@@ -40,7 +40,7 @@
 						@endif
 						
 					</td>
-				</tr>
+				</tr>-->
 
 				<tr>
 					<td class="detail-title">Status</td>
@@ -49,11 +49,11 @@
 						<span style="color: #BC1C4B;">{{ $profile['paymentStatus'] }}</span>
 					</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td class="detail-title">Industrial Dinner RSVP</td>
 					<td>: </td>
 					<td class="detail-info">{{ $profile['attenddinner'] }}</td>
-				</tr>
+				</tr>-->
 
 				<tr><td colspan="3"><h4>Company Information</h4></td></tr>
 

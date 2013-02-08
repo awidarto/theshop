@@ -53,7 +53,7 @@ class Attendee_Controller extends Base_Controller {
 
 		$select_all = $form->checkbox('select_all','','',false,array('id'=>'select_all'));
 
-		$btn_add_to_group = '<span class="btn add_to_group" id="add_to_group">Add selected to group</span>';
+		$btn_add_to_group = '<span class=" add_to_group" id="add_to_group">Add selected to group</span>';
 
 /*<<<<<<< HEAD*/
 		$heads = array('#',$select_all,'Reg. Number','Registered Date','First Name','Last Name','Company','Reg. Type','Country','Payment Status',$btn_add_to_group);

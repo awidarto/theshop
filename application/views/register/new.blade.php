@@ -193,10 +193,10 @@
 
             <div class="row">
                 <div class="two columns">
-                  {{ $form->radio('golf','Yes','Yes') }} 
+                  {{ $form->radio('golf','Yes','Yes',false,array('class'=>'field_golfType golfYes')) }} 
                 </div>   
                 <div class="two columns">
-                  {{ $form->radio('golf','No','No',true) }} 
+                  {{ $form->radio('golf','No','No',true,array('class'=>'field_golfType golfNo')) }} 
                 </div>   
                 <div class="eight columns"></div>
             </div>
@@ -310,14 +310,39 @@ $(function() {
   });
 
   $(".regType").next('span').addClass('regTypeRecord');
+  $('.field_golfType').next('span').addClass('golfCheckBox');
+  $('.golfNo').next('span').addClass('golfNoCheckBox');
+  $('.golfYes').next('span').addClass('golfYesCheckBox');
+  
   $(".professional").next('span').addClass('professional');
   $(".student").next('span').addClass('student');
   
   $(".regTypeRecord").live("click", function(){
-    if($(this).hasClass('checked' && 'professional')){
-      $('#golfEvent').show();
+    if($(this).hasClass('checked' && 'student')){
+      $('.golfNoCheckBox').addClass('checked');
+      //$('.golfYesCheckBox').removeClass('checked');
+      $('.golfYesCheckBox').addClass('radioDisable');
+      $('.golfYesCheckBox').addClass('studentSelected');
+      $('.golfYesCheckBox').removeClass('checked');
+      $('.golfNoCheckBox').addClass('checked');
     }else{
-      $('#golfEvent').hide();
+      if($('.golfNoCheckBox').hasClass('checked')){
+        $('.golfNoCheckBox').addClass('checked');
+        $('.golfYesCheckBox').removeClass('checked');
+      }else{
+        $('.golfNoCheckBox').removeClass('checked');
+        $('.golfYesCheckBox').addClass('checked');
+      }
+      $('.golfCheckBox').removeClass('radioDisable');
+      $('.golfYesCheckBox').addClass('profSelected');
+      $('.golfYesCheckBox').removeClass('studentSelected');
+    }
+  });
+
+  $(".golfYesCheckBox").live("click", function(){
+    if($(this).hasClass('studentSelected')){
+      $('.golfYesCheckBox').removeClass('checked');
+      $('.golfNoCheckBox').addClass('checked');
     }
   });
 
