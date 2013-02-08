@@ -167,6 +167,9 @@ class Attendee_Controller extends Base_Controller {
 /*<<<<<<< HEAD*/
 			if($doc['paymentStatus'] == 'unpaid'){
 				$paymentStatus = '<span class="fontRed fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
+			}elseif ($doc['paymentStatus'] == 'cancel') {
+				$paymentStatus = '<span class="fontGray fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
+			
 			}else{
 				$paymentStatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
 			}

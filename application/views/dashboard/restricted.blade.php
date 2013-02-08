@@ -59,7 +59,7 @@
 	         <span class="app-label">(not including FOC)</span>
 	      </a>
 
-	      <a class="tile wide imagetext greenDark statistic" href="#">
+	      <a class="tile wide imagetext bg-color-purple statistic" href="#">
 	         <div class="image-wrapper">
 	            <div class="text-biggest">{{ $stat['Golf']}}</div>
 	         </div>
