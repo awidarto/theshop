@@ -314,7 +314,9 @@ span.expander{
 	width: 0;
 }
 
-
+.paymentStatusTable{
+	text-transform: uppercase;
+}
 table.table thead .sorting,
 table.table thead .sorting_asc,
 table.table thead .sorting_desc,

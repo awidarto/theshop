@@ -49,7 +49,7 @@ class Attendee_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
-		$heads = array('#','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update','Action');
+		$heads = array('#','Reg. Number','Registered Date','First Name','Last Name','Company','Registration Type','Country','Status Payment','Action');
 
 
 		$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
@@ -63,7 +63,7 @@ class Attendee_Controller extends Base_Controller {
 			return View::make('tables.simple')
 				->with('title','Master Data')
 				->with('newbutton','New Visitor')
-				->with('disablesort','0,5,6')
+				->with('disablesort','0,9')
 				->with('addurl','attendee/add')
 				->with('colclass',$colclass)
 				->with('searchinput',$searchinput)
@@ -82,7 +82,7 @@ class Attendee_Controller extends Base_Controller {
 	{
 
 
-		$fields = array('registrationnumber','firstname','lastname','email','company','position','mobile','companyphone','companyfax','createdDate','lastUpdate');
+		$fields = array('registrationnumber','createdDate','firstname','lastname','company','regtype','country','paymentStatus');
 
 		$rel = array('like','like','like','like','like','like','like','like','like','like');
 
@@ -158,22 +158,29 @@ class Attendee_Controller extends Base_Controller {
 
 			$extra = $doc;
 
+			if($doc['paymentStatus'] == 'unpaid'){
+				$paymentStatus = '<span class="fontRed fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
+			}else{
+				$paymentStatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
+			}
 			$aadata[] = array(
 				$counter,
 				(isset($doc['registrationnumber']))?$doc['registrationnumber']:'',
+				date('Y-m-d', $doc['createdDate']->sec),
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
 				$doc['lastname'],
-				$doc['email'],
 				$doc['company'],
-				$doc['position'],
+				$doc['regtype'],
+				$doc['country'],
 				//$doc['mobile'],
-				'<span class="fontRed fontBold">UNPAID</span>',
+				$paymentStatus,
+				//'<span class="fontRed fontBold">UNPAID</span>',
 				//$doc['companyphone'],
 				//$doc['companyfax'],
 				//date('Y-m-d H:i:s', $doc['createdDate']->sec),
-				isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
-				date('Y-m-d', $doc['createdDate']->sec),
-				isset($doc['lastUpdate'])?date('Y-m-d', $doc['lastUpdate']->sec):'',
+				//isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
+				//date('Y-m-d', $doc['createdDate']->sec),
+				//isset($doc['lastUpdate'])?date('Y-m-d', $doc['lastUpdate']->sec):'',
 				'<a class="icon-"  ><i>&#xe164;</i><span class="pay" id="'.$doc['_id'].'" >Payment Status</span>'.
 				'<a class="icon-"  ><i>&#xe14c;</i><span class="pbadge" id="'.$doc['_id'].'" >Print Badge</span>'.
 				'<a class="icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.

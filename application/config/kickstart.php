@@ -93,6 +93,11 @@ return array(
   		'subcon'=>'3rd Party / Sub-Con'
   		),
 
+  'accountpayment'=>array(
+    'BCA - Mangga Dua Branch'=>'BCA - Mangga Dua Branch',
+    'BCA - Wisma Nusantara Branch'=>'BCA - Wisma Nusantara Branch'
+  ),
+
   'eventtitle'=>array(
       'document.upload'=>'New Document Created',
       'document.create'=>'New Document Created',

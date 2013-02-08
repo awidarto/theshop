@@ -193,7 +193,12 @@
 		<h3 id="myModalLabel">Payment Status</h3>
 	</div>
 	<div class="modal-body">
-		<p>One fine body…</p>
+		<p>Change Payment Status</p>
+		<select>
+          <option>PAID</option>
+          <option>CONFIRMED</option>
+          <option>CANCELED</option>
+        </select>
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-primary">Save</button>
@@ -266,7 +271,7 @@
 		        "sAjaxSource": "{{$ajaxsource}}",
 				"oLanguage": { "sSearch": "Search "},
 				"sPaginationType": "full_numbers",
-				"sDom": 'lfrpitT',
+				"sDom": 'lrpitT',
 				"oTableTools": {
 					"sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
 				},
@@ -332,8 +337,6 @@
 				this.value = asInitVals[$('tfoot input').index(this)];
 			}
 		} );
-
-
 
 
 		$('.filter input').keyup( function () {

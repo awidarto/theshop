@@ -6,33 +6,24 @@
 <h3>{{$title}}</h3>
 </div>
 
-{{$form->open('register/add','POST',array('class'=>'custom'))}}
+{{$form->open('register/payment','POST',array('class'=>'custom'))}}
 <div class="row">
-  <div class="six columns left">
-    <h4>Employee Info</h4>
-    {{ $form->text('fullname','Full Name.req','',array('class'=>'auto_userdata text','id'=>'emp_fullname')) }}
-    {{ $form->text('email','Email.req','',array('class'=>'auto_userdatabyemail text','id'=>'emp_email')) }}
+  <div class="twelve columns left">
+    
+    {{ $form->text('registNumberConfirm','Registration Number.req','',array('class'=>'auto_userdata text','id'=>'emp_fullname')) }}
+    {{ $form->text('participantNameConfirm','Participant Name.req','',array('class'=>'auto_userdata text','id'=>'emp_fullname')) }}
+    {{ $form->text('participantEmailConfirm','Participant Email.req','',array('class'=>'auto_userdata text','id'=>'emp_fullname')) }}
+    {{ Form::label('toaccount','To Account')}}
+    {{$form->select('toaccount','',Config::get('kickstart.accountpayment'),null,array('class'=>'four','id'=>'emp_department'))}}
 
-    {{ $form->text('userId','System User ID','',array('class'=>'auto_idbyemail text','id'=>'emp_user_id')) }}
-
-    <h4>Employment Info</h4>
-    {{ $form->text('employee_jobtitle','Job Title','',array('class'=>'text','id'=>'emp_jobtitle')) }}
-    {{ Form::label('Department','department')}}
-    {{$form->select('department','',Config::get('kickstart.department'),null,array('class'=>'four','id'=>'emp_department'))}}
-
-  </div>
-  <div class="five columns right">
-    <h4>Contact Info</h4>
-    {{ $form->text('mobile','Mobile Number','',array('class'=>'text','id'=>'emp_mobile')) }}
-    {{ $form->text('home','Home Number','',array('class'=>'text','id'=>'emp_phone')) }}
-    {{ $form->textarea('street','Street','',array('class'=>'text','id'=>'emp_street')) }}
-    {{ $form->text('city','City','',array('class'=>'text','id'=>'emp_city')) }}
-    {{ $form->text('zip','ZIP','',array('class'=>'text','id'=>'emp_zip')) }}
-
-    {{ $form->text('country','Country of Origin','',array('class'=>'text','id'=>'emp_city')) }}
+    {{ Form::label('fromaccount','From Account')}}
+    {{ $form->text('fromBankName','','',array('class'=>'text invAdress','id'=>'cityInv','placeholder'=>'Account Name')) }}
+    {{ $form->text('fromBankNumber','','',array('class'=>'text invAdress','id'=>'cityInv','placeholder'=>'Account Number')) }}
+    {{ $form->text('fromBankName','','',array('class'=>'text invAdress','id'=>'cityInv','placeholder'=>'Bank Name')) }}
+    {{ $form->text('fromBankBranch','','',array('class'=>'text invAdress','id'=>'cityInv','placeholder'=>'Branch')) }}
 
   </div>
-
+  
 </div>
 <hr />
 <div class="row right">

@@ -35,10 +35,24 @@
       <table width="940" border="0" cellspacing="0" cellpadding="0">
         
         <tr height="340">
-          <td background="http://www.ipaconvex.com/images/head_web.jpg" height="340" width="940" valign="bottom"><div align="left" style="margin-bottom:47px;margin-left:10px;">
+          <td background="http://www.ipaconvex.com/head_web.jpg" height="340" width="940" valign="bottom">
+            <div align="left" style="margin-bottom:15px;margin-left:10px;">
             
-            <!-- end sub-nav2 --> 
-          </div></td>
+            <script src="http://www.ipaconvex.com/jquery-blink.js" language="javscript" type="text/javascript"></script>
+   
+            <script type="text/javascript" language="javascript">
+   
+              $(document).ready(function()
+              {
+                      $('.blink').blink(); // default is 500ms blink interval.
+                      //$('.blink').blink({delay:100}); // causes a 100ms blink interval.
+              });
+               
+              </script>
+              <div class="blink" style="margin: 0px 0px 15px 450px; color: black; font-size: 14px; font-weight: bold; font-family: Tahoma; visibility: visible;">
+                <a href="http://localhost/eventreg/public/index.php/register/landing">ONLINE REGISTRATION</a>
+              </div>
+            </td>
         </tr>
         <tr>
           <td width="940" height="35" bgcolor="#b60002" align="center" style="padding-left:170px;">
@@ -80,10 +94,10 @@
             stm_bpx("p3","p1",[]);
             stm_aix("p3i0","p1i0",[0,"  How to Get There  ","","",-1,-1,0,"http://www.ipaconvex.com/content.php?go=howtogetthere"],0,26);
             stm_ep();
-            stm_aix("p0i6","p0i2",[0,"  REGISTRATION   ","","",-1,-1,0,"http://localhost/eventreg/public/index.php/register"],0,36);
-            stm_aix("p0i6","p0i2",[0,"  PAYMENT CONFIRMATION   ","","",-1,-1,0,"http://localhost/eventreg/public/index.php/payment"],0,36);
+            
             stm_em();
             </script>
+
 
 
 </td>
@@ -119,6 +133,8 @@
                             <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('myprofile','My Profile')}}</p>
 
                             <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('myprofile/edit','Edit My Profile')}}</p>
+
+                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('payment','Payment Confirmation')}}</p>
 
                             <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('logout','Logout')}}</p>
 

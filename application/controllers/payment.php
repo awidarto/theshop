@@ -1,6 +1,6 @@
 <?php
 
-class Register_Controller extends Base_Controller {
+class Payment_Controller extends Base_Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -119,7 +119,7 @@ class Register_Controller extends Base_Controller {
 		
 	}
 
-	public function get_payment(){
+	public function get_confirm(){
 
 		$this->crumb->add('register','Payment Confirmation');
 
@@ -134,19 +134,8 @@ class Register_Controller extends Base_Controller {
 
 	}
 
-	public function post_payment(){
-		$data = Input::get();
+	public function post_confirm(){
 
-		$body = View::make('email.confirmsubmitted')->with('data',$data)->render();
-
-		Message::to(Config::get('eventreg.reg_finance_email'))
-		    ->from($data['participantEmailConfirm'], $data['participantNameConfirm'])
-		    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Payment Confirmation – '.$data['registNumberConfirm'].' Submitted)')
-		    ->body( $body )
-		    ->html(true)
-		    ->send();
-		    
-    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.paymentsubmitted'));
 	}
 
 	public function get_success(){
@@ -161,17 +150,7 @@ class Register_Controller extends Base_Controller {
 
 	}
 
-	public function get_paymentsubmitted(){
-
-		$this->crumb->add('register','Register');
-
-		$form = new Formly();
-		return View::make('register.paymentsubmitted')
-					->with('form',$form)
-					->with('crumb',$this->crumb)
-					->with('title','Thanks for you payment confirmation!');
-
-	}
+	
 
 	public function get_landing(){
 

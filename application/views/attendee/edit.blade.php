@@ -79,6 +79,20 @@
                     </div>   
                 </div>
         </fieldset>
+        <fieldset>
+            <legend>Will attend the Industrial Dinner on 16 May 2012</legend>
+
+                <div class="row-fluid">
+                    <div class="span2">
+                      {{ $form->radio('attenddinner','Yes','Yes') }} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('attenddinner','No','No') }} 
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+
+        </fieldset>        
 
     </div>
 
@@ -108,8 +122,33 @@
                 {{$form->select('country','Country of Origin',Config::get('country.countries'),null)}}
 
         </fieldset>
+       <fieldset>
+            <legend>Invoice Address</legend>
+                {{ $form->text('companyInvoice','Company / Institution.req','',array('class'=>'text span6','id'=>'company')) }}
+                {{ $form->text('npwpInvoice','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text span6','id'=>'company')) }}
 
-        <fieldset>
+
+                {{ $form->text('companyphoneInvoice','Phone Number.req','',array('class'=>'text span6','id'=>'companyphone')) }}
+                {{ $form->text('companyfaxInvoice','Fax Number.req','',array('class'=>'text span6','id'=>'companyfax')) }}
+
+                {{ $form->text('addressInvoice','Address.req','',array('class'=>'text span9','id'=>'address','placeholder'=>'Company Address')) }}
+
+
+                <div class="row-fluid inputInline">
+                    
+                        {{ $form->text('cityInvoice','','',array('class'=>'text span12','id'=>'city','placeholder'=>'City')) }}
+                    
+                    
+                        {{ $form->text('zipInvoice','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
+                    
+                </div>
+
+                {{$form->select('countryInvoice','Country of Origin',Config::get('country.countries'),null)}}
+
+        </fieldset>
+
+
+        <!--<fieldset>
             <legend>Invoice address same with Company Address ?</legend>
                 <div class="row-fluid">
                     <div class="span2">
@@ -120,22 +159,9 @@
                     </div>   
                     <div class="span8"></div>
                 </div>
-        </fieldset>
+        </fieldset>-->
 
-        <fieldset>
-            <legend>Will attend the Industrial Dinner on 16 May 2012</legend>
 
-                <div class="row-fluid">
-                    <div class="span2">
-                      {{ $form->radio('attenddinner','Yes','Yes') }} 
-                    </div>   
-                    <div class="span2">
-                      {{ $form->radio('attenddinner','No','No') }} 
-                    </div>   
-                    <div class="span8"></div>
-                </div>
-
-        </fieldset>
 
     </div>
 </div>

@@ -50,6 +50,7 @@ Route::get('general',array('uses'=>'content@public'));
 
 Route::post('register',array('uses'=>'register@add'));
 
+
 Route::get('myprofile/edit',array('uses'=>'register@edit'));
 
 Route::post('myprofile/edit',array('uses'=>'register@edit'));
@@ -58,8 +59,10 @@ Route::get('myprofile',array('uses'=>'register@profile'));
 
 
 Route::get('payment',array('as'=>'register/payment','uses'=>'register@payment'));
-
+Route::get('paymentsubmitted',array('as'=>'register/paymentsubmitted','uses'=>'register@paymentsubmitted'));
 Route::get('register-success',array('as'=>'register/success','uses'=>'register@success'));
+Route::get('register-landing',array('as'=>'register/landing','uses'=>'register@landing'));
+Route::get('register-group',array('as'=>'register/group','uses'=>'register@group'));
 
 /*
 Route::get('/',  function(){
@@ -125,7 +128,7 @@ Route::post('attendee/login', function()
     {
         //print_r($userdata);
         // we are now logged in, go to home
-        return Redirect::to('/');
+        return Redirect::to('myprofile');
 
     }
     else
