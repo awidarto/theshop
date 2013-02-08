@@ -325,6 +325,23 @@ table.table thead .sorting_desc_disabled {
 	cursor: pointer;
 	*cursor: hand;
 }
+#searchinput input[type="text"]{
+	font-size: 11px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#searchinput{
+	background-color: #f7f7f7;
+}
+.search_init {
+	width: 100px;
+	
+}
+thead #searchinput td{
+	padding: 7px 5px;
+	min-height: 0;
+	
+}
 
 table.table thead .sorting { background: url('../../images/sort_both.png') no-repeat center right; }
 table.table thead .sorting_asc { background: url('../../images/sort_asc.png') no-repeat center right; }

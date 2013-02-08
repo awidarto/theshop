@@ -50,13 +50,13 @@ class Attendee_Controller extends Base_Controller {
 		//print_r(Auth::user());
 
 /*<<<<<<< HEAD*/
-		$heads = array('#','Reg. Number','Registered Date','First Name','Last Name','Company','Registration Type','Country','Status Payment','Action');
+		$heads = array('#','Reg. Number','Registered Date','First Name','Last Name','Company','Reg. Type','Country','Status Payment','Action');
 /*=======*/
 		
 /*>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
 
 
-		$searchinput = array(false,'Reg Number','Reg. Date','First Name','Last Name','Company','Reg. Type','Country',false);
+		$searchinput = array(false,'Reg Number','Reg. Date','First Name','Last Name','Company',false,'Country',false,false);
 
 		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
 		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','','');
