@@ -240,7 +240,8 @@
 <script type="text/javascript">
 $(function() {
 
-  
+  $("#s2id_field_countryInvoice").select2("val", "ID");
+  $("#s2id_field_country").select2("val", "ID");
   
   function fillsame(){
     var companyName = $("#companyName").val();
@@ -250,6 +251,7 @@ $(function() {
     var companyAddress = $("#address").val();
     var companyCity = $("#city").val();
     var companyZip = $("#zip").val();
+    var companyCountry = $("#s2id_field_country").select2("val");
 
     $("#companyNameInv").val(companyName);
     $("#companyNPWPInv").val(companyNPWP);
@@ -258,6 +260,7 @@ $(function() {
     $("#addressInv").val(companyAddress);
     $("#cityInv").val(companyCity);
     $("#zipInv").val(companyZip);
+    $("#s2id_field_countryInvoice").select2("val", companyCountry);
   }
 
   function resetinput(){
@@ -266,6 +269,7 @@ $(function() {
      .val('')
      .removeAttr('checked')
      .removeAttr('selected');
+      $("#s2id_field_countryInvoice").select2("val", "");
   }
   
   $("#invoiceSame").live("click", function(){
