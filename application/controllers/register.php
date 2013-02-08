@@ -122,6 +122,11 @@ class Register_Controller extends Base_Controller {
 
 	public function get_payment(){
 
+		if(!Auth::attendee()){
+			return Redirect::to('/');
+		}
+
+
 		$this->crumb->add('register/payment','Payment Confirmation');
 
 		$att = new Attendee();
@@ -173,7 +178,7 @@ class Register_Controller extends Base_Controller {
 
 				$attendee = new Attendee();
 
-				$attendee->update(array('_id'=>$_id),'$set'=>array(array('confirmation'=>'pending')));
+				//$attendee->update(array('_id'=>$_id),'$set'=>array(array('confirmation'=>'pending')));
 
 				$body = View::make('email.regpayment')->with('data',$data)->render();
 

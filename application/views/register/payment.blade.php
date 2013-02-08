@@ -15,7 +15,7 @@
     <div class="twelve columns">
 
         <fieldset>
-            <legend>Personal Information</legend>
+            <legend>Attendee Information</legend>
 
                 {{ Form::label('salutation','Salutation')}}
 
@@ -43,129 +43,60 @@
         </fieldset>
 
         <fieldset>
-            <legend>Company Information</legend>
-                {{ $form->text('company','Company / Institution.req','',array('class'=>'text','id'=>'company')) }}
-                {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text','id'=>'company')) }}
+            <legend>Payment Information</legend>
+                {{ $form->text('transferdate','Date Transferred.req','',array('class'=>'text','id'=>'transferdate')) }}
+                {{ $form->text('totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
 
-                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text','id'=>'companyphone')) }}
-                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text','id'=>'companyfax')) }}
-
-                {{ $form->text('address','Address.req','',array('class'=>'text','id'=>'address','placeholder'=>'Company Address')) }}
-
+                <h4>Transfer To</h4>
+                <span><strong>Bank Transfer</strong></span>
                 <div class="row">
-                    <div class="eight columns">
-                        {{ $form->text('city','','',array('class'=>'text','id'=>'city','placeholder'=>'City')) }}
-                    </div>
+                  <div class="six columns mobile-six">
+                    <p>
+                    {{ $form->radio('attenddinner','IDR Account','IDR',true) }}<br /><br />
+                    BCA - Mangga Dua Branch<br/>
+                    Acc. No. : 335.302.7677<br/>
+                    Acc. Name : PT Dyandra Promosindo<br/>
+                    </p>
+                  </div>
+
+                  <div class="six columns mobile-six">
+                    <p>
+                    {{ $form->radio('attenddinner','USD Account','USD') }}<br /><br />
+                    BCA - Wisma Nusantara Branch<br/>
+                    Acc. No. : 734.038.5700<br/>
+                    Acc. Name : PT Dyandra Promosindo<br/>
+                    Swiftcode : CENAIDJA
+                    </p>
+                  </div>
+                </div>
+
+
+                {{ $form->text('fromaccountname','Account Name.req','',array('class'=>'text','id'=>'companyphone')) }}
+                <div class="row">
                     <div class="three columns">
-                        {{ $form->text('zip','','',array('class'=>'text','id'=>'zip','placeholder'=>'ZIP Code')) }}
+                        {{ $form->text('fromaccnumber','','',array('class'=>'text','id'=>'zip','placeholder'=>'Account number')) }}
+                    </div>
+                    <div class="seven columns right">
+                        {{ $form->text('frombank','','',array('class'=>'text','id'=>'city','placeholder'=>'Bank Name')) }}
                     </div>
                 </div>
-
-                {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'four'))}}
-
-                {{ Form::label('invoiceaddress','Invoice address same with Company Address ?') }}
-
-                <div class="row">
-                    <div class="two columns">
-                      {{ $form->radio('invoiceaddress','Yes','Yes',true) }} 
-                    </div>   
-                    <div class="two columns">
-                      {{ $form->radio('invoiceaddress','No','No') }} 
-                    </div>   
-                    <div class="eight columns"></div>
-                </div>
-
-
         </fieldset>
 
         <fieldset>
-            <legend>Registration Type</legend>
-                <div class="row">
-                    <div class="four columns">
-                        Professional / Delegate Domestic
-                    </div>   
-                    <div class="four columns">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD',true) }} 
-                    </div>   
-                    <div class="four columns"></div>
-                </div>
-
-                <div class="row">
-                    <div class="four columns">
-                        Professional / Delegate Overseas
-                    </div>   
-                    <div class="four columns">
-                      {{ $form->radio('regtype','USD 500','PO') }} 
-                    </div>   
-                    <div class="four columns"></div>
-                </div>
-
-                <div class="row">
-                    <div class="four columns">
-                        Student Domestic
-                    </div>   
-                    <div class="four columns">
-                      {{ $form->radio('regtype','IDR 400.000','SD') }} 
-                    </div>   
-                    <div class="four columns"></div>
-                </div>
-
-                <div class="row">
-                    <div class="four columns">
-                        Student Overseas
-                    </div>   
-                    <div class="four columns">
-                      {{ $form->radio('regtype','USD 120','SO') }} 
-                    </div>   
-                    <div class="four columns"></div>
-                </div>
-        </fieldset>
+            <legend>Important Notes</legend>
 
               <h4>The registration fee includes:</h4>
               <p>Admission to all Plenary and Technical sessions, Conference Kits, entrance to exhibition area, Opening Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Closing Ceremony.</p>
-              
 
-                {{ Form::label('attenddinner','I will attend the Industrial Dinner on 16 May 2012') }}
-
-                <div class="row">
-                    <div class="two columns">
-                      {{ $form->radio('attenddinner','Yes','Yes',true) }} 
-                    </div>   
-                    <div class="two columns">
-                      {{ $form->radio('attenddinner','No','No') }} 
-                    </div>   
-                    <div class="eight columns"></div>
-                </div>
-
-              <hr/>
-              <h4>PAYMENT METHOD</h4>
-              <span><strong>Bank Transfer</strong></span>
-              <div class="row">
-                <div class="six columns mobile-six">
-                  <p><strong>IDR Account:</strong><br/>
-                  BCA - Mangga Dua Branch<br/>
-                  Acc. No. : 335.302.7677<br/>
-                  Acc. Name : PT Dyandra Promosindo<br/>
-                  </p>
-                </div>
-
-                <div class="six columns mobile-six">
-                  <p><strong>USD Account:</strong><br/>
-                  BCA - Wisma Nusantara Branch<br/>
-                  Acc. No. : 734.038.5700<br/>
-                  Acc. Name : PT Dyandra Promosindo<br/>
-                  Swiftcode : CENAIDJA
-                  </p>
-                </div>
-              </div>
-              <hr/>
-              <h4>IMPORTANT NOTES</h4>
               <ol>
                 <li>Early Bird rates only valid for both registration and payment received until 15 March 2013 at the latest. Normal rate will be applied for the registration with payment settlement after 15 March 2013.
                   <li>Registration Forms received without registration fees will not be processed.</li>
                   <li>No refund will be granted for cancellation after 14 April 2013. All cancellations must be made in writing to the Secretariat and the
                         refund will be made after the conference.</li>
               </ol>
+
+        </fieldset>
+
 
 
 
