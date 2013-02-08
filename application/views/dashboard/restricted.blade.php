@@ -7,7 +7,7 @@
 
 	   <div id="section1" class="metro-section tile-span-4">
 	      <h2>IPA Convex Statistics</h2>
-	      <h5>Convention Registration</h5>
+	     <!-- <h5>Convention Registration</h5> -->
 	      <a class="tile imagetext bg-color-blue statistic" href="#">
 	         <div class="image-wrapper text-big">
 	            <div class="text-big">{{ $stat['PO']}}</div>
@@ -15,7 +15,7 @@
 	         <div class="column-text">
 	            <div class="text">Professional</div>
 	            <div class="text">Overseas</div>
-	            <div class="text">Convention Participant</div>
+	            <div class="text">Participants</div>
 	         </div>   
 	      </a>
 	      <a class="tile imagetext bg-color-purple statistic" href="#">
@@ -25,7 +25,7 @@
 	         <div class="column-text">
 	            <div class="text">Professional</div>
 	            <div class="text">Domestic</div>
-	            <div class="text">Convention Participant</div>
+	            <div class="text">Participants</div>
 	         </div>
 	      </a>
 	      <a class="tile imagetext bg-color-red statistic" href="#">
@@ -35,7 +35,7 @@
 	         <div class="column-text">
 	            <div class="text">Student</div>
 	            <div class="text">Overseas</div>
-	            <div class="text">Convention Participant</div>
+	            <div class="text">Participants</div>
 	         </div>
 	      </a>
 	      <a class="tile imagetext bg-color-orange statistic" href="#">
@@ -45,10 +45,10 @@
 	         <div class="column-text">
 	            <div class="text">Student</div>
 	            <div class="text">Domestic</div>
-	            <div class="text">Convention Participant</div>
+	            <div class="text">Participants</div>
 	         </div>
 	      </a>
-	      <a class="tile fullwidth wide imagetext greenDark statistic" href="./scaffolding.html">
+	      <a class="tile wide imagetext greenDark statistic" href="#">
 	         <div class="image-wrapper">
 	            <div class="text-biggest">{{ $stat['Attendee']}}</div>
 	         </div>
@@ -58,6 +58,18 @@
 	         </div>
 	         <span class="app-label">(not including FOC)</span>
 	      </a>
+
+	      <a class="tile wide imagetext greenDark statistic" href="#">
+	         <div class="image-wrapper">
+	            <div class="text-biggest">{{ $stat['Golf']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Total Golf</div>
+	            <div class="text">Participants</div>
+	         </div>
+	         <span class="app-label">(not including FOC)</span>
+	      </a>
+
 	      <a class="tile imagetext bg-color-blue statistic" href="#">
 	         <div class="image-wrapper text-big">
 	            <div class="text-big">{{ $stat['paidAttendee']}}</div>
@@ -87,6 +99,17 @@
 	            <div class="text">Canceled</div>
 	            <div class="text">Registration</div>
 	         </div>
+	      </a>
+
+	      <a class="tile imagetext bg-color-orange" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">5</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text-small">Payment Confirmation</div>
+	            <div class="text-small">to Process</div>
+	         </div>
+	         
 	      </a>
 
 	   </div>
@@ -148,16 +171,6 @@
 	         <span class="app-label">Register New Official</span>
 	      </a>
 
-	      <a class="tile imagetext bg-color-orange" href="#">
-	         <div class="image-wrapper text-big">
-	            <div class="text-big">5</div>
-	         </div>
-	         <div class="column-text">
-	            <div class="text-small">Payment Confirmation</div>
-	            <div class="text-small">to Process</div>
-	         </div>
-	         
-	      </a>
 	   </div>
 	</div>
 </div>
