@@ -151,21 +151,39 @@
                 </div>
         </fieldset>
 
+        <fieldset>
+          <legend>I will attend the Industrial Dinner on 16 May 2012</legend>
+          <div class="row">
+              <div class="two columns">
+                {{ $form->radio('attenddinner','Yes','Yes',true) }} 
+              </div>   
+              <div class="two columns">
+                {{ $form->radio('attenddinner','No','No') }} 
+              </div>   
+              <div class="eight columns"></div>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>I will participate in Golf event</legend>
+
+            <div class="row">
+                <div class="two columns">
+                  {{ $form->radio('golf','Yes','Yes') }} 
+                </div>   
+                <div class="two columns">
+                  {{ $form->radio('golf','No','No',true) }} 
+                </div>   
+                <div class="eight columns"></div>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+
               <h4>The registration fee includes:</h4>
               <p>Admission to all Plenary and Technical sessions, Conference Kits, entrance to exhibition area, Opening Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Closing Ceremony.</p>
-              
-
-                {{ Form::label('attenddinner','I will attend the Industrial Dinner on 16 May 2012') }}
-
-                <div class="row">
-                    <div class="two columns">
-                      {{ $form->radio('attenddinner','Yes','Yes',true) }} 
-                    </div>   
-                    <div class="two columns">
-                      {{ $form->radio('attenddinner','No','No') }} 
-                    </div>   
-                    <div class="eight columns"></div>
-                </div>
 
               <hr/>
               <h4>PAYMENT METHOD</h4>
@@ -197,9 +215,7 @@
                         refund will be made after the conference.</li>
               </ol>
 
-
-
-
+        </fieldset>
 
     </div>
 </div>
