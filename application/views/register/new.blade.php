@@ -112,47 +112,70 @@
             <legend>Registration Type</legend>
                 <div class="row">
                     <div class="four columns">
+                        &nbsp;
+                    </div>   
+                    <div class="three columns">
+                      <span><strong>EARLY BIRD</strong></span></br>
+                      <span>Until 15 March 2013</span>
+                    </div>   
+                    <div class="three columns">
+                      <span><strong>NORMAL RATE</strong></span></br>
+                      <span>After 15 March 2013</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="four columns">
                         Professional / Delegate Domestic
                     </div>   
-                    <div class="four columns">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD',true) }} 
+                    <div class="three columns">
+                      {{ $form->radio('regtype','IDR 4.500.000','PD',true,array('class'=>'regType professional')) }} 
                     </div>   
-                    <div class="four columns"></div>
+                    <div class="three columns">
+                      {{ $form->radio('regtypeNormal','IDR 5.000.000','PD',false,array('class'=>'disableRadio')) }} 
+                    </div>
                 </div>
 
                 <div class="row">
                     <div class="four columns">
                         Professional / Delegate Overseas
                     </div>   
-                    <div class="four columns">
-                      {{ $form->radio('regtype','USD 500','PO') }} 
+                    <div class="three columns">
+                      {{ $form->radio('regtype','USD 500','PO',false,array('class'=>'regType professional')) }} 
+                    </div>
+                    <div class="three columns">
+                      {{ $form->radio('regtypeNormal','USD 550','PD',false,array('class'=>'disableRadio')) }} 
                     </div>   
-                    <div class="four columns"></div>
+                    
                 </div>
 
                 <div class="row">
                     <div class="four columns">
                         Student Domestic
                     </div>   
-                    <div class="four columns">
-                      {{ $form->radio('regtype','IDR 400.000','SD') }} 
-                    </div>   
-                    <div class="four columns"></div>
+                    <div class="three columns">
+                      {{ $form->radio('regtype','IDR 400.000','SD',false,array('class'=>'regType student')) }} 
+                    </div>
+                    <div class="three columns">
+                      {{ $form->radio('regtypeNormal','IDR 400.000','PD',false,array('class'=>'disableRadio')) }} 
+                    </div>
                 </div>
 
                 <div class="row">
                     <div class="four columns">
                         Student Overseas
                     </div>   
-                    <div class="four columns">
-                      {{ $form->radio('regtype','USD 120','SO') }} 
+                    <div class="three columns">
+                      {{ $form->radio('regtype','USD 120','SO',false,array('class'=>'regType student')) }} 
                     </div>   
-                    <div class="four columns"></div>
+                    <div class="three columns">
+                      {{ $form->radio('regtypeNormal','USD 120','PD',false,array('class'=>'disableRadio')) }} 
+                    </div>
                 </div>
         </fieldset>
 
         <fieldset>
-          <legend>I will attend the Industrial Dinner on 16 May 2012</legend>
+          <legend>I will attend the Industrial Dinner on 16 May 2013</legend>
           <div class="row">
               <div class="two columns">
                 {{ $form->radio('attenddinner','Yes','Yes',true) }} 
@@ -165,7 +188,7 @@
 
         </fieldset>
 
-        <fieldset>
+        <fieldset id="golfEvent">
           <legend>I will participate in Golf event</legend>
 
             <div class="row">
@@ -280,6 +303,26 @@ $(function() {
       resetinput();
     }
   });
+  $(".disableRadio").next('span').addClass('radioDisable');
+
+  $(".radioDisable").live("click", function(){
+    $(this).removeClass('checked');
+  });
+
+  $(".regType").next('span').addClass('regTypeRecord');
+  $(".professional").next('span').addClass('professional');
+  $(".student").next('span').addClass('student');
+  
+  $(".regTypeRecord").live("click", function(){
+    if($(this).hasClass('checked' && 'professional')){
+      $('#golfEvent').show();
+    }else{
+      $('#golfEvent').hide();
+    }
+  });
+
+  
+  
 
   
 });

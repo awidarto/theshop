@@ -177,6 +177,9 @@ form #zip,form #zipInv{
 .four{
   width: 250px;
 }
+.three{
+  width: 160px;
+}
 label{
   position: relative;
 }
@@ -194,7 +197,7 @@ form.custom span.custom{
 .select2-container{
   margin-bottom: 10px;
 }
-#s2id_field_country{
+#s2id_field_country,#s2id_field_countryInvoice{
   width: 220px;
   font-family: inherit;
   font-size: 12px;
