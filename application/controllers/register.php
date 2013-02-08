@@ -150,20 +150,6 @@ class Register_Controller extends Base_Controller {
 	}
 
 	public function post_payment(){
-<<<<<<< HEAD
-		$data = Input::get();
-
-		$body = View::make('email.confirmsubmitted')->with('data',$data)->render();
-
-		Message::to(Config::get('eventreg.reg_finance_email'))
-		    ->from($data['participantEmailConfirm'], $data['participantNameConfirm'])
-		    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Payment Confirmation – '.$data['registNumberConfirm'].' Submitted)')
-		    ->body( $body )
-		    ->html(true)
-		    ->send();
-		    
-    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.paymentsubmitted'));
-=======
 
 	    $rules = array(
 	        'email' => 'required|email|unique:attendee',
@@ -209,8 +195,6 @@ class Register_Controller extends Base_Controller {
 			}
 		}
 
-
->>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
 	}
 
 	public function get_success(){

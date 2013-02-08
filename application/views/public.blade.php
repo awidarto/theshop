@@ -94,16 +94,6 @@
             stm_bpx("p3","p1",[]);
             stm_aix("p3i0","p1i0",[0,"  How to Get There  ","","",-1,-1,0,"http://www.ipaconvex.com/content.php?go=howtogetthere"],0,26);
             stm_ep();
-<<<<<<< HEAD
-            
-=======
-
-            @if(Auth::attendee())
-              stm_aix("p0i6","p0i2",[0,"  PAYMENT CONFIRMATION   ","","",-1,-1,0,"{{ URL::to('payment')}}"],0,36);
-            @else
-              stm_aix("p0i6","p0i2",[0,"  REGISTRATION   ","","",-1,-1,0,"{{ URL::to('register')}}"],0,36);
-            @endif
->>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
             stm_em();
             </script>
 

@@ -6,26 +6,6 @@
 <h3>{{$title}}</h3>
 </div>
 
-<<<<<<< HEAD
-{{$form->open('register/payment','POST',array('class'=>'custom'))}}
-<div class="row">
-  <div class="twelve columns left">
-    
-    {{ $form->text('registNumberConfirm','Registration Number.req','',array('class'=>'auto_userdata text','id'=>'emp_fullname')) }}
-    {{ $form->text('participantNameConfirm','Participant Name.req','',array('class'=>'auto_userdata text','id'=>'emp_fullname')) }}
-    {{ $form->text('participantEmailConfirm','Participant Email.req','',array('class'=>'auto_userdata text','id'=>'emp_fullname')) }}
-    {{ Form::label('toaccount','To Account')}}
-    {{$form->select('toaccount','',Config::get('kickstart.accountpayment'),null,array('class'=>'four','id'=>'emp_department'))}}
-
-    {{ Form::label('fromaccount','From Account')}}
-    {{ $form->text('fromBankName','','',array('class'=>'text invAdress','id'=>'cityInv','placeholder'=>'Account Name')) }}
-    {{ $form->text('fromBankNumber','','',array('class'=>'text invAdress','id'=>'cityInv','placeholder'=>'Account Number')) }}
-    {{ $form->text('fromBankName','','',array('class'=>'text invAdress','id'=>'cityInv','placeholder'=>'Bank Name')) }}
-    {{ $form->text('fromBankBranch','','',array('class'=>'text invAdress','id'=>'cityInv','placeholder'=>'Branch')) }}
-
-  </div>
-  
-=======
 {{$form->open('payment','POST',array('class'=>'custom'))}}
 
     {{ $form->hidden('id',$user['_id'])}}
@@ -117,13 +97,7 @@
 
         </fieldset>
 
-
-
-
-
-
     </div>
->>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
 </div>
 
 <hr />
