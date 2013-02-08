@@ -150,6 +150,7 @@ class Register_Controller extends Base_Controller {
 	}
 
 	public function post_payment(){
+<<<<<<< HEAD
 /*<<<<<<< HEAD
 		$data = Input::get();
 
@@ -164,6 +165,8 @@ class Register_Controller extends Base_Controller {
 		    
     	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.paymentsubmitted'));
 =======*/
+=======
+>>>>>>> 79933e24475a430a913dbce7493b59d17cf2a635
 
 	    $rules = array(
 	        'email' => 'required|email|unique:attendee',
@@ -209,8 +212,11 @@ class Register_Controller extends Base_Controller {
 			}
 		}
 
+<<<<<<< HEAD
 
 /*>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
+=======
+>>>>>>> 79933e24475a430a913dbce7493b59d17cf2a635
 	}
 
 	public function get_success(){

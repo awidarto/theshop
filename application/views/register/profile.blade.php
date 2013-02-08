@@ -50,7 +50,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="detail-title">Industrial Dinner RSPV</td>
+					<td class="detail-title">Industrial Dinner RSVP</td>
 					<td>: </td>
 					<td class="detail-info">{{ $profile['attenddinner'] }}</td>
 				</tr>
@@ -90,7 +90,10 @@
 				<tr>
 					<td class="detail-title">Country</td>
 					<td>:</td>
-					<td class="detail-info">{{ $profile['country'] }}</td>
+					<?php
+						$countries = Config::get('country.countries');
+					?>
+					<td class="detail-info">{{ $countries[$profile['country']]  }}</td>
 				</tr>
 				
 				
