@@ -49,14 +49,14 @@ class Attendee_Controller extends Base_Controller {
 
 		//print_r(Auth::user());
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
 		$heads = array('#','Reg. Number','Registered Date','First Name','Last Name','Company','Registration Type','Country','Status Payment','Action');
-=======
-		$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Position','Status','Mobile','Created','Last Update','Action');
->>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
+/*=======*/
+		
+/*>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
 
 
-		$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Status','Mobile','Created','Last Update',false);
+		$searchinput = array(false,'Reg Number','Reg. Date','First Name','Last Name','Company','Reg. Type','Country',false);
 
 		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
 		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','','');
@@ -164,20 +164,20 @@ class Attendee_Controller extends Base_Controller {
 
 			$extra = $doc;
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
 			if($doc['paymentStatus'] == 'unpaid'){
 				$paymentStatus = '<span class="fontRed fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
 			}else{
 				$paymentStatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
 			}
-=======
+/*=======
 			if(isset($doc['paymentStatus'])){
 				$status = ($doc['paymentStatus'] == 'unpaid')?'<span class="fontRed fontBold">UNPAID</span>':'<span class="fontGreen fontBold">PAID</span>';
 			}else{
 				$status = '<span class="fontRed fontBold">-</span>';
 			}
 
->>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
+>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
 			$aadata[] = array(
 				$counter,
 				(isset($doc['registrationnumber']))?$doc['registrationnumber']:'',
@@ -185,7 +185,7 @@ class Attendee_Controller extends Base_Controller {
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
 				$doc['lastname'],
 				$doc['company'],
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
 				$doc['regtype'],
 				$doc['country'],
 				//$doc['mobile'],
@@ -201,7 +201,7 @@ class Attendee_Controller extends Base_Controller {
 				'<a class="icon-"  ><i>&#xe14c;</i><span class="pbadge" id="'.$doc['_id'].'" >Print Badge</span>'.
 				'<a class="icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
 				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
-=======
+/*=======
 				$doc['position'],
 				$status,
 				$doc['mobile'],
@@ -214,7 +214,7 @@ class Attendee_Controller extends Base_Controller {
 				'<a class="action icon-"  ><i>&#xe14c;</i><span class="action pbadge" id="'.$doc['_id'].'" >Print Badge</span>'.
 				'<a class="action icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
 				'<a class="action icon-"><i>&#xe001;</i><span class="action del" id="'.$doc['_id'].'" >Delete</span>',
->>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
+>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
 				
 				'extra'=>$extra
 			);

@@ -175,17 +175,10 @@
 		<h3 id="myModalLabel">Payment Status</h3>
 	</div>
 	<div class="modal-body">
-<<<<<<< HEAD
-		<p>Change Payment Status</p>
-		<select>
-          <option>PAID</option>
-          <option>CONFIRMED</option>
-          <option>CANCELED</option>
-        </select>
-=======
+
 		{{ Form::select('paystatus', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselect'))}}
 		<span id="paystatusindicator"></span>
->>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
+
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-primary" id="savepaystatus">Save</button>
@@ -328,8 +321,7 @@
 		} );
 
 
-<<<<<<< HEAD
-=======
+
 		//header search
 
 		$('thead input').keyup( function () {
@@ -363,7 +355,7 @@
 
 
 
->>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
+
 		$('.filter input').keyup( function () {
 			/* Filter on the column (the index) of this element */
 			oTable.fnFilter( this.value, $('.filter input').index(this) );
