@@ -175,6 +175,14 @@
         </fieldset>
 
         <fieldset>
+          <legend>The registration fee includes:</legend>
+          <div class="row">
+              <p>Admission to all Plenary and Technical sessions, Conference Kits, entrance to exhibition area, Opening Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Closing Ceremony.</p>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
           <legend>I will attend the Industrial Dinner on 16 May 2013</legend>
           <div class="row">
               <div class="two columns">
@@ -189,26 +197,35 @@
         </fieldset>
 
         <fieldset id="golfEvent">
-          <legend>I will participate in Golf event</legend>
+          <legend>Golf Tournament</legend>
+            
 
             <div class="row">
-                <div class="two columns">
-                  {{ $form->radio('golf','Yes','Yes',false,array('class'=>'field_golfType golfYes')) }} 
+                <div class="four columns">
+                    
+                    PONDOK INDAH GOLF<br/>
+                    (12 May 2013)<br/><br/>
+                    IDR 2.500.000,-/person<br/>
+                    <br/>
+                    <br/>
                 </div>   
-                <div class="two columns">
+                <div class="three columns">
+                  {{ $form->radio('golf','Yes','Yes',false,array('class'=>'field_golfType golfYes')) }} 
+                </div>
+                <div class="three columns">
                   {{ $form->radio('golf','No','No',true,array('class'=>'field_golfType golfNo')) }} 
                 </div>   
-                <div class="eight columns"></div>
+                
             </div>
+
+            
+            
 
         </fieldset>
 
         <fieldset>
 
-              <h4>The registration fee includes:</h4>
-              <p>Admission to all Plenary and Technical sessions, Conference Kits, entrance to exhibition area, Opening Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Closing Ceremony.</p>
-
-              <hr/>
+              
               <h4>PAYMENT METHOD</h4>
               <span><strong>Bank Transfer</strong></span>
               <div class="row">
@@ -228,14 +245,18 @@
                   Swiftcode : CENAIDJA
                   </p>
                 </div>
+                <div class="twelve columns">
+                  <strong><i>Payment should be made in FULL AMOUNT. Please change your payment status and upload copy of your bank transfer once the payment settled.</i></strong>
+                </div>
               </div>
               <hr/>
               <h4>IMPORTANT NOTES</h4>
               <ol>
-                <li>Early Bird rates only valid for both registration and payment received until 15 March 2013 at the latest. Normal rate will be applied for the registration with payment settlement after 15 March 2013.
-                  <li>Registration Forms received without registration fees will not be processed.</li>
-                  <li>No refund will be granted for cancellation after 14 April 2013. All cancellations must be made in writing to the Secretariat and the
-                        refund will be made after the conference.</li>
+                <li><strong>Early Bird scheme applies to those who have registered and have settled payment by 15 March 2013 at the latest.</strong> Normal rate will be applied for the registration payment after 15 March 2013.</li>
+                <li>Registration Forms received without registration fees will not be processed. </li>
+                <li><strong>No refund will be granted for cancellation after 14 April 2013.</strong> All cancellations must be made in writing to the Convention Secretariat and the refund for cancellations before 14 April 2013 will be made after the convention.</li>
+                <li><strong>Convention registration payment deadline is 30 April 2013.</strong></li>
+                <li>For those who <strong>participate in golf tournament, the payment must be settled before 14 April 2013.</strong></li>
               </ol>
 
         </fieldset>

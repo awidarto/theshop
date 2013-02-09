@@ -17,34 +17,42 @@
         <fieldset>
             <legend>Attendee Information</legend>
 
-                {{ Form::label('salutation','Salutation')}}
-
                 <div class="row">
-                    <div class="two columns">
-                      {{ $form->radio('salutation','Mr','Mr',true)}} 
-                    </div>   
-                    <div class="two columns">
-                      {{ $form->radio('salutation','Mrs','Mrs')}} 
-                    </div>   
-                    <div class="two columns">
-                      {{ $form->radio('salutation','Ms','Ms')}} 
-                    </div>
-                    <div class="six columns"></div>
+                  <span class="labelInline">Salutation</span>
+                  <span class="">: {{ $user['salutation'] }}</span>
+                </div>
+                <div class="row">
+                  <span class="labelInline">First Name</span>
+                  <span class="">: {{ $user['firstname'] }}</span>
                 </div>
 
+                <div class="row">
+                  <span class="labelInline">Last Name</span>
+                  <span class="">: {{ $user['lastname'] }}</span>
+                </div>
 
-                {{ $form->text('firstname','First Name.req','',array('class'=>'text','id'=>'firstname')) }}
-                {{ $form->text('lastname','Last Name.req','',array('class'=>'text','id'=>'lastname')) }}
-                {{ $form->text('position','Position / Division.req','',array('class'=>'text','id'=>'positionname')) }}
-                {{ $form->text('email','Email.req','',array('class'=>'text','id'=>'email')) }}
+                <div class="row">
+                  <span class="labelInline">Position / Division</span>
+                  <span class="">: {{ $user['position'] }}</span>
+                </div>
 
-                {{ $form->text('mobile','Mobile Phone Number','',array('class'=>'text','id'=>'mobile')) }}
+                <div class="row">
+                  <span class="labelInline">Email</span>
+                  <span class="">: {{ $user['email'] }}</span>
+                </div>
+
+                <div class="row">
+                  <span class="labelInline">Mobile Phone Number</span>
+                  <span class="">: {{ $user['mobile'] }}</span>
+                </div>
+                <br/>
+                <br/>
 
         </fieldset>
 
         <fieldset>
             <legend>Payment Information</legend>
-                {{ $form->text('transferdate','Date Transferred.req','',array('class'=>'text','id'=>'transferdate')) }}
+                {{ $form->text('transferdate','Date Transferred.req','',array('class'=>'text','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
                 {{ $form->text('totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
 
                 <h4>Transfer To</h4>
@@ -52,7 +60,7 @@
                 <div class="row">
                   <div class="six columns mobile-six">
                     <p>
-                    {{ $form->radio('attenddinner','IDR Account','IDR',true) }}<br /><br />
+                    {{ $form->radio('transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true) }}<br /><br />
                     BCA - Mangga Dua Branch<br/>
                     Acc. No. : 335.302.7677<br/>
                     Acc. Name : PT Dyandra Promosindo<br/>
@@ -61,7 +69,7 @@
 
                   <div class="six columns mobile-six">
                     <p>
-                    {{ $form->radio('attenddinner','USD Account','USD') }}<br /><br />
+                    {{ $form->radio('transferto','USD Account','BCA - Wisma Nusantara Branch (USD Account)') }}<br /><br />
                     BCA - Wisma Nusantara Branch<br/>
                     Acc. No. : 734.038.5700<br/>
                     Acc. Name : PT Dyandra Promosindo<br/>

@@ -80,7 +80,7 @@
                 </div>
         </fieldset>
         <fieldset>
-            <legend>Will attend the Industrial Dinner on 16 May 2012</legend>
+            <legend>Will attend the Industrial Dinner on 16 May 2013</legend>
 
                 <div class="row-fluid">
                     <div class="span2">
@@ -88,6 +88,20 @@
                     </div>   
                     <div class="span2">
                       {{ $form->radio('attenddinner','No','No') }} 
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+
+        </fieldset>        
+        <fieldset>
+            <legend>Golf Tournament on 12 May 2013</legend>
+
+                <div class="row-fluid">
+                    <div class="span2">
+                      {{ $form->radio('golf','Yes','Yes') }} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('golf','No','No') }} 
                     </div>   
                     <div class="span8"></div>
                 </div>

@@ -59,9 +59,24 @@ class Register_Controller extends Base_Controller {
 		//print_r(Session::get('permission'));
 
 	    $rules = array(
+	    	'firstname' => 'required',
+	    	'lastname' => 'required',
+	    	'position' => 'required',
 	        'email' => 'required|email|unique:attendee',
 	        'pass' => 'required|same:repass',
-	        'repass'=> 'required'
+	        'repass'=> 'required',
+	        'company' => 'required',
+	        'companyphone' => 'required',
+	        'address' => 'required',
+	        'city' => 'required',
+	        'zip' => 'required',
+	        'country' => 'required',
+	        'companyInvoice' => 'required',
+	        'companyphoneInvoice' => 'required',
+	        'addressInvoice' => 'required',
+	        'cityInvoice' => 'required',
+	        'zipInvoice' => 'required',
+	        'countryInvoice' => 'required'
 	    );
 
 	    $validation = Validator::make($input = Input::all(), $rules);
@@ -199,14 +214,14 @@ class Register_Controller extends Base_Controller {
 
 				$body = View::make('email.regpayment')->with('data',$data)->render();
 
-				Message::to($data['email'])
-				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				Message::to(Config::get('eventreg.reg_finance_email'))
+				    ->from($data['participantEmailConfirm'], $data['participantNameConfirm'])
 				    ->subject('Processed payment confirmation')
 				    ->body( $body )
 				    ->html(true)
 				    ->send();
 				    
-		    	return Redirect::to('register-success')->with('notify_success',Config::get('site.register_success'));
+		    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.register_success'));
 			}else{
 		    	return Redirect::to('register')->with('notify_success',Config::get('site.register_failed'));
 			}

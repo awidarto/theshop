@@ -9,7 +9,8 @@
 {{$form->open('myprofile/edit','POST',array('class'=>'custom'))}}
 
     {{ $form->hidden('id',$user['_id'])}}
-    {{ $form->hidden('registrationnumber',$user['registrationnumber'])}}
+    {{ $form->hidden('id',$user['_id'])}}
+    {{ $form->hidden('regtype',$user['regtype'])}}
 
 <div class="row">
     <div class="twelve columns">
@@ -104,7 +105,7 @@
 
         </fieldset>
 
-        <fieldset>
+        <!--<fieldset>
             <legend>Registration Type</legend>
                 <div class="row">
                     <div class="four columns">
@@ -145,7 +146,7 @@
                     </div>   
                     <div class="four columns"></div>
                 </div>
-        </fieldset>
+        </fieldset>-->
 
               <h4>The registration fee includes:</h4>
               <p>Admission to all Plenary and Technical sessions, Conference Kits, entrance to exhibition area, Opening Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Closing Ceremony.</p>

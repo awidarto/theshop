@@ -49,6 +49,20 @@
 						<span style="color: #BC1C4B;">{{ $profile['paymentStatus'] }}</span>
 					</td>
 				</tr>
+				<tr>
+					<td class="detail-title">Industri Dinner RSVP</td>
+					<td>:&nbsp;</td>
+					<td class="detail-info">
+						<span>{{ $profile['attenddinner'] }}</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="detail-title">Golf Tournament</td>
+					<td>:&nbsp;</td>
+					<td class="detail-info">
+						<span>{{ $profile['golf'] }}</span>
+					</td>
+				</tr>
 				<!--<tr>
 					<td class="detail-title">Industrial Dinner RSVP</td>
 					<td>: </td>
@@ -94,6 +108,47 @@
 						$countries = Config::get('country.countries');
 					?>
 					<td class="detail-info">{{ $countries[$profile['country']]  }}</td>
+				</tr>
+
+				<tr><td colspan="3"><h4>Invoice Address</h4></td></tr>
+
+				<tr>
+					<td class="detail-title">Company Name</td>
+					<td>:&nbsp;</td>
+					<td class="detail-info">{{ $profile['companyInvoice'] }}</td>
+				</tr>
+
+				<tr>
+					<td class="detail-title">Company NPWP</td>
+					<td>:&nbsp;</td>
+					<td class="detail-info">{{ $profile['npwpInvoice'] }}</td>
+				</tr>
+
+				<tr>
+					<td class="detail-title">Company Phone</td>
+					<td>:&nbsp;</td>
+					<td class="detail-info">{{ $profile['companyphoneInvoice'] }}</td>
+				</tr>
+
+				<tr>
+					<td class="detail-title">Company Fax</td>
+					<td>:&nbsp;</td>
+					<td class="detail-info">{{ $profile['companyfaxInvoice'] }}</td>
+				</tr>
+
+				<tr>
+					<td class="detail-title">Company Address</td>
+					<td style="vertical-align:top">:&nbsp;</td>
+					<td class="detail-info">{{ $profile['addressInvoice'].' '.$profile['cityInvoice'].' '.$profile['zipInvoice'] }}</td>
+				</tr>
+
+				<tr>
+					<td class="detail-title">Country</td>
+					<td>:</td>
+					<?php
+						$countries = Config::get('country.countries');
+					?>
+					<td class="detail-info">{{ $countries[$profile['countryInvoice']]  }}</td>
 				</tr>
 				
 				

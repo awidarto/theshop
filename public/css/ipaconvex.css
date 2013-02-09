@@ -2,7 +2,7 @@ body{
   font-family: Tahoma;
 }
 form{
-  font-size: 13px;
+  font-size: 12px;
 }
 td {text-align: left; font-family: Tahoma; font-size:11px; color:#666666;}
 a {text-decoration: none; color: inherit;}
@@ -86,7 +86,7 @@ fieldset legend {
   width: auto;
   max-width: none;
   min-width: 0;
- 
+ position: relative;
  display: block;
 }
 .column, .columns {
@@ -301,7 +301,21 @@ h5.headIpaSite{
   background-color: #8d0002;
 }
 
+form .row-fluid span.error{
+  color: #b94a48;
+  text-align: right;
+  margin-bottom: 20px;
+  display: block;
+  width: 90%;
+  margin-top: -8px;
+}
+
 form.custom span.custom.checkbox.checked:before {
 content: "√";
 color: #222222;
+}
+
+.labelInline{
+  width: 150px;
+  display: inline-block;
 }

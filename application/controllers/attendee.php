@@ -287,6 +287,16 @@ class Attendee_Controller extends Base_Controller {
 			if($user->update(array('_id'=>$id),array('$set'=>array('paymentStatus'=>$paystatus)))){
 				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'OK'));
 				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
+				//mail to registrant about payment updated
+
+				/*$body = View::make('email.confpayment')->with('data',$data)->render();
+
+				Message::to($data['email'])
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+				    ->body( $body )
+				    ->html(true)
+				    ->send();*/
 			}else{
 				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'FAILED'));
 				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				

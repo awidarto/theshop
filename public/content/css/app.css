@@ -261,7 +261,7 @@ span.activity-list[rel="tooltip"]{
 .inputInline .row-fluid:first{
 	width:70%;
 }
-.inputInline #city{
+.inputInline #city,.inputInline #cityInv{
 	width: 340px;
 }
 .inputInline #zip{
