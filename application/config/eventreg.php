@@ -23,6 +23,8 @@ return array(
 		'galadinner'=>1,
 		'reg_admin_email'=>'register@ipaconvex.com',
 		'reg_admin_name'=>'37th IPA Convex Register',
+
+		'reg_finance_name'=>'37th IPA Convex Finance',
 		'reg_finance_email'=>'taufiq.ridha@gmail.com',
 		
 		'paystatus'=>array(

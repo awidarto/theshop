@@ -174,31 +174,16 @@ class Register_Controller extends Base_Controller {
 					->with('form',$form)
 					->with('user',$attendee)
 					->with('crumb',$this->crumb)
-					->with('title','Payment Confirmation');
+					->with('title','Convention Payment Confirmation');
 
 	}
 
 	public function post_payment(){
-/*<<<<<<< HEAD
-/*<<<<<<< HEAD
+
 		$data = Input::get();
 
-		$body = View::make('email.confirmsubmitted')->with('data',$data)->render();
-
-		Message::to(Config::get('eventreg.reg_finance_email'))
-		    ->from($data['participantEmailConfirm'], $data['participantNameConfirm'])
-		    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Payment Confirmation – '.$data['registNumberConfirm'].' Submitted)')
-		    ->body( $body )
-		    ->html(true)
-		    ->send();
-		    
-    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.paymentsubmitted'));
-=======*/
-/*=======
->>>>>>> 79933e24475a430a913dbce7493b59d17cf2a635*/
-
 	    $rules = array(
-	        'email' => 'required|email|unique:attendee',
+	        //'email' => 'required|email|unique:attendee',
 	    );
 
 	    $validation = Validator::make($input = Input::all(), $rules);
@@ -211,10 +196,11 @@ class Register_Controller extends Base_Controller {
 
 			$data = Input::get();
 
-			$data['pass'] = Hash::make($data['pass']);
-
 			unset($data['repass']);
 			unset($data['csrf_token']);
+
+			$data['transferdate'] = new MongoDate(strtotime($data['transferdate']." 00:00:00"));
+
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
 
@@ -224,28 +210,35 @@ class Register_Controller extends Base_Controller {
 
 				$attendee = new Attendee();
 
-				//$attendee->update(array('_id'=>$_id),'$set'=>array(array('confirmation'=>'pending')));
+				$id = Auth::attendee()->id;
 
-				$body = View::make('email.regpayment')->with('data',$data)->render();
+				$_id = new MongoId($id);
 
-				Message::to(Config::get('eventreg.reg_finance_email'))
-				    ->from($data['participantEmailConfirm'], $data['participantNameConfirm'])
+				$attendee->update(array('_id'=>$_id),array('$set'=>array(array('paymentStatus'=>'pending'))));
+
+				$userdata = $attendee->get(array('_id'=>$_id));
+
+				$userdata = array_merge($userdata,$data);
+
+				$userdata['transferdate'] = date('d-m-Y',$userdata['transferdate']->sec);
+
+				$body = View::make('email.regpayment')->with('data',$userdata)->render();
+
+				
+				Message::to($userdata['email'])
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
 				    ->subject('Processed payment confirmation')
 				    ->body( $body )
 				    ->html(true)
 				    ->send();
-				    
-		    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.register_success'));
+				  
+		    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.payment_success'));
 			}else{
-		    	return Redirect::to('register')->with('notify_success',Config::get('site.register_failed'));
+		    	return Redirect::to('register')->with('notify_success',Config::get('site.payment_failed'));
 			}
 		}
 
-/*<<<<<<< HEAD
-
-/*>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb
-=======
->>>>>>> 79933e24475a430a913dbce7493b59d17cf2a635*/
 	}
 
 	public function get_success(){

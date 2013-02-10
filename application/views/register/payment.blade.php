@@ -52,7 +52,7 @@
 
         <fieldset>
             <legend>Convention Payment Information</legend>
-                {{ $form->text('transferdate','Date Transferred.req','',array('class'=>'text','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
+                {{ $form->text('transferdate','Date Transferred.req','',array('class'=>'text date','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
                 {{ $form->text('totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
 
                 <h4>Transfer To</h4>
@@ -89,47 +89,7 @@
                     </div>
                 </div>
         </fieldset>
-      @if($user['golf'] == 'Yes')
-        <fieldset>
-            <legend>Golf Tournament Payment Information</legend>
-                {{ $form->text('golftransferdate','Date Transferred.req','',array('class'=>'text','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
-                {{ $form->text('golftotalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
 
-                <h4>Transfer To</h4>
-                <span><strong>Bank Transfer</strong></span>
-                <div class="row">
-                  <div class="six columns mobile-six">
-                    <p>
-                    {{ $form->radio('golftransferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true) }}<br /><br />
-                    BCA - Mangga Dua Branch<br/>
-                    Acc. No. : 335.302.7677<br/>
-                    Acc. Name : PT Dyandra Promosindo<br/>
-                    </p>
-                  </div>
-
-                  <div class="six columns mobile-six">
-                    <p>
-                    {{ $form->radio('golftransferto','USD Account','BCA - Wisma Nusantara Branch (USD Account)') }}<br /><br />
-                    BCA - Wisma Nusantara Branch<br/>
-                    Acc. No. : 734.038.5700<br/>
-                    Acc. Name : PT Dyandra Promosindo<br/>
-                    Swiftcode : CENAIDJA
-                    </p>
-                  </div>
-                </div>
-
-
-                {{ $form->text('golffromaccountname','Account Name.req','',array('class'=>'text','id'=>'companyphone')) }}
-                <div class="row">
-                    <div class="three columns">
-                        {{ $form->text('golffromaccnumber','','',array('class'=>'text','id'=>'zip','placeholder'=>'Account number')) }}
-                    </div>
-                    <div class="seven columns right">
-                        {{ $form->text('golffrombank','','',array('class'=>'text','id'=>'city','placeholder'=>'Bank Name')) }}
-                    </div>
-                </div>
-        </fieldset>
-      @endif
         <fieldset>
             <legend>Important Notes</legend>
 

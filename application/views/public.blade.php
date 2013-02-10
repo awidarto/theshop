@@ -10,6 +10,8 @@
   {{ HTML::style('css/foundation-form.css') }}
   {{ HTML::style('css/ipaconvex.css') }}
   {{ HTML::style('css/select2.css') }}
+  {{ HTML::style('css/flick/jquery-ui-1.9.2.custom.min.css') }}
+
   <link rel="stylesheet" type="text/css" media="screen" href="http://www.ipaconvex.com/css/cycle_index.css">
   <link rel="stylesheet" type="text/css" href="http://www.ipaconvex.com/css/navbar.css" />
 
@@ -23,6 +25,8 @@
   <link rel="stylesheet" href="http://www.ipaconvex.com//fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="all" />
     
   {{ HTML::script('js/jquery-1.8.3.min.js') }}
+  {{ HTML::script('js/jquery-ui-1.9.2.custom.min.js') }}
+
   {{ HTML::script('js/select2.min.js') }}
   <script src="http://www.ipaconvex.com/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
   <script type="text/javascript" src="http://www.ipaconvex.com/css/jquery.cycle.all.js"></script>
@@ -341,6 +345,7 @@
     </p>
   {{ HTML::script('js/jquery.foundation.forms.js') }}
   {{ HTML::script('js/jquery.tagsinput.min.js') }}
+  {{ HTML::script('js/pnu.js') }}
   
   <script type="text/javascript">
   $(document).ready(function(){ 
