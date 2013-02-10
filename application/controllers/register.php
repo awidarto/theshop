@@ -233,7 +233,7 @@ class Register_Controller extends Base_Controller {
 				Message::to($userdata['email'])
 				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 				    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
-				    ->subject('Convention Payment Confirmation Submitted')
+				    ->subject(ucfirst($type).' Payment Confirmation Submitted')
 				    ->body( $body )
 				    ->html(true)
 				    ->send();
