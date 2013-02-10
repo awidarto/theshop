@@ -67,6 +67,9 @@
     <div class="row-fluid">
        <div class="span12">
 
+{{$form->open('import/commit/'.$importid,'POST',array('class'=>'custom'))}}
+
+
           <table class="table table-condensed dataTable attendeeTable">
 
 			    <thead>
@@ -92,20 +95,12 @@
 
 			    </thead>
 
-				<?php
-					$form = new Formly();
-				?>
-
 		    	@if($searchinput)
 				    <thead id="searchinput">
 					    <tr>
 				    	@foreach($searchinput as $in)
 				    		@if($in)
-				    			@if($in == 'select_all')
-				    				<td>{{ $form->checkbox('select_all','','',false,array('id'=>'select_all')) }}</td>
-				    			@else
-					        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
-				    			@endif
+				        		<td>{{ $in }}</td>
 				    		@else
 				        		<td>&nbsp;</td>
 				    		@endif
@@ -134,6 +129,8 @@
 			    @endif
 			-->
           </table>
+
+{{$form->close()}}
 
        </div>
     </div>
