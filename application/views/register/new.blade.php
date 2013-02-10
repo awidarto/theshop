@@ -196,6 +196,8 @@
 
         </fieldset>
 
+      @if($golfcount < Config::get('eventreg.golfquota'))
+
         <fieldset id="golfEvent">
           <legend>Golf Tournament</legend>
             
@@ -209,6 +211,7 @@
                     <br/>
                     <br/>
                 </div>   
+
                 <div class="three columns">
                   {{ $form->radio('golf','Yes','Yes',false,array('class'=>'field_golfType golfYes')) }} 
                 </div>
@@ -217,11 +220,10 @@
                 </div>   
                 
             </div>
-
-            
-            
-
         </fieldset>
+
+      @endif
+
 
         <fieldset>
 

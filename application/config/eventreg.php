@@ -31,6 +31,8 @@ return array(
 			'cancel'=>'Cancel'
 		),
 
+		'golfquota'=>100
+
 	);
 
 

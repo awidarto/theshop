@@ -46,9 +46,14 @@ class Register_Controller extends Base_Controller {
 
 		$form = new Formly();
 		$form->framework = 'zurb';
+
+		$attendee = new Attendee();
+
+		$golfcount = $attendee->count(array('golf'=>'Yes'));
 		
 		return View::make('register.new')
 					->with('form',$form)
+					->with('golfcount',$golfcount)
 					->with('crumb',$this->crumb)
 					->with('title','Convention Registration');
 
@@ -111,6 +116,14 @@ class Register_Controller extends Base_Controller {
 			$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 
 			$data['registrationnumber'] = implode('-',$reg_number);
+
+			$data['golfSequence'] = 0;
+
+			if($data['golf'] == 'Yes'){
+				$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+				$data['golfSequence'] = $gseq['seq'];
+			}
+
 
 			$user = new Attendee();
 
