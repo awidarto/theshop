@@ -332,6 +332,7 @@ class Register_Controller extends Base_Controller {
 
 				Message::to($data['email'])
 				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 				    ->subject('Password Reset - Indonesia Petroleum Association – 37th Convention & Exhibition)')
 				    ->body( $body )
 				    ->html(true)
