@@ -101,7 +101,7 @@ class Register_Controller extends Base_Controller {
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
 			$data['role'] = 'attendee';
-			$data['paymentStatus'] = 'unpaid';
+			$data['conventionPaymentStatus'] = 'unpaid';
 			$data['golfPaymentStatus'] = 'unpaid';
 			$data['confirmation'] = 'none';
 
@@ -149,14 +149,13 @@ class Register_Controller extends Base_Controller {
 		
 	}
 
-	public function get_payment(){
+	public function get_payment($type){
 
 		if(!Auth::attendee()){
 			return Redirect::to('/');
 		}
 
-
-		$this->crumb->add('register/payment','Payment Confirmation');
+		$this->crumb->add('register/payment/'.$type,ucfirst($type).' Payment Confirmation');
 
 		$att = new Attendee();
 
@@ -172,14 +171,14 @@ class Register_Controller extends Base_Controller {
 
 		return View::make('register.payment')
 					->with('form',$form)
+					->with('type',$type)
 					->with('user',$attendee)
 					->with('crumb',$this->crumb)
-					->with('type','convention')
-					->with('title','Convention Payment Confirmation');
+					->with('title',ucfirst($type).' Payment Confirmation');
 
 	}
 
-	public function post_payment(){
+	public function post_payment($type = 'convention'){
 
 		$data = Input::get();
 
@@ -187,11 +186,13 @@ class Register_Controller extends Base_Controller {
 	        //'email' => 'required|email|unique:attendee',
 	    );
 
+	    $type = $data['type'];
+
 	    $validation = Validator::make($input = Input::all(), $rules);
 
 	    if($validation->fails()){
 
-	    	return Redirect::to('payment')->with_errors($validation)->with_input(Input::all());
+	    	return Redirect::to('payment/'.$type)->with_errors($validation)->with_input(Input::all());
 
 	    }else{
 
@@ -200,7 +201,7 @@ class Register_Controller extends Base_Controller {
 			unset($data['repass']);
 			unset($data['csrf_token']);
 
-			$data['transferdate'] = new MongoDate(strtotime($data['transferdate']." 00:00:00"));
+			$data[$type.'transferdate'] = new MongoDate(strtotime($data[$type.'transferdate']." 00:00:00"));
 
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
@@ -215,17 +216,17 @@ class Register_Controller extends Base_Controller {
 
 				$_id = new MongoId($id);
 
-				$attendee->update(array('_id'=>$_id),array('$set'=>array('paymentStatus'=>'pending')));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array($type.'PaymentStatus'=>'pending')));
 
 				$userdata = $attendee->get(array('_id'=>$_id));
 
 				$userdata = array_merge($userdata,$data);
 
-				$userdata['transferdate'] = date('d-m-Y',$userdata['transferdate']->sec);
+				$userdata[$type.'transferdate'] = date('d-m-Y',$userdata[$type.'transferdate']->sec);
 
 				$body = View::make('email.regpayment')
+					->with('type',$type)
 					->with('data',$userdata)
-					->with('type','convention')
 					->render();
 
 				
@@ -294,10 +295,12 @@ class Register_Controller extends Base_Controller {
 
 			$data = Input::get();
 
-			unset($data['repass']);
+			
 			unset($data['csrf_token']);
 
-			$data['transferdate'] = new MongoDate(strtotime($data['transferdate']." 00:00:00"));
+			$data['golftransferdate'] = new MongoDate(strtotime($data['transferdate']." 00:00:00"));
+
+			unset($data['transferdate']);
 
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
@@ -312,13 +315,13 @@ class Register_Controller extends Base_Controller {
 
 				$_id = new MongoId($id);
 
-				$attendee->update(array('_id'=>$_id),array('$set'=>array(array('paymentStatus'=>'pending'))));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array(array('golfPaymentStatus'=>'pending'))));
 
 				$userdata = $attendee->get(array('_id'=>$_id));
 
 				$userdata = array_merge($userdata,$data);
 
-				$userdata['transferdate'] = date('d-m-Y',$userdata['transferdate']->sec);
+				$userdata['golftransferdate'] = date('d-m-Y',$userdata['golftransferdate']->sec);
 
 				$body = View::make('email.regpayment')
 					->with('data',$userdata)

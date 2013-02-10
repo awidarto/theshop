@@ -5,14 +5,11 @@
 <div class="tableHeader">
 <h3>{{$title}}</h3>
 </div>
-@if ($type == 'golf')
-{{$form->open('payment/golf','POST',array('class'=>'custom'))}}
-@else
-{{$form->open('payment','POST',array('class'=>'custom'))}}
-@endif
 
+{{$form->open('payment/'.$type,'POST',array('class'=>'custom'))}}
 
     {{ $form->hidden('id',$user['_id'])}}
+    {{ $form->hidden('type',$type)}}
     {{ $form->hidden('registrationnumber',$user['registrationnumber'])}}
 
 <div class="row">
@@ -96,15 +93,15 @@
             @else
               <legend>Convention Payment Information</legend>
             @endif
-                {{ $form->text('transferdate','Date Transferred.req','',array('class'=>'text date','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
-                {{ $form->text('totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
+                {{ $form->text($type.'transferdate','Date Transferred.req','',array('class'=>'text date','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
+                {{ $form->text($type.'totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
 
                 <h4>Transfer To</h4>
                 <span><strong>Bank Transfer</strong></span>
                 <div class="row">
                   <div class="six columns mobile-six">
                     <p>
-                    {{ $form->radio('transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true) }}<br /><br />
+                    {{ $form->radio($type.'transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true) }}<br /><br />
                     BCA - Mangga Dua Branch<br/>
                     Acc. No. : 335.302.7677<br/>
                     Acc. Name : PT Dyandra Promosindo<br/>
@@ -113,7 +110,7 @@
 
                   <div class="six columns mobile-six">
                     <p>
-                    {{ $form->radio('transferto','USD Account','BCA - Wisma Nusantara Branch (USD Account)') }}<br /><br />
+                    {{ $form->radio($type.'transferto','USD Account','BCA - Wisma Nusantara Branch (USD Account)') }}<br /><br />
                     BCA - Wisma Nusantara Branch<br/>
                     Acc. No. : 734.038.5700<br/>
                     Acc. Name : PT Dyandra Promosindo<br/>
@@ -123,13 +120,13 @@
                 </div>
 
 
-                {{ $form->text('fromaccountname','Account Name.req','',array('class'=>'text','id'=>'companyphone')) }}
+                {{ $form->text($type.'fromaccountname','Account Name.req','',array('class'=>'text','id'=>'companyphone')) }}
                 <div class="row">
                     <div class="three columns">
-                        {{ $form->text('fromaccnumber','','',array('class'=>'text','id'=>'zip','placeholder'=>'Account number')) }}
+                        {{ $form->text($type.'fromaccnumber','','',array('class'=>'text','id'=>'zip','placeholder'=>'Account number')) }}
                     </div>
                     <div class="seven columns right">
-                        {{ $form->text('frombank','','',array('class'=>'text','id'=>'city','placeholder'=>'Bank Name')) }}
+                        {{ $form->text($type.'frombank','','',array('class'=>'text','id'=>'city','placeholder'=>'Bank Name')) }}
                     </div>
                 </div>
         </fieldset>

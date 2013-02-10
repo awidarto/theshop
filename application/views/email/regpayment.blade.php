@@ -21,11 +21,12 @@ Please find below summary of your confirmation:</p>
 	<p><strong><u>GOLF PAYMENT INFORMATION</u></strong></p>
 @endif
 
+
 <p>
-	Date Transfered    : {{ $data['transferdate'] }}<br/>
-	Total Payment      : {{ $data['totalpayment'] }}<br/>
-	Payment tranfer to : {{ $data['transferto'] }}<br/>
-	Payment from       : {{ $data['fromaccountname'] }} - {{ $data['fromaccnumber'] }} - {{ $data['frombank'] }}<br/>
+	Date Transfered    : {{ $data[$type.'transferdate'] }}<br/>
+	Total Payment      : {{ $data[$type.'totalpayment'] }}<br/>
+	Payment tranfer to : {{ $data[$type.'transferto'] }}<br/>
+	Payment from       : {{ $data[$type.'fromaccountname'] }} - {{ $data[$type.'fromaccnumber'] }} - {{ $data[$type.'frombank'] }}<br/>
 </p>
 
 <p><strong><u>IMPORTANT NOTES</u></strong></p>
