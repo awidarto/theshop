@@ -120,7 +120,7 @@ class Register_Controller extends Base_Controller {
 			$data['golfSequence'] = 0;
 
 			if($data['golf'] == 'Yes'){
-				$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+				$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
 				$data['golfSequence'] = $gseq['seq'];
 			}
 

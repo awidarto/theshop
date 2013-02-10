@@ -370,6 +370,16 @@ class Attendee_Controller extends Base_Controller {
 
 			$data['registrationnumber'] = implode('-',$reg_number);
 
+
+			//golf sequencer
+			$data['golfSequence'] = 0;
+
+			if($data['golf'] == 'Yes'){
+				$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
+				$data['golfSequence'] = $gseq['seq'];
+			}
+
+
 			$user = new Attendee();
 
 			if($user->insert($data)){
@@ -456,6 +466,13 @@ class Attendee_Controller extends Base_Controller {
 				$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 			}
 
+			//golf sequencer
+			$data['golfSequence'] = 0;
+
+			if($data['golf'] == 'Yes'){
+				$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
+				$data['golfSequence'] = $gseq['seq'];
+			}
 
 			$data['registrationnumber'] = implode('-',$reg_number);
 			
