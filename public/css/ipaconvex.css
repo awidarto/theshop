@@ -10,6 +10,7 @@ a:hover{
 td {text-align: left; font-family: Tahoma; font-size:11px; color:#666666;}
 a {text-decoration: none; color: inherit;}
 a:hover {text-decoration: inherit; font-weight: normal; color:#A70405;}
+.blink a:hover {font-weight: bold;}
 a:visited {text-decoration: inherit;}
 a img {border:none;}
 body  {background-color: black; margin:20px 0 0;padding:0}
@@ -321,4 +322,13 @@ color: #222222;
 .labelInline{
   width: 150px;
   display: inline-block;
+}
+
+.alert-error{
+  padding: 15px;
+  background-color: #b60002;
+  width: 70%;
+  display: block;
+  margin-bottom: 15px;
+  color: #fff;
 }

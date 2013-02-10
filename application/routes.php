@@ -141,7 +141,7 @@ Route::post('attendee/login', function()
     else
     {
         // auth failure! lets go back to the login
-        return Redirect::to('/')
+        return Redirect::to('register/login')
             ->with('login_errors', true);
         // pass any error notification you want
         // i like to do it this way  

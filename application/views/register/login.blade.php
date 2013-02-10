@@ -7,7 +7,6 @@
     <!-- check for login errors flash var -->
     @if (Session::has('login_errors'))
         <div class="alert alert-error">
-             <button type="button" class="close" data-dismiss="alert"></button>
              Email or password incorrect.
         </div>
     @endif
@@ -19,7 +18,10 @@
     {{ Form::password('password') }}
     <!-- submit button -->
     {{ Form::submit('Login',array('class' => 'button')) }}
+    &nbsp;&nbsp;&nbsp;<img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('reset','Forgot your password ? ',array('class'=>'backtohome'))}}
     {{ Form::close() }}
+
+
 
     
 </div>

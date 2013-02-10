@@ -46,7 +46,7 @@
 					<td class="detail-title">Status</td>
 					<td>:&nbsp;</td>
 					<td class="detail-info">
-						<span style="color: #BC1C4B;">{{ $profile['paymentStatus'] }}</span>
+						<span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['paymentStatus'] }}</span>
 					</td>
 				</tr>
 				<tr>
@@ -74,7 +74,7 @@
 					<td class="detail-title">Golf Tournament</td>
 					<td>:&nbsp;</td>
 					<td class="detail-info">
-						<span>{{ $profile['golf'] }}</span>
+						<span>{{ $profile['golf'] }} - <span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['golfPaymentStatus'] }}</span></span>
 					</td>
 				</tr>
 				<!--<tr>

@@ -6,6 +6,18 @@
 <h3>{{$title}}</h3>
 </div>
 
+@if(($user['golfPaymentStatus'] == 'pending') && ($type == 'golf'))
+<div class="alert alert-error">
+     You already confirmed
+</div>
+@endif
+
+@if(($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention'))
+<div class="alert alert-error">
+     You already confirmed
+</div>
+@endif
+
 {{$form->open('payment/'.$type,'POST',array('class'=>'custom'))}}
 
     {{ $form->hidden('id',$user['_id'])}}
@@ -93,15 +105,32 @@
             @else
               <legend>Convention Payment Information</legend>
             @endif
-                {{ $form->text($type.'transferdate','Date Transferred.req','',array('class'=>'text date','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
-                {{ $form->text($type.'totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
+                @if( (($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending') && ($type == 'golf')) )
+                  {{ $form->text($type.'transferdate','Date Transferred.req','',array('class'=>'text date','id'=>'transferdate','placeholder'=>'yyyy/mm/dd','disabled')) }}
+                @else
+                  {{ $form->text($type.'transferdate','Date Transferred.req','',array('class'=>'text date','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
+                @endif
+
+                @if( (($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending') && ($type == 'golf')) )
+                  {{ $form->text($type.'totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment','disabled')) }}
+                @else
+                  {{ $form->text($type.'totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
+                @endif
+
+
 
                 <h4>Transfer To</h4>
                 <span><strong>Bank Transfer</strong></span>
                 <div class="row">
                   <div class="six columns mobile-six">
                     <p>
-                    {{ $form->radio($type.'transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true) }}<br /><br />
+                    @if( (($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending') && ($type == 'golf')) )
+                      {{ $form->radio($type.'transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true,array('disabled')) }}<br /><br />
+                    @else
+                      {{ $form->radio($type.'transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true) }}<br /><br />
+                    @endif
+
+
                     BCA - Mangga Dua Branch<br/>
                     Acc. No. : 335.302.7677<br/>
                     Acc. Name : PT Dyandra Promosindo<br/>
@@ -110,7 +139,13 @@
 
                   <div class="six columns mobile-six">
                     <p>
-                    {{ $form->radio($type.'transferto','USD Account','BCA - Wisma Nusantara Branch (USD Account)') }}<br /><br />
+                    @if( (($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending') && ($type == 'golf')) )
+                      {{ $form->radio($type.'transferto','USD Account','BCA - Wisma Nusantara Branch (USD Account)',false,array('disabled')) }}<br /><br />
+                    @else
+                      {{ $form->radio($type.'transferto','USD Account','BCA - Wisma Nusantara Branch (USD Account)') }}<br /><br />
+                    @endif
+
+
                     BCA - Wisma Nusantara Branch<br/>
                     Acc. No. : 734.038.5700<br/>
                     Acc. Name : PT Dyandra Promosindo<br/>
@@ -119,14 +154,27 @@
                   </div>
                 </div>
 
+                @if( (($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending') && ($type == 'golf')) )
+                  {{ $form->text($type.'fromaccountname','Account Name.req','',array('class'=>'text','id'=>'companyphone','disabled')) }}
+                @else
+                  {{ $form->text($type.'fromaccountname','Account Name.req','',array('class'=>'text','id'=>'companyphone')) }}
+                @endif
 
-                {{ $form->text($type.'fromaccountname','Account Name.req','',array('class'=>'text','id'=>'companyphone')) }}
+
                 <div class="row">
                     <div class="three columns">
+                      @if( (($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending') && ($type == 'golf')) )
+                        {{ $form->text($type.'fromaccnumber','','',array('class'=>'text','id'=>'zip','placeholder'=>'Account number','disabled')) }}
+                      @else
                         {{ $form->text($type.'fromaccnumber','','',array('class'=>'text','id'=>'zip','placeholder'=>'Account number')) }}
+                      @endif
                     </div>
                     <div class="seven columns right">
+                      @if( (($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending') && ($type == 'golf')) )
+                        {{ $form->text($type.'frombank','','',array('class'=>'text','id'=>'city','placeholder'=>'Bank Name','disabled')) }}
+                      @else
                         {{ $form->text($type.'frombank','','',array('class'=>'text','id'=>'city','placeholder'=>'Bank Name')) }}
+                      @endif
                     </div>
                 </div>
         </fieldset>
@@ -152,8 +200,15 @@
 <hr />
 
 <div class="row right">
-{{ Form::submit('Submit',array('class'=>'button'))}}&nbsp;&nbsp;
-{{ Form::reset('Reset',array('class'=>'button'))}}
+@if( (($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending') && ($type == 'golf')) )
+  {{ Form::submit('Submit',array('class'=>'button','disabled'))}}&nbsp;&nbsp;
+  {{ Form::reset('Reset',array('class'=>'button','disabled'))}}
+@else
+  {{ Form::submit('Submit',array('class'=>'button'))}}&nbsp;&nbsp;
+  {{ Form::reset('Reset',array('class'=>'button'))}}
+@endif
+
+
 </div>
 {{$form->close()}}
 
