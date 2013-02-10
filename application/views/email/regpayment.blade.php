@@ -11,36 +11,15 @@
 <strong>Registration Number : {{ $data['registrationnumber'] }}</strong></p>
 
 <p>Dear Sir/Madam,
-Thank you for your confirmation payment in 37th IPA Convention & Exhibition. </br>
-We have received your payment confirmation and will process it shortly. </br>
-Please find below summary of your registration:</p>
+Thank you for your payment confirmation in 37th IPA Convention & Exhibition. </br>
+We have received your request and will process it shortly. </br>
+Please find below summary of your confirmation:</p>
 
-<p><strong><u>CONVENTION REGISTRATION</u></strong></p>
-
-<p>Type of registration fee 
-	@if($data['regtype'] == 'PO')
-		(Professional / Delegate Overseas)
-	@elseif($data['regtype'] == 'PD')
-		(Professional / Delegate Domestic)
-	@elseif($data['regtype'] == 'SD')
-		(Student Domestic)
-	@elseif($data['regtype'] == 'SO')
-		(Student Overseas)
-	@endif : 
-	@if($data['regtype'] == 'PO')
-		USD 500
-	@elseif($data['regtype'] == 'PD')
-		IDR 4.500.000,-
-	@elseif($data['regtype'] == 'SD')
-		IDR 400.000,-
-	@elseif($data['regtype'] == 'SO')
-		USD 120
-	@endif
-<br/>
-Attend on Industrial Dinner (16 May 2013): {{ $data['attenddinner'] }}
-</p>
-
-<p><strong><u>PAYMENT INFORMATION</u></strong></p>
+@if ($type == 'convention')
+	<p><strong><u>CONVENTION PAYMENT INFORMATION</u></strong></p>
+@else
+	<p><strong><u>GOLF PAYMENT INFORMATION</u></strong></p>
+@endif
 
 <p>
 	Date Transfered    : {{ $data['transferdate'] }}<br/>

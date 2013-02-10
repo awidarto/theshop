@@ -50,6 +50,20 @@
 					</td>
 				</tr>
 				<tr>
+					<td class="detail-title">Registration  Type</td>
+					<td>:&nbsp;</td>
+					@if($profile['regtype'] == 'PO')
+						<td class="detail-info">Professional / Delegate Overseas</td>
+					@elseif($profile['regtype'] == 'PD')
+						<td class="detail-info">Professional / Delegate Domestic</td>
+					@elseif($profile['regtype'] == 'SD')
+						<td class="detail-info">Student Domestic</td>
+					@elseif($profile['regtype'] == 'SO')
+						<td class="detail-info">Student Overseas</td>
+					@endif					
+					
+				</tr>
+				<tr>
 					<td class="detail-title">Industri Dinner RSVP</td>
 					<td>:&nbsp;</td>
 					<td class="detail-info">

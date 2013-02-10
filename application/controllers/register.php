@@ -174,6 +174,7 @@ class Register_Controller extends Base_Controller {
 					->with('form',$form)
 					->with('user',$attendee)
 					->with('crumb',$this->crumb)
+					->with('type','convention')
 					->with('title','Convention Payment Confirmation');
 
 	}
@@ -222,13 +223,113 @@ class Register_Controller extends Base_Controller {
 
 				$userdata['transferdate'] = date('d-m-Y',$userdata['transferdate']->sec);
 
-				$body = View::make('email.regpayment')->with('data',$userdata)->render();
+				$body = View::make('email.regpayment')
+					->with('data',$userdata)
+					->with('type','convention')
+					->render();
 
 				
 				Message::to($userdata['email'])
 				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 				    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
-				    ->subject('Processed payment confirmation')
+				    ->subject('Convention Payment Confirmation Submitted')
+				    ->body( $body )
+				    ->html(true)
+				    ->send();
+				  
+		    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.payment_success'));
+			}else{
+		    	return Redirect::to('register')->with('notify_success',Config::get('site.payment_failed'));
+			}
+		}
+
+	}
+
+
+	public function get_paymentgolf(){
+
+		if(!Auth::attendee()){
+			return Redirect::to('/');
+		}
+
+
+		$this->crumb->add('register/payment','Payment Confirmation');
+
+		$att = new Attendee();
+
+		//print_r(Auth::attendee());
+
+		$_id = new MongoId(Auth::attendee()->id);
+
+		$attendee = $att->get(array('_id'=>$_id));
+
+		$form = new Formly($attendee);
+
+		$form->framework = 'zurb';
+
+		return View::make('register.payment')
+					->with('form',$form)
+					->with('user',$attendee)
+					->with('crumb',$this->crumb)
+					->with('type','golf')
+					->with('title','Golf Payment Confirmation');
+
+	}
+
+	public function post_paymentgolf(){
+
+		$data = Input::get();
+
+	    $rules = array(
+	        //'email' => 'required|email|unique:attendee',
+	    );
+
+	    $validation = Validator::make($input = Input::all(), $rules);
+
+	    if($validation->fails()){
+
+	    	return Redirect::to('paymentgolf')->with_errors($validation)->with_input(Input::all());
+
+	    }else{
+
+			$data = Input::get();
+
+			unset($data['repass']);
+			unset($data['csrf_token']);
+
+			$data['transferdate'] = new MongoDate(strtotime($data['transferdate']." 00:00:00"));
+
+			$data['createdDate'] = new MongoDate();
+			$data['lastUpdate'] = new MongoDate();
+
+			$confirm = new Confirmation();
+
+			if($obj = $confirm->insert($data)){
+
+				$attendee = new Attendee();
+
+				$id = Auth::attendee()->id;
+
+				$_id = new MongoId($id);
+
+				$attendee->update(array('_id'=>$_id),array('$set'=>array(array('paymentStatus'=>'pending'))));
+
+				$userdata = $attendee->get(array('_id'=>$_id));
+
+				$userdata = array_merge($userdata,$data);
+
+				$userdata['transferdate'] = date('d-m-Y',$userdata['transferdate']->sec);
+
+				$body = View::make('email.regpayment')
+					->with('data',$userdata)
+					->with('type','golf')
+					->render();
+
+				
+				Message::to($userdata['email'])
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
+				    ->subject('Golf Payment Confirmation Submitted')
 				    ->body( $body )
 				    ->html(true)
 				    ->send();
@@ -261,7 +362,7 @@ class Register_Controller extends Base_Controller {
 		return View::make('register.paymentsubmitted')
 					->with('form',$form)
 					->with('crumb',$this->crumb)
-					->with('title','Thanks for you payment confirmation!');
+					->with('title','Thank you for your payment confirmation!');
 
 	}
 

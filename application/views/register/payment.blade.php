@@ -5,8 +5,12 @@
 <div class="tableHeader">
 <h3>{{$title}}</h3>
 </div>
-
+@if ($type == 'golf')
+{{$form->open('payment/golf','POST',array('class'=>'custom'))}}
+@else
 {{$form->open('payment','POST',array('class'=>'custom'))}}
+@endif
+
 
     {{ $form->hidden('id',$user['_id'])}}
     {{ $form->hidden('registrationnumber',$user['registrationnumber'])}}
@@ -50,8 +54,48 @@
 
         </fieldset>
 
+        <!--<fieldset>
+            <legend>Payment Settlement</legend>
+
+                <div class="row">
+                  <span class="labelInline">Salutation</span>
+                  <span class="">: {{ $user['salutation'] }}</span>
+                </div>
+                <div class="row">
+                  <span class="labelInline">First Name</span>
+                  <span class="">: {{ $user['firstname'] }}</span>
+                </div>
+
+                <div class="row">
+                  <span class="labelInline">Last Name</span>
+                  <span class="">: {{ $user['lastname'] }}</span>
+                </div>
+
+                <div class="row">
+                  <span class="labelInline">Position / Division</span>
+                  <span class="">: {{ $user['position'] }}</span>
+                </div>
+
+                <div class="row">
+                  <span class="labelInline">Email</span>
+                  <span class="">: {{ $user['email'] }}</span>
+                </div>
+
+                <div class="row">
+                  <span class="labelInline">Mobile Phone Number</span>
+                  <span class="">: {{ $user['mobile'] }}</span>
+                </div>
+                <br/>
+                <br/>
+
+        </fieldset>-->
+
         <fieldset>
-            <legend>Convention Payment Information</legend>
+            @if ($type == 'golf')
+              <legend>Golf Payment Information</legend>
+            @else
+              <legend>Convention Payment Information</legend>
+            @endif
                 {{ $form->text('transferdate','Date Transferred.req','',array('class'=>'text date','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
                 {{ $form->text('totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
 
@@ -90,7 +134,7 @@
                 </div>
         </fieldset>
 
-        <fieldset>
+        <!--<fieldset>
             <legend>Important Notes</legend>
 
               <h4>The registration fee includes:</h4>
@@ -103,7 +147,7 @@
                         refund will be made after the conference.</li>
               </ol>
 
-        </fieldset>
+        </fieldset>-->
 
     </div>
 </div>

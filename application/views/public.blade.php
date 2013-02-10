@@ -140,8 +140,10 @@
 
                             <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('myprofile/edit','Edit My Profile')}}</p>
 
-                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('payment','Payment Confirmation')}}</p>
-
+                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('payment','Convention Payment Confirmation')}}</p>
+                            @if(Auth::attendee()->golf == 'Yes')
+                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('payment/golf','Golf Payment Confirmation')}}</p>
+                            @endif
                             <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('logout','Logout')}}</p>
 
                             </div>
