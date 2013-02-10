@@ -57,12 +57,11 @@ Route::post('myprofile/edit',array('uses'=>'register@edit'));
 
 Route::get('myprofile',array('uses'=>'register@profile'));
 
+Route::get('payment/golf',array('uses'=>'register@paymentgolf'));
+Route::post('payment/golf',array('uses'=>'register@paymentgolf'));
 
 Route::get('payment',array('uses'=>'register@payment'));
 Route::post('payment',array('uses'=>'register@payment'));
-
-Route::get('payment/golf',array('uses'=>'register@paymentgolf'));
-Route::post('payment/golf',array('uses'=>'register@paymentgolf'));
 
 Route::get('paymentsubmitted',array('as'=>'register/paymentsubmitted','uses'=>'register@paymentsubmitted'));
 Route::get('register-success',array('as'=>'register/success','uses'=>'register@success'));
