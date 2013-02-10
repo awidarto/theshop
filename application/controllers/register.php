@@ -102,6 +102,7 @@ class Register_Controller extends Base_Controller {
 			$data['lastUpdate'] = new MongoDate();
 			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
+			$data['golfPaymentStatus'] = 'unpaid';
 			$data['confirmation'] = 'none';
 
 

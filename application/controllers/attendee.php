@@ -357,6 +357,7 @@ class Attendee_Controller extends Base_Controller {
 
 			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
+			$data['golfPaymentStatus'] = 'unpaid';
 
 			$reg_number[] = 'A';
 			$reg_number[] = $data['regtype'];
