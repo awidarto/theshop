@@ -56,16 +56,16 @@ class Attendee_Controller extends Base_Controller {
 		$btn_add_to_group = '<span class=" add_to_group" id="add_to_group">Add selected to group</span>';
 
 /*<<<<<<< HEAD*/
-		$heads = array('#',$select_all,'Reg. Number','Registered Date','First Name','Last Name','Company','Reg. Type','Country','Payment Status',$btn_add_to_group);
+		$heads = array('#',$select_all,'Reg. Number','Registered Date','Email','First Name','Last Name','Company','Reg. Type','Country','Payment Status',$btn_add_to_group);
 /*=======*/
 		
 /*>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
 
 
-		$searchinput = array(false,false,'Reg Number','Reg. Date','First Name','Last Name','Company',false,'Country',false,false);
+		$searchinput = array(false,false,'Reg Number','Reg. Date','Email','First Name','Last Name','Company',false,'Country',false,false);
 
 		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
-		$colclass = array('','span1','span3','span3','span3','span1','span1','span1','','','','','','','','');
+		$colclass = array('','span1','span3','span1','span3','span3','span1','span1','span1','','','','','','','','');
 
 		//$searchinput = false; // no searchinput form on footer
 
@@ -94,11 +94,11 @@ class Attendee_Controller extends Base_Controller {
 	{
 
 
-		$fields = array('registrationnumber','createdDate','firstname','lastname','company','regtype','country','paymentStatus');
+		$fields = array('registrationnumber','createdDate','email','firstname','lastname','company','regtype','country','paymentStatus');
 
-		$rel = array('like','like','like','like','like','like','like','like','like','like');
+		$rel = array('like','like','like','like','like','like','like','like','like','like','like');
 
-		$cond = array('both','both','both','both','both','both','both','both','both','both');
+		$cond = array('both','both','both','both','both','both','both','both','both','both','both');
 
 		$pagestart = Input::get('iDisplayStart');
 		$pagelength = Input::get('iDisplayLength');
@@ -177,6 +177,8 @@ class Attendee_Controller extends Base_Controller {
 /*<<<<<<< HEAD*/
 			if($doc['paymentStatus'] == 'unpaid'){
 				$paymentStatus = '<span class="fontRed fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
+			}elseif ($doc['paymentStatus'] == 'pending') {
+				$paymentStatus = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
 			}elseif ($doc['paymentStatus'] == 'cancel') {
 				$paymentStatus = '<span class="fontGray fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
 			
@@ -196,6 +198,7 @@ class Attendee_Controller extends Base_Controller {
 				$select,
 				(isset($doc['registrationnumber']))?$doc['registrationnumber']:'',
 				date('Y-m-d', $doc['createdDate']->sec),
+				$doc['email'],
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
 				$doc['lastname'],
 				$doc['company'],

@@ -61,6 +61,12 @@ Route::get('myprofile',array('uses'=>'register@profile'));
 Route::get('payment',array('uses'=>'register@payment'));
 Route::post('payment',array('uses'=>'register@payment'));
 
+Route::get('reset',array('uses'=>'register@reset'));
+Route::post('reset',array('uses'=>'register@reset'));
+
+Route::get('resetlanding',array('uses'=>'register@resetlanding'));
+
+
 Route::get('paymentsubmitted',array('as'=>'register/paymentsubmitted','uses'=>'register@paymentsubmitted'));
 Route::get('register-success',array('as'=>'register/success','uses'=>'register@success'));
 Route::get('register-landing',array('as'=>'register/landing','uses'=>'register@landing'));

@@ -214,7 +214,7 @@ class Register_Controller extends Base_Controller {
 
 				$_id = new MongoId($id);
 
-				$attendee->update(array('_id'=>$_id),array('$set'=>array(array('paymentStatus'=>'pending'))));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('paymentStatus'=>'pending')));
 
 				$userdata = $attendee->get(array('_id'=>$_id));
 
@@ -281,12 +281,80 @@ class Register_Controller extends Base_Controller {
 
 		$this->crumb->add('register','Register');
 
-		$form = new Formly();
 		return View::make('register.landing')
-					->with('form',$form)
 					->with('crumb',$this->crumb)
 					->with('title','');
+	}
 
+	public function get_reset(){
+
+		$this->crumb->add('register/reset','Reset Password');
+
+		$form = new Formly();
+		return View::make('register.resetpass')
+					->with('form',$form)
+					->with('crumb',$this->crumb)
+					->with('title','Reset Password Form');
+
+	}
+
+	public function post_reset(){
+
+		//print_r(Session::get('permission'));
+
+	    $rules = array(
+	        'email' => 'required|email',
+	    );
+
+	    $validation = Validator::make($input = Input::all(), $rules);
+
+	    if($validation->fails()){
+
+	    	return Redirect::to('reset')->with_errors($validation)->with_input(Input::all());
+
+	    }else{
+
+			$data = Input::get();
+
+			$newpass = $this->rand_string(8);
+
+			$data['pass'] = Hash::make($newpass);
+
+			unset($data['csrf_token']);
+
+			$data['lastUpdate'] = new MongoDate();
+
+			$user = new Attendee();
+
+			if($obj = $user->update(array('email'=>$data['email']),array('$set'=>$data))){
+
+				$body = View::make('email.resetpass')->with('data',$data)->render();
+
+				Message::to($data['email'])
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->subject('Password Reset - Indonesia Petroleum Association – 37th Convention & Exhibition)')
+				    ->body( $body )
+				    ->html(true)
+				    ->send();
+				    
+		    	return Redirect::to('resetlanding')->with('notify_success',Config::get('site.reset_success'));
+			}else{
+		    	return Redirect::to('reset')->with('notify_success',Config::get('site.reset_failed'));
+			}
+
+	    }
+
+		
+	}
+
+
+	public function get_resetlanding(){
+
+		$this->crumb->add('register/reset','Reset Password');
+
+		return View::make('register.resetlanding')
+					->with('crumb',$this->crumb)
+					->with('title','Reset Password Success');
 	}
 
 	public function get_group(){
@@ -402,6 +470,18 @@ class Register_Controller extends Base_Controller {
 	    }
 
 		
+	}
+
+	public function rand_string( $length ) {
+		$chars = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789";	
+
+		$size = strlen( $chars );
+		$str = '';
+		for( $i = 0; $i < $length; $i++ ) {
+			$str .= $chars[ rand( 0, $size - 1 ) ];
+		}
+
+		return $str;
 	}
 
 
