@@ -9,7 +9,8 @@
 {{$form->open('myprofile/edit','POST',array('class'=>'custom'))}}
 
     {{ $form->hidden('id',$user['_id'])}}
-    {{ $form->hidden('id',$user['_id'])}}
+    {{ $form->hidden('registrationnumber',$user['registrationnumber'])}}
+    {{ $form->hidden('attenddinner',$user['attenddinner'])}}
     {{ $form->hidden('regtype',$user['regtype'])}}
 
 <div class="row">
@@ -152,7 +153,7 @@
               <p>Admission to all Plenary and Technical sessions, Conference Kits, entrance to exhibition area, Opening Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Closing Ceremony.</p>
               
 
-                {{ Form::label('attenddinner','I will attend the Industrial Dinner on 16 May 2012') }}
+                <!--{{ Form::label('attenddinner','I will attend the Industrial Dinner on 16 May 2012') }}
 
                 <div class="row">
                     <div class="two columns">
@@ -164,7 +165,7 @@
                     <div class="eight columns"></div>
                 </div>
 
-              <hr/>
+              <hr/>-->
               <h4>PAYMENT METHOD</h4>
               <span><strong>Bank Transfer</strong></span>
               <div class="row">
@@ -185,14 +186,8 @@
                   </p>
                 </div>
               </div>
-              <hr/>
-              <h4>IMPORTANT NOTES</h4>
-              <ol>
-                <li>Early Bird rates only valid for both registration and payment received until 15 March 2013 at the latest. Normal rate will be applied for the registration with payment settlement after 15 March 2013.
-                  <li>Registration Forms received without registration fees will not be processed.</li>
-                  <li>No refund will be granted for cancellation after 14 April 2013. All cancellations must be made in writing to the Secretariat and the
-                        refund will be made after the conference.</li>
-              </ol>
+              
+              
 
 
 

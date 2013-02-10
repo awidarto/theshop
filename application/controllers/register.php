@@ -102,7 +102,15 @@ class Register_Controller extends Base_Controller {
 			$data['lastUpdate'] = new MongoDate();
 			$data['role'] = 'attendee';
 			$data['conventionPaymentStatus'] = 'unpaid';
-			$data['golfPaymentStatus'] = 'unpaid';
+			//force to disable golf on student type
+			if(($data['regtype'] == 'SO') || ($data['regtype'] == 'SD')){
+				$data['golf'] == 'No';	
+			}
+			if($data['golf'] == 'Yes'){
+				$data['golfPaymentStatus'] = 'unpaid';
+			}else{
+				$data['golfPaymentStatus'] = '-';
+			}
 			$data['confirmation'] = 'none';
 
 
@@ -183,7 +191,11 @@ class Register_Controller extends Base_Controller {
 		$data = Input::get();
 
 	    $rules = array(
-	        //'email' => 'required|email|unique:attendee',
+	        $type.'transferdate' => 'required',
+	        $type.'totalpayment' => 'required',
+	        $type.'fromaccountname' => 'required',
+	        $type.'fromaccnumber' => 'required',
+	        $type.'frombank' => 'required',
 	    );
 
 	    $type = $data['type'];
@@ -465,25 +477,40 @@ class Register_Controller extends Base_Controller {
 
 			$user = new Attendee();
 
-			if(isset($data['registrationnumber'])){
+			if(isset($data['registrationnumber']) && $data['registrationnumber'] != ''){
 				$reg_number = explode('-',$data['registrationnumber']);			
-			}else{
+
+				$reg_number[0] = 'A';
+				$reg_number[1] = $data['regtype'];
+				$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+
+
+			}else if($data['registrationnumber'] == ''){
 				$reg_number = array();
 				$seq = new Sequence();
 				$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+				$reg_number[0] = 'A';
+				$reg_number[1] = $data['regtype'];
+				$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+
 				$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 			}
 
-			$reg_number[0] = 'A';
-			$reg_number[1] = $data['regtype'];
-			$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+			//golf sequencer
+			/*$data['golfSequence'] = 0;
+
+			if($data['golf'] == 'Yes'){
+				$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
+				$data['golfSequence'] = $gseq['seq'];
+			}*/
 
 			$data['registrationnumber'] = implode('-',$reg_number);
 			
 			if($user->update(array('_id'=>$id),array('$set'=>$data))){
-		    	return Redirect::to('myprofile')->with('notify_success','User saved successfully');
+		    	return Redirect::to('myprofile')->with('notify_success','Attendee saved successfully');
 			}else{
-		    	return Redirect::to('myprofile')->with('notify_success','User saving failed');
+		    	return Redirect::to('myprofile')->with('notify_success','Attendee saving failed');
 			}
 			
 	    }

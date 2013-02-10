@@ -101,6 +101,7 @@ td a.icon-{
 }
 td a.icon-:hover span{
 	text-decoration: underline;
+	cursor: pointer;
 }
 td a.icon- i{
 	float: left;

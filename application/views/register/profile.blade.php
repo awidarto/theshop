@@ -10,6 +10,11 @@
 			<h5 class="headIpaSite">{{ $profile['firstname'].' '.$profile['lastname'] }}</h5>
 			<table class="profile-info">
 				<tr>
+					<td class="detail-title">Registration Number</td>
+					<td>:&nbsp;</td>
+					<td class="detail-info">{{ $profile['registrationnumber'] }}</td>
+				</tr>
+				<tr>
 					<td class="detail-title">Email</td>
 					<td>:&nbsp;</td>
 					<td class="detail-info">{{ $profile['email'] }}</td>
@@ -46,7 +51,7 @@
 					<td class="detail-title">Status</td>
 					<td>:&nbsp;</td>
 					<td class="detail-info">
-						<span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['paymentStatus'] }}</span>
+						<span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['conventionPaymentStatus'] }}</span>
 					</td>
 				</tr>
 				<tr>
@@ -74,7 +79,11 @@
 					<td class="detail-title">Golf Tournament</td>
 					<td>:&nbsp;</td>
 					<td class="detail-info">
-						<span>{{ $profile['golf'] }} - <span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['golfPaymentStatus'] }}</span></span>
+						@if($profile['golf'] == 'Yes')
+							<span>{{ $profile['golf'] }} - <span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['golfPaymentStatus'] }}</span></span>
+						@else
+							<span>{{ $profile['golf'] }}</span>
+						@endif
 					</td>
 				</tr>
 				<!--<tr>

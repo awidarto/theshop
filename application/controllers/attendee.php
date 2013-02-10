@@ -56,16 +56,16 @@ class Attendee_Controller extends Base_Controller {
 		$btn_add_to_group = '<span class=" add_to_group" id="add_to_group">Add selected to group</span>';
 
 /*<<<<<<< HEAD*/
-		$heads = array('#',$select_all,'Reg. Number','Registered Date','Email','First Name','Last Name','Company','Reg. Type','Country','Payment Status',$btn_add_to_group);
+		$heads = array('#',$select_all,'Reg. Number','Registered Date','Email','First Name','Last Name','Company','Reg. Type','Country','Conv. Status','Golf. Status',$btn_add_to_group);
 /*=======*/
 		
 /*>>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
 
 
-		$searchinput = array(false,false,'Reg Number','Reg. Date','Email','First Name','Last Name','Company',false,'Country',false,false);
+		$searchinput = array(false,false,'Reg Number','Reg. Date','Email','First Name','Last Name','Company',false,'Country',false,false,false);
 
 		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
-		$colclass = array('','span1','span3','span1','span3','span3','span1','span1','span1','','','','','','','','');
+		$colclass = array('','span1','span3','span1','span3','span3','span1','span1','span1','','','','','','','','','');
 
 		//$searchinput = false; // no searchinput form on footer
 
@@ -73,13 +73,14 @@ class Attendee_Controller extends Base_Controller {
 			return View::make('tables.simple')
 				->with('title','Master Data')
 				->with('newbutton','New Visitor')
-				->with('disablesort','0,1,9,10')
+				->with('disablesort','0,1,9,12')
 				->with('addurl','attendee/add')
 				->with('colclass',$colclass)
 				->with('searchinput',$searchinput)
 				->with('ajaxsource',URL::to('attendee'))
 				->with('ajaxdel',URL::to('attendee/del'))
 				->with('ajaxpay',URL::to('attendee/paystatus'))
+				->with('ajaxpaygolf',URL::to('attendee/paystatusgolf'))
 				->with('printsource',URL::to('attendee/printbadge'))
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)
@@ -94,11 +95,11 @@ class Attendee_Controller extends Base_Controller {
 	{
 
 
-		$fields = array('registrationnumber','createdDate','email','firstname','lastname','company','regtype','country','paymentStatus');
+		$fields = array('registrationnumber','createdDate','email','firstname','lastname','company','regtype','country','conventionPaymentStatus','golfPaymentStatus');
 
-		$rel = array('like','like','like','like','like','like','like','like','like','like','like');
+		$rel = array('like','like','like','like','like','like','like','like');
 
-		$cond = array('both','both','both','both','both','both','both','both','both','both','both');
+		$cond = array('both','both','both','both','both','both','both','both','both');
 
 		$pagestart = Input::get('iDisplayStart');
 		$pagelength = Input::get('iDisplayLength');
@@ -175,16 +176,36 @@ class Attendee_Controller extends Base_Controller {
 			$select = $form->checkbox('sel_'.$doc['_id'],'','',false,array('id'=>$doc['_id'],'class'=>'selector'));
 
 /*<<<<<<< HEAD*/
-			if($doc['paymentStatus'] == 'unpaid'){
-				$paymentStatus = '<span class="fontRed fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
-			}elseif ($doc['paymentStatus'] == 'pending') {
-				$paymentStatus = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
-			}elseif ($doc['paymentStatus'] == 'cancel') {
-				$paymentStatus = '<span class="fontGray fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
+			if($doc['conventionPaymentStatus'] == 'unpaid'){
+				$paymentStatus = '<span class="fontRed fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
+			}elseif ($doc['conventionPaymentStatus'] == 'pending') {
+				$paymentStatus = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
+			}elseif ($doc['conventionPaymentStatus'] == 'cancel') {
+				$paymentStatus = '<span class="fontGray fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
 			
 			}else{
-				$paymentStatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
+				$paymentStatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
 			}
+
+			if($doc['golfPaymentStatus'] == 'unpaid'){
+				$paymentStatusGolf = '<span class="fontRed fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+			}elseif ($doc['golfPaymentStatus'] == 'pending') {
+				$paymentStatusGolf = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+			}elseif ($doc['golfPaymentStatus'] == 'cancel') {
+				$paymentStatusGolf = '<span class="fontGray fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+			}elseif ($doc['golf'] == 'No') {
+				$paymentStatusGolf = '<span class="fontGray fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+			}else{
+				$paymentStatusGolf = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+			}
+
+			if($doc['golf'] == 'Yes'){
+				$rowGolfAction = '<a class="icon-"  ><i>&#xe146;</i><span class="paygolf" id="'.$doc['_id'].'" >Golf Status</span>';
+			}else{
+				$rowGolfAction = '';
+
+			}
+
 /*=======
 			if(isset($doc['paymentStatus'])){
 				$status = ($doc['paymentStatus'] == 'unpaid')?'<span class="fontRed fontBold">UNPAID</span>':'<span class="fontGreen fontBold">PAID</span>';
@@ -207,6 +228,7 @@ class Attendee_Controller extends Base_Controller {
 				$doc['country'],
 				//$doc['mobile'],
 				$paymentStatus,
+				$paymentStatusGolf,
 				//'<span class="fontRed fontBold">UNPAID</span>',
 				//$doc['companyphone'],
 				//$doc['companyfax'],
@@ -214,7 +236,8 @@ class Attendee_Controller extends Base_Controller {
 				//isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
 				//date('Y-m-d', $doc['createdDate']->sec),
 				//isset($doc['lastUpdate'])?date('Y-m-d', $doc['lastUpdate']->sec):'',
-				'<a class="icon-"  ><i>&#xe1b0;</i><span class="pay" id="'.$doc['_id'].'" >Payment Status</span>'.
+				'<a class="icon-"  ><i>&#xe1b0;</i><span class="pay" id="'.$doc['_id'].'" >Convention Status</span>'.
+				$rowGolfAction.
 				'<a class="icon-"  ><i>&#xe14c;</i><span class="pbadge" id="'.$doc['_id'].'" >Print Badge</span>'.
 				'<a class="icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
 				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
@@ -287,8 +310,47 @@ class Attendee_Controller extends Base_Controller {
 			$_id = new MongoId($id);
 
 
-			if($user->update(array('_id'=>$_id),array('$set'=>array('paymentStatus'=>$paystatus)))){
+			if($user->update(array('_id'=>$_id),array('$set'=>array('conventionPaymentStatus'=>$paystatus)))){
 				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'OK'));
+				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
+				//mail to registrant about payment updated
+
+				$data = $user->get(array('_id'=>$_id));
+
+				$body = View::make('email.confirmpayment')->with('data',$data)->render();
+
+
+				Message::to($data['email'])
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->subject('CONFIRMATION OF REGISTRATION - Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+				    ->body( $body )
+				    ->html(true)
+				    ->send();
+			}else{
+				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'FAILED'));
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+			}
+		}
+
+		print json_encode($result);
+	}
+
+
+	public function post_paystatusgolf(){
+		$id = Input::get('id');
+		$paystatus = Input::get('paystatusgolf');
+
+		$user = new Attendee();
+
+		if(is_null($id)){
+			$result = array('status'=>'ERR','data'=>'NOID');
+		}else{
+
+			$_id = new MongoId($id);
+
+
+			if($user->update(array('_id'=>$_id),array('$set'=>array('golfPaymentStatus'=>$paystatus)))){
+				Event::fire('paymentstatusgolf.update',array('id'=>$id,'result'=>'OK'));
 				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
 				//mail to registrant about payment updated
 
@@ -304,7 +366,7 @@ class Attendee_Controller extends Base_Controller {
 				    ->html(true)
 				    ->send();
 			}else{
-				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'FAILED'));
+				Event::fire('paymentstatusgolf.update',array('id'=>$id,'result'=>'FAILED'));
 				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
 			}
 		}
