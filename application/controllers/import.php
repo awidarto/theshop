@@ -64,24 +64,48 @@ class Import_Controller extends Base_Controller {
 
 		$ihead = $imp->get(array('cache_id'=>$id, 'cache_head'=>true));
 
-		$heads = $ihead['head_labels'];
+		$heads = array();
+
+		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','');
+
+		$cnt = 0;
+
+		$searchinput = array();
+
+		$form = new Formly();
+
+		$select_all = $form->checkbox('select_all','','',false,array('id'=>'select_all'));
+
+		foreach ($ihead['head_labels'] as $h) {
+			$heads[$cnt] = $h;
+			$searchinput[$cnt] = $form->select('map_'.$cnt,'',Config::get('eventreg.valid_head_selects'),$h);
+			if(!in_array($h, Config::get('eventreg.valid_heads'))){
+				$colclass[$cnt] .= ' invalidhead';
+			}
+			$cnt++;
+		}
+
+		$searchinput = array_merge(array($select_all),$searchinput);
+
+		$heads = array_merge(array(''),$heads);
 
 		//$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Created','Last Update','Action');
 
-		$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
+		//$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
 
 		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
-		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','');
 
-		$searchinput = false; // no searchinput form on footer
+		//$searchinput = false; // no searchinput form on footer
 
-		return View::make('tables.simple')
+		return View::make('tables.import')
 			->with('title','Data Preview')
 			->with('newbutton','Commit Import')
 			->with('disablesort','0,5,6')
 			->with('addurl','')
 			->with('commiturl','import/commit/'.$id)
+			->with('importid',$id)
 			->with('reimporturl','import')
+			->with('form',$form)
 			->with('colclass',$colclass)
 			->with('searchinput',$searchinput)
 			->with('ajaxsource',URL::to('import/loader/'.$id))
@@ -170,18 +194,29 @@ class Import_Controller extends Base_Controller {
 			$count_display_all = $attendee->count();
 		}
 
+		$attending = new Attendee();
+
+
+
 		$aadata = array();
+
+		$form = new Formly();
 
 		$counter = 1 + $pagestart;
 		foreach ($attendees as $doc) {
 
 			$extra = $doc;
 
+
 			$adata = array();
 
 			for($i = 0; $i < count($fields); $i++){
 				$adata[$i] = $doc[$fields[$i]];
 			}
+
+			$select = $form->checkbox('sel[]','','',false,array('id'=>$doc['_id'],'class'=>'selector'));
+
+			$adata = array_merge(array($select),$adata);
 
 			$adata['extra'] = $extra;
 

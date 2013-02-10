@@ -67,6 +67,9 @@
     <div class="row-fluid">
        <div class="span12">
 
+{{$form->open('import/commit/'.$importid,'POST',array('class'=>'custom'))}}
+
+
           <table class="table table-condensed dataTable attendeeTable">
 
 			    <thead>
@@ -92,20 +95,12 @@
 
 			    </thead>
 
-				<?php
-					$form = new Formly();
-				?>
-
 		    	@if($searchinput)
 				    <thead id="searchinput">
 					    <tr>
 				    	@foreach($searchinput as $in)
 				    		@if($in)
-				    			@if($in == 'select_all')
-				    				<td>{{ $form->checkbox('select_all','','',false,array('id'=>'select_all')) }}</td>
-				    			@else
-					        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
-				    			@endif
+				        		<td>{{ $in }}</td>
 				    		@else
 				        		<td>&nbsp;</td>
 				    		@endif
@@ -134,6 +129,8 @@
 			    @endif
 			-->
           </table>
+
+{{$form->close()}}
 
        </div>
     </div>
@@ -180,7 +177,7 @@
 <div id="updatePayment" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Convention Status</h3>
+		<h3 id="myModalLabel">Payment Status</h3>
 	</div>
 	<div class="modal-body">
 
@@ -190,23 +187,6 @@
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-primary" id="savepaystatus">Save</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	</div>
-</div>
-
-<div id="updatePaymentGolf" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Golf Status</h3>
-	</div>
-	<div class="modal-body">
-
-		{{ Form::select('paystatusgolf', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselectgolf'))}}
-		<span id="paystatusindicator"></span>
-
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="savepaystatusGolf">Save</button>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	</div>
 </div>
@@ -459,29 +439,6 @@
 			},'json');
 		});
 
-		$('#savepaystatusGolf').click(function(){
-			var paystat = $('#paystatusselectgolf').val();
-
-			<?php
-
-				$ajaxpay = (isset($ajaxpay))?$ajaxpay:'/';
-			?>
-
-			$.post('{{ URL::to($ajaxpaygolf) }}',{'id':current_pay_id,'paystatusgolf': paystat}, function(data) {
-				if(data.status == 'OK'){
-					//redraw table
-
-					oTable.fnDraw();
-					$('#paystatusindicator').html('Payment status updated');
-
-					$('#paystatusselectgolf').val('unpaid');
-
-					$('#updatePaymentGolf').modal('toggle');
-
-				}
-			},'json');
-		});
-
 
 		$('#confirmdelete').click(function(){
 
@@ -557,15 +514,6 @@
 				current_pay_id = _id;
 
 				$('#updatePayment').modal();
-
-		   	}
-
-		   	if ($(e.target).is('.paygolf')) {
-				var _id = e.target.id;
-
-				current_pay_id = _id;
-
-				$('#updatePaymentGolf').modal();
 
 		   	}
 

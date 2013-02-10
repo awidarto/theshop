@@ -5,10 +5,9 @@
 <div class="row">
     {{ Form::open('reset') }}
     <!-- check for login errors flash var -->
-    @if (Session::has('login_errors'))
+    @if (Session::has('notify_result'))
         <div class="alert alert-error">
-             <button type="button" class="close" data-dismiss="alert"></button>
-             Email or password incorrect.
+             {{Session::get('notify_result')}}
         </div>
     @endif
     <!-- username field -->

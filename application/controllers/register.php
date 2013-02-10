@@ -344,34 +344,41 @@ class Register_Controller extends Base_Controller {
 
 			$user = new Attendee();
 
-			
+			$ex = $user->get(array('email'=>$data['email']));
 
-			if($obj = $user->update(array('email'=>$data['email']),array('$set'=>$data))){
+			if(isset($ex['email']) && $ex['email'] == $data['email']){
+
+				if($obj = $user->update(array('email'=>$data['email']),array('$set'=>$data))){
+
+					$userdata = $user->get(array('email'=>$data['email']));
 
 
-				
+					$body = View::make('email.resetpass')
+						->with('data',$data)
+						->with('userdata',$userdata)
+						->with('newpass',$newpass)
+						->render();
 
-				$userdata = $user->get(array('email'=>$data['email']));
+					Message::to($data['email'])
+					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->subject('Password Reset - Indonesia Petroleum Association – 37th Convention & Exhibition)')
+					    ->body( $body )
+					    ->html(true)
+					    ->send();
+					    
+			    	return Redirect::to('resetlanding')->with('notify_success',Config::get('site.reset_success'));
+				}else{
+			    	return Redirect::to('reset')->with('notify_result',Config::get('site.reset_failed'));
+				}
 
-
-				$body = View::make('email.resetpass')
-					->with('data',$data)
-					->with('userdata',$userdata)
-					->with('newpass',$newpass)
-					->render();
-
-				Message::to($data['email'])
-				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-				    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-				    ->subject('Password Reset - Indonesia Petroleum Association – 37th Convention & Exhibition)')
-				    ->body( $body )
-				    ->html(true)
-				    ->send();
-				    
-		    	return Redirect::to('resetlanding')->with('notify_success',Config::get('site.reset_success'));
 			}else{
-		    	return Redirect::to('reset')->with('notify_success',Config::get('site.reset_failed'));
+
+		    	return Redirect::to('reset')->with('notify_result',Config::get('site.reset_email_not_found'));
+
 			}
+
+
 
 	    }
 

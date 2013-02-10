@@ -585,3 +585,10 @@ thead#searchinput tr td input.search_init{
 	border:none;
 	width:100%;
 }
+
+th.invalidhead{
+	display: block;
+	padding: 5px;
+	background-color: red;
+	text-decoration: underline;
+}
