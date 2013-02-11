@@ -66,7 +66,9 @@ class Import_Controller extends Base_Controller {
 
 		$heads = array();
 
-		$colclass = array('','span3','span3','span3','span1','span1','span1','','','','','','','');
+		//$colclass = array('span3','span3','span3','span1','span1','span1','','','','','','','');
+
+		$colclass = array();
 
 		$cnt = 0;
 
@@ -76,18 +78,35 @@ class Import_Controller extends Base_Controller {
 
 		$select_all = $form->checkbox('select_all','','',false,array('id'=>'select_all'));
 
+		$override_all = $form->checkbox('override_all','','',false,array('id'=>'override_all'));
+
+
 		foreach ($ihead['head_labels'] as $h) {
-			$heads[$cnt] = $h;
+
+			$hidden_head = $form->hidden('mapped_'.$cnt,$h);
+
+			$heads[$cnt] = $h.$hidden_head;
+
 			$searchinput[$cnt] = $form->select('map_'.$cnt,'',Config::get('eventreg.valid_head_selects'),$h);
 			if(!in_array($h, Config::get('eventreg.valid_heads'))){
-				$colclass[$cnt] .= ' invalidhead';
+				$heads[$cnt] = '<span class="invalidhead">'.$heads[$cnt].'</span>';
+				//$colclass[$cnt] = ' invalidhead';
+			}else{
+				//$colclass[$cnt] = '';
 			}
+
 			$cnt++;
 		}
 
-		$searchinput = array_merge(array($select_all),$searchinput);
+		//$colclass = array_merge(array(''),$colclass);
 
-		$heads = array_merge(array(''),$heads);
+		//print_r($colclass);
+
+		$colclass = array_merge(array('',''),$colclass);
+
+		$searchinput = array_merge(array($select_all,$override_all),$searchinput);
+
+		$heads = array_merge(array('Select','Override'),$heads);
 
 		//$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Created','Last Update','Action');
 
@@ -196,6 +215,23 @@ class Import_Controller extends Base_Controller {
 
 		$attending = new Attendee();
 
+		$email_arrays = array();
+
+		foreach($attendees as $e){
+			$email_arrays[] = array('email'=>$e['email']);
+		}
+
+		//print_r($email_arrays);
+
+		$email_check = $attending->find(array('$or'=>$email_arrays),array('email'=>1,'_id'=>-1));
+
+		$email_arrays = array();
+
+		foreach($email_check as $ec){
+			$email_arrays[] = $ec['email'];
+		}
+
+		//print_r($email_arrays);
 
 
 		$aadata = array();
@@ -203,6 +239,7 @@ class Import_Controller extends Base_Controller {
 		$form = new Formly();
 
 		$counter = 1 + $pagestart;
+
 		foreach ($attendees as $doc) {
 
 			$extra = $doc;
@@ -211,12 +248,28 @@ class Import_Controller extends Base_Controller {
 			$adata = array();
 
 			for($i = 0; $i < count($fields); $i++){
-				$adata[$i] = $doc[$fields[$i]];
+
+				if(in_array($doc[$fields[$i]], $email_arrays)){
+					$adata[$i] = '<span class="duplicateemail">'.$doc[$fields[$i]].'</spam>';
+				}else{
+					$adata[$i] = $doc[$fields[$i]];
+				}
+
 			}
 
-			$select = $form->checkbox('sel[]','','',false,array('id'=>$doc['_id'],'class'=>'selector'));
+			//print_r($adata);
 
-			$adata = array_merge(array($select),$adata);
+
+			$select = $form->checkbox('sel[]','',$doc['_id'],false,array('id'=>$doc['_id'],'class'=>'selector'));
+
+
+			if(in_array($doc['email'], $email_arrays)){
+				$override = $form->checkbox('over[]','',$doc['_id'],'',array('id'=>'over_'.$doc['_id'],'class'=>'overselector'));
+			}else{
+				$override = '';
+			}
+
+			$adata = array_merge(array($select,$override),$adata);
 
 			$adata['extra'] = $extra;
 
@@ -237,8 +290,10 @@ class Import_Controller extends Base_Controller {
 		return Response::json($result);
 	}
 
-	public function get_commit(){
+	public function post_commit(){
+		$data = Input::all();
 
+		print_r($data);
 	}
 
 	public function post_preview()

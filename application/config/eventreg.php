@@ -64,7 +64,7 @@ return array(
 			'unmapped'=>'unmapped',
 			'no'=>'no',
 			'username'=>'username',
-			'inv_letters'=>'inv_letters',
+			'inv_letter'=>'inv_letter',
 			'salutation'=>'salutation',
 			'firstname'=>'firstname',
 			'lastname'=>'lastname',
@@ -84,7 +84,71 @@ return array(
 			'registertype'=>'registertype',
 			'galadinner'=>'galadinner',
 			'golf'=>'golf'
-		)
+		),
+
+
+		'attendee_map'=>array(
+			'username'=>'username',
+			'inv_letter'=>'inv_letter',
+			'salutation'=>'salutation',
+			'firstname'=>'firstname',
+			'lastname'=>'lastname',
+			'position_division'=>'position',
+			'email'=>'email',
+			'mobile'=>'mobile',
+			'company'=>'company',
+			'companys_npwp'=>'companys_npwp',
+			'address'=>'address',
+			'address_2'=>'address_2',
+			'city'=>'city',
+			'zip'=>'zip',
+			'country'=>'country',
+			'phone'=>'companyphone',
+			'fax'=>'companyfax',
+			'invoice_address'=>'addressInvoice',
+			'registertype'=>'registertype',
+			'galadinner'=>'galadinner',
+			'golf'=>'golf'
+		),
+
+		'attendee_template'=>array(
+
+			'address'=> '',
+			'addressInvoice'=> '',
+			'attenddinner'=> '',
+			'city'=> '',
+			'cityInvoice'=> '',
+			'company'=> '',
+			'companyInvoice'=> '',
+			'companyfax'=> '',
+			'companyfaxInvoice'=> '',
+			'companyphone'=> '',
+			'companyphoneInvoice'=> '',
+			'confirmation'=> 'none',
+			'country'=> '',
+			'countryInvoice'=> '',
+			'createdDate'=> '',
+			'email'=> '',
+			'firstname'=> '',
+			'golf'=> '',
+			'golfSequence'=> 0,
+			'lastUpdate'=> '',
+			'lastname'=> '',
+			'mobile'=> '',
+			'npwp'=> '',
+			'npwpInvoice'=> '',
+			'pass'=> '',
+			'paymentStatus'=> 'unpaid',
+			'position'=> '',
+			'registrationnumber'=> '',
+			'regtype'=> '',
+			'role'=> 'attendee',
+			'salutation'=> '',
+			'zip'=> '',
+			'zipInvoice'=> ''
+
+		),
+
 
 	);
 

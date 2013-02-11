@@ -586,7 +586,14 @@ thead#searchinput tr td input.search_init{
 	width:100%;
 }
 
-th.invalidhead{
+.invalidhead{
+	display: block;
+	padding: 5px;
+	background-color: red;
+	text-decoration: underline;
+}
+
+.duplicateemail{
 	display: block;
 	padding: 5px;
 	background-color: red;

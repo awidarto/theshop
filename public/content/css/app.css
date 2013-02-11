@@ -434,6 +434,7 @@ table.table thead .sorting_asc_disabled { background: url('../../images/sort_asc
 table.table thead .sorting_desc_disabled { background: url('../../images/sort_desc_disabled.png') no-repeat center right; }
 
 
+
 input[type=radio] ~ span.metro-radio::before{
 	width: 15px;
 	height: 15px;
@@ -468,3 +469,19 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 	padding-top: 4px;
 
 }
+
+.invalidhead{
+	display: block;
+	padding: 5px;
+	background-color: red;
+	color:white;
+	font-weight: bold;
+}
+
+.duplicateemail{
+	display: block;
+	padding: 5px;
+	background-color: orange;
+	text-decoration: underline;
+}
+
