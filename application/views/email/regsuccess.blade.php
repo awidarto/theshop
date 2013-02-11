@@ -44,54 +44,62 @@ Thank you for register in 37th IPA Convention & Exhibition. Please find below su
 	
 	@if($data['golf'] == 'Yes')
 		<tr>
-			<td style="padding:10px;"><strong>Golf Tournament</strong></td>
-			<td style="padding:10px;"><strong>USD - </strong></td>
-			<td style="padding:10px;"><strong>IDR 2.500.000</strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Golf Tournament</strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR 2.500.000</strong></td>
 		</tr>	
 	@else
 		<tr>
-			<td style="padding:10px;"><strong>Golf Tournament</strong></td>
-			<td style="padding:10px;"><strong>USD - </strong></td>
-			<td style="padding:10px;"><strong>IDR - </strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Golf Tournament</strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR - </strong></td>
 		</tr>	
 	@endif
 	@if($data['regtype'] == 'PO' && $data['golf'] == 'Yes')
 		<tr>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Grand Total</strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD 500</strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR 2.500.000</strong></td>
+			<td style="padding:10px;"><strong>Grand Total</strong></td>
+			<td style="padding:10px;"><strong>USD 500</strong></td>
+			<td style="padding:10px;"><strong>IDR 2.500.000</strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'PD' && $data['golf'] == 'Yes')
 		<tr>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Grand Total</strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR 7.000.000</strong></td>
+			<td style="padding:10px;"><strong>Grand Total</strong></td>
+			<td style="padding:10px;"><strong>USD - </strong></td>
+			<td style="padding:10px;"><strong>IDR 7.000.000</strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'PO' && $data['golf'] == 'No')
 		<tr>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Grand Total</strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD 500</strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR - </strong></td>
+			<td style="padding:10px;"><strong>Grand Total</strong></td>
+			<td style="padding:10px;"><strong>USD 500</strong></td>
+			<td style="padding:10px;"><strong>IDR - </strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'PD' && $data['golf'] == 'No')
 		<tr>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Grand Total</strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR 4.500.000</strong></td>
+			<td style="padding:10px;"><strong>Grand Total</strong></td>
+			<td style="padding:10px;"><strong>USD - </strong></td>
+			<td style="padding:10px;"><strong>IDR 4.500.000</strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'SD')
 		<tr>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Grand Total</strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR 400.000</strong></td>
+			<td style="padding:10px;"><strong>Grand Total</strong></td>
+			<td style="padding:10px;"><strong>USD - </strong></td>
+			<td style="padding:10px;"><strong>IDR 400.000</strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'SO')
 		<tr>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Grand Total</strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD 120</strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR - </strong></td>
+			<td style="padding:10px;"><strong>Grand Total</strong></td>
+			<td style="padding:10px;"><strong>USD 120</strong></td>
+			<td style="padding:10px;"><strong>IDR - </strong></td>
 		</tr>
 	@endif
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
 		<tr>
 			<td style="padding:10px;" colspan="2"><strong>Attend on Industrial Dinner (16 May 2013)</strong></td>
 			<td style="padding:10px;"><strong>{{ $data['attenddinner'] }}</strong></td>
@@ -117,22 +125,39 @@ Thank you for register in 37th IPA Convention & Exhibition. Please find below su
 </table>
 @endif
 
-<p><i>*Convention registration fee includes admission to all Plenary & Technical Sessions, Conference Kits, Opening and Closing Ceremony, Lunches, Coffee Breaks, Industrial Cocktail, Industrial Dinner, and Entrance to Exhibition Area.<br/>
-* The cost of the Golf Tournament includes green fee, caddy & cart fee.</i></p>
+<p><i>*Convention registration fee includes admission to all Plenary & Technical Sessions, Conference Kits, Opening and Closing Ceremony, Lunches, Coffee Breaks, Industrial Cocktail, Industrial Dinner, and Entrance to Exhibition Area.<br/><br/>
+* The cost of the Golf Tournament includes green fee, caddy & cart fee.</i><br/><br/>
+<strong>* Fees above exclude VAT 100%</strong></i>
+</p>
 <p>For the registration payment, you can settle it by bank transfer to:</p>
 
-<p><strong>IDR Account:</strong><br/>
-BCA - Mangga Dua Branch<br/>
-Acc. No.  : 335.302.7677<br/>
-Acc. Name : PT Dyandra Promosindo</p>
+<strong>IDR Account:</strong><br/>
+<ul>
+	<li style="margin-bottom:5px;">
+		BCA - Mangga Dua Branch<br/>
+		Acc. No.  : 335.302.7677<br/>
+		Acc. Name : PT Dyandra Promosindo
+	</li>
+	<li style="margin-bottom:5px;">
+		Mandiri - Wisma Nusantara Branch<br/>
+		Acc. No.  : 103.000.1065180<br/>
+		Acc. Name : PT Dyandra Promosindo
+	</li>
+</ul>
 
-<p><strong>USD Account:</strong><br/>
-BCA - Wisma Nusantara Branch<br/>
-Acc. No.  : 734.038.5700<br/>
-Acc. Name : PT Dyandra Promosindo<br/>
-Swiftcode : CENAIDJA</p>
+<strong>USD Account:</strong><br/>
+<ul>
+	<li>
+		BCA - Wisma Nusantara Branch<br/>
+		Acc. No.  : 734.038.5700<br/>
+		Acc. Name : PT Dyandra Promosindo<br/>
+		Swiftcode : CENAIDJA
+	</li>
+</ul>
 
-<p>For payment confirmation, please login to your profile in <a href="http://www.ipaconvex.com" > www.ipaconvex.com</a> and <strong>upload the copy of bank transfer in payment confirmation page</strong>. Confirmation of Registration will be sent once the payment received.  <strong>Please bring the confirmation of registration to the registration counter when you re-register on the convention day.</strong></p>
+<p>For payment confirmation, please login to your profile in <a href="http://www.ipaconvex.com" > www.ipaconvex.com</a> and <strong>upload the copy of bank transfer in payment confirmation page</strong>. Confirmation of Registration will be sent once the payment received.  <strong>Please bring the confirmation of registration to the registration counter when you re-register on the convention day.</strong>
+<br/><strong><i>Payment by credit card (VISA/MASTER CARD) accepted on-site</i></strong>
+</p>
 
 
 <p><strong><u>IMPORTANT NOTES</u></strong></p>
@@ -150,7 +175,7 @@ Swiftcode : CENAIDJA</p>
 			<li><span style="margin:6px;display:inline-block;width:20%;">Wednesday</span> <span style="display:inline-block;width:20%;">15 May 2013</span><span style="display:inline-block;width:30%;">08.00 AM – 03.00 PM</span></li>
 			<li><span style="margin:6px;display:inline-block;width:20%;">Thursday</span> <span style="display:inline-block;width:20%;">16 May 2013</span><span style="display:inline-block;width:30%;">08.00 AM – 03.00 PM</span></li>
 			<li><span style="margin:6px;display:inline-block;width:20%;">Friday</span> <span style="display:inline-block;width:20%;">17 May 2013</span><span style="display:inline-block;width:30%;">08.00 AM – 12.00 PM</span></li>
-			<li style="margin:6px;">Participants will be able to collect the convention kits at registration counter</li>
+			<li style="margin:6px;display:inline-block;">Participants will be able to collect the convention kits at registration counter</li>
 		</ul>
 	</li>
 	<li>Registered participants <strong>must wear ID badges</strong> all the times for sessions and function access</li>
