@@ -98,8 +98,8 @@
                         {{ $form->text('zipInvoice','','',array('class'=>'text invAdress','id'=>'zipInv','placeholder'=>'ZIP Code')) }}
                     </div>
                 </div>
-
-                {{$form->select('countryInvoice','Country of Origin',Config::get('country.countries'),array('class'=>'four'))}}
+                {{$form->select('countryInvoice','Country of Origin',Config::get('country.countries'),null,array('class'=>'four'))}}
+                
 
                 
 
