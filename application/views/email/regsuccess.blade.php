@@ -100,6 +100,23 @@ Thank you for register in 37th IPA Convention & Exhibition. Please find below su
 </table>
 </p>
 
+@if($fromadmin == 'yes')
+<p><strong><u>LOGIN INFO</u></strong></p>
+<table>
+	<tr>
+		<td>Email</td>
+		<td>:</td>
+		<td>{{ $data['email'] }}</td>
+	</tr>
+	<tr>
+		<td>Password</td>
+		<td>:</td>
+		<!--<td><?php echo $passwordRandom ?></td>-->
+		<td>{{ $passwordRandom }}</td>
+	</tr>
+</table>
+@endif
+
 <p><i>*Convention registration fee includes admission to all Plenary & Technical Sessions, Conference Kits, Opening and Closing Ceremony, Lunches, Coffee Breaks, Industrial Cocktail, Industrial Dinner, and Entrance to Exhibition Area.<br/>
 * The cost of the Golf Tournament includes green fee, caddy & cart fee.</i></p>
 <p>For the registration payment, you can settle it by bank transfer to:</p>

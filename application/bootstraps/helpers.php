@@ -1,5 +1,18 @@
 <?php
 
+function rand_string( $length ) {
+	$chars = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789";	
+
+	$size = strlen( $chars );
+	$str = '';
+	for( $i = 0; $i < $length; $i++ ) {
+		$str .= $chars[ rand( 0, $size - 1 ) ];
+	}
+
+	return $str;
+}
+
+
 function getavatar($id,$alt = 'avatar-image',$class = 'avatar'){
 	if(file_exists(Config::get('kickstart.avatarstorage').$id.'/avatar.jpg')){
 		$photo = HTML::image('avatar/'.$id.'/avatar.jpg', $alt, array('class' => $class));
