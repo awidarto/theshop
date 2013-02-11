@@ -436,8 +436,11 @@
 				$('.selector').attr('checked', false);
 			}
 		});
+
 		$('#savepaystatus').click(function(){
 			var paystat = $('#paystatusselect').val();
+			$('#savepaystatus').text('Processing..');
+			$('#savepaystatus').attr("disabled", true);	
 
 			<?php
 
@@ -450,7 +453,9 @@
 
 					oTable.fnDraw();
 					$('#paystatusindicator').html('Payment status updated');
-
+					$('#savepaystatus').text('Save');
+					$('#savepaystatus').attr("disabled", false);	
+					
 					$('#paystatusselect').val('unpaid');
 
 					$('#updatePayment').modal('toggle');
@@ -461,6 +466,8 @@
 
 		$('#savepaystatusGolf').click(function(){
 			var paystat = $('#paystatusselectgolf').val();
+			$('#savepaystatusGolf').text('Processing..');
+			$('#savepaystatusGolf').attr("disabled", true);	
 
 			<?php
 
@@ -473,6 +480,8 @@
 
 					oTable.fnDraw();
 					$('#paystatusindicator').html('Payment status updated');
+					$('#savepaystatusGolf').text('Save');
+					$('#savepaystatusGolf').attr("disabled", false);	
 
 					$('#paystatusselectgolf').val('unpaid');
 
