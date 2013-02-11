@@ -134,6 +134,7 @@ class User_Controller extends Base_Controller {
 			->with('tags',$tags)
 			->with('colclass',$colclass)
 			->with('ajaxsource',URL::to('users'))
+			->with('ajaxpaygolf',URL::to('attendee/paystatusgolf'))
 			->with('ajaxdel',URL::to('user/del'))
 			->with('crumb',$this->crumb)
 			->with('heads',$heads);

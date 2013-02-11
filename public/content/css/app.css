@@ -434,6 +434,42 @@ table.table thead .sorting_asc_disabled { background: url('../../images/sort_asc
 table.table thead .sorting_desc_disabled { background: url('../../images/sort_desc_disabled.png') no-repeat center right; }
 
 
+
+input[type=radio] ~ span.metro-radio::before{
+	width: 15px;
+	height: 15px;
+}
+input[type=radio]:checked ~ span.metro-radio::after{
+	width: 9px;
+	height: 9px;
+	left: 5px;
+	top: 7px;
+}
+
+.addAttendeeForm label.checkbox input[type=checkbox]:checked ~ span.metro-checkbox::after{
+	font-size: 10px;
+	border: 1px solid #BABABA;
+	width: 16px;
+	height: 20px;
+	padding-left: 3px;
+	top:3px;
+}
+
+.addAttendeeForm label.checkbox input[type=checkbox] ~ span.metro-checkbox::after {
+	font-size: 10px;
+	border: 1px solid #BABABA;
+	width: 16px;
+	height: 20px;
+	padding-left: 3px;
+	top:3px;
+}
+
+label.checkbox input[type=checkbox] ~ span.metro-checkbox{
+	padding-left: 30px;
+	padding-top: 4px;
+
+}
+
 .invalidhead{
 	display: block;
 	padding: 5px;
@@ -448,3 +484,4 @@ table.table thead .sorting_desc_disabled { background: url('../../images/sort_de
 	background-color: orange;
 	text-decoration: underline;
 }
+
