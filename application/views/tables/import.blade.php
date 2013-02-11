@@ -66,10 +66,73 @@
 
     <div class="row-fluid">
        <div class="span12">
+    @if (Session::has('notify_success'))
+        <div class="alert alert-error">
+             {{Session::get('notify_success')}}
+        </div>
+    @endif
+
 
 {{$form->open('import/commit/'.$importid,'POST',array('class'=>'custom','id'=>'commit_form'))}}
 
 			{{ $form->hidden('importid',$importid)}}
+			{{ $form->hidden('head_count',$head_count)}}
+
+			<div class="row-fluid">
+				<div class="span4">
+			        <fieldset>
+			            <legend>Send Notification to PIC</legend>
+
+			                <div class="row-fluid">
+			                    <div class="span2">
+			                      {{ $form->radio('sendpic','Yes','Yes',true) }} 
+			                    </div>   
+			                    <div class="span2">
+			                      {{ $form->radio('sendpic','No','No') }} 
+			                    </div>   
+			                    <div class="span8"></div>
+			                </div>
+
+			        </fieldset>        
+				</div>
+				<div class="span4">
+			        <fieldset>
+			            <legend>Send Notification to each attendee</legend>
+
+			                <div class="row-fluid">
+			                    <div class="span2">
+			                      {{ $form->radio('sendattendee','Yes','Yes') }} 
+			                    </div>   
+			                    <div class="span2">
+			                      {{ $form->radio('sendattendee','No','No',true) }} 
+			                    </div>   
+			                    <div class="span8"></div>
+			                </div>
+
+			        </fieldset>        
+
+				</div>
+				<div class="span4">
+			        <fieldset>
+			            <legend>Update password for existing attendee</legend>
+
+			                <div class="row-fluid">
+			                    <div class="span2">
+			                      {{ $form->radio('updatepass','Yes','Yes') }} 
+			                    </div>   
+			                    <div class="span2">
+			                      {{ $form->radio('updatepass','No','No',true) }} 
+			                    </div>   
+			                    <div class="span8"></div>
+			                </div>
+
+			        </fieldset>        
+
+				</div>
+
+			</div>
+
+
 
 			<table class="table table-condensed dataTable attendeeTable">
 
