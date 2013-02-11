@@ -180,6 +180,8 @@ class Register_Controller extends Base_Controller {
 
 		$form = new Formly($attendee);
 
+		$golfcount = $att->count(array('golf'=>'Yes','golfPaymentStatus'=>'paid'));
+
 		$form->framework = 'zurb';
 
 		return View::make('register.payment')
@@ -187,6 +189,7 @@ class Register_Controller extends Base_Controller {
 					->with('type',$type)
 					->with('user',$attendee)
 					->with('crumb',$this->crumb)
+					->with('golfcount',$golfcount)
 					->with('title',ucfirst($type).' Payment Confirmation');
 
 	}

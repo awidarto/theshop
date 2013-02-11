@@ -449,7 +449,11 @@ class Attendee_Controller extends Base_Controller {
 			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
 			$data['conventionPaymentStatus'] = 'unpaid';
-			$data['golfPaymentStatus'] = 'unpaid';
+			if($data['golf'] == 'Yes'){
+				$data['golfPaymentStatus'] = 'unpaid';
+			}else{
+				$data['golfPaymentStatus'] = '-';
+			}
 
 			$reg_number[] = 'A';
 			$reg_number[] = $data['regtype'];
