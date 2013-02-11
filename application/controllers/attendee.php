@@ -59,10 +59,6 @@ class Attendee_Controller extends Base_Controller {
 
 		$heads = array('#',$select_all,'Reg. Number','Registered Date','Email','First Name','Last Name','Company','Reg. Type','Country','Conv. Status','Golf. Status',$btn_add_to_group);
 
-
-
-
-
 		$searchinput = array(false,false,'Reg Number','Reg. Date','Email','First Name','Last Name','Company',false,'Country',false,false,false);
 
 
@@ -111,7 +107,7 @@ class Attendee_Controller extends Base_Controller {
 		$defsort = 1;
 		$defdir = -1;
 
-		$idx = 0;
+		$idx = 1;
 		$q = array();
 
 		$hilite = array();
