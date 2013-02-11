@@ -198,6 +198,7 @@
 
       @if($golfcount < Config::get('eventreg.golfquota'))
 
+
         <fieldset id="golfEvent">
           <legend>Golf Tournament</legend>
             
@@ -208,6 +209,8 @@
                     PONDOK INDAH GOLF<br/>
                     (12 May 2013)<br/><br/>
                     IDR 2.500.000,-/person<br/>
+                    <br/>
+                    Golf quota remaining: <strong>{{ Config::get('eventreg.golfquota') - $golfcount }}</strong>
                     <br/>
                     <br/>
                 </div>   
