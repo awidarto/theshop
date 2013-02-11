@@ -67,10 +67,11 @@
     <div class="row-fluid">
        <div class="span12">
 
-{{$form->open('import/commit/'.$importid,'POST',array('class'=>'custom'))}}
+{{$form->open('import/commit/'.$importid,'POST',array('class'=>'custom','id'=>'commit_form'))}}
 
+			{{ $form->hidden('importid',$importid)}}
 
-          <table class="table table-condensed dataTable attendeeTable">
+			<table class="table table-condensed dataTable attendeeTable">
 
 			    <thead>
 			        <tr>
@@ -162,10 +163,16 @@
 			@endif
 
 		   	@if(isset($commiturl) && $commiturl != '')
-				<a class="win-command" href="{{URL::to($commiturl)}}">
+				<a class="win-command" id="commit-trigger">
 					<span class="win-commandimage win-commandring">&#x0056;&#x0054;</span>
 					<span class="win-label">Commit</span>
 				</a>
+
+				<script type="text/javascript">
+					$('#commit-trigger').click(function(){
+						$('#commit_form').submit();
+					});
+				</script>
 			@endif
 
         </div>
@@ -204,21 +211,6 @@
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-primary" id="savepaystatus">Save</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	</div>
-</div>
-
-
-<div id="printBadge" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Print Badge</h3>
-	</div>
-	<div class="modal-body">
-		<iframe src="{{ URL::base().'/print/badge' }}" id="print_frame" class="span12"></iframe>
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="printstart">Print</button>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	</div>
 </div>
@@ -416,6 +408,15 @@
 				$('.selector').attr('checked', false);
 			}
 		});
+
+		$('#override_all').click(function(){
+			if($('#override_all').is(':checked')){
+				$('.overselector').attr('checked', true);
+			}else{
+				$('.overselector').attr('checked', false);
+			}
+		});
+
 		$('#savepaystatus').click(function(){
 			var paystat = $('#paystatusselect').val();
 
@@ -439,36 +440,6 @@
 			},'json');
 		});
 
-
-		$('#confirmdelete').click(function(){
-
-			$.post('{{ URL::to($ajaxdel) }}',{'id':current_del_id}, function(data) {
-				if(data.status == 'OK'){
-					//redraw table
-
-					oTable.fnDraw();
-
-					$('#delstatusindicator').html('Payment status updated');
-
-					$('#deleteWarning').modal('toggle');
-
-				}
-			},'json');
-		});
-
-		$('#printstart').click(function(){
-
-			var pframe = document.getElementById('print_frame');
-			var pframeWindow = pframe.contentWindow;
-			pframeWindow.print();
-
-		});
-
-		$('#add_to_group').click(function(){
-
-				$('#addToGroup').modal();
-
-		});
 
 		$('table.dataTable').click(function(e){
 

@@ -431,3 +431,19 @@ table.table thead .sorting_desc { background: url('../../images/sort_desc.png') 
 
 table.table thead .sorting_asc_disabled { background: url('../../images/sort_asc_disabled.png') no-repeat center right; }
 table.table thead .sorting_desc_disabled { background: url('../../images/sort_desc_disabled.png') no-repeat center right; }
+
+
+.invalidhead{
+	display: block;
+	padding: 5px;
+	background-color: red;
+	color:white;
+	font-weight: bold;
+}
+
+.duplicateemail{
+	display: block;
+	padding: 5px;
+	background-color: orange;
+	text-decoration: underline;
+}
