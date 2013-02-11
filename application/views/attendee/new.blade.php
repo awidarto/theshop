@@ -6,7 +6,7 @@
 <h3 class="formHead">{{$title}}</h3>
 </div>
 
-{{$form->open('attendee/add','POST',array('class'=>'custom'))}}
+{{$form->open('attendee/add','POST',array('class'=>'custom addAttendeeForm'))}}
 
 <div class="row-fluid formNewAttendee">
     <div class="span6">

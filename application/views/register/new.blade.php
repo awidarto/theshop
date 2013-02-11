@@ -6,7 +6,7 @@
 <h3>{{$title}}</h3>
 </div>
 
-{{$form->open('register','POST',array('class'=>'custom'))}}
+{{$form->open('register','POST',array('class'=>'custom '))}}
 
 <div class="row">
     <div class="twelve columns">
