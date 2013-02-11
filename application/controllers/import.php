@@ -102,11 +102,15 @@ class Import_Controller extends Base_Controller {
 
 		//print_r($colclass);
 
+		$head_count = count($heads);
+
 		$colclass = array_merge(array('',''),$colclass);
 
 		$searchinput = array_merge(array($select_all,$override_all),$searchinput);
 
 		$heads = array_merge(array('Select','Override'),$heads);
+
+		//reg.ipaconvex.com
 
 		//$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Created','Last Update','Action');
 
@@ -125,6 +129,7 @@ class Import_Controller extends Base_Controller {
 			->with('importid',$id)
 			->with('reimporturl','import')
 			->with('form',$form)
+			->with('head_count',$head_count)
 			->with('colclass',$colclass)
 			->with('searchinput',$searchinput)
 			->with('ajaxsource',URL::to('import/loader/'.$id))
@@ -159,7 +164,7 @@ class Import_Controller extends Base_Controller {
 		$defdir = -1;
 
 		$idx = 0;
-		$q = array('cache_head'=>false,'cache_id'=>$id);
+		$q = array('cache_head'=>false,'cache_id'=>$id,'cache_commit'=>false);
 
 		$hilite = array();
 		$hilite_replace = array();
@@ -265,11 +270,13 @@ class Import_Controller extends Base_Controller {
 
 			if(in_array($doc['email'], $email_arrays)){
 				$override = $form->checkbox('over[]','',$doc['_id'],'',array('id'=>'over_'.$doc['_id'],'class'=>'overselector'));
+				$exist = $form->hidden('existing[]',$doc['_id']);
 			}else{
 				$override = '';
+				$exist = '';
 			}
 
-			$adata = array_merge(array($select,$override),$adata);
+			$adata = array_merge(array($select,$override.''.$exist),$adata);
 
 			$adata['extra'] = $extra;
 
@@ -278,7 +285,6 @@ class Import_Controller extends Base_Controller {
 			$counter++;
 		}
 
-		
 		$result = array(
 			'sEcho'=> Input::get('sEcho'),
 			'iTotalRecords'=>$count_all,
@@ -290,10 +296,175 @@ class Import_Controller extends Base_Controller {
 		return Response::json($result);
 	}
 
-	public function post_commit(){
+	public function post_commit($importid){
 		$data = Input::all();
 
-		print_r($data);
+		//print_r($data);
+
+		$importsession = new Import();
+
+		$_imid = new MongoId($importid);
+
+		$pic = $importsession->get(array('_id'=>$_imid));
+
+		if(isset($data['sel'])){
+
+			$commitedobj = array();
+
+			$idvals = array();
+
+			foreach ($data['sel'] as $idval) {
+				$_id = new MongoId($idval);
+				$idvals[] = array('_id'=>$_id);
+			}
+
+			$icache = new Importcache();
+
+			$commitobj = $icache->find(array('$or'=>$idvals));
+
+			//print_r($commitobj);
+
+			$attendee = new Attendee();
+
+			$i2o = Config::get('eventreg.attendee_map');
+
+			$commit_count = 0;
+
+			foreach($commitobj as $comobj){
+				//print_r($comobj);
+
+				$tocommit = Config::get('eventreg.attendee_template');
+				for($i = 0; $i < $data['head_count']; $i++ ){
+
+					$okey = $data['map_'.$i];
+					if(isset($i2o[$okey])){
+						$tocommit[$i2o[$okey]] = $comobj[$okey];
+						//print $okey.' --> '.$i2o[$okey]."<br />\r\n";
+					}
+				}
+
+				$tocommit['cache_id'] = $comobj['cache_id'];
+				$tocommit['cache_obj'] = $comobj['_id'];
+
+				if(isset($data['over'])){
+					if( in_array($comobj['_id']->__toString(), $data['over'])){
+						$override = true;
+					}else{
+						$override = false;
+					}
+				}else{
+					$override = false;
+				}
+
+
+				if(isset($data['existing'])){
+					if( in_array($comobj['_id']->__toString(), $data['existing'])){
+						$existing = true;
+					}else{
+						$existing = false;
+					}
+				}else{
+					$existing = false;
+				}
+
+				//print_r($tocommit);
+				//print 'override -> '.$override."\r\n";
+
+
+				if($override == true){
+
+					$tocommit['lastUpdate'] = new MongoDate();
+
+					if($data['updatepass'] == 'Yes'){
+						$plainpass = rand_string(8);
+						$tocommit['pass'] = Hash::make($plainpass);
+					}else{
+						$plainpass = '-';
+					}
+
+					if($attendee->update(array('email'=>$tocommit['email']),array('$set'=>$tocommit))){
+						if($data['sendattendee'] == 'Yes'){
+							// send message to each attendee
+							Event::fire('attendee.update',array($tocommit['_id'],$plainpass));
+						}
+
+						$icache->update(array('email'=>$tocommit['email']),array('$set'=>array('cache_commit'=>true)));
+
+						$commit_count++;
+
+					}
+				}else if($existing == false){
+
+
+					$tocommit['createdDate'] = new MongoDate();
+					$tocommit['lastUpdate'] = new MongoDate();
+
+					$tocommit['role'] = 'attendee';
+					$tocommit['paymentStatus'] = 'unpaid';
+					$tocommit['conventionPaymentStatus'] = 'unpaid';
+
+					if($tocommit['golf'] == 'Yes'){
+						$tocommit['golfPaymentStatus'] = 'unpaid';
+					}else{
+						$tocommit['golfPaymentStatus'] = '-';
+					}
+	
+					$reg_number = array();
+
+					$reg_number[0] = 'A';
+					$reg_number[1] = $tocommit['regtype'];
+					$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+
+					$seq = new Sequence();
+
+					$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+					$reg_number[4] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+
+					$tocommit['registrationnumber'] = implode('-',$reg_number);
+
+					$plainpass = rand_string(8);
+
+					$tocommit['pass'] = Hash::make($plainpass);
+
+					//golf sequencer
+					$tocommit['golfSequence'] = 0;
+
+					if($tocommit['golf'] == 'Yes'){
+						$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
+						$tocommit['golfSequence'] = $gseq['seq'];
+					}
+
+					if($obj = $attendee->insert($tocommit)){
+
+						if($data['sendattendee'] == 'Yes'){
+							// send message to each attendee
+							Event::fire('attendee.create',array($obj['_id'],$plainpass));
+						}
+
+						$commitedobj[] = $tocommit;
+
+						$icache->update(array('email'=>$tocommit['email']),array('$set'=>array('cache_commit'=>true)));
+
+						$commit_count++;
+
+					}
+
+				}
+
+			}
+
+			if($data['sendpic'] == 'Yes'){
+				// send to pic , use 
+				// $commitedobj as input array
+				// $pic as PIC data
+			}
+
+			return Redirect::to('import/preview/'.$importid)->with('notify_success','Committing '.$commit_count.' record(s)');
+		}else{
+			return Redirect::to('import/preview/'.$importid)->with('notify_success','No entry selected to commit');
+		}
+
 	}
 
 	public function post_preview()

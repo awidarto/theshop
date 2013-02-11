@@ -481,7 +481,7 @@ class Attendee_Controller extends Base_Controller {
 
 			if($obj = $user->insert($data)){
 
-				print_r($obj);
+				//print_r($obj);
 
 				Event::fire('attendee.create',array($obj['_id'],$passwordRandom));
 				

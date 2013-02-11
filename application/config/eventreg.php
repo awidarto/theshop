@@ -38,7 +38,7 @@ return array(
 		'valid_heads'=>array(
 			'no',
 			'username',
-			'inv_letters',
+			'inv_letter',
 			'salutation',
 			'firstname',
 			'lastname',
@@ -88,7 +88,6 @@ return array(
 
 
 		'attendee_map'=>array(
-			'username'=>'username',
 			'inv_letter'=>'inv_letter',
 			'salutation'=>'salutation',
 			'firstname'=>'firstname',
@@ -106,8 +105,8 @@ return array(
 			'phone'=>'companyphone',
 			'fax'=>'companyfax',
 			'invoice_address'=>'addressInvoice',
-			'registertype'=>'registertype',
-			'galadinner'=>'galadinner',
+			'registertype'=>'regtype',
+			'galadinner'=>'attenddinner',
 			'golf'=>'golf'
 		),
 
@@ -127,18 +126,17 @@ return array(
 			'confirmation'=> 'none',
 			'country'=> '',
 			'countryInvoice'=> '',
-			'createdDate'=> '',
 			'email'=> '',
 			'firstname'=> '',
 			'golf'=> '',
 			'golfSequence'=> 0,
-			'lastUpdate'=> '',
 			'lastname'=> '',
 			'mobile'=> '',
 			'npwp'=> '',
 			'npwpInvoice'=> '',
 			'pass'=> '',
-			'paymentStatus'=> 'unpaid',
+			'golfPaymentStatus'=> 'unpaid',
+			'conventionPaymentStatus'=> 'unpaid',
 			'position'=> '',
 			'registrationnumber'=> '',
 			'regtype'=> '',
