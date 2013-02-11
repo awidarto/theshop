@@ -332,3 +332,19 @@ color: #222222;
   margin-bottom: 15px;
   color: #fff;
 }
+
+.details-expand h4{
+  border-bottom: 1px solid #afafaf;
+  margin-bottom: 7px;
+}
+#accountBankDetails{
+  margin: 7px 0 10px 20px;
+  padding: 0;
+}
+#accountBankDetails li{
+  margin-bottom: 7px;
+}
+#accountBankDetails{
+  line-height: 1.6;
+  list-style-position: outside;
+}

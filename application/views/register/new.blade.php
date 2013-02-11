@@ -196,6 +196,8 @@
 
         </fieldset>
 
+
+
       @if($golfcount < Config::get('eventreg.golfquota'))
 
 
@@ -205,7 +207,6 @@
 
             <div class="row">
                 <div class="four columns">
-                    
                     PONDOK INDAH GOLF<br/>
                     (12 May 2013)<br/><br/>
                     IDR 2.500.000,-/person<br/>
@@ -227,6 +228,46 @@
 
       @endif
 
+      <!--<fieldset>
+          <legend>PAYMENT SETTLEMENT</legend>
+          <table class="row">
+            <tr>
+              <td colspan="4" class="four columns">REGISTRATION FEE TOTAL</td>
+              <td class="three columns">USD</td>
+              <td class="three columns">500</td>
+              
+              <td class="three columns">IDR</td>
+              <td class="three columns">500</td>
+            </tr>
+
+            <tr>
+              <td colspan="4" class="four columns">GOLF TOTAL</td>
+              <td class="three columns">&nbsp;</td>
+              <td class="three columns">&nbsp;</td>
+              
+              <td class="three columns">IDR</td>
+              <td class="three columns">500</td>
+            </tr>
+
+            <tr>
+              <td colspan="4" class="four columns">GRAND TOTAL</td>
+              <td class="three columns">&nbsp;</td>
+              <td class="three columns">&nbsp;</td>
+              
+              <td class="three columns">IDR</td>
+              <td class="three columns">500</td>
+
+              <td colspan="4" style="text-align:right;">GRAND TOTAL</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>IDR</td>
+              <td>2.500.000</td>
+            </tr>
+
+          </table>
+
+        </fieldset>-->
 
         <fieldset>
 
@@ -235,14 +276,18 @@
               <span><strong>Bank Transfer</strong></span>
               <div class="row">
                 <div class="six columns mobile-six">
-                  <p><strong>IDR Account:</strong><br/>
-                  BCA - Mangga Dua Branch<br/>
+                  <strong>IDR Account:</strong><br/>
+                  <ul id="accountBankDetails">
+                  <li>BCA - Mangga Dua Branch<br/>
                   Acc. No. : 335.302.7677<br/>
-                  Acc. Name : PT Dyandra Promosindo<br/>
-                  </p>
+                  Acc. Name : PT Dyandra Promosindo<br/></li>
+                  <li>Mandiri - Wisma Nusantara Branch<br/>
+                  Acc. No.  : 103.000.1065180<br/>
+                  Acc. Name : PT Dyandra Promosindo<br/></li>
+                  
                 </div>
 
-                <div class="six columns mobile-six">
+                <div class="six columns mobile-six" style="padding-left:15px;">
                   <p><strong>USD Account:</strong><br/>
                   BCA - Wisma Nusantara Branch<br/>
                   Acc. No. : 734.038.5700<br/>
@@ -250,8 +295,10 @@
                   Swiftcode : CENAIDJA
                   </p>
                 </div>
+
                 <div class="twelve columns">
-                  <strong><i>Payment should be made in FULL AMOUNT. Please change your payment status and upload copy of your bank transfer once the payment settled.</i></strong>
+                  <p><strong><i>Payment should be made in FULL AMOUNT. Please change your payment status and upload copy of your bank transfer once the payment settled.</i></strong></p>
+                  <p><strong><i>Payment by credit card (VISA/MASTER CARD) accepted on-site </i></strong></p>
                 </div>
               </div>
               <hr/>
