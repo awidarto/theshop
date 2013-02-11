@@ -93,8 +93,9 @@ class Register_Controller extends Base_Controller {
 	    }else{
 
 			$data = Input::get();
-
+			$password = $data['pass'];
 			$data['pass'] = Hash::make($data['pass']);
+			
 
 			unset($data['repass']);
 			unset($data['csrf_token']);
@@ -138,7 +139,11 @@ class Register_Controller extends Base_Controller {
 
 			if($obj = $user->insert($data)){
 
-				$body = View::make('email.regsuccess')->with('data',$data)->render();
+				$body = View::make('email.regsuccess')
+					->with('data',$data)
+					->with('fromadmin','yes')
+					->with('passwordRandom',$password)
+					->render();
 
 				Message::to($data['email'])
 				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
@@ -245,7 +250,7 @@ class Register_Controller extends Base_Controller {
 				Message::to($userdata['email'])
 				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 				    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
-				    ->subject(ucfirst($type).' Payment Confirmation Submitted')
+				    ->subject(ucfirst($type).' Payment Confirmation – '.$userdata['registrationnumber'])
 				    ->body( $body )
 				    ->html(true)
 				    ->send();
@@ -333,7 +338,7 @@ class Register_Controller extends Base_Controller {
 
 			$data = Input::get();
 
-			$newpass = $this->rand_string(8);
+			$newpass = rand_string(8);
 
 			$data['pass'] = Hash::make($newpass);
 
@@ -524,20 +529,6 @@ class Register_Controller extends Base_Controller {
 
 		
 	}
-
-	public function rand_string( $length ) {
-		$chars = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789";	
-
-		$size = strlen( $chars );
-		$str = '';
-		for( $i = 0; $i < $length; $i++ ) {
-			$str .= $chars[ rand( 0, $size - 1 ) ];
-		}
-
-		return $str;
-	}
-
-
 
 
 }

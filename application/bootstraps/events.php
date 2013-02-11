@@ -1,5 +1,25 @@
 <?php
 
+Event::listen('attendee.create',function($id,$newpass){
+    $attendee = new Attendee();
+    $_id = $id;
+    $data = $attendee->get(array('_id'=>$_id));
+
+    $body = View::make('email.regsuccess')
+        ->with('data',$data)
+        ->with('passwordRandom',$newpass)
+        ->with('fromadmin','yes')
+        ->render();
+
+    Message::to($data['email'])
+        ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+        ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+        ->body( $body )
+        ->html(true)
+        ->send();
+
+});
+
 Event::listen('document.create',function($id, $result){
     $activity = new Activity();
 

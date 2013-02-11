@@ -316,18 +316,20 @@ class Attendee_Controller extends Base_Controller {
 				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'OK'));
 				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
 				//mail to registrant about payment updated
+				//if only set to paid to send email
+				if($paystatus == 'paid'){
+					$data = $user->get(array('_id'=>$_id));
 
-				$data = $user->get(array('_id'=>$_id));
-
-				$body = View::make('email.confirmpayment')->with('data',$data)->render();
+					$body = View::make('email.confirmpayment')->with('data',$data)->render();
 
 
-				Message::to($data['email'])
-				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-				    ->subject('CONFIRMATION OF REGISTRATION - Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
-				    ->body( $body )
-				    ->html(true)
-				    ->send();
+					Message::to($data['email'])
+					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->subject('CONFIRMATION OF REGISTRATION - Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+					    ->body( $body )
+					    ->html(true)
+					    ->send();
+				}
 			}else{
 				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'FAILED'));
 				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
@@ -355,18 +357,20 @@ class Attendee_Controller extends Base_Controller {
 				Event::fire('paymentstatusgolf.update',array('id'=>$id,'result'=>'OK'));
 				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
 				//mail to registrant about payment updated
+				//if only set to paid to send email
+				if($paystatus == 'paid'){
+					$data = $user->get(array('_id'=>$_id));
 
-				$data = $user->get(array('_id'=>$_id));
-
-				$body = View::make('email.confirmpaymentgolf')->with('data',$data)->render();
+					$body = View::make('email.confirmpaymentgolf')->with('data',$data)->render();
 
 
-				Message::to($data['email'])
-				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-				    ->subject('CONFIRMATION OF REGISTRATION (GOLF)- Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
-				    ->body( $body )
-				    ->html(true)
-				    ->send();
+					Message::to($data['email'])
+					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->subject('CONFIRMATION OF REGISTRATION (GOLF)- Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+					    ->body( $body )
+					    ->html(true)
+					    ->send();
+				}
 			}else{
 				Event::fire('paymentstatusgolf.update',array('id'=>$id,'result'=>'FAILED'));
 				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
@@ -404,8 +408,23 @@ class Attendee_Controller extends Base_Controller {
 		//print_r(Session::get('permission'));
 
 	    $rules = array(
-	        'firstname'  => 'required|max:150',
-	        'email' => 'required|email'
+	        'firstname' => 'required',
+	    	'lastname' => 'required',
+	    	'position' => 'required',
+	        'email' => 'required|email|unique:attendee',
+	        
+	        'company' => 'required',
+	        'companyphone' => 'required',
+	        'address' => 'required',
+	        'city' => 'required',
+	        'zip' => 'required',
+	        'country' => 'required',
+	        'companyInvoice' => 'required',
+	        'companyphoneInvoice' => 'required',
+	        'addressInvoice' => 'required',
+	        'cityInvoice' => 'required',
+	        'zipInvoice' => 'required',
+	        'countryInvoice' => 'required'
 	    );
 
 	    $validation = Validator::make($input = Input::all(), $rules);
@@ -418,7 +437,9 @@ class Attendee_Controller extends Base_Controller {
 
 			$data = Input::get();
 
-			$data['pass'] = Hash::make(time());
+			$passwordRandom = rand_string(8);
+
+			$data['pass'] = Hash::make($passwordRandom);
 	    	
 			unset($data['csrf_token']);
 
@@ -427,6 +448,7 @@ class Attendee_Controller extends Base_Controller {
 
 			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
+			$data['conventionPaymentStatus'] = 'unpaid';
 			$data['golfPaymentStatus'] = 'unpaid';
 
 			$reg_number[] = 'A';
@@ -453,7 +475,27 @@ class Attendee_Controller extends Base_Controller {
 
 			$user = new Attendee();
 
-			if($user->insert($data)){
+			if($obj = $user->insert($data)){
+
+				print_r($obj);
+
+				Event::fire('attendee.create',array($obj['_id'],$passwordRandom));
+				
+				/*
+				$body = View::make('email.regsuccess')
+					->with('data',$data)
+					->with('passwordRandom',$passwordRandom)
+					->with('fromadmin','yes')
+					->render();
+
+				Message::to($data['email'])
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+				    ->body( $body )
+				    ->html(true)
+				    ->send();
+				*/
+
 		    	return Redirect::to('attendee')->with('notify_success',Config::get('site.register_success'));
 			}else{
 		    	return Redirect::to('attendee')->with('notify_success',Config::get('site.register_failed'));
@@ -605,6 +647,18 @@ class Attendee_Controller extends Base_Controller {
 		$file = URL::base().'/storage/'.$id.'/'.$doc['docFilename'];
 		
 		return View::make('pop.approval')->with('doc',$doc)->with('form',$form)->with('href',$file);
-	}	
+	}
+
+	public function rand_string( $length ) {
+		$chars = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789";	
+
+		$size = strlen( $chars );
+		$str = '';
+		for( $i = 0; $i < $length; $i++ ) {
+			$str .= $chars[ rand( 0, $size - 1 ) ];
+		}
+
+		return $str;
+	}
 
 }

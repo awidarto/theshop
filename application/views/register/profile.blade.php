@@ -51,7 +51,16 @@
 					<td class="detail-title">Status</td>
 					<td>:&nbsp;</td>
 					<td class="detail-info">
-						<span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['conventionPaymentStatus'] }}</span>
+						@if($profile['conventionPaymentStatus'] == 'unpaid')
+							<span style="color: #BC1C4B;text-transform:uppercase;text-decoration:underline;">{{ HTML::link('payment/convention',$profile['conventionPaymentStatus']) }}</span>
+						@elseif($profile['conventionPaymentStatus'] == 'cancel')
+							<span style="text-transform:uppercase;">{{ $profile['conventionPaymentStatus'] }}</span>
+						@elseif($profile['conventionPaymentStatus'] == 'paid')
+							<span style="color: #229835;text-transform:uppercase;">{{ $profile['conventionPaymentStatus'] }}</span>
+						@else
+							<span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['conventionPaymentStatus'] }}</span>
+						@endif
+						
 					</td>
 				</tr>
 				<tr>
@@ -80,7 +89,15 @@
 					<td>:&nbsp;</td>
 					<td class="detail-info">
 						@if($profile['golf'] == 'Yes')
-							<span>{{ $profile['golf'] }} - <span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['golfPaymentStatus'] }}</span></span>
+							@if($profile['golfPaymentStatus'] == 'unpaid')
+								<span>{{ $profile['golf'] }} - <span style="color: #BC1C4B;text-transform:uppercase;text-decoration:underline;">{{ HTML::link('payment/golf',$profile['golfPaymentStatus']) }}</span></span>
+							@elseif ($profile['golfPaymentStatus'] == 'pending')
+								<span>{{ $profile['golf'] }} - <span style="text-transform:uppercase;">{{ $profile['golfPaymentStatus'] }}</span></span>
+							@elseif ($profile['golfPaymentStatus'] == 'paid')
+								<span>{{ $profile['golf'] }} - <span style="color: #229835;text-transform:uppercase;">{{ $profile['golfPaymentStatus'] }}</span></span>
+							@else
+								<span>{{ $profile['golf'] }} - <span style="color: #BC1C4B;text-transform:uppercase;">{{ $profile['golfPaymentStatus'] }}</span></span>
+							@endif
 						@else
 							<span>{{ $profile['golf'] }}</span>
 						@endif
