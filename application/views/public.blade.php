@@ -54,7 +54,7 @@
                
               </script>
               <div class="blink" style="margin: 0px 0px 15px 450px; color: black; font-size: 14px; font-weight: bold; font-family: Tahoma; visibility: visible;">
-                <a href="http://localhost/eventreg/public/index.php/register/landing">ONLINE REGISTRATION</a>
+                {{ HTML::link('register/landing','ONLINE REGISTRATION',array('class'=>'')) }}
               </div>
             </td>
         </tr>
@@ -99,7 +99,7 @@
             stm_aix("p3i0","p1i0",[0,"  How to Get There  ","","",-1,-1,0,"http://www.ipaconvex.com/content.php?go=howtogetthere"],0,26);
             stm_ep();
             @if(Auth::attendeecheck() == false)
-            stm_aix("p0i6","p0i2",[0,"  LOGIN   ","","",-1,-1,0,"http://localhost/eventreg/public/index.php/register/login"],0,36);
+            stm_aix("p0i6","p0i2",[0,"  LOGIN   ","","",-1,-1,0,"http://46.23.76.180/ipa37/index.php/register/login"],0,36);
             @endif
             stm_em();
             </script>

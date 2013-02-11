@@ -68,6 +68,7 @@ class Visitor_Controller extends Base_Controller {
 				->with('ajaxsource',URL::to('visitor'))
 				->with('ajaxdel',URL::to('visitor/del'))
 				->with('ajaxpay',URL::to('visitor/paystatus'))
+				->with('ajaxpaygolf',URL::to('attendee/paystatusgolf'))
 				->with('printsource',URL::to('visitor/printbadge'))
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)

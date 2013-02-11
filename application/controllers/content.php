@@ -53,6 +53,7 @@ class Content_Controller extends Base_Controller {
 			->with('colclass',$colclass)
 			->with('searchinput',$searchinput)
 			->with('ajaxsource',URL::to('content'))
+			->with('ajaxpaygolf',URL::to('attendee/paystatusgolf'))
 			->with('ajaxdel',URL::to('content/del'))
 	        ->with('crumb',$this->crumb)
 			->with('heads',$heads);
