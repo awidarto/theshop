@@ -79,51 +79,69 @@
 			{{ $form->hidden('head_count',$head_count)}}
 
 			<div class="row-fluid">
-				<div class="span4">
+				<div class="span3">
 			        <fieldset>
 			            <legend>Send Notification to PIC</legend>
 
 			                <div class="row-fluid">
-			                    <div class="span2">
+			                    <div class="span4">
 			                      {{ $form->radio('sendpic','Yes','Yes',true) }} 
 			                    </div>   
-			                    <div class="span2">
+			                    <div class="span4">
 			                      {{ $form->radio('sendpic','No','No') }} 
 			                    </div>   
-			                    <div class="span8"></div>
+			                    <div class="span4"></div>
 			                </div>
 
 			        </fieldset>        
 				</div>
-				<div class="span4">
+
+				<div class="span3">
+			        <fieldset>
+			            <legend>Include attendee summary in PIC notification</legend>
+
+			                <div class="row-fluid">
+			                    <div class="span4">
+			                      {{ $form->radio('attendeesummary','Yes','Yes') }} 
+			                    </div>   
+			                    <div class="span4">
+			                      {{ $form->radio('attendeesummary','No','No',true) }} 
+			                    </div>   
+			                    <div class="span4"></div>
+			                </div>
+
+			        </fieldset>        
+				</div>
+
+				<div class="span3">
 			        <fieldset>
 			            <legend>Send Notification to each attendee</legend>
 
 			                <div class="row-fluid">
-			                    <div class="span2">
+			                    <div class="span4">
 			                      {{ $form->radio('sendattendee','Yes','Yes') }} 
 			                    </div>   
-			                    <div class="span2">
+			                    <div class="span4">
 			                      {{ $form->radio('sendattendee','No','No',true) }} 
 			                    </div>   
-			                    <div class="span8"></div>
+			                    <div class="span4"></div>
 			                </div>
 
 			        </fieldset>        
 
 				</div>
-				<div class="span4">
+				<div class="span3">
 			        <fieldset>
 			            <legend>Update password for existing attendee</legend>
 
 			                <div class="row-fluid">
-			                    <div class="span2">
+			                    <div class="span4">
 			                      {{ $form->radio('updatepass','Yes','Yes') }} 
 			                    </div>   
-			                    <div class="span2">
+			                    <div class="span4">
 			                      {{ $form->radio('updatepass','No','No',true) }} 
 			                    </div>   
-			                    <div class="span8"></div>
+			                    <div class="span4"></div>
 			                </div>
 
 			        </fieldset>        
