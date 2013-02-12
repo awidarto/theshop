@@ -184,6 +184,16 @@ form #zip,form #zipInv{
 .three{
   width: 160px;
 }
+.one{
+ width: 100px;
+ margin-right: 20px;
+  display: inline-block;
+}
+.attendeeRegistForm .ten{
+  width:290px;
+  margin-right: 20px;
+  display: inline-block;
+}
 label{
   position: relative;
 }
