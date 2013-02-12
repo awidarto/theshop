@@ -490,3 +490,7 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 	overflow: auto;
 	margin-bottom: 10px;
 }
+
+.clear{
+	clear:both;
+}
