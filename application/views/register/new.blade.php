@@ -50,7 +50,8 @@
                 {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text','id'=>'companyPhone')) }}
                 {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text','id'=>'companyFax')) }}
 
-                {{ $form->text('address','Address.req','',array('class'=>'text','id'=>'address','placeholder'=>'Company Address')) }}
+                {{ $form->text('address_1','Address.req','',array('class'=>'text','id'=>'address_1','placeholder'=>'Company Address')) }}
+                {{ $form->text('address_2','','',array('class'=>'text','id'=>'address_2')) }}
 
                 <div class="row">
                     <div class="eight columns">
@@ -90,7 +91,9 @@
                 {{ $form->text('companyphoneInvoice','Phone Number.req','',array('class'=>'text invAdress','id'=>'companyPhoneInv')) }}
                 {{ $form->text('companyfaxInvoice','Fax Number.req','',array('class'=>'text invAdress','id'=>'companyFaxInv')) }}
 
-                {{ $form->text('addressInvoice','Address.req','',array('class'=>'text invAdress','id'=>'addressInv','placeholder'=>'Company Address')) }}
+                {{ $form->text('addressInvoice_1','Address.req','',array('class'=>'text invAdress','id'=>'addressInv_1','placeholder'=>'Company Address')) }}
+                {{ $form->text('addressInvoice_2','','',array('class'=>'text invAdress','id'=>'addressInv_2')) }}
+
 
                 <div class="row">
                     <div class="eight columns">
@@ -297,6 +300,7 @@
                 </div>
 
                 <div class="twelve columns">
+                  <p><strong><i>The above fee exclude VAT 10%</i></strong></p>
                   <p><strong><i>Payment should be made in FULL AMOUNT. Please change your payment status and upload copy of your bank transfer once the payment settled.</i></strong></p>
                   <p><strong><i>Payment by credit card (VISA/MASTER CARD) accepted on-site </i></strong></p>
                 </div>
@@ -344,7 +348,8 @@ $(function() {
     var companyNPWP = $("#companyNPWP").val();
     var companyPhone = $("#companyPhone").val();
     var companyFax = $("#companyFax").val();
-    var companyAddress = $("#address").val();
+    var companyAddress_1 = $("#address_1").val();
+    var companyAddress_2 = $("#address_2").val();
     var companyCity = $("#city").val();
     var companyZip = $("#zip").val();
     var companyCountry = $("#s2id_field_country").select2("val");
@@ -353,7 +358,8 @@ $(function() {
     $("#companyNPWPInv").val(companyNPWP);
     $("#companyPhoneInv").val(companyPhone);
     $("#companyFaxInv").val(companyFax);
-    $("#addressInv").val(companyAddress);
+    $("#addressInv_1").val(companyAddress_1);
+    $("#addressInv_2").val(companyAddress_2);
     $("#cityInv").val(companyCity);
     $("#zipInv").val(companyZip);
     $("#s2id_field_countryInvoice").select2("val", companyCountry);
