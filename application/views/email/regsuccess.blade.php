@@ -129,7 +129,7 @@ Thank you for register in 37th IPA Convention & Exhibition. Please find below su
 
 <p><i>*Convention registration fee includes admission to all Plenary & Technical Sessions, Conference Kits, Opening and Closing Ceremony, Lunches, Coffee Breaks, Industrial Cocktail, Industrial Dinner, and Entrance to Exhibition Area.<br/><br/>
 * The cost of the Golf Tournament includes green fee, caddy & cart fee.</i><br/><br/>
-<strong>* Fees above exclude VAT 100%</strong></i>
+<strong>* Fees above exclude VAT 10%</strong></i>
 </p>
 <p>For the registration payment, you can settle it by bank transfer to:</p>
 

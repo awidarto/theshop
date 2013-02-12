@@ -186,7 +186,7 @@
                         Professional / Delegate Domestic
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD',true,array('class'=>'regType professional')) }}
+                      {{ $form->radio('regtype','IDR 4.500.000','PD',true,array('class'=>'regType professional paymentSettle')) }}
                     </div>
                     <div class="three columns">
                       {{ $form->radio('regtypeNormal','IDR 5.000.000','PD',false,array('class'=>'disableRadio')) }}
@@ -198,7 +198,7 @@
                         Professional / Delegate Overseas
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','USD 500','PO',false,array('class'=>'regType professional')) }}
+                      {{ $form->radio('regtype','USD 500','PO',false,array('class'=>'regType professional paymentSettle')) }}
                     </div>
                     <div class="three columns">
                       {{ $form->radio('regtypeNormal','USD 550','PD',false,array('class'=>'disableRadio')) }}
@@ -211,7 +211,7 @@
                         Student Domestic
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','IDR 400.000','SD',false,array('class'=>'regType student')) }}
+                      {{ $form->radio('regtype','IDR 400.000','SD',false,array('class'=>'regType student paymentSettle')) }}
                     </div>
                     <div class="three columns">
                       {{ $form->radio('regtypeNormal','IDR 400.000','PD',false,array('class'=>'disableRadio')) }}
@@ -223,7 +223,7 @@
                         Student Overseas
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','USD 120','SO',false,array('class'=>'regType student')) }}
+                      {{ $form->radio('regtype','USD 120','SO',false,array('class'=>'regType student paymentSettle')) }}
                     </div>
                     <div class="three columns">
                       {{ $form->radio('regtypeNormal','USD 120','PD',false,array('class'=>'disableRadio')) }}
@@ -274,10 +274,10 @@
                 </div>
 
                 <div class="three columns">
-                  {{ $form->radio('golf','Yes','Yes',false,array('class'=>'field_golfType golfYes')) }}
+                  {{ $form->radio('golf','Yes','Yes',false,array('class'=>'field_golfType golfYes paymentSettle')) }}
                 </div>
                 <div class="three columns">
-                  {{ $form->radio('golf','No','No',true,array('class'=>'field_golfType golfNo')) }}
+                  {{ $form->radio('golf','No','No',true,array('class'=>'field_golfType golfNo paymentSettle')) }}
                 </div>
 
             </div>
@@ -285,34 +285,61 @@
 
       @endif
 
-      <!--<fieldset>
+      <fieldset>
           <legend>PAYMENT SETTLEMENT</legend>
-          <table class="row">
+          <div class="four columns"><span>REGISTRATION FEE TOTAL</span></div>
+          <div class="three-small columns">
+            <span style="width:30%;position:relative;display:inline-block;border-bottom:1px solid #959595;padding-bottom:5px;">USD</span><span style="width:70%;position:relative;display:inline-block;text-align:right;border-bottom:1px solid #959595;padding-bottom:5px;font-weight:bold;" id="feeRegUSD">&nbsp;</span>
+          </div>
+          <div class="three-small columns">
+            <span style="width:30%;position:relative;display:inline-block;border-bottom:1px solid #959595;padding-bottom:5px;">IDR</span><span style="width:70%;position:relative;display:inline-block;text-align:right;border-bottom:1px solid #959595;padding-bottom:5px;font-weight:bold;" id="feeRegIDR">&nbsp;</span>
+          </div>
+          <br/>
+          <br/>
+          <div class="four columns" style="margin-top:10px;"><span>GOLF TOTAL</span></div>
+          <div class="three-small columns" style="margin-top:10px;">
+            <span style="width:30%;position:relative;display:inline-block;padding-bottom:5px;">&nbsp;</span><span style="width:70%;position:relative;display:inline-block;text-align:right;padding-bottom:5px;font-weight:bold;">&nbsp;</span>
+          </div>
+          <div class="three-small columns" style="margin-top:10px;">
+            <span style="width:30%;position:relative;display:inline-block;border-bottom:1px solid #959595;padding-bottom:5px;">IDR</span><span style="width:70%;position:relative;display:inline-block;text-align:right;border-bottom:1px solid #959595;padding-bottom:5px;font-weight:bold;"id="feeGolf">&nbsp;</span>
+          </div>
+
+          <div class="four columns" style="margin-top:10px;font-weight:bold;text-align:right;"><span>GRAND TOTAL&nbsp;&nbsp;&nbsp;</span></div>
+          <div class="three-small columns" style="margin-top:10px;">
+            <span style="width:30%;position:relative;display:inline-block;border-bottom:1px solid #232323;padding-bottom:5px;">USD</span><span style="width:70%;position:relative;display:inline-block;text-align:right;border-bottom:1px solid #232323;padding-bottom:5px;font-weight:bold;" id="totalUSD">&nbsp;</span>
+          </div>
+          <div class="three-small columns" style="margin-top:10px;">
+            <span style="width:30%;position:relative;display:inline-block;border-bottom:1px solid #232323;padding-bottom:5px;">IDR</span><span style="width:70%;position:relative;display:inline-block;text-align:right;border-bottom:1px solid #232323;padding-bottom:5px;font-weight:bold;" id="totalIDR">&nbsp;</span>
+          </div>
+          
+          <div class="clear" style="clear:both;margin:0;padding:0;"></div>
+          <p style="display:block;margin-top:20px;"><strong><i>*Fees above exclude VAT 10%</i></strong></p>
+          <!--<table class="row">
             <tr>
               <td colspan="4" class="columns">REGISTRATION FEE TOTAL</td>
               <td class="columns">USD</td>
               <td class="columns">500</td>
 
-              <td class="three columns">IDR</td>
-              <td class="three columns">500</td>
+              <td class=" columns">IDR</td>
+              <td class=" columns">500</td>
             </tr>
 
             <tr>
               <td colspan="4" class="four columns">GOLF TOTAL</td>
-              <td class="three columns">&nbsp;</td>
-              <td class="three columns">&nbsp;</td>
+              <td class=" columns">&nbsp;</td>
+              <td class=" columns">&nbsp;</td>
 
-              <td class="three columns">IDR</td>
-              <td class="three columns">500</td>
+              <td class=" columns">IDR</td>
+              <td class=" columns">500</td>
             </tr>
 
             <tr>
               <td colspan="4" class="four columns">GRAND TOTAL</td>
-              <td class="three columns">&nbsp;</td>
-              <td class="three columns">&nbsp;</td>
+              <td class=" columns">&nbsp;</td>
+              <td class=" columns">&nbsp;</td>
 
-              <td class="three columns">IDR</td>
-              <td class="three columns">500</td>
+              <td class=" columns">IDR</td>
+              <td class=" columns">500</td>
 
               <td colspan="4" style="text-align:right;">GRAND TOTAL</td>
               <td>&nbsp;</td>
@@ -322,9 +349,9 @@
               <td>2.500.000</td>
             </tr>
 
-          </table>
+          </table>-->
 
-        </fieldset>-->
+        </fieldset>
 
         <fieldset>
 
@@ -354,7 +381,7 @@
                 </div>
 
                 <div class="twelve columns">
-                  <p><strong><i>The above fee exclude VAT 10%</i></strong></p>
+                  
                   <p><strong><i>Payment should be made in FULL AMOUNT. Please change your payment status and upload copy of your bank transfer once the payment settled.</i></strong></p>
                   <p><strong><i>Payment by credit card (VISA/MASTER CARD) accepted on-site </i></strong></p>
                 </div>
@@ -464,7 +491,52 @@ $(function() {
   $(".professional").next('span').addClass('professional');
   $(".student").next('span').addClass('student');
 
-  $(".regTypeRecord").live("click", function(){
+  $('.regType').change(
+      function(){
+        golfDisable();
+          //alert($('.paymentSettle:checked').val());   
+      }
+  );
+
+  function golfDisable(){
+
+    if($('.regType:checked').val() == 'SD'){
+      $('.golfYes').attr("disabled", true);
+      
+      if($('.field_golfType:checked').val() == 'Yes'){
+        $('.golfYes').attr('checked',false);
+        $('.golfNo').attr('checked',true);
+        $('.golfYesCheckBox').removeClass('checked');
+        $('.golfNoCheckBox').addClass('checked');
+      }
+
+    }else if($('.regType:checked').val() == 'SO'){
+      $('.golfYes').attr("disabled", true);
+      
+      if($('.field_golfType:checked').val() == 'Yes'){
+        $('.golfYes').attr('checked',false);
+        $('.golfNo').attr('checked',true);
+        $('.golfYesCheckBox').removeClass('checked');
+        $('.golfNoCheckBox').addClass('checked');
+      }
+      
+      
+    }else if($('.regType:checked').val() == 'PD'){
+      $(".golfYes").removeAttr('disabled');
+    }else if($('.regType:checked').val() == 'PO'){
+      $(".golfYes").removeAttr('disabled');
+    }
+
+    /*if($('.regType:checked').val() == 'PO' || $('.regType:checked').val() == 'PD'){
+      $(".golfYes").removeAttr('disabled');
+      
+    }*/
+
+    
+  }
+
+  /*$(".regTypeRecord").live("click", function(){
+    
     if($(this).hasClass('checked' && 'student')){
       $('.golfNoCheckBox').addClass('checked');
       //$('.golfYesCheckBox').removeClass('checked');
@@ -472,10 +544,15 @@ $(function() {
       $('.golfYesCheckBox').addClass('studentSelected');
       $('.golfYesCheckBox').removeClass('checked');
       $('.golfNoCheckBox').addClass('checked');
+      $('.golfYes').attr("disabled", true);
+      $(".golfYes").removeAttr('checked');
+    
     }else{
+      $('.golfYes').attr("disabled", false);
       if($('.golfNoCheckBox').hasClass('checked')){
         $('.golfNoCheckBox').addClass('checked');
         $('.golfYesCheckBox').removeClass('checked');
+        $(".golfYes").removeAttr('checked');
       }else{
         $('.golfNoCheckBox').removeClass('checked');
         $('.golfYesCheckBox').addClass('checked');
@@ -490,8 +567,88 @@ $(function() {
     if($(this).hasClass('studentSelected')){
       $('.golfYesCheckBox').removeClass('checked');
       $('.golfNoCheckBox').addClass('checked');
+      $(".golfYes").removeAttr('checked');
     }
-  });
+  });*/
+
+
+  //
+  function calculatefees(){
+    var regfeeIDR = '400';
+    var regfeeUSD = '';
+    var Golffee   = '2.500.000';
+    var totalUSD   = '';
+    var totalIDR   = '';
+    if($('.regType:checked').val() == 'PO'){
+      //alert($('.field_golfType:checked').val());
+      if($('.field_golfType:checked').val() == 'No'){
+        $('#feeRegUSD').text('500');
+        $('#feeRegIDR').text('-');
+        $('#feeGolf').text('-');
+        $('#totalUSD').text('500');
+        $('#totalIDR').text('-');
+      }else{
+        //alert($('.field_golfType:checked').val());
+        $('#feeRegUSD').text('500');
+        $('#feeRegIDR').text('-');
+        $('#feeGolf').text('2.500.000');
+        $('#totalUSD').text('500');
+        $('#totalIDR').text('2.500.000');
+        
+      }
+    }
+
+    if($('.regType:checked').val() == 'PD'){
+      //alert($('.field_golfType:checked').val());
+      if($('.field_golfType:checked').val() == 'No'){
+        $('#feeRegUSD').text('4.500.000');
+        $('#feeRegIDR').text('-');
+        $('#feeGolf').text('-');
+        $('#totalUSD').text('-');
+        $('#totalIDR').text('4.500.000');
+
+      }else{
+        // /alert($('.field_golfType:checked').val());
+        $('#feeRegUSD').text('4.500.000');
+        $('#feeRegIDR').text('-');
+        $('#feeGolf').text('2.500.000');
+        $('#totalUSD').text('-');
+        $('#totalIDR').text('7.000.000');
+      }
+    }
+
+    if($('.regType:checked').val() == 'SD'){
+      $('#feeRegUSD').text('-');
+      $('#feeRegIDR').text('400.000');
+      $('#feeGolf').text('-');
+      $('#totalUSD').text('-');
+      $('#totalIDR').text('400.000');
+    }
+
+    if($('.regType:checked').val() == 'SO'){
+      $('#feeRegUSD').text('120');
+      $('#feeRegIDR').text('-');
+      $('#feeGolf').text('-');
+      $('#totalUSD').text('120');
+      $('#totalIDR').text('-');
+    }
+
+  }
+  //first total
+  $('#feeRegUSD').text('-');
+  $('#feeRegIDR').text('4.500.000');
+  $('#feeGolf').text('-');
+  $('#totalUSD').text('-');
+  $('#totalIDR').text('4.500.000');
+
+  $('.paymentSettle').change(
+      function(){
+        calculatefees();
+          //alert($('.paymentSettle:checked').val());   
+      }
+  );
+
+
 
 
 

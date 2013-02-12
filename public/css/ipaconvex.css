@@ -183,6 +183,12 @@ form #zip,form #zipInv{
 }
 .three{
   width: 160px;
+  position: relative;
+}
+.three-small{
+  width: 150px;
+  position: relative;
+  margin-left: 10px;
 }
 .one{
  width: 100px;
