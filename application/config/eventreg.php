@@ -27,6 +27,10 @@ return array(
 		'reg_finance_name'=>'37th IPA Convex Finance',
 		'reg_finance_email'=>'taufiq.ridha@gmail.com',
 
+		'reg_dyandra_admin_email'=>'ipaconvention@dyandra.com',
+		'reg_dyandra_admin_name'=>'37th IPA Convex Register',
+		
+
 		'paystatus'=>array(
 			'unpaid'=>'Unpaid',
 			'paid'=>'Paid',
