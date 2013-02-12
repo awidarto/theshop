@@ -52,7 +52,11 @@ return array(
 			'city',
 			'zip',
 			'country',
+			'company_country_code',
+			'company_area_code',
 			'phone',
+			'fax_country_code',
+			'fax_area_code',
 			'fax',
 			'invoice_address_conv',
 			'registertype',
@@ -78,8 +82,8 @@ return array(
 			'city'=>'city',
 			'zip'=>'zip',
 			'country'=>'country',
-			'phone_country_code'=>'phone_country_code',
-			'phone_area_code'=>'phone_area_code',
+			'company_country_code'=>'company_country_code',
+			'company_area_code'=>'company_area_code',
 			'phone'=>'phone',
 			'fax_country_code'=>'fax_country_code',
 			'fax_area_code'=>'fax_area_code',
@@ -107,8 +111,8 @@ return array(
 			'zip'=>'zip',
 			'country'=>'country',
 
-			'phone_country_code'=>'companyphonecountry',
-			'phone_area_code'=>'companyphonearea',
+			'company_country_code'=>'companyphonecountry',
+			'company_area_code'=>'companyphonearea',
 			'phone'=>'companyphone',
 
 			'fax_country_code'=>'companyfaxcountry',
@@ -120,13 +124,6 @@ return array(
 			'galadinner'=>'attenddinner',
 			'golf'=>'golf'
 		),
-
-
-   "companyfaxcountry": "62",
-   "companyfaxarea": "21",
-   "companyfax": "54647890",
-
-
 
 		'attendee_template'=>array(
 
@@ -141,10 +138,26 @@ return array(
 			'cityInvoice'=> '',
 			'company'=> '',
 			'companyInvoice'=> '',
+
+
+			'companyfaxcountry'=> '',
+			'companyfaxarea'=> '',
 			'companyfax'=> '',
-			'companyfaxInvoice'=> '',
+
+			'companyphonecountry'=> '',
+			'companyphonearea'=> '',
 			'companyphone'=> '',
+
+
+			'companyphoneInvoiceCountry'=> '',
+			'companyphoneInvoiceArea'=> '',
 			'companyphoneInvoice'=> '',
+
+
+			'companyfaxInvoiceCountry'=> '',
+			'companyfaxInvoiceArea'=> '',
+			'companyfaxInvoice'=> '',
+
 			'confirmation'=> 'none',
 			'country'=> '',
 			'countryInvoice'=> '',

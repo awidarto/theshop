@@ -594,8 +594,11 @@ class Import_Controller extends Base_Controller {
 
 					foreach ($heads as $head) {
 						$label = str_replace(array('.','\''), '', $head);
-						$label = str_replace(array('/',' '), '_', $label);
+						$label = preg_replace('/\s+/','_',$label);
+						//$label = preg_replace('/[[:blank:]]+/','_',$label);
+						$label = str_replace(array('/'), '_', $label);
 						$label = strtolower(trim($label));
+
 
 						$chead[] = $label;
 					}
