@@ -5,12 +5,18 @@
 <div class="tableHeader">
 <h3>{{$title}}</h3>
 </div>
-
-@if(($user['golfPaymentStatus'] == 'pending') && ($type == 'golf') || ($user['golfPaymentStatus'] == 'paid') && ($type == 'golf'))
-<div class="alert alert-error">
-     You already confirmed
-</div>
+<?php
+  $disable = false;
+?>
+@if($user[$type.'PaymentStatus'] == 'pending' || $user[$type.'PaymentStatus'] == 'paid')
+  <div class="alert alert-error">
+       You already confirmed your {{ $type }} payment
+  </div>
+  <?php
+    $disable = true;
+  ?>
 @endif
+
 
 @if( ($golfcount > Config::get('eventreg.golfquota') ) && ($type > Config::get('eventreg.golfquota')) )
 <div class="alert alert-error">
@@ -18,13 +24,8 @@
 </div>
 @endif
 
-@if(($user['conventionPaymentStatus'] == 'pending') && ($type == 'convention') || ($user['conventionPaymentStatus'] == 'paid') && ($type == 'convention'))
-<div class="alert alert-error">
-     You already confirmed
-</div>
-@endif
 
-{{$form->open('payment/'.$type,'POST',array('class'=>'custom'))}}
+{{$form->open_for_files('payment/'.$type,'POST',array('class'=>'custom'))}}
 
     {{ $form->hidden('id',$user['_id'])}}
     {{ $form->hidden('type',$type)}}
@@ -111,13 +112,13 @@
             @else
               <legend>Convention Payment Information</legend>
             @endif
-                @if( (($user['conventionPaymentStatus'] == 'pending' || $user['conventionPaymentStatus'] == 'paid' ) && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending' || $user['golfPaymentStatus'] == 'paid' || $golfcount > Config::get('eventreg.golfquota')) && ($type == 'golf')) )
+                @if($disable == true)
                   {{ $form->text($type.'transferdate','Date Transferred.req','',array('class'=>'text date','id'=>'transferdate','placeholder'=>'yyyy/mm/dd','disabled')) }}
                 @else
                   {{ $form->text($type.'transferdate','Date Transferred.req','',array('class'=>'text date','id'=>'transferdate','placeholder'=>'yyyy/mm/dd')) }}
                 @endif
 
-                @if( (($user['conventionPaymentStatus'] == 'pending' || $user['conventionPaymentStatus'] == 'paid') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending' || $user['golfPaymentStatus'] == 'paid' || $golfcount > Config::get('eventreg.golfquota')) && ($type == 'golf')) )
+                @if($disable == true)
                   {{ $form->text($type.'totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment','disabled')) }}
                 @else
                   {{ $form->text($type.'totalpayment','Total Payment.req','',array('class'=>'text','id'=>'totalpayment')) }}
@@ -130,7 +131,7 @@
                 <div class="row">
                   <div class="six columns mobile-six">
                     <p>
-                    @if( (($user['conventionPaymentStatus'] == 'pending' || $user['conventionPaymentStatus'] == 'paid') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending' || $user['golfPaymentStatus'] == 'paid' || $golfcount > Config::get('eventreg.golfquota')) && ($type == 'golf')) )
+                    @if($disable == true)
                       {{ $form->radio($type.'transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true,array('disabled')) }}<br /><br />
                     @else
                       {{ $form->radio($type.'transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true) }}<br /><br />
@@ -143,7 +144,7 @@
                     </p>
 
                     <p>
-                    @if( (($user['conventionPaymentStatus'] == 'pending' || $user['conventionPaymentStatus'] == 'paid') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending' || $user['golfPaymentStatus'] == 'paid' || $golfcount > Config::get('eventreg.golfquota')) && ($type == 'golf')) )
+                    @if($disable == true)
                       {{ $form->radio($type.'transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true,array('disabled')) }}<br /><br />
                     @else
                       {{ $form->radio($type.'transferto','IDR Account','Mandiri - Wisma Nusantara Branch (IDR Account)',false) }}<br /><br />
@@ -158,7 +159,7 @@
 
                   <div class="six columns mobile-six">
                     <p>
-                    @if( (($user['conventionPaymentStatus'] == 'pending' || $user['conventionPaymentStatus'] == 'paid') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending' || $user['golfPaymentStatus'] == 'paid' || $golfcount > Config::get('eventreg.golfquota')) && ($type == 'golf')) )
+                    @if($disable == true)
                       {{ $form->radio($type.'transferto','USD Account','BCA - Wisma Nusantara Branch (USD Account)',false,array('disabled')) }}<br /><br />
                     @else
                       {{ $form->radio($type.'transferto','USD Account','BCA - Wisma Nusantara Branch (USD Account)') }}<br /><br />
@@ -173,7 +174,7 @@
                   </div>
                 </div>
 
-                @if( (($user['conventionPaymentStatus'] == 'pending' || $user['conventionPaymentStatus'] == 'paid') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending' || $user['golfPaymentStatus'] == 'paid' || $golfcount > Config::get('eventreg.golfquota')) && ($type == 'golf')) )
+                @if($disable == true)
                   {{ $form->text($type.'fromaccountname','Account Name.req','',array('class'=>'text','id'=>'companyphone','disabled')) }}
                 @else
                   {{ $form->text($type.'fromaccountname','Account Name.req','',array('class'=>'text','id'=>'companyphone')) }}
@@ -182,20 +183,36 @@
 
                 <div class="row">
                     <div class="three columns">
-                      @if( (($user['conventionPaymentStatus'] == 'pending' || $user['conventionPaymentStatus'] == 'paid') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending' || $user['golfPaymentStatus'] == 'paid' || $golfcount > Config::get('eventreg.golfquota')) && ($type == 'golf')) )
+                      @if($disable == true)
                         {{ $form->text($type.'fromaccnumber','','',array('class'=>'text','id'=>'zip','placeholder'=>'Account number','disabled')) }}
                       @else
                         {{ $form->text($type.'fromaccnumber','','',array('class'=>'text','id'=>'zip','placeholder'=>'Account number')) }}
                       @endif
                     </div>
                     <div class="seven columns right">
-                      @if( (($user['conventionPaymentStatus'] == 'pending' || $user['conventionPaymentStatus'] == 'paid') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending' || $user['golfPaymentStatus'] == 'paid' || $golfcount > Config::get('eventreg.golfquota')) && ($type == 'golf')) )
+                      @if($disable == true)
                         {{ $form->text($type.'frombank','','',array('class'=>'text','id'=>'city','placeholder'=>'Bank Name','disabled')) }}
                       @else
                         {{ $form->text($type.'frombank','','',array('class'=>'text','id'=>'city','placeholder'=>'Bank Name')) }}
                       @endif
                     </div>
                 </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Upload Transfer Receipt</legend>
+
+            <div class="row">
+              <div class="twelve columns">
+                @if($disable == true)
+                  {{ $form->file('docupload','Transfer Receipt ( .jpg, .png, .pdf )',array('disabled'=>'disabled'))}}
+                @else
+                  {{ $form->file('docupload','Transfer Receipt ( .jpg, .png, .pdf )')}}
+                @endif
+                <br />
+              </div>
+            </div>
+
         </fieldset>
 
         <!--<fieldset>
