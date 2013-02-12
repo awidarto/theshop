@@ -22,13 +22,13 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('salutation','Mr','Mr',true)}} 
-                    </div>   
+                      {{ $form->radio('salutation','Mr','Mr',true)}}
+                    </div>
                     <div class="two columns">
-                      {{ $form->radio('salutation','Mrs','Mrs')}} 
-                    </div>   
+                      {{ $form->radio('salutation','Mrs','Mrs')}}
+                    </div>
                     <div class="two columns">
-                      {{ $form->radio('salutation','Ms','Ms')}} 
+                      {{ $form->radio('salutation','Ms','Ms')}}
                     </div>
                     <div class="six columns"></div>
                 </div>
@@ -97,17 +97,17 @@
 
                 <div class="row">
                     <div class="two columns">
-                      {{ $form->radio('invoiceaddress','Yes','Yes',true) }} 
-                    </div>   
+                      {{ $form->radio('invoiceaddress','Yes','Yes',true) }}
+                    </div>
                     <div class="two columns">
-                      {{ $form->radio('invoiceaddress','No','No') }} 
-                    </div>   
+                      {{ $form->radio('invoiceaddress','No','No') }}
+                    </div>
                     <div class="eight columns"></div>
                 </div>-->
                 <div class="row">
                   <label for="checkbox2"><input type="checkbox" style="display: none;"><span class="custom checkbox" id="invoiceSame" ></span> Invoice address same with Company Address</label>
                 </div>
-                
+
 
 
         </fieldset>
@@ -160,7 +160,7 @@
 
                 {{$form->select('countryInvoice','Country of Origin',Config::get('country.countries'),array('class'=>'four'))}}
 
-                
+
 
 
         </fieldset>
@@ -170,11 +170,11 @@
                 <div class="row">
                     <div class="four columns">
                         &nbsp;
-                    </div>   
+                    </div>
                     <div class="three columns">
                       <span><strong>EARLY BIRD</strong></span></br>
                       <span>Until 15 March 2013</span>
-                    </div>   
+                    </div>
                     <div class="three columns">
                       <span><strong>NORMAL RATE</strong></span></br>
                       <span>After 15 March 2013</span>
@@ -184,49 +184,49 @@
                 <div class="row">
                     <div class="four columns">
                         Professional / Delegate Domestic
-                    </div>   
+                    </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD',true,array('class'=>'regType professional')) }} 
-                    </div>   
+                      {{ $form->radio('regtype','IDR 4.500.000','PD',true,array('class'=>'regType professional')) }}
+                    </div>
                     <div class="three columns">
-                      {{ $form->radio('regtypeNormal','IDR 5.000.000','PD',false,array('class'=>'disableRadio')) }} 
+                      {{ $form->radio('regtypeNormal','IDR 5.000.000','PD',false,array('class'=>'disableRadio')) }}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="four columns">
                         Professional / Delegate Overseas
-                    </div>   
-                    <div class="three columns">
-                      {{ $form->radio('regtype','USD 500','PO',false,array('class'=>'regType professional')) }} 
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtypeNormal','USD 550','PD',false,array('class'=>'disableRadio')) }} 
-                    </div>   
-                    
+                      {{ $form->radio('regtype','USD 500','PO',false,array('class'=>'regType professional')) }}
+                    </div>
+                    <div class="three columns">
+                      {{ $form->radio('regtypeNormal','USD 550','PD',false,array('class'=>'disableRadio')) }}
+                    </div>
+
                 </div>
 
                 <div class="row">
                     <div class="four columns">
                         Student Domestic
-                    </div>   
-                    <div class="three columns">
-                      {{ $form->radio('regtype','IDR 400.000','SD',false,array('class'=>'regType student')) }} 
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtypeNormal','IDR 400.000','PD',false,array('class'=>'disableRadio')) }} 
+                      {{ $form->radio('regtype','IDR 400.000','SD',false,array('class'=>'regType student')) }}
+                    </div>
+                    <div class="three columns">
+                      {{ $form->radio('regtypeNormal','IDR 400.000','PD',false,array('class'=>'disableRadio')) }}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="four columns">
                         Student Overseas
-                    </div>   
+                    </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','USD 120','SO',false,array('class'=>'regType student')) }} 
-                    </div>   
+                      {{ $form->radio('regtype','USD 120','SO',false,array('class'=>'regType student')) }}
+                    </div>
                     <div class="three columns">
-                      {{ $form->radio('regtypeNormal','USD 120','PD',false,array('class'=>'disableRadio')) }} 
+                      {{ $form->radio('regtypeNormal','USD 120','PD',false,array('class'=>'disableRadio')) }}
                     </div>
                 </div>
         </fieldset>
@@ -243,11 +243,11 @@
           <legend>I will attend the Industrial Dinner on 16 May 2013</legend>
           <div class="row">
               <div class="two columns">
-                {{ $form->radio('attenddinner','Yes','Yes',true) }} 
-              </div>   
+                {{ $form->radio('attenddinner','Yes','Yes',true) }}
+              </div>
               <div class="two columns">
-                {{ $form->radio('attenddinner','No','No') }} 
-              </div>   
+                {{ $form->radio('attenddinner','No','No') }}
+              </div>
               <div class="eight columns"></div>
           </div>
 
@@ -260,7 +260,7 @@
 
         <fieldset id="golfEvent">
           <legend>Golf Tournament</legend>
-            
+
 
             <div class="row">
                 <div class="four columns">
@@ -271,15 +271,15 @@
                     Golf quota remaining: <strong>{{ Config::get('eventreg.golfquota') - $golfcount }}</strong>
                     <br/>
                     <br/>
-                </div>   
+                </div>
 
                 <div class="three columns">
-                  {{ $form->radio('golf','Yes','Yes',false,array('class'=>'field_golfType golfYes')) }} 
+                  {{ $form->radio('golf','Yes','Yes',false,array('class'=>'field_golfType golfYes')) }}
                 </div>
                 <div class="three columns">
-                  {{ $form->radio('golf','No','No',true,array('class'=>'field_golfType golfNo')) }} 
-                </div>   
-                
+                  {{ $form->radio('golf','No','No',true,array('class'=>'field_golfType golfNo')) }}
+                </div>
+
             </div>
         </fieldset>
 
@@ -292,7 +292,7 @@
               <td colspan="4" class="four columns">REGISTRATION FEE TOTAL</td>
               <td class="three columns">USD</td>
               <td class="three columns">500</td>
-              
+
               <td class="three columns">IDR</td>
               <td class="three columns">500</td>
             </tr>
@@ -301,7 +301,7 @@
               <td colspan="4" class="four columns">GOLF TOTAL</td>
               <td class="three columns">&nbsp;</td>
               <td class="three columns">&nbsp;</td>
-              
+
               <td class="three columns">IDR</td>
               <td class="three columns">500</td>
             </tr>
@@ -310,7 +310,7 @@
               <td colspan="4" class="four columns">GRAND TOTAL</td>
               <td class="three columns">&nbsp;</td>
               <td class="three columns">&nbsp;</td>
-              
+
               <td class="three columns">IDR</td>
               <td class="three columns">500</td>
 
@@ -328,7 +328,7 @@
 
         <fieldset>
 
-              
+
               <h4>PAYMENT METHOD</h4>
               <span><strong>Bank Transfer</strong></span>
               <div class="row">
@@ -341,7 +341,7 @@
                   <li>Mandiri - Wisma Nusantara Branch<br/>
                   Acc. No.  : 103.000.1065180<br/>
                   Acc. Name : PT Dyandra Promosindo<br/></li>
-                  
+
                 </div>
 
                 <div class="six columns mobile-six" style="padding-left:15px;">
@@ -396,7 +396,7 @@ $(function() {
 
   $("#s2id_field_countryInvoice").select2("val", "ID");
   $("#s2id_field_country").select2("val", "ID");
-  
+
   function fillsame(){
     var companyName = $("#companyName").val();
     var companyNPWP = $("#companyNPWP").val();
@@ -441,11 +441,11 @@ $(function() {
      .removeAttr('selected');
       $("#s2id_field_countryInvoice").select2("val", "");
   }
-  
+
   $("#invoiceSame").live("click", function(){
     if($('#invoiceSame').hasClass('checked')){
       fillsame();
-      
+
     }else{
       resetinput();
     }
@@ -460,10 +460,10 @@ $(function() {
   $('.field_golfType').next('span').addClass('golfCheckBox');
   $('.golfNo').next('span').addClass('golfNoCheckBox');
   $('.golfYes').next('span').addClass('golfYesCheckBox');
-  
+
   $(".professional").next('span').addClass('professional');
   $(".student").next('span').addClass('student');
-  
+
   $(".regTypeRecord").live("click", function(){
     if($(this).hasClass('checked' && 'student')){
       $('.golfNoCheckBox').addClass('checked');
@@ -493,10 +493,10 @@ $(function() {
     }
   });
 
-  
-  
 
-  
+
+
+
 });
 
 </script>

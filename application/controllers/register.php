@@ -37,7 +37,7 @@ class Register_Controller extends Base_Controller {
 		$this->crumb = new Breadcrumb();
 
 		date_default_timezone_set('Asia/Jakarta');
-	}	
+	}
 
 
 	public function get_index(){
@@ -50,7 +50,7 @@ class Register_Controller extends Base_Controller {
 		$attendee = new Attendee();
 
 		$golfcount = $attendee->count(array('golf'=>'Yes'));
-		
+
 		return View::make('register.new')
 					->with('form',$form)
 					->with('golfcount',$golfcount)
@@ -95,7 +95,7 @@ class Register_Controller extends Base_Controller {
 			$data = Input::get();
 			$password = $data['pass'];
 			$data['pass'] = Hash::make($data['pass']);
-			
+
 
 			unset($data['repass']);
 			unset($data['csrf_token']);
@@ -105,7 +105,7 @@ class Register_Controller extends Base_Controller {
 			$data['conventionPaymentStatus'] = 'unpaid';
 			//force to disable golf on student type
 			if(($data['regtype'] == 'SO') || ($data['regtype'] == 'SD')){
-				$data['golf'] == 'No';	
+				$data['golf'] == 'No';
 			}
 			if($data['golf'] == 'Yes'){
 				$data['golfPaymentStatus'] = 'unpaid';
@@ -151,7 +151,7 @@ class Register_Controller extends Base_Controller {
 				    ->body( $body )
 				    ->html(true)
 				    ->send();
-				    
+
 		    	return Redirect::to('register-success')->with('notify_success',Config::get('site.register_success'));
 			}else{
 		    	return Redirect::to('register')->with('notify_result',Config::get('site.register_failed'));
@@ -159,7 +159,7 @@ class Register_Controller extends Base_Controller {
 
 	    }
 
-		
+
 	}
 
 	public function get_payment($type){
@@ -249,7 +249,7 @@ class Register_Controller extends Base_Controller {
 					->with('data',$userdata)
 					->render();
 
-				
+
 				Message::to($userdata['email'])
 				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 				    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
@@ -257,7 +257,7 @@ class Register_Controller extends Base_Controller {
 				    ->body( $body )
 				    ->html(true)
 				    ->send();
-				  
+
 		    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.payment_success'));
 			}else{
 		    	return Redirect::to('register')->with('notify_success',Config::get('site.payment_failed'));
@@ -374,7 +374,7 @@ class Register_Controller extends Base_Controller {
 					    ->body( $body )
 					    ->html(true)
 					    ->send();
-					    
+
 			    	return Redirect::to('resetlanding')->with('notify_success',Config::get('site.reset_success'));
 				}else{
 			    	return Redirect::to('reset')->with('notify_result',Config::get('site.reset_failed'));
@@ -390,7 +390,7 @@ class Register_Controller extends Base_Controller {
 
 	    }
 
-		
+
 	}
 
 
@@ -483,7 +483,7 @@ class Register_Controller extends Base_Controller {
 	    }else{
 
 			$data = Input::get();
-	    	
+
 			$id = new MongoId($data['id']);
 			$data['lastUpdate'] = new MongoDate();
 
@@ -493,7 +493,7 @@ class Register_Controller extends Base_Controller {
 			$user = new Attendee();
 
 			if(isset($data['registrationnumber']) && $data['registrationnumber'] != ''){
-				$reg_number = explode('-',$data['registrationnumber']);			
+				$reg_number = explode('-',$data['registrationnumber']);
 
 				$reg_number[0] = 'A';
 				$reg_number[1] = $data['regtype'];
@@ -521,16 +521,16 @@ class Register_Controller extends Base_Controller {
 			}*/
 
 			$data['registrationnumber'] = implode('-',$reg_number);
-			
+
 			if($user->update(array('_id'=>$id),array('$set'=>$data))){
 		    	return Redirect::to('myprofile')->with('notify_success','Attendee saved successfully');
 			}else{
 		    	return Redirect::to('myprofile')->with('notify_success','Attendee saving failed');
 			}
-			
+
 	    }
 
-		
+
 	}
 
 

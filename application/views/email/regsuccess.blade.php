@@ -43,19 +43,19 @@ Thank you for register in 37th IPA Convention & Exhibition. Please find below su
 			<td style="padding:10px;"><strong>IDR - </strong></td>
 		</tr>
 	@endif
-	
+
 	@if($data['golf'] == 'Yes')
 		<tr>
 			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Golf Tournament</strong></td>
 			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
 			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR 2.500.000</strong></td>
-		</tr>	
+		</tr>
 	@else
 		<tr>
 			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Golf Tournament</strong></td>
 			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
 			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR - </strong></td>
-		</tr>	
+		</tr>
 	@endif
 	@if($data['regtype'] == 'PO' && $data['golf'] == 'Yes')
 		<tr>

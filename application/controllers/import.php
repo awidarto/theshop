@@ -181,9 +181,9 @@ class Import_Controller extends Base_Controller {
 					if($cond[$idx] == 'both'){
 						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'/i');
 					}else if($cond[$idx] == 'before'){
-						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/i');						
+						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/i');
 					}else if($cond[$idx] == 'after'){
-						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/i');						
+						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/i');
 					}
 				}else if($rel[$idx] == 'equ'){
 					$q[$field] = Input::get('sSearch_'.$idx);
@@ -199,7 +199,7 @@ class Import_Controller extends Base_Controller {
 		/* first column is always sequence number, so must be omitted */
 		$fidx = Input::get('iSortCol_0');
 		if($fidx == 0){
-			$fidx = $defsort;			
+			$fidx = $defsort;
 			$sort_col = $fields[$fidx];
 			$sort_dir = $defdir;
 		}else{
@@ -334,7 +334,7 @@ class Import_Controller extends Base_Controller {
 				//print_r($comobj);
 
 				$tocommit = Config::get('eventreg.attendee_template');
-				
+
 
 				for($i = 0; $i < $data['head_count']; $i++ ){
 
@@ -385,7 +385,7 @@ class Import_Controller extends Base_Controller {
 					}else{
 						$tocommit['golfPaymentStatus'] = '-';
 					}
-	
+
 					$reg_number = array();
 
 					$reg_number[0] = 'A';
@@ -420,7 +420,7 @@ class Import_Controller extends Base_Controller {
 					}
 
 					if($attendee->update(array('email'=>$tocommit['email']),array('$set'=>$tocommit))){
-						
+
 						if($data['sendattendee'] == 'Yes'){
 							// send message to each attendee
 							//Event::fire('attendee.update',array($comobj['_id'],$plainpass));
@@ -446,7 +446,7 @@ class Import_Controller extends Base_Controller {
 					}else{
 						$tocommit['golfPaymentStatus'] = '-';
 					}
-	
+
 					$reg_number = array();
 
 					$reg_number[0] = 'A';
@@ -493,7 +493,7 @@ class Import_Controller extends Base_Controller {
 			}
 
 			if($data['sendpic'] == 'Yes'){
-				// send to pic , use 
+				// send to pic , use
 				// $commitedobj as input array
 				// $pic as PIC data
 			}
@@ -528,7 +528,7 @@ class Import_Controller extends Base_Controller {
 	    }else{
 
 			$data = Input::get();
-	    	
+
 	    	//print_r($data);
 
 			//pre save transform
@@ -539,7 +539,7 @@ class Import_Controller extends Base_Controller {
 			$data['creatorName'] = Auth::user()->fullname;
 			$data['creatorId'] = Auth::user()->id;
 
-			
+
 			$docupload = Input::file('docupload');
 
 			$docupload['uploadTime'] = new MongoDate();
@@ -565,7 +565,7 @@ class Import_Controller extends Base_Controller {
 					$newdir = realpath(Config::get('kickstart.storage')).'/'.$newid;
 
 					Input::upload('docupload',$newdir,$docupload['name']);
-					
+
 				}
 
 				if($newobj['docFilename'] != ''){
@@ -608,7 +608,7 @@ class Import_Controller extends Base_Controller {
 					$inhead['cache_id'] = $c_id;
 					$inhead['cache_commit'] = false;
 
-					$icache->insert($inhead);							
+					$icache->insert($inhead);
 
 					foreach($rows as $row){
 
@@ -630,7 +630,7 @@ class Import_Controller extends Base_Controller {
 							$ins['cache_id'] = $c_id;
 							$ins['cache_commit'] = false;
 
-							$icache->insert($ins);							
+							$icache->insert($ins);
 						}
 
 					}
@@ -639,15 +639,15 @@ class Import_Controller extends Base_Controller {
 
 				Event::fire('import.create',array('id'=>$newobj['_id'],'result'=>'OK','department'=>Auth::user()->department,'creator'=>Auth::user()->id));
 
-		    	return Redirect::to($back.'/'.$newobj['_id'])->with('notify_success','Document saved successfully');
+		    	return Redirect::to($back.'/'.$newobj['_id'])->with('notify_success','Document uploaded successfully');
 			}else{
 				Event::fire('import.create',array('id'=>$id,'result'=>'FAILED'));
-		    	return Redirect::to($back)->with('notify_success','Document saving failed');
+		    	return Redirect::to($back)->with('notify_success','Document upload failed');
 			}
 
 	    }
 
-		
+
 	}
 
 
