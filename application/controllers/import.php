@@ -562,7 +562,7 @@ class Import_Controller extends Base_Controller {
 
 					$newid = $newobj['_id']->__toString();
 
-					$newdir = realpath(Config::get('kickstart.storage')).'/'.$newid;
+					$newdir = realpath(Config::get('kickstart.storage')).'/imports/'.$newid;
 
 					Input::upload('docupload',$newdir,$docupload['name']);
 
@@ -574,7 +574,7 @@ class Import_Controller extends Base_Controller {
 
 					$c_id = $newobj['_id']->__toString();
 
-					$filepath = Config::get('kickstart.storage').'/'.$c_id.'/'.$newobj['docFilename'];
+					$filepath = Config::get('kickstart.storage').'/imports/'.$c_id.'/'.$newobj['docFilename'];
 
 					$excel = new Excel();
 

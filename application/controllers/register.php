@@ -228,7 +228,33 @@ class Register_Controller extends Base_Controller {
 
 			$confirm = new Confirmation();
 
+
+			// uploaded receipt
+			$docupload = Input::file('docupload');
+			$docupload[$type.'DocUploadTime'] = new MongoDate();
+
+			$fileExt = File::extension( $docupload['name']);
+
+			$docName = $type.'PaymentProof.'.$fileExt;
+
+			$data[$type.'DocFilename'] = $docName;
+
+			$data[$type.'DocFiledata'] = $docupload;
+
+
 			if($obj = $confirm->insert($data)){
+
+
+				if($docupload['name'] != ''){
+
+					$newid = $obj['_id']->__toString();
+
+					$newdir = realpath(Config::get('kickstart.storage')).'/payments/'.$newid;
+
+					Input::upload('docupload',$newdir,$docName);
+
+				}
+
 
 				$attendee = new Attendee();
 
@@ -243,6 +269,8 @@ class Register_Controller extends Base_Controller {
 				$userdata = array_merge($userdata,$data);
 
 				$userdata[$type.'transferdate'] = date('d-m-Y',$userdata[$type.'transferdate']->sec);
+
+				$userdata['address'] = $userdata['address_1'].'<br />'.$userdata['address_2'];
 
 				$body = View::make('email.regpayment')
 					->with('type',$type)
