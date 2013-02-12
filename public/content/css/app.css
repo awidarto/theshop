@@ -184,8 +184,8 @@ span.activity-list[rel="tooltip"]{
 .dataTables_paginate{
 	float: left;
 	position: absolute;
-	top:20px;
-	right: 10px;
+	top:45px;
+	right: 0;
 }
 .dataTables_paginate a.paginate_button,.dataTables_paginate span a{
 	float: left;
@@ -206,6 +206,7 @@ span.activity-list[rel="tooltip"]{
 }
 .dataTables_info{
 	float: right;
+
 }
 .dataTables_length{
 	width: auto;
@@ -234,7 +235,7 @@ span.activity-list[rel="tooltip"]{
 }
 .dataTables_info{
 	position: absolute;
-	top:60px;
+	top:80px;
 	right: 10px;
 }
 .dataTables_filter{
@@ -275,7 +276,7 @@ span.error{
 }
 .dataTable{
 	position: relative;
-	margin-top: 50px;
+	margin-top: 65px;
 	float: left;
 }
 .dataTables_wrapper{
@@ -392,7 +393,7 @@ outline: 0;
 padding: 0 8px;
 font-weight: normal;
 position: absolute;
-top:-42px;
+top:-61px;
 left: 0;
 cursor: pointer;
 }
@@ -493,4 +494,7 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 
 .clear{
 	clear:both;
+}
+.DTTT_container{
+	position: absolute;
 }
