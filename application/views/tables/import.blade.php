@@ -11,7 +11,7 @@
 </div>
 -->
 <div class="span12">
-   
+
     <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
 
     <div id="content-filters" class="row-fluid" style="display:none;">
@@ -85,15 +85,15 @@
 
 			                <div class="row-fluid">
 			                    <div class="span4">
-			                      {{ $form->radio('sendpic','Yes','Yes',true) }} 
-			                    </div>   
+			                      {{ $form->radio('sendpic','Yes','Yes',true) }}
+			                    </div>
 			                    <div class="span4">
-			                      {{ $form->radio('sendpic','No','No') }} 
-			                    </div>   
+			                      {{ $form->radio('sendpic','No','No') }}
+			                    </div>
 			                    <div class="span4"></div>
 			                </div>
 
-			        </fieldset>        
+			        </fieldset>
 				</div>
 
 				<div class="span3">
@@ -102,15 +102,15 @@
 
 			                <div class="row-fluid">
 			                    <div class="span4">
-			                      {{ $form->radio('attendeesummary','Yes','Yes') }} 
-			                    </div>   
+			                      {{ $form->radio('attendeesummary','Yes','Yes') }}
+			                    </div>
 			                    <div class="span4">
-			                      {{ $form->radio('attendeesummary','No','No',true) }} 
-			                    </div>   
+			                      {{ $form->radio('attendeesummary','No','No',true) }}
+			                    </div>
 			                    <div class="span4"></div>
 			                </div>
 
-			        </fieldset>        
+			        </fieldset>
 				</div>
 
 				<div class="span3">
@@ -119,15 +119,15 @@
 
 			                <div class="row-fluid">
 			                    <div class="span4">
-			                      {{ $form->radio('sendattendee','Yes','Yes') }} 
-			                    </div>   
+			                      {{ $form->radio('sendattendee','Yes','Yes') }}
+			                    </div>
 			                    <div class="span4">
-			                      {{ $form->radio('sendattendee','No','No',true) }} 
-			                    </div>   
+			                      {{ $form->radio('sendattendee','No','No',true) }}
+			                    </div>
 			                    <div class="span4"></div>
 			                </div>
 
-			        </fieldset>        
+			        </fieldset>
 
 				</div>
 				<div class="span3">
@@ -136,21 +136,27 @@
 
 			                <div class="row-fluid">
 			                    <div class="span4">
-			                      {{ $form->radio('updatepass','Yes','Yes') }} 
-			                    </div>   
+			                      {{ $form->radio('updatepass','Yes','Yes') }}
+			                    </div>
 			                    <div class="span4">
-			                      {{ $form->radio('updatepass','No','No',true) }} 
-			                    </div>   
+			                      {{ $form->radio('updatepass','No','No',true) }}
+			                    </div>
 			                    <div class="span4"></div>
 			                </div>
 
-			        </fieldset>        
+			        </fieldset>
 
 				</div>
 
 			</div>
-
-
+			<hr />
+			<div class="row-fluid">
+				<div class="span1"><strong>Legend :</strong></div>
+				<div class="span2"><span class="invalidhead">invalid heads</span></div>
+				<div class="span2"><span class="duplicateemail">email already exists</span></div>
+				<div class="span7"></div>
+			</div>
+			<hr />
 
 			<table class="table table-condensed dataTable attendeeTable">
 
@@ -163,7 +169,7 @@
 			        		$hid = 0;
 			        	?>
 			        	@foreach($heads as $head)
-			        		<th 
+			        		<th
 			        			@if(isset($colclass[$hid]))
 			        				class="{{$colclass[$hid]}}"
 			        			@endif
@@ -257,7 +263,7 @@
 			@endif
 
         </div>
-        
+
      </div>
   </div>
 </footer>
@@ -334,7 +340,7 @@
 	    @yield('row')
 
 	    sOut += '</table>';
-	     
+
 	    return sOut;
 	}
 
@@ -343,7 +349,7 @@
 		$('.activity-list').tooltip();
 
 		var asInitVals = new Array();
-        
+
         oTable = $('.dataTable').DataTable(
 			{
 				"bProcessing": true,
@@ -351,19 +357,19 @@
 		        "sAjaxSource": "{{$ajaxsource}}",
 				"oLanguage": { "sSearch": "Search "},
 				"sPaginationType": "full_numbers",
-				"sDom": 'lrpitT',
+				"sDom": 'lrpi<"tabscroll" t>T',
 				"oTableTools": {
 					"sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
 				},
-				"aoColumnDefs": [ 
+				"aoColumnDefs": [
 				    { "bSortable": false, "aTargets": [ {{ $disablesort }} ] }
 				 ],
 			    "fnServerData": function ( sSource, aoData, fnCallback ) {
 		            $.ajax( {
-		                "dataType": 'json', 
-		                "type": "POST", 
-		                "url": sSource, 
-		                "data": aoData, 
+		                "dataType": 'json',
+		                "type": "POST",
+		                "url": sSource,
+		                "data": aoData,
 		                "success": fnCallback
 		            } );
 		        }
@@ -385,7 +391,7 @@
 		        //this.src = "../examples_support/details_close.png";
 		        oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details-expand' );
 		    }
-		} );        
+		} );
 
 		$('tfoot input').keyup( function () {
 			/* Filter on the column (the index) of this element */
@@ -393,7 +399,7 @@
 		} );
 
 		/*
-		 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in 
+		 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
 		 * the footer
 		 */
 		$('tfoot input').each( function (i) {
@@ -426,7 +432,7 @@
 		} );
 
 		/*
-		 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in 
+		 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
 		 * the footer
 		 */
 		$('thead input').each( function (i) {
@@ -458,7 +464,7 @@
 		} );
 
 		/*
-		 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in 
+		 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
 		 * the footer
 		 */
 		$('.filter input').each( function (i) {
@@ -589,7 +595,7 @@
 					autosize: true
 				});
 
-		   	}	
+		   	}
 
 			if ($(e.target).is('.fileview')) {
 				var _id = e.target.id;
@@ -602,7 +608,7 @@
 					autosize: true
 				});
 
-		   	}		   			   	
+		   	}
 
 			if ($(e.target).is('.metaview')) {
 				var doc_id = e.target.id;
@@ -633,17 +639,17 @@
 			    $(".add_to_group").show();
 			} else {
 			    $(".add_to_group").hide();
-			} 
+			}
 		});
 		$("#select_all").live("click", function(){
 			if ($('.selector').is(':checked')) {
 			    $(".add_to_group").show();
 			} else {
 			    $(".add_to_group").hide();
-			} 
+			}
 		});*/
 
-		
+
 
     });
   </script>

@@ -485,3 +485,8 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 	text-decoration: underline;
 }
 
+.tabscroll{
+	width: 100%;
+	overflow: auto;
+	margin-bottom: 10px;
+}
