@@ -174,34 +174,46 @@ class Attendee_Controller extends Base_Controller {
 			$select = $form->checkbox('sel_'.$doc['_id'],'','',false,array('id'=>$doc['_id'],'class'=>'selector'));
 
 /*<<<<<<< HEAD*/
-			if($doc['conventionPaymentStatus'] == 'unpaid'){
-				$paymentStatus = '<span class="fontRed fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
-			}elseif ($doc['conventionPaymentStatus'] == 'pending') {
-				$paymentStatus = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
-			}elseif ($doc['conventionPaymentStatus'] == 'cancel') {
-				$paymentStatus = '<span class="fontGray fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
-			
+
+			if(isset($doc['conventionPaymentStatus'])){
+				if($doc['conventionPaymentStatus'] == 'unpaid'){
+					$paymentStatus = '<span class="fontRed fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
+				}elseif ($doc['conventionPaymentStatus'] == 'pending') {
+					$paymentStatus = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
+				}elseif ($doc['conventionPaymentStatus'] == 'cancel') {
+					$paymentStatus = '<span class="fontGray fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
+				
+				}else{
+					$paymentStatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
+				}
 			}else{
-				$paymentStatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
+				$paymentStatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
 			}
 
-			if($doc['golfPaymentStatus'] == 'unpaid'){
-				$paymentStatusGolf = '<span class="fontRed fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
-			}elseif ($doc['golfPaymentStatus'] == 'pending') {
-				$paymentStatusGolf = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
-			}elseif ($doc['golfPaymentStatus'] == 'cancel') {
-				$paymentStatusGolf = '<span class="fontGray fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
-			}elseif ($doc['golf'] == 'No') {
-				$paymentStatusGolf = '<span class="fontGray fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+			if(isset($doc['golfPaymentStatus'])){
+				if($doc['golfPaymentStatus'] == 'unpaid'){
+					$paymentStatusGolf = '<span class="fontRed fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+				}elseif ($doc['golfPaymentStatus'] == 'pending') {
+					$paymentStatusGolf = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+				}elseif ($doc['golfPaymentStatus'] == 'cancel') {
+					$paymentStatusGolf = '<span class="fontGray fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+				}elseif ($doc['golf'] == 'No') {
+					$paymentStatusGolf = '<span class="fontGray fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+				}else{
+					$paymentStatusGolf = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+				}
 			}else{
-				$paymentStatusGolf = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
+				$paymentStatusGolf = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['paymentStatus'].'</span>';
 			}
 
-			if($doc['golf'] == 'Yes'){
-				$rowGolfAction = '<a class="icon-"  ><i>&#xe146;</i><span class="paygolf" id="'.$doc['_id'].'" >Golf Status</span>';
+			if(isset($doc['golf'])){
+				if($doc['golf'] == 'Yes'){
+					$rowGolfAction = '<a class="icon-"  ><i>&#xe146;</i><span class="paygolf" id="'.$doc['_id'].'" >Golf Status</span>';
+				}else{
+					$rowGolfAction = '';
+				}
 			}else{
 				$rowGolfAction = '';
-
 			}
 
 /*=======
