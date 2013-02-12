@@ -88,7 +88,7 @@ return array(
 			'fax_country_code'=>'fax_country_code',
 			'fax_area_code'=>'fax_area_code',
 			'fax'=>'fax',
-			'invoice_address'=>'invoice_address_conv',
+			'invoice_address_conv'=>'invoice_address_conv',
 			'registertype'=>'registertype',
 			'galadinner'=>'galadinner',
 			'golf'=>'golf'
@@ -119,7 +119,7 @@ return array(
 			'fax_area_code'=>'companyfaxarea',
 			'fax'=>'companyfax',
 
-			'invoice_address'=>'addressInvoice_1',
+			'invoice_address_conv'=>'addressInvoice_1',
 			'registertype'=>'regtype',
 			'galadinner'=>'attenddinner',
 			'golf'=>'golf'
