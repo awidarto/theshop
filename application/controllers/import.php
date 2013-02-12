@@ -386,17 +386,28 @@ class Import_Controller extends Base_Controller {
 						$tocommit['golfPaymentStatus'] = '-';
 					}
 
+					$attobj = $attendee->get(array('email'=>$tocommit['email']));
+
 					$reg_number = array();
 
-					$reg_number[0] = 'A';
-					$reg_number[1] = $tocommit['regtype'];
-					$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+					if(isset($attobj['registrationnumber']) && $attobj['registrationnumber'] != ''){
+						$reg_number = explode('-',$attobj['registrationnumber']);
 
-					$seq = new Sequence();
+						$reg_number[0] = 'A';
+						$reg_number[1] = $tocommit['regtype'];
+						$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
-					$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+					}else if($attobj['registrationnumber'] == ''){
+						$reg_number = array();
+						$seq = new Sequence();
+						$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
 
-					$reg_number[4] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+						$reg_number[0] = 'A';
+						$reg_number[1] = $tocommit['regtype'];
+						$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+
+						$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+					}
 
 					$tocommit['registrationnumber'] = implode('-',$reg_number);
 
