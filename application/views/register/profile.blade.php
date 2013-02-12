@@ -141,7 +141,7 @@
 					@if (isset($profile['address']))
 					<td class="detail-info">{{ $profile['address'].' '.$profile['city'].' '.$profile['zip'] }}</td>
 					@else
-					<td class="detail-info">{{ $profile['address_1'].'</br>'.$profile['address_2'].' '.$profile['city'].' '.$profile['zip'] }}</td>
+					<td class="detail-info">{{ $profile['address_1'].'</br>'.$profile['address_2'].'</br> '.$profile['city'].' '.$profile['zip'] }}</td>
 					@endif
 				</tr>
 
@@ -186,7 +186,7 @@
 					@if (isset($profile['address']))
 						<td class="detail-info">{{ $profile['addressInvoice'].' '.$profile['cityInvoice'].' '.$profile['zipInvoice'] }}</td>
 					@else
-						<td class="detail-info">{{ $profile['addressInvoice_1'].'</br>'.$profile['addressInvoice_2'].' '.$profile['cityInvoice'].' '.$profile['zipInvoice'] }}</td>
+						<td class="detail-info">{{ $profile['addressInvoice_1'].'</br>'.$profile['addressInvoice_2'].'</br>'.$profile['cityInvoice'].' '.$profile['zipInvoice'] }}</td>
 						
 					@endif
 				</tr>

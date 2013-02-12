@@ -10,7 +10,7 @@
              {{Session::get('notify_result')}}
         </div>
     @endif
-{{$form->open('register','POST',array('class'=>'custom '))}}
+{{$form->open('register','POST',array('class'=>'custom attendeeRegistForm'))}}
 
 <div class="row">
     <div class="twelve columns">
