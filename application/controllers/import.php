@@ -437,6 +437,8 @@ class Import_Controller extends Base_Controller {
 							//Event::fire('attendee.update',array($comobj['_id'],$plainpass));
 						}
 
+						$commitedobj[] = $tocommit;
+
 						$icache->update(array('email'=>$tocommit['email']),array('$set'=>array('cache_commit'=>true)));
 
 						$commit_count++;
@@ -504,6 +506,9 @@ class Import_Controller extends Base_Controller {
 			}
 
 			if($data['sendpic'] == 'Yes'){
+
+				//print_r($commitedobj);
+
 				// send to pic , use
 				// $commitedobj as input array
 				// $pic as PIC data
