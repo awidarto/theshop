@@ -286,7 +286,7 @@
       @endif
 
       <fieldset>
-          <legend>PAYMENT SETTLEMENT</legend>
+          <legend>Payment Settlement</legend>
           <div class="four columns"><span>REGISTRATION FEE TOTAL</span></div>
           <div class="three-small columns">
             <span style="width:30%;position:relative;display:inline-block;border-bottom:1px solid #959595;padding-bottom:5px;">USD</span><span style="width:70%;position:relative;display:inline-block;text-align:right;border-bottom:1px solid #959595;padding-bottom:5px;font-weight:bold;" id="feeRegUSD">&nbsp;</span>
@@ -519,8 +519,8 @@ $(function() {
         $('.golfYesCheckBox').removeClass('checked');
         $('.golfNoCheckBox').addClass('checked');
       }
-      
-      
+
+
     }else if($('.regType:checked').val() == 'PD'){
       $(".golfYes").removeAttr('disabled');
     }else if($('.regType:checked').val() == 'PO'){
