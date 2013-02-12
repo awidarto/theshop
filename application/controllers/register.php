@@ -253,6 +253,9 @@ class Register_Controller extends Base_Controller {
 
 					Input::upload('docupload',$newdir,$docName);
 
+					$email_attachment = $newdir.'/'.$docName;
+				}else{
+					$email_attachment = false;
 				}
 
 
@@ -277,14 +280,24 @@ class Register_Controller extends Base_Controller {
 					->with('data',$userdata)
 					->render();
 
-
-				Message::to($userdata['email'])
-				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-				    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
-				    ->subject(ucfirst($type).' Payment Confirmation – '.$userdata['registrationnumber'])
-				    ->body( $body )
-				    ->html(true)
-				    ->send();
+				if($email_attachment == false){
+					Message::to($userdata['email'])
+					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
+					    ->subject(ucfirst($type).' Payment Confirmation – '.$userdata['registrationnumber'])
+					    ->body( $body )
+					    ->html(true)
+					    ->send();
+				}else{
+					Message::to($userdata['email'])
+					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
+					    ->subject(ucfirst($type).' Payment Confirmation – '.$userdata['registrationnumber'])
+					    ->body( $body )
+					    ->html(true)
+					    ->attach($email_attachment)
+					    ->send();
+				}
 
 		    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.payment_success'));
 			}else{
