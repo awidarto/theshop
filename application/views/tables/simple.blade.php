@@ -298,9 +298,9 @@
 		        "sAjaxSource": "{{$ajaxsource}}",
 				"oLanguage": { "sSearch": "Search "},
 				"sPaginationType": "full_numbers",
-				"sDom": 'lrpitT',
+				"sDom": 'Tlrpit',
 				"oTableTools": {
-					"sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
+					"sSwfPath": "{{ URL::base() }}/swf/copy_csv_xls_pdf.swf"
 				},
 				"aoColumnDefs": [ 
 				    { "bSortable": false, "aTargets": [ {{ $disablesort }} ] }

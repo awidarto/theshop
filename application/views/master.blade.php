@@ -28,6 +28,8 @@
     {{ HTML::style('content/css/icomoon.css') }}
     {{ HTML::style('content/css/app.css') }}
 
+    {{ HTML::style('css/jquery-datatables/TableTools.css')}}
+
     <!--  these two css are to use only for documentation -->
 
     {{ HTML::style('css/select2.css') }}
@@ -111,6 +113,8 @@
   </div>-->
 
   {{ HTML::script('js/jquery.dataTables.min.js') }}
+
+  {{ HTML::script('js/jquery-datatables/TableTools.min.js')}}
 
   {{ HTML::script('js/underscore-1.1.5.js') }}
 
