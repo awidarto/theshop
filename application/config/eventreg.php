@@ -78,7 +78,11 @@ return array(
 			'city'=>'city',
 			'zip'=>'zip',
 			'country'=>'country',
+			'phone_country_code'=>'phone_country_code',
+			'phone_area_code'=>'phone_area_code',
 			'phone'=>'phone',
+			'fax_country_code'=>'fax_country_code',
+			'fax_area_code'=>'fax_area_code',
 			'fax'=>'fax',
 			'invoice_address'=>'invoice_address_conv',
 			'registertype'=>'registertype',
@@ -97,23 +101,41 @@ return array(
 			'mobile'=>'mobile',
 			'company'=>'company',
 			'companys_npwp'=>'companys_npwp',
-			'address'=>'address',
+			'address_1'=>'address_1',
 			'address_2'=>'address_2',
 			'city'=>'city',
 			'zip'=>'zip',
 			'country'=>'country',
+
+			'phone_country_code'=>'companyphonecountry',
+			'phone_area_code'=>'companyphonearea',
 			'phone'=>'companyphone',
+
+			'fax_country_code'=>'companyfaxcountry',
+			'fax_area_code'=>'companyfaxarea',
 			'fax'=>'companyfax',
-			'invoice_address'=>'addressInvoice',
+
+			'invoice_address'=>'addressInvoice_1',
 			'registertype'=>'regtype',
 			'galadinner'=>'attenddinner',
 			'golf'=>'golf'
 		),
 
+
+   "companyfaxcountry": "62",
+   "companyfaxarea": "21",
+   "companyfax": "54647890",
+
+
+
 		'attendee_template'=>array(
 
 			'address'=> '',
+			'address_1'=> '',
+			'address_2'=> '',
 			'addressInvoice'=> '',
+			'addressInvoice_1'=> '',
+			'addressInvoice_2'=> '',
 			'attenddinner'=> '',
 			'city'=> '',
 			'cityInvoice'=> '',
