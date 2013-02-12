@@ -61,7 +61,8 @@ Should the PIC need to make changes to the registration details for one or more 
 	</tr>
 	</tbody>
 </table>
-<a href="http://www.ipaconvex.com/download/37th IPA Convex - Group Registration Form.xlsx" class="downloadGroupForm registType">Download Group Registration Form in Excel Format</a>
+<?php  $urlXLS = URL::to_asset('37th-IPA-Convex-Group-Registration-Form.xls'); ?>
+{{ HTML::link($urlXLS,'Download Group Registration Form in Excel Format',array('class'=>'downloadGroupForm registType'))}}
 
 
 

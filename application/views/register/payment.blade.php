@@ -141,6 +141,19 @@
                     Acc. No. : 335.302.7677<br/>
                     Acc. Name : PT Dyandra Promosindo<br/>
                     </p>
+
+                    <p>
+                    @if( (($user['conventionPaymentStatus'] == 'pending' || $user['conventionPaymentStatus'] == 'paid') && ($type == 'convention')) || (($user['golfPaymentStatus'] == 'pending' || $user['golfPaymentStatus'] == 'paid' || $golfcount > Config::get('eventreg.golfquota')) && ($type == 'golf')) )
+                      {{ $form->radio($type.'transferto','IDR Account','BCA - Mangga Dua Branch (IDR Account)',true,array('disabled')) }}<br /><br />
+                    @else
+                      {{ $form->radio($type.'transferto','IDR Account','Mandiri - Wisma Nusantara Branch (IDR Account)',false) }}<br /><br />
+                    @endif
+
+
+                    Mandiri - Wisma Nusantara Branch<br/>
+                    Acc. No. : 103.000.1065180<br/>
+                    Acc. Name : PT Dyandra Promosindo<br/>
+                    </p>
                   </div>
 
                   <div class="six columns mobile-six">

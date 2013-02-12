@@ -18,7 +18,7 @@ return array(
       'create'=>'create',
       'update'=>'update',
       'delete'=>'delete',
-      'import'=>'import'
+      'import'=>'import',
       'approve'=>'approve',
       'share'=>'share'
       ),

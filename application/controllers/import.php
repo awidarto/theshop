@@ -334,6 +334,8 @@ class Import_Controller extends Base_Controller {
 				//print_r($comobj);
 
 				$tocommit = Config::get('eventreg.attendee_template');
+				
+
 				for($i = 0; $i < $data['head_count']; $i++ ){
 
 					$okey = $data['map_'.$i];
@@ -374,6 +376,41 @@ class Import_Controller extends Base_Controller {
 				if($override == true){
 
 					$tocommit['lastUpdate'] = new MongoDate();
+					$tocommit['role'] = 'attendee';
+					$tocommit['paymentStatus'] = 'unpaid';
+					$tocommit['conventionPaymentStatus'] = 'unpaid';
+
+					if($tocommit['golf'] == 'Yes'){
+						$tocommit['golfPaymentStatus'] = 'unpaid';
+					}else{
+						$tocommit['golfPaymentStatus'] = '-';
+					}
+	
+					$reg_number = array();
+
+					$reg_number[0] = 'A';
+					$reg_number[1] = $tocommit['regtype'];
+					$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+
+					$seq = new Sequence();
+
+					$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+					$reg_number[4] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+
+					$tocommit['registrationnumber'] = implode('-',$reg_number);
+
+					$plainpass = rand_string(8);
+
+					$tocommit['pass'] = Hash::make($plainpass);
+
+					//golf sequencer
+					$tocommit['golfSequence'] = 0;
+
+					if($tocommit['golf'] == 'Yes'){
+						$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
+						$tocommit['golfSequence'] = $gseq['seq'];
+					}
 
 					if($data['updatepass'] == 'Yes'){
 						$plainpass = rand_string(8);
@@ -383,9 +420,10 @@ class Import_Controller extends Base_Controller {
 					}
 
 					if($attendee->update(array('email'=>$tocommit['email']),array('$set'=>$tocommit))){
+						
 						if($data['sendattendee'] == 'Yes'){
 							// send message to each attendee
-							Event::fire('attendee.update',array($tocommit['_id'],$plainpass));
+							//Event::fire('attendee.update',array($comobj['_id'],$plainpass));
 						}
 
 						$icache->update(array('email'=>$tocommit['email']),array('$set'=>array('cache_commit'=>true)));

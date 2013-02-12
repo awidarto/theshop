@@ -98,8 +98,8 @@
                         {{ $form->text('zipInvoice','','',array('class'=>'text invAdress','id'=>'zipInv','placeholder'=>'ZIP Code')) }}
                     </div>
                 </div>
-
-                {{$form->select('countryInvoice','Country of Origin',Config::get('country.countries'),array('class'=>'four'))}}
+                {{$form->select('countryInvoice','Country of Origin',Config::get('country.countries'),null,array('class'=>'four'))}}
+                
 
                 
 
@@ -149,7 +149,7 @@
                 </div>
         </fieldset>-->
 
-              <h4>The registration fee includes:</h4>
+              <!--<h4>The registration fee includes:</h4>
               <p>Admission to all Plenary and Technical sessions, Conference Kits, entrance to exhibition area, Opening Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Closing Ceremony.</p>
               
 
@@ -166,7 +166,7 @@
                 </div>
 
               <hr/>-->
-              <h4>PAYMENT METHOD</h4>
+              <!--<h4>PAYMENT METHOD</h4>
               <span><strong>Bank Transfer</strong></span>
               <div class="row">
                 <div class="six columns mobile-six">
@@ -185,7 +185,7 @@
                   Swiftcode : CENAIDJA
                   </p>
                 </div>
-              </div>
+              </div>-->
               
               
 
