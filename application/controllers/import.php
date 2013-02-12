@@ -594,11 +594,11 @@ class Import_Controller extends Base_Controller {
 
 					foreach ($heads as $head) {
 						$label = str_replace(array('.','\''), '', $head);
-						$label = preg_replace('/\s+/','_',$label);
-						//$label = preg_replace('/[[:blank:]]+/','_',$label);
-						$label = str_replace(array('/'), '_', $label);
-						$label = strtolower(trim($label));
 
+						$label = preg_replace('/[ ][ ]+/', ' ', $label);
+
+						$label = str_replace(array('/',' '), '_', $label);
+						$label = strtolower(trim($label));
 
 						$chead[] = $label;
 					}
@@ -617,6 +617,8 @@ class Import_Controller extends Base_Controller {
 							for($i = 0; $i < count($heads); $i++){
 
 								$label = str_replace(array('.','\''), '', $heads[$i]);
+								$label = preg_replace('/[ ][ ]+/', ' ', $label);
+
 								$label = str_replace(array('/',' '), '_', $label);
 
 								$label = strtolower(trim($label));
