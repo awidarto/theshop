@@ -175,9 +175,15 @@ class Register_Controller extends Base_Controller {
 
 		//print_r(Auth::attendee());
 
+		$confirm = new Confirmation();
+
+		$confirmdata = $confirm->get(array('type'=>$type,'id'=>Auth::attendee()->id));
+
 		$_id = new MongoId(Auth::attendee()->id);
 
 		$attendee = $att->get(array('_id'=>$_id));
+
+		$attendee = array_merge($attendee,$confirmdata);
 
 		$form = new Formly($attendee);
 
