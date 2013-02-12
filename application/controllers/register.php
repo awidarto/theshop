@@ -72,13 +72,13 @@ class Register_Controller extends Base_Controller {
 	        'repass'=> 'required',
 	        'company' => 'required',
 	        'companyphone' => 'required',
-	        'address' => 'required',
+	        'address_1' => 'required',
 	        'city' => 'required',
 	        'zip' => 'required',
 	        'country' => 'required',
 	        'companyInvoice' => 'required',
 	        'companyphoneInvoice' => 'required',
-	        'addressInvoice' => 'required',
+	        'addressInvoice_1' => 'required',
 	        'cityInvoice' => 'required',
 	        'zipInvoice' => 'required',
 	        'countryInvoice' => 'required'
@@ -154,7 +154,7 @@ class Register_Controller extends Base_Controller {
 				    
 		    	return Redirect::to('register-success')->with('notify_success',Config::get('site.register_success'));
 			}else{
-		    	return Redirect::to('register')->with('notify_success',Config::get('site.register_failed'));
+		    	return Redirect::to('register')->with('notify_result',Config::get('site.register_failed'));
 			}
 
 	    }

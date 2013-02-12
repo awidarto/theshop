@@ -7,7 +7,9 @@
 <strong>{{ $data['firstname'].' '.$data['lastname'] }}</strong><br/>
 <strong>{{ $data['position'] }}</strong><br/>
 <strong>{{ $data['company'] }}</strong><br/>
-<strong>{{ $data['address'].' '.$data['city'].' '.$data['zip'] }}</strong><br/>
+<strong>{{ $data['address_1'].' '.$data['address_2'] }}</strong><br/>
+{{ ($data['address_2'] == '')?'':'<strong>'.$data['address_2'].'</strong><br/>' }}
+<strong>{{ $data['city'].' '.$data['zip'] }}</strong><br/>
 <strong>Registration Number : {{ $data['registrationnumber'] }}</strong></p>
 
 <p>Dear Sir/Madam,

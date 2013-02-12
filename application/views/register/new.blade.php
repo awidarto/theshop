@@ -5,7 +5,11 @@
 <div class="tableHeader">
 <h3>{{$title}}</h3>
 </div>
-
+    @if (Session::has('notify_result'))
+        <div class="alert alert-error">
+             {{Session::get('notify_result')}}
+        </div>
+    @endif
 {{$form->open('register','POST',array('class'=>'custom '))}}
 
 <div class="row">
@@ -47,8 +51,33 @@
                 {{ $form->text('company','Company / Institution.req','',array('class'=>'text','id'=>'companyName')) }}
                 {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text','id'=>'companyNPWP')) }}
 
-                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text','id'=>'companyPhone')) }}
-                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text','id'=>'companyFax')) }}
+                {{ Form::label('companyphone','Phone Number *')}}
+                <div class="row">
+                  <div class="one columns">
+                    {{ $form->text('companyphonecountry','','',array('class'=>'text','id'=>'companyPhoneCountry','placeholder'=>'Country Code')) }}
+                  </div>
+                  <div class="one columns">
+                    {{ $form->text('companyphonearea','','',array('class'=>'text','id'=>'companyPhoneArea','placeholder'=>'Area Code')) }}
+                  </div>
+                  <div class="ten columns">
+                    {{ $form->text('companyphone','','',array('class'=>'text','id'=>'companyPhone','placeholder'=>'Phone Number')) }}
+                  </div>
+                </div>
+
+                {{ Form::label('companyphone','Fax Number *')}}
+
+                <div class="row">
+                  <div class="one columns">
+                    {{ $form->text('companyfaxcountry','','',array('class'=>'text','id'=>'companyFaxCountry','placeholder'=>'Country Code')) }}
+                  </div>
+                  <div class="one columns">
+                    {{ $form->text('companyfaxarea','','',array('class'=>'text','id'=>'companyFaxArea','placeholder'=>'Area Code')) }}
+                  </div>
+                  <div class="ten columns">
+                    {{ $form->text('companyfax','','',array('class'=>'text','id'=>'companyFax','placeholder'=>'Phone Number')) }}
+                  </div>
+                </div>
+
 
                 {{ $form->text('address_1','Address.req','',array('class'=>'text','id'=>'address_1','placeholder'=>'Company Address')) }}
                 {{ $form->text('address_2','','',array('class'=>'text','id'=>'address_2')) }}
@@ -88,8 +117,33 @@
                 {{ $form->text('companyInvoice','Company / Institution.req','',array('class'=>'text invAdress','id'=>'companyNameInv')) }}
                 {{ $form->text('npwpInvoice','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text invAdress','id'=>'companyNPWPInv')) }}
 
-                {{ $form->text('companyphoneInvoice','Phone Number.req','',array('class'=>'text invAdress','id'=>'companyPhoneInv')) }}
-                {{ $form->text('companyfaxInvoice','Fax Number.req','',array('class'=>'text invAdress','id'=>'companyFaxInv')) }}
+
+                {{ Form::label('companyphone','Phone Number *')}}
+                <div class="row">
+                  <div class="one columns">
+                    {{ $form->text('companyphoneInvoiceCountry','','',array('class'=>'text','id'=>'companyPhoneInvCountry','placeholder'=>'Country Code')) }}
+                  </div>
+                  <div class="one columns">
+                    {{ $form->text('companyphoneInvoiceArea','','',array('class'=>'text','id'=>'companyPhoneInvArea','placeholder'=>'Area Code')) }}
+                  </div>
+                  <div class="ten columns">
+                    {{ $form->text('companyphoneInvoice','','',array('class'=>'text invAdress','id'=>'companyPhoneInv','placeholder'=>'Phone Number')) }}
+                  </div>
+                </div>
+
+                {{ Form::label('companyphone','Fax Number *')}}
+
+                <div class="row">
+                  <div class="one columns">
+                    {{ $form->text('companyfaxInvoiceCountry','','',array('class'=>'text','id'=>'companyFaxInvCountry','placeholder'=>'Country Code')) }}
+                  </div>
+                  <div class="one columns">
+                    {{ $form->text('companyfaxInvoiceArea','','',array('class'=>'text','id'=>'companyFaxInvArea','placeholder'=>'Area Code')) }}
+                  </div>
+                  <div class="ten columns">
+                    {{ $form->text('companyfaxInvoice','','',array('class'=>'text','id'=>'companyFaxInv','placeholder'=>'Phone Number')) }}
+                  </div>
+                </div>
 
                 {{ $form->text('addressInvoice_1','Address.req','',array('class'=>'text invAdress','id'=>'addressInv_1','placeholder'=>'Company Address')) }}
                 {{ $form->text('addressInvoice_2','','',array('class'=>'text invAdress','id'=>'addressInv_2')) }}
@@ -346,7 +400,13 @@ $(function() {
   function fillsame(){
     var companyName = $("#companyName").val();
     var companyNPWP = $("#companyNPWP").val();
+    var companyPhoneCountry = $("#companyPhoneCountry").val();
+    var companyPhoneArea = $("#companyPhoneArea").val();
     var companyPhone = $("#companyPhone").val();
+
+
+    var companyFaxCountry = $("#companyFaxCountry").val();
+    var companyFaxArea = $("#companyFaxArea").val();
     var companyFax = $("#companyFax").val();
     var companyAddress_1 = $("#address_1").val();
     var companyAddress_2 = $("#address_2").val();
@@ -356,8 +416,16 @@ $(function() {
 
     $("#companyNameInv").val(companyName);
     $("#companyNPWPInv").val(companyNPWP);
+
+    $("#companyPhoneInvCountry").val(companyPhoneCountry);
+    $("#companyPhoneInvArea").val(companyPhoneArea);
     $("#companyPhoneInv").val(companyPhone);
+
+
+    $("#companyFaxInvCountry").val(companyFaxCountry);
+    $("#companyFaxInvArea").val(companyFaxArea);
     $("#companyFaxInv").val(companyFax);
+
     $("#addressInv_1").val(companyAddress_1);
     $("#addressInv_2").val(companyAddress_2);
     $("#cityInv").val(companyCity);
