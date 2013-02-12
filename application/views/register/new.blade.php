@@ -289,9 +289,9 @@
           <legend>PAYMENT SETTLEMENT</legend>
           <table class="row">
             <tr>
-              <td colspan="4" class="four columns">REGISTRATION FEE TOTAL</td>
-              <td class="three columns">USD</td>
-              <td class="three columns">500</td>
+              <td colspan="4" class="columns">REGISTRATION FEE TOTAL</td>
+              <td class="columns">USD</td>
+              <td class="columns">500</td>
 
               <td class="three columns">IDR</td>
               <td class="three columns">500</td>
