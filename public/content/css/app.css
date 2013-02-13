@@ -498,3 +498,33 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 .DTTT_container{
 	position: absolute;
 }
+
+/*.countrycodePhone{
+	width: 100px;
+	margin-right: 20px;
+	display: inline-block;
+}
+.areacodePhone{
+	width: 100px;
+	margin-right: 20px;
+	display: inline-block;	
+}*/
+
+.countrycodePhone{
+	width: 100px;
+	margin-right: 10px;
+	display: inline-block;
+	float: left;
+}
+.areacodePhone{
+	width: 100px;
+	margin-right: 10px;
+	display: inline-block;
+	float: left;
+}
+.codePhone{
+	width: 200px;
+	margin-right: 10px;
+	display: inline-block;
+	float: left;	
+}

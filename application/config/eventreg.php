@@ -25,9 +25,9 @@ return array(
 		'reg_admin_name'=>'37th IPA Convex Register',
 
 		'reg_finance_name'=>'37th IPA Convex Finance',
-		'reg_finance_email'=>'taufiq.ridha@gmail.com',
+		'reg_finance_email'=>'conventionipa2013@dyandra.com',
 
-		'reg_dyandra_admin_email'=>'ipaconvention@dyandra.com',
+		'reg_dyandra_admin_email'=>'conventionipa2013@dyandra.com',
 		'reg_dyandra_admin_name'=>'37th IPA Convex Register',
 		
 
