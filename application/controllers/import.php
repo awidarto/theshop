@@ -394,7 +394,7 @@ class Import_Controller extends Base_Controller {
 					if(isset($attobj['registrationnumber']) && $attobj['registrationnumber'] != ''){
 						$reg_number = explode('-',$attobj['registrationnumber']);
 
-						$reg_number[0] = 'A';
+						$reg_number[0] = 'C';
 						$reg_number[1] = $tocommit['regtype'];
 						$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
@@ -402,7 +402,7 @@ class Import_Controller extends Base_Controller {
 						$reg_number = array();
 						$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
 
-						$reg_number[0] = 'A';
+						$reg_number[0] = 'C';
 						$reg_number[1] = $tocommit['regtype'];
 						$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
@@ -462,7 +462,7 @@ class Import_Controller extends Base_Controller {
 
 					$reg_number = array();
 
-					$reg_number[0] = 'A';
+					$reg_number[0] = 'C';
 					$reg_number[1] = $tocommit['regtype'];
 					$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
@@ -490,7 +490,7 @@ class Import_Controller extends Base_Controller {
 
 						if($data['sendattendee'] == 'Yes'){
 							// send message to each attendee
-							Event::fire('attendee.create',array($obj['_id'],$plainpass));
+							Event::fire('attendee.create',array($obj['_id'],$plainpass,$pic['email'],$pic['firstname'].$pic['lastname']));
 						}
 
 						$commitedobj[] = $tocommit;

@@ -13,7 +13,7 @@
 <strong>Registration Number : {{ $data['registrationnumber'] }}</strong></p>
 
 <p>Dear Sir/Madam,<br />
-Thank you for register in 37th IPA Convention & Exhibition. Please find below summary of your registration:</p>
+Thank you for registering to 37th IPA Convention & Exhibition. Please find below summary of your registration:</p>
 
 <p><strong><u>CONVENTION REGISTRATION</u></strong></p>
 
