@@ -174,21 +174,21 @@
 		   	@if(isset($form))
 	           <hr class="win-command" />
 
-		   		<div class="row">
-		   			<div class="span1">
-		   				Use Selection :
+		   		<div class="row-fluid selectionCommandList">
+		   			<div class="span3 text">
+		   				Use selection for:
 		   			</div>
-		   			<div class="span3">
+		   			<div class="span5">
 				   		{{ $form->select('action','',Config::get('kickstart.actionselection'))}}
 		   			</div>
-		   			<div class="span2">
+		   			
 						<a class="win-command" id="do_action">
 							<span class="win-commandimage win-commandring">&#xe132;</span>
 						</a>
-		   			</div>
-		   			<div class="span7">
+		   			
+		   			<!--<div class="span7">
 		   				&nbsp;
-		   			</div>
+		   			</div>-->
 		   		</div>
 			@endif
 

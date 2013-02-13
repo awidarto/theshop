@@ -528,3 +528,21 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 	display: inline-block;
 	float: left;	
 }
+
+.selectionCommandList{
+	width: 600px;
+	
+	display: inline-block;
+}
+.selectionCommandList select{
+	font-size: 10.5px;
+}
+.selectionCommandList .span5{
+	padding: 17px 0;
+}
+.selectionCommandList .text{
+	font-size: 12px;
+	color: #fff;
+	padding: 20px 0;
+	width:100px;
+}

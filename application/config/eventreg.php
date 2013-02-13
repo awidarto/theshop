@@ -30,15 +30,6 @@ return array(
 		'reg_finance_name'=>'37th IPA Convex Finance',
 		'reg_finance_email'=>'conventionipa2013@dyandra.com',
 
-<<<<<<< HEAD
-		'reg_dyandra_admin_email'=>'ipaconvention@dyandra.com',
-		'reg_dyandra_admin_name'=>'37th IPA Convex Register',
-
-=======
-		
-		
->>>>>>> 0b4aebfde3d2b44e2668ff5a46fc5fdab87f69c5
-
 		'paystatus'=>array(
 			'unpaid'=>'Unpaid',
 			'paid'=>'Paid',
