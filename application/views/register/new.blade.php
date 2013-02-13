@@ -39,7 +39,7 @@
                 {{ $form->text('position','Position / Division.req','',array('class'=>'text','id'=>'positionname')) }}
                 {{ $form->text('email','Email.req','',array('class'=>'text','id'=>'email')) }}
 
-                {{ $form->password('pass','Password (required to access your profile).req','',array('class'=>'text')) }}
+                {{ $form->password('pass','Password (required to access your registration profile).req','',array('class'=>'text')) }}
                 {{ $form->password('repass','Repeat Password.req','',array('class'=>'text')) }}
 
                 {{ $form->text('mobile','Mobile Phone Number','',array('class'=>'text','id'=>'mobile')) }}
@@ -229,6 +229,9 @@
                       {{ $form->radio('regtypeNormal','USD 120','PD',false,array('class'=>'disableRadio')) }}
                     </div>
                 </div>
+
+                {{ $form->hidden('totalUSD','',array('id'=>'totalUSDInput','class'=>'paymentSettle'))}}
+                {{ $form->hidden('totalIDR','',array('id'=>'totalIDRInput','class'=>'paymentSettle'))}}
         </fieldset>
 
         <fieldset>
@@ -601,19 +604,23 @@ $(function() {
     if($('.regType:checked').val() == 'PD'){
       //alert($('.field_golfType:checked').val());
       if($('.field_golfType:checked').val() == 'No'){
-        $('#feeRegUSD').text('4.500.000');
-        $('#feeRegIDR').text('-');
+        $('#feeRegUSD').text('-');
+        $('#feeRegIDR').text('4.500.000');
         $('#feeGolf').text('-');
         $('#totalUSD').text('-');
         $('#totalIDR').text('4.500.000');
+        $('#totalUSDInput').text('-');
+        $('#totalIDRInput').text('4.500.000');
 
       }else{
         // /alert($('.field_golfType:checked').val());
-        $('#feeRegUSD').text('4.500.000');
-        $('#feeRegIDR').text('-');
+        $('#feeRegIDR').text('4.500.000');
+        $('#feeRegUSD').text('-');
         $('#feeGolf').text('2.500.000');
         $('#totalUSD').text('-');
         $('#totalIDR').text('7.000.000');
+        $('#totalUSDInput').text('-');
+        $('#totalIDRInput').text('7.000.000');
       }
     }
 
@@ -623,6 +630,8 @@ $(function() {
       $('#feeGolf').text('-');
       $('#totalUSD').text('-');
       $('#totalIDR').text('400.000');
+      $('#totalUSDInput').text('-');
+      $('#totalIDRInput').text('400.000');
     }
 
     if($('.regType:checked').val() == 'SO'){
@@ -631,6 +640,8 @@ $(function() {
       $('#feeGolf').text('-');
       $('#totalUSD').text('120');
       $('#totalIDR').text('-');
+      $('#totalUSDInput').text('120');
+      $('#totalIDRInput').text('');
     }
 
   }
@@ -640,11 +651,12 @@ $(function() {
   $('#feeGolf').text('-');
   $('#totalUSD').text('-');
   $('#totalIDR').text('4.500.000');
+  $('#totalUSDInput').text('');
+  $('#totalIDRInput').text('4.500.000');
 
   $('.paymentSettle').change(
       function(){
         calculatefees();
-          //alert($('.paymentSettle:checked').val());   
       }
   );
 

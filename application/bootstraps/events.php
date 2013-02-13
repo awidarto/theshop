@@ -1,6 +1,6 @@
 <?php
 
-Event::listen('attendee.create',function($id,$newpass){
+Event::listen('attendee.create',function($id,$newpass,$picemail,$picname){
     $attendee = new Attendee();
     $_id = $id;
     $data = $attendee->get(array('_id'=>$_id));
@@ -13,6 +13,8 @@ Event::listen('attendee.create',function($id,$newpass){
 
     Message::to($data['email'])
         ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+        ->cc($picemail, $picname)
+        ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
         ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
         ->body( $body )
         ->html(true)

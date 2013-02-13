@@ -149,56 +149,74 @@
 					<td class="detail-title">Country</td>
 					<td>:</td>
 					<?php
-						$countries = Config::get('country.countries');
+					
+						//$countries = Config::get('country.countries');
 					?>
-					<td class="detail-info">{{ $countries[$profile['country']]  }}</td>
+					
+					<td class="detail-info">{{ $profile['country']  }}</td>
+					
 				</tr>
 
 				<tr><td colspan="3"><h4>Invoice Address</h4></td></tr>
+				<!--Find out if they are from import or not-->
+				@if ($profile['addressInvoice_2'] != null)
+					<tr>
+						<td class="detail-title">Company Name</td>
+						<td>:&nbsp;</td>
+						<td class="detail-info">{{ $profile['companyInvoice'] }}</td>
+					</tr>
 
-				<tr>
-					<td class="detail-title">Company Name</td>
-					<td>:&nbsp;</td>
-					<td class="detail-info">{{ $profile['companyInvoice'] }}</td>
-				</tr>
+					<tr>
+						<td class="detail-title">Company NPWP</td>
+						<td>:&nbsp;</td>
+						<td class="detail-info">{{ $profile['npwpInvoice'] }}</td>
+					</tr>
 
-				<tr>
-					<td class="detail-title">Company NPWP</td>
-					<td>:&nbsp;</td>
-					<td class="detail-info">{{ $profile['npwpInvoice'] }}</td>
-				</tr>
+					<tr>
+						<td class="detail-title">Company Phone</td>
+						<td>:&nbsp;</td>
+						<td class="detail-info">{{ $profile['companyphoneInvoice'] }}</td>
+					</tr>
 
-				<tr>
-					<td class="detail-title">Company Phone</td>
-					<td>:&nbsp;</td>
-					<td class="detail-info">{{ $profile['companyphoneInvoice'] }}</td>
-				</tr>
+					<tr>
+						<td class="detail-title">Company Fax</td>
+						<td>:&nbsp;</td>
+						<td class="detail-info">{{ $profile['companyfaxInvoice'] }}</td>
+					</tr>
 
-				<tr>
-					<td class="detail-title">Company Fax</td>
-					<td>:&nbsp;</td>
-					<td class="detail-info">{{ $profile['companyfaxInvoice'] }}</td>
-				</tr>
+					<tr>
+						<td class="detail-title">Company Address</td>
+						<td style="vertical-align:top">:&nbsp;</td>
+						@if (isset($profile['address']))
+							<td class="detail-info">{{ $profile['addressInvoice'].' '.$profile['cityInvoice'].' '.$profile['zipInvoice'] }}</td>
+						@else
+							<td class="detail-info">{{ $profile['addressInvoice_1'].'</br>'.$profile['addressInvoice_2'].'</br>'.$profile['cityInvoice'].' '.$profile['zipInvoice'] }}</td>
+							
+						@endif
+					</tr>
 
-				<tr>
-					<td class="detail-title">Company Address</td>
-					<td style="vertical-align:top">:&nbsp;</td>
-					@if (isset($profile['address']))
-						<td class="detail-info">{{ $profile['addressInvoice'].' '.$profile['cityInvoice'].' '.$profile['zipInvoice'] }}</td>
-					@else
-						<td class="detail-info">{{ $profile['addressInvoice_1'].'</br>'.$profile['addressInvoice_2'].'</br>'.$profile['cityInvoice'].' '.$profile['zipInvoice'] }}</td>
+					<tr>
+						<td class="detail-title">Country</td>
+						<td>:</td>
+						<?php
 						
-					@endif
-				</tr>
+							//$countries = Config::get('country.countries');
+						?>
+						
+						<td class="detail-info">{{ $profile['countryInvoice']  }}</td>
+						
+						
+					</tr>
+					@else
 
-				<tr>
-					<td class="detail-title">Country</td>
-					<td>:</td>
-					<?php
-						$countries = Config::get('country.countries');
-					?>
-					<td class="detail-info">{{ $countries[$profile['countryInvoice']]  }}</td>
-				</tr>
+						<tr>
+							<td class="detail-title">Address</td>
+							<td>:</td>
+							<td class="detail-info">{{ $profile['addressInvoice_1']  }}</td>
+
+						</tr>
+
+					@endif
 				
 				
 			</table>

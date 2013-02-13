@@ -389,20 +389,20 @@ class Import_Controller extends Base_Controller {
 					$attobj = $attendee->get(array('email'=>$tocommit['email']));
 
 					$reg_number = array();
+					$seq = new Sequence();
 
 					if(isset($attobj['registrationnumber']) && $attobj['registrationnumber'] != ''){
 						$reg_number = explode('-',$attobj['registrationnumber']);
 
-						$reg_number[0] = 'A';
+						$reg_number[0] = 'C';
 						$reg_number[1] = $tocommit['regtype'];
 						$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
 					}else if($attobj['registrationnumber'] == ''){
 						$reg_number = array();
-						$seq = new Sequence();
 						$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
 
-						$reg_number[0] = 'A';
+						$reg_number[0] = 'C';
 						$reg_number[1] = $tocommit['regtype'];
 						$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
@@ -418,7 +418,7 @@ class Import_Controller extends Base_Controller {
 					//golf sequencer
 					$tocommit['golfSequence'] = 0;
 
-					if($tocommit['golf'] == 'Yes'){
+					if($tocommit['golf'] == 'Yes' && $attobj['golf'] == 'No'){
 						$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
 						$tocommit['golfSequence'] = $gseq['seq'];
 					}
@@ -462,7 +462,7 @@ class Import_Controller extends Base_Controller {
 
 					$reg_number = array();
 
-					$reg_number[0] = 'A';
+					$reg_number[0] = 'C';
 					$reg_number[1] = $tocommit['regtype'];
 					$reg_number[2] = ($tocommit['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
@@ -490,7 +490,7 @@ class Import_Controller extends Base_Controller {
 
 						if($data['sendattendee'] == 'Yes'){
 							// send message to each attendee
-							Event::fire('attendee.create',array($obj['_id'],$plainpass));
+							Event::fire('attendee.create',array($obj['_id'],$plainpass,$pic['email'],$pic['firstname'].$pic['lastname']));
 						}
 
 						$commitedobj[] = $tocommit;
@@ -508,6 +508,21 @@ class Import_Controller extends Base_Controller {
 			if($data['sendpic'] == 'Yes'){
 
 				//print_r($commitedobj);
+
+				$body = View::make('email.regsummarypic')
+					->with('pic',$pic)
+					->with('attendee',$commitedobj)
+					->render();
+
+				
+				Message::to($pic['email'])
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
+				    ->subject('Registration Summary – '.$pic['company'])
+				    ->body( $body )
+				    ->html(true)
+				    ->send();
+				
 
 				// send to pic , use
 				// $commitedobj as input array

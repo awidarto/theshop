@@ -38,9 +38,9 @@ return array(
 	'transports' => array(
 
 		'smtp' => array(
-			'host'       =>	'smtp.gmail.com', 
-			'username'   =>	'bolongsox@gmail.com',
-			'password'   =>	'masukajadeh',
+			'host'       =>	'mail.dyandra.com', 
+			'username'   =>	'conventionipa2013@dyandra.com',
+			'password'   =>	'conventionipa2013',
 			'port'       =>	465,
 			'encryption' =>	'ssl',
 		),
