@@ -53,11 +53,15 @@ class Attendee_Controller extends Base_Controller {
 
 		$select_all = $form->checkbox('select_all','','',false,array('id'=>'select_all'));
 
-		$btn_add_to_group = '<span class=" add_to_group" id="add_to_group">Add selected to group</span>';
+		$action_selection = $form->select('action','',Config::get('kickstart.actionselection'));
+
+		$btn_add_to_group = '<span class=" add_to_group" id="add_to_group">'.$action_selection.'</span>';
+
+
 
 /*<<<<<<< HEAD*/
 
-		$heads = array('#',$select_all,'Reg. Number','Registered Date','Email','First Name','Last Name','Company','Reg. Type','Country','Conv. Status','Golf. Status',$btn_add_to_group);
+		$heads = array('#',$select_all,'Reg. Number','Registered Date','Email','First Name','Last Name','Company','Reg. Type','Country','Conv. Status','Golf. Status','');
 
 		$searchinput = array(false,false,'Reg Number','Reg. Date','Email','First Name','Last Name','Company',false,'Country',false,false,false);
 
@@ -80,6 +84,7 @@ class Attendee_Controller extends Base_Controller {
 				->with('ajaxpay',URL::to('attendee/paystatus'))
 				->with('ajaxpaygolf',URL::to('attendee/paystatusgolf'))
 				->with('printsource',URL::to('attendee/printbadge'))
+				->with('form',$form)
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)
 				->nest('row','attendee.rowdetail');

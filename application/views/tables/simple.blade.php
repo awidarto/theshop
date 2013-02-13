@@ -141,8 +141,8 @@
  </div>
 <footer class="win-ui-dark win-commandlayout navbar-fixed-bottom">
   <div class="container">
-     <div class="row">
-        <div class="span6 align-left">
+     <div class="row-fluid">
+        <div class="span12 align-left">
            <a class="win-command" href="{{ URL::base()}}">
               <span class="win-commandimage win-commandring">!</span>
               <span class="win-label">Home</span>
@@ -169,6 +169,27 @@
 					<span class="win-commandimage win-commandring">&#x0056;&#x0054;</span>
 					<span class="win-label">Commit</span>
 				</a>
+			@endif
+
+		   	@if(isset($form))
+	           <hr class="win-command" />
+
+		   		<div class="row">
+		   			<div class="span1">
+		   				Use Selection :
+		   			</div>
+		   			<div class="span3">
+				   		{{ $form->select('action','',Config::get('kickstart.actionselection'))}}
+		   			</div>
+		   			<div class="span2">
+						<a class="win-command" id="do_action">
+							<span class="win-commandimage win-commandring">&#xe132;</span>
+						</a>
+		   			</div>
+		   			<div class="span7">
+		   				&nbsp;
+		   			</div>
+		   		</div>
 			@endif
 
         </div>
@@ -428,6 +449,12 @@
 			}
 		} );
 
+
+		$('#do_action').click( function(){
+			alert($('#field_action').val());
+
+
+		});
 
 		$('#select_all').click(function(){
 			if($('#select_all').is(':checked')){

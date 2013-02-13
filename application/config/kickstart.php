@@ -126,4 +126,12 @@ return array(
       'help'=>'Help',
       'faq'=>'FAQ',
     ),
+
+    'actionselection'=>array(
+      'none'=>'none',
+      'grouping'=>'Add to Group',
+      'paygolf'=>'Set Golf payment status',
+      'payconvention'=>'Set Convention payment status'
+
+    )
 );
