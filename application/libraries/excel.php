@@ -10,8 +10,14 @@ class Excel
         require_once('PHPExcel/IOFactory.php');
     }
     
-    public function load($filename){
-        $objReader = new PHPExcel_Reader_Excel5();
+    public function load($filename, $ext = 'xls'){
+
+        if( $ext == 'xlsx'){
+            $objReader = new PHPExcel_Reader_Excel2007();
+        }else{
+            $objReader = new PHPExcel_Reader_Excel5();
+        }
+
         //$objReader->setReadDataOnly(true);
         $objPHPExcel = $objReader->load($filename);
 
