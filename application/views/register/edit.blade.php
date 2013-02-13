@@ -49,10 +49,36 @@
                 {{ $form->text('company','Company / Institution.req','',array('class'=>'text','id'=>'company')) }}
                 {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text','id'=>'company')) }}
 
-                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text','id'=>'companyphone')) }}
-                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text','id'=>'companyfax')) }}
+                {{ Form::label('companyphone','Phone Number *')}}
+                <div class="row">
+                  <div class="one columns">
+                    {{ $form->text('companyphonecountry','','',array('class'=>'text','id'=>'companyPhoneCountry','placeholder'=>'Country Code')) }}
+                  </div>
+                  <div class="one columns">
+                    {{ $form->text('companyphonearea','','',array('class'=>'text','id'=>'companyPhoneArea','placeholder'=>'Area Code')) }}
+                  </div>
+                  <div class="ten columns">
+                    {{ $form->text('companyphone','','',array('class'=>'text','id'=>'companyPhone','placeholder'=>'Phone Number')) }}
+                  </div>
+                </div>
 
-                {{ $form->text('address','Address.req','',array('class'=>'text','id'=>'address','placeholder'=>'Company Address')) }}
+                {{ Form::label('companyphone','Fax Number *')}}
+
+                <div class="row">
+                  <div class="one columns">
+                    {{ $form->text('companyfaxcountry','','',array('class'=>'text','id'=>'companyFaxCountry','placeholder'=>'Country Code')) }}
+                  </div>
+                  <div class="one columns">
+                    {{ $form->text('companyfaxarea','','',array('class'=>'text','id'=>'companyFaxArea','placeholder'=>'Area Code')) }}
+                  </div>
+                  <div class="ten columns">
+                    {{ $form->text('companyfax','','',array('class'=>'text','id'=>'companyFax','placeholder'=>'Phone Number')) }}
+                  </div>
+                </div>
+
+
+                {{ $form->text('address_1','Address.req','',array('class'=>'text','id'=>'address_1','placeholder'=>'Company Address')) }}
+                {{ $form->text('address_2','','',array('class'=>'text','id'=>'address_2')) }}
 
                 <div class="row">
                     <div class="eight columns">
@@ -79,16 +105,41 @@
 
 
         </fieldset>
-
+        @if ($user['addressInvoice_2'] != null)
         <fieldset>
             <legend>Invoice Address</legend>
                 {{ $form->text('companyInvoice','Company / Institution.req','',array('class'=>'text invAdress','id'=>'companyNameInv')) }}
                 {{ $form->text('npwpInvoice','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text invAdress','id'=>'companyNPWPInv')) }}
 
-                {{ $form->text('companyphoneInvoice','Phone Number.req','',array('class'=>'text invAdress','id'=>'companyPhoneInv')) }}
-                {{ $form->text('companyfaxInvoice','Fax Number.req','',array('class'=>'text invAdress','id'=>'companyFaxInv')) }}
+                {{ Form::label('companyphone','Phone Number *')}}
+                <div class="row">
+                  <div class="one columns">
+                    {{ $form->text('companyphoneInvoiceCountry','','',array('class'=>'text','id'=>'companyPhoneInvCountry','placeholder'=>'Country Code')) }}
+                  </div>
+                  <div class="one columns">
+                    {{ $form->text('companyphoneInvoiceArea','','',array('class'=>'text','id'=>'companyPhoneInvArea','placeholder'=>'Area Code')) }}
+                  </div>
+                  <div class="ten columns">
+                    {{ $form->text('companyphoneInvoice','','',array('class'=>'text invAdress','id'=>'companyPhoneInv','placeholder'=>'Phone Number')) }}
+                  </div>
+                </div>
 
-                {{ $form->text('addressInvoice','Address.req','',array('class'=>'text invAdress','id'=>'addressInv','placeholder'=>'Company Address')) }}
+                {{ Form::label('companyphone','Fax Number *')}}
+
+                <div class="row">
+                  <div class="one columns">
+                    {{ $form->text('companyfaxInvoiceCountry','','',array('class'=>'text','id'=>'companyFaxInvCountry','placeholder'=>'Country Code')) }}
+                  </div>
+                  <div class="one columns">
+                    {{ $form->text('companyfaxInvoiceArea','','',array('class'=>'text','id'=>'companyFaxInvArea','placeholder'=>'Area Code')) }}
+                  </div>
+                  <div class="ten columns">
+                    {{ $form->text('companyfaxInvoice','','',array('class'=>'text','id'=>'companyFaxInv','placeholder'=>'Phone Number')) }}
+                  </div>
+                </div>
+
+                {{ $form->text('addressInvoice_1','Address.req','',array('class'=>'text invAdress','id'=>'addressInv_1','placeholder'=>'Company Address')) }}
+                {{ $form->text('addressInvoice_2','','',array('class'=>'text invAdress','id'=>'addressInv_2')) }}
 
                 <div class="row">
                     <div class="eight columns">
@@ -99,12 +150,13 @@
                     </div>
                 </div>
                 {{$form->select('countryInvoice','Country of Origin',Config::get('country.countries'),null,array('class'=>'four'))}}
-                
-
-                
-
-
         </fieldset>
+        @else
+        <fieldset>
+            <legend>Invoice Address</legend>
+                {{ $form->textarea('addressInvoice_1','','',array('class'=>'text invAdress','id'=>'companyNameInv')) }}
+        </fieldset>
+        @endif
 
         <!--<fieldset>
             <legend>Registration Type</legend>
