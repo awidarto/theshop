@@ -115,7 +115,7 @@ class Register_Controller extends Base_Controller {
 			$data['confirmation'] = 'none';
 
 
-			$reg_number[0] = 'A';
+			$reg_number[0] = 'C';
 			$reg_number[1] = $data['regtype'];
 			$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
@@ -543,7 +543,7 @@ class Register_Controller extends Base_Controller {
 			if(isset($data['registrationnumber']) && $data['registrationnumber'] != ''){
 				$reg_number = explode('-',$data['registrationnumber']);
 
-				$reg_number[0] = 'A';
+				$reg_number[0] = 'C';
 				$reg_number[1] = $data['regtype'];
 				$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
@@ -553,7 +553,7 @@ class Register_Controller extends Base_Controller {
 				$seq = new Sequence();
 				$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
 
-				$reg_number[0] = 'A';
+				$reg_number[0] = 'C';
 				$reg_number[1] = $data['regtype'];
 				$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
