@@ -181,7 +181,6 @@
 		   			<div class="span5">
 				   		{{ $form->select('action','',Config::get('kickstart.actionselection'))}}
 		   			</div>
-		   			
 						<a class="win-command" id="do_action">
 							<span class="win-commandimage win-commandring">&#xe132;</span>
 						</a>
