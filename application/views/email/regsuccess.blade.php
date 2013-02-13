@@ -12,7 +12,7 @@
 <strong>{{ $data['city'].' '.$data['zip'] }}</strong><br/>
 <strong>Registration Number : {{ $data['registrationnumber'] }}</strong></p>
 
-<p>Dear Sir/Madam,
+<p>Dear Sir/Madam,<br />
 Thank you for register in 37th IPA Convention & Exhibition. Please find below summary of your registration:</p>
 
 <p><strong><u>CONVENTION REGISTRATION</u></strong></p>

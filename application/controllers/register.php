@@ -183,7 +183,13 @@ class Register_Controller extends Base_Controller {
 
 		$attendee = $att->get(array('_id'=>$_id));
 
-		$attendee = array_merge($attendee,$confirmdata);
+		if(is_null($confirmdata) || count($confirmdata) < 0 || !isset($confirmdata) || !is_array($confirmdata)){
+
+		}else{
+
+			$attendee = array_merge($attendee,$confirmdata);
+
+		}
 
 		$form = new Formly($attendee);
 
