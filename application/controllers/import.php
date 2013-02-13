@@ -375,18 +375,18 @@ class Import_Controller extends Base_Controller {
 
 				if($override == true){
 
+					$attobj = $attendee->get(array('email'=>$tocommit['email']));
+
 					$tocommit['lastUpdate'] = new MongoDate();
 					$tocommit['role'] = 'attendee';
-					$tocommit['paymentStatus'] = 'unpaid';
-					$tocommit['conventionPaymentStatus'] = 'unpaid';
 
-					if($tocommit['golf'] == 'Yes'){
-						$tocommit['golfPaymentStatus'] = 'unpaid';
-					}else{
-						$tocommit['golfPaymentStatus'] = '-';
+					if(isset($tocommit['conventionPaymentStatus'])){
+						$tocommit['conventionPaymentStatus'] = $attobj['conventionPaymentStatus'];
 					}
 
-					$attobj = $attendee->get(array('email'=>$tocommit['email']));
+					if(isset($tocommit['golfPaymentStatus'])){
+						$tocommit['golfPaymentStatus'] = $attobj['golfPaymentStatus'];
+					}
 
 					$reg_number = array();
 					$seq = new Sequence();
