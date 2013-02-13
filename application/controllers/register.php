@@ -217,6 +217,7 @@ class Register_Controller extends Base_Controller {
 	        $type.'fromaccountname' => 'required',
 	        $type.'fromaccnumber' => 'required',
 	        $type.'frombank' => 'required',
+	        'docupload' => 'required',
 	    );
 
 	    $type = $data['type'];
