@@ -36,7 +36,7 @@ Route::controller(array('register','report','import','dashboard','attendee','off
 
 Route::get('/',function(){
     if(Auth::check()){
-        if(Auth::user()->role == 'root'){
+        if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
            return Redirect::to('dashboard');
         }else if(Auth::user()->role == 'onsite'){
            return Redirect::to('dashboard');
