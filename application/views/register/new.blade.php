@@ -39,7 +39,7 @@
                 {{ $form->text('position','Position / Division.req','',array('class'=>'text','id'=>'positionname')) }}
                 {{ $form->text('email','Email.req','',array('class'=>'text','id'=>'email')) }}
 
-                {{ $form->password('pass','Password (required to access your profile).req','',array('class'=>'text')) }}
+                {{ $form->password('pass','Password (required to access your registration profile).req','',array('class'=>'text')) }}
                 {{ $form->password('repass','Repeat Password.req','',array('class'=>'text')) }}
 
                 {{ $form->text('mobile','Mobile Phone Number','',array('class'=>'text','id'=>'mobile')) }}
