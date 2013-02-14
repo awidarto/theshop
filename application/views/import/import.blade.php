@@ -17,20 +17,20 @@
 
                 <div class="row-fluid radioInput">
                     <div class="span2">
-                      {{ $form->radio('salutation','Mr','Mr',true)}} 
-                    </div>   
+                      {{ $form->radio('salutation','Mr','Mr',true)}}
+                    </div>
                     <div class="span2">
-                      {{ $form->radio('salutation','Mrs','Mrs')}} 
-                    </div>   
+                      {{ $form->radio('salutation','Mrs','Mrs')}}
+                    </div>
                     <div class="span2">
-                      {{ $form->radio('salutation','Ms','Ms')}} 
+                      {{ $form->radio('salutation','Ms','Ms')}}
                     </div>
                     <div class="span6"></div>
                 </div>
 
-                
+
                 {{ $form->text('firstname','First Name.req','',array('class'=>'text span8','id'=>'firstname')) }}
-                
+
                 {{ $form->text('lastname','Last Name.req','',array('class'=>'text span8','id'=>'lastname')) }}
                 {{ $form->text('position','Position / Division.req','',array('class'=>'text span8','id'=>'positionname')) }}
                 {{ $form->text('email','Email.req','',array('class'=>'text span8','id'=>'email')) }}
@@ -51,11 +51,11 @@
 
 
                 <div class="row-fluid inputInline">
-                    
-                        {{ $form->text('city','','',array('class'=>'text span12','id'=>'city','placeholder'=>'City')) }}                    
-                    
+
+                        {{ $form->text('city','','',array('class'=>'text span12','id'=>'city','placeholder'=>'City')) }}
+
                         {{ $form->text('zip','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
-                    
+
                 </div>
 
                 {{$form->select('country','Country of Origin',Config::get('country.countries'),array('class'=>'span12'))}}
@@ -64,9 +64,15 @@
 
         <fieldset>
             <legend>Excel File to Upload</legend>
-        
+
             {{ $form->file('docupload','Excel File')}}
 
+        </fieldset>
+
+        <fieldset>
+            <legend>Registran Group Set</legend>
+            {{ $form->hidden('groupId','',array('id'=>'groupid'))}}
+            {{ $form->text('groupName','Group Name ( autocomplete, use PIC name or company to search )','',array('id'=>'groupname','class'=>'auto_group span8'))}}
         </fieldset>
 
     </div>

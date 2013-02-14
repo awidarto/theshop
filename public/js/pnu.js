@@ -298,4 +298,12 @@
 			}
 		});
 
+		$('.auto_group').autocomplete({
+			source: base + 'ajax/group',
+			select: function(event, ui){
+				$('#groupid').val(ui.item.id);
+			}
+		});
+
+
     });

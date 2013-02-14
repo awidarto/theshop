@@ -80,6 +80,24 @@ class Ajax_Controller extends Base_Controller {
 		return Response::json($result);		
 	}	
 
+	public function get_group()
+	{
+		$q = Input::get('term');
+
+		$user = new Group();
+		$qemail = new MongoRegex('/'.$q.'/i');
+
+		$res = $user->find(array('$or'=>array(array('email'=>$qemail),array('firstname'=>$qemail),array('lastname'=>$qemail)) ));
+
+		$result = array();
+
+		foreach($res as $r){
+			$result[] = array('id'=>$r['_id']->__toString(),'value'=>$r['groupname'],'email'=>$r['email'],'label'=>$r['groupname'].'<br />'.$r['firstname'].''.$r['lastname'].' ( '.$r['email'].' )<br />'.$r['company']);
+		}
+
+		return Response::json($result);		
+	}	
+
 	public function get_userdata()
 	{
 		$q = Input::get('term');
