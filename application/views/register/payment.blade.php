@@ -7,6 +7,11 @@
 </div>
 <?php
   $disable = false;
+  if($type == 'convention'){
+    $typeInverse = 'Golf';
+  }else{
+    $typeInverse = 'Convention';
+  }
 ?>
 @if($user[$type.'PaymentStatus'] == 'pending' || $user[$type.'PaymentStatus'] == 'paid')
   <div class="alert alert-error">
@@ -215,6 +220,16 @@
 
         </fieldset>
 
+        @if($user['golfPaymentStatus'] != 'pending' && $user['golfPaymentStatus'] != 'paid' && $user['conventionPaymentStatus'] != 'pending' && $user['conventionPaymentStatus'] != 'paid')
+        <fieldset>
+            @if($disable == true)
+              <label for="checkbox2"><input type="checkbox" style="display: none;" disabled="disabled"><span class="custom checkbox disabled" id="invoiceSame" ></span> Also Confirm {{ $typeInverse }} Payment</label><br/>    
+            @else
+              <label for="checkbox2"><input type="checkbox" style="display: none;" name="confirmbooth" value="yes"><span class="custom checkbox" id="invoiceSame" ></span> Also Confirm {{ $typeInverse }} Payment</label><br/>
+            @endif
+
+        </fieldset>
+        @endif
         <!--<fieldset>
             <legend>Important Notes</legend>
 

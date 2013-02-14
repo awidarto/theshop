@@ -19,24 +19,24 @@
         <fieldset>
             <legend>Personal Information</legend>
 
-                {{ Form::label('salutation','Salutation')}}
-
-                <div class="row">
-                    <div class="two columns">
-                      {{ $form->radio('salutation','Mr','Mr')}} 
-                    </div>   
-                    <div class="two columns">
-                      {{ $form->radio('salutation','Mrs','Mrs')}} 
-                    </div>   
-                    <div class="two columns">
-                      {{ $form->radio('salutation','Ms','Ms')}} 
-                    </div>
-                    <div class="six columns"></div>
-                </div>
-
-
-                {{ $form->text('firstname','First Name.req','',array('class'=>'text','id'=>'firstname')) }}
-                {{ $form->text('lastname','Last Name.req','',array('class'=>'text','id'=>'lastname')) }}
+                <table class="profile-info">
+                  <tr>
+                    <td class="detail-title">Salutation : </td>
+                    <td>:&nbsp;</td>
+                    <td class="detail-info">{{ $user['salutation'] }}</td>
+                  </tr>
+                  <tr>
+                    <td class="detail-title">First Name : </td>
+                    <td>:&nbsp;</td>
+                    <td class="detail-info">{{ $user['firstname'] }}</td>
+                  </tr>
+                  <tr>
+                    <td class="detail-title">Last Name : </td>
+                    <td>:&nbsp;</td>
+                    <td class="detail-info">{{ $user['lastname'] }}</td>
+                  </tr>
+                </table>
+                
                 {{ $form->text('position','Position / Division.req','',array('class'=>'text','id'=>'positionname')) }}
                 {{ $form->text('email','Email.req','',array('class'=>'text','id'=>'email')) }}
 
@@ -154,7 +154,7 @@
         @else
         <fieldset>
             <legend>Invoice Address</legend>
-                {{ $form->textarea('addressInvoice_1','','',array('class'=>'text invAdress','id'=>'companyNameInv')) }}
+                {{ $form->textarea('invoice_address_conv','','',array('class'=>'text invAdress','id'=>'companyNameInv')) }}
         </fieldset>
         @endif
 

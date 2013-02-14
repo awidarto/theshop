@@ -212,7 +212,7 @@
 						<tr>
 							<td class="detail-title">Address</td>
 							<td>:</td>
-							<td class="detail-info">{{ $profile['addressInvoice_1']  }}</td>
+							<td class="detail-info">{{ $profile['invoice_address_conv']  }}</td>
 
 						</tr>
 

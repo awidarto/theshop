@@ -13,7 +13,7 @@
 <strong>Registration Number : {{ $data['registrationnumber'] }}</strong></p>
 
 <p>Dear Sir/Madam,<br />
-Thank you for registering to 37th IPA Convention & Exhibition. Please find below summary of your registration:</p>
+Your profile has been updated successfully. Please find below summary of your profile:</p>
 
 <p><strong><u>CONVENTION REGISTRATION</u></strong></p>
 
@@ -99,37 +99,119 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
+			<td><strong>* Fees above exclude VAT 10%</strong></i></td>
+			<td>&nbsp;</td>
+		</tr>
+		
+		<tr>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td style="padding:10px;" colspan="2"><strong>Attend on Industrial Dinner (16 May 2013)</strong></td>
-			<td style="padding:10px;"><strong>{{ $data['attenddinner'] }}</strong></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
 		</tr>
+		<tr>
+			<td style="padding:10px;">Attend on Industrial Dinner (16 May 2013)</strong></td>
+			<td style="padding:10px;">{{ $data['attenddinner'] }}</strong></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2"><strong>Company Information</strong></td>
+		</tr>
+		<tr>
+			<td style="padding:10px;">Company Name</td>
+			<td style="padding:10px;">:</td>
+			<td style="padding:10px;">{{ $data['company'] }}</td>
+		</tr>
+
+		<tr>
+			<td style="padding:10px;">Company NPWP</td>
+			<td style="padding:10px;">:</td>
+			<td style="padding:10px;">{{ $data['npwp'] }}</td>
+		</tr>
+
+		<tr>
+			<td style="padding:10px;">Company Phone Number</td>
+			<td style="padding:10px;">:</td>
+			<td style="padding:10px;">{{ $data['companyphonecountry'] }} - {{ $data['companyphonearea'] }} - {{ $data['companyphone'] }}</td>
+		</tr>
+
+		<tr>
+			<td style="padding:10px;">Company Fax Number</td>
+			<td style="padding:10px;">:</td>
+			<td style="padding:10px;">{{ $data['companyfaxcountry'] }} - {{ $data['companyfaxarea'] }} - {{ $data['companyfax'] }}</td>
+		</tr>
+
+		<tr>
+			<td style="padding:10px;">Address:</td>
+			<td style="padding:10px;">:</td>
+			<td style="padding:10px;">{{ $data['address_1'] }}<br/>{{ $data['address_2'] }} <br/> {{ $data['city'] }} {{ $data['zip'] }} <br/> {{ $data['country'] }}</td>
+		</tr>
+
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2"><strong>Invoice Address</strong></td>
+		</tr>
+		@if ( isset($data['cache_obj']) )
+			<tr>
+				<td style="padding:10px;" colspan="3">{{ $data['invoice_address_conv'] }}</strong></td>
+			</tr>
+		@else
+			<tr>
+				<td style="padding:10px;">Company Name</td>
+				<td style="padding:10px;">:</td>
+				<td style="padding:10px;">{{ $data['companyInvoice'] }}</td>
+			</tr>
+
+			<tr>
+				<td style="padding:10px;">Company NPWP</td>
+				<td style="padding:10px;">:</td>
+				<td style="padding:10px;">{{ $data['npwpInvoice'] }}</td>
+			</tr>
+
+			<tr>
+				<td style="padding:10px;">Company Phone Number</td>
+				<td style="padding:10px;">:</td>
+				<td style="padding:10px;">{{ $data['companyphoneInvoiceCountry'] }} - {{ $data['companyphoneInvoiceArea'] }} - {{ $data['companyphoneInvoice'] }}</td>
+			</tr>
+
+			<tr>
+				<td style="padding:10px;">Company Fax Number</td>
+				<td style="padding:10px;">:</td>
+				<td style="padding:10px;">{{ $data['companyfaxInvoiceCountry'] }} - {{ $data['companyfaxInvoiceArea'] }} - {{ $data['companyfaxInvoice'] }}</td>
+			</tr>
+
+			<tr>
+				<td style="padding:10px;">Address:</td>
+				<td style="padding:10px;">:</td>
+				<td style="padding:10px;">{{ $data['addressInvoice_1'] }}<br/>{{ $data['addressInvoice_2'] }} <br/> {{ $data['cityInvoice'] }} {{ $data['zipInvoice'] }} <br/> {{ $data['countryInvoice'] }}</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		@endif 
+		
 
 </table>
 </p>
 
-@if($fromadmin == 'yes')
-<p><strong><u>LOGIN INFO</u></strong></p>
-<table>
-	<tr>
-		<td>Email</td>
-		<td>:</td>
-		<td>{{ $data['email'] }}</td>
-	</tr>
-	<tr>
-		<td>Password</td>
-		<td>:</td>
-		<!--<td><?php echo $passwordRandom ?></td>-->
-		<td>{{ $passwordRandom }}</td>
-	</tr>
-</table>
-@endif
 
 <p><i>Convention registration fee includes admission to all Plenary & Technical Sessions, Conference Kits, Opening and Closing Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Entrance to Exhibition Area.<br/><br/>
 * The cost of the Golf Tournament includes green fee, caddy & cart fee.</i><br/><br/>
-<strong>* Fees above exclude VAT 10%</strong></i>
 </p>
 <p>For the registration payment, you can settle it by bank transfer to:</p>
 

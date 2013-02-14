@@ -69,6 +69,7 @@ class Official_Controller extends Base_Controller {
 				->with('ajaxdel',URL::to('official/del'))
 				->with('ajaxpay',URL::to('official/paystatus'))
 				->with('ajaxpaygolf',URL::to('attendee/paystatusgolf'))
+				->with('ajaxpaygolfconvention',URL::to('attendee/paystatusgolf'))
 				->with('printsource',URL::to('official/printbadge'))
 				->with('crumb',$this->crumb)
 				->with('heads',$heads)

@@ -47,7 +47,8 @@
             <legend>Company Information</legend>
                 {{ $form->text('company','Company / Institution.req','',array('class'=>'text span6','id'=>'company')) }}
 
-                {{ $form->text('address','Address.req','',array('class'=>'text span9','id'=>'address','placeholder'=>'Company Address')) }}
+                {{ $form->text('address_1','Address.req','',array('class'=>'text span9','id'=>'address','placeholder'=>'Company Address')) }}
+                {{ $form->text('address_2','','',array('class'=>'text span9','id'=>'address','placeholder'=>'')) }}
 
 
                 <div class="row-fluid inputInline">
@@ -95,6 +96,7 @@
       //alert($('#field_role').val());
       // load default permission here
   });
+  $("#s2id_field_country").select2("val", "Indonesia");
 </script>
 
 @endsection

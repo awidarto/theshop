@@ -1,5 +1,7 @@
 <?php
 
+
+
 function rand_string( $length ) {
 	$chars = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789";	
 
