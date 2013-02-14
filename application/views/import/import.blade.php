@@ -89,6 +89,7 @@
       //alert($('#field_role').val());
       // load default permission here
   });
+  $("#s2id_field_country").select2("val", "ID");
 </script>
 
 @endsection

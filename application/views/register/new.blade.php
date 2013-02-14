@@ -590,6 +590,8 @@ $(function() {
         $('#feeGolf').text('-');
         $('#totalUSD').text('500');
         $('#totalIDR').text('-');
+        $('#totalUSDInput').val('500');
+        $('#totalIDRInput').val('-');
       }else{
         //alert($('.field_golfType:checked').val());
         $('#feeRegUSD').text('500');
@@ -597,6 +599,8 @@ $(function() {
         $('#feeGolf').text('2.500.000');
         $('#totalUSD').text('500');
         $('#totalIDR').text('2.500.000');
+        $('#totalUSDInput').val('500');
+        $('#totalIDRInput').val('2.500.000');
         
       }
     }
@@ -609,8 +613,8 @@ $(function() {
         $('#feeGolf').text('-');
         $('#totalUSD').text('-');
         $('#totalIDR').text('4.500.000');
-        $('#totalUSDInput').text('-');
-        $('#totalIDRInput').text('4.500.000');
+        $('#totalUSDInput').val('-');
+        $('#totalIDRInput').val('4.500.000');
 
       }else{
         // /alert($('.field_golfType:checked').val());
@@ -619,8 +623,8 @@ $(function() {
         $('#feeGolf').text('2.500.000');
         $('#totalUSD').text('-');
         $('#totalIDR').text('7.000.000');
-        $('#totalUSDInput').text('-');
-        $('#totalIDRInput').text('7.000.000');
+        $('#totalUSDInput').val('-');
+        $('#totalIDRInput').val('7.000.000');
       }
     }
 
@@ -630,8 +634,8 @@ $(function() {
       $('#feeGolf').text('-');
       $('#totalUSD').text('-');
       $('#totalIDR').text('400.000');
-      $('#totalUSDInput').text('-');
-      $('#totalIDRInput').text('400.000');
+      $('#totalUSDInput').val('-');
+      $('#totalIDRInput').val('400.000');
     }
 
     if($('.regType:checked').val() == 'SO'){
@@ -640,8 +644,8 @@ $(function() {
       $('#feeGolf').text('-');
       $('#totalUSD').text('120');
       $('#totalIDR').text('-');
-      $('#totalUSDInput').text('120');
-      $('#totalIDRInput').text('');
+      $('#totalUSDInput').val('120');
+      $('#totalIDRInput').val('');
     }
 
   }
@@ -651,8 +655,8 @@ $(function() {
   $('#feeGolf').text('-');
   $('#totalUSD').text('-');
   $('#totalIDR').text('4.500.000');
-  $('#totalUSDInput').text('');
-  $('#totalIDRInput').text('4.500.000');
+  $('#totalUSDInput').val('');
+  $('#totalIDRInput').val('4.500.000');
 
   $('.paymentSettle').change(
       function(){
