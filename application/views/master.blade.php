@@ -30,6 +30,7 @@
 
     {{ HTML::style('css/jquery-datatables/TableTools.css')}}
 
+    {{ HTML::style('css/flick/jquery-ui-1.9.2.custom.min.css') }}
     <!--  these two css are to use only for documentation -->
 
     {{ HTML::style('css/select2.css') }}
@@ -45,6 +46,7 @@
 
     {{ HTML::script('scripts/modernizr-2.6.1.min.js') }}
     {{ HTML::script('js/jquery-1.8.3.min.js') }}
+    {{ HTML::script('js/jquery-ui-1.9.2.custom.min.js') }}
 
     {{ HTML::script('js/select2.min.js') }}   
 </head>
@@ -131,9 +133,11 @@
   {{ HTML::script('scripts/bootmetro-charms.js') }}
   {{ HTML::script('scripts/demo.js') }}
   {{ HTML::script('scripts/holder.js') }}
+  {{ HTML::script('js/pnu.js') }}
  
  <script type="text/javascript">
     $(".metro").metro();
+    base = '{{ URL::base() }}/';
  </script>
 
 

@@ -23,35 +23,35 @@
     <script defer type="text/javascript" src="http://ipa.or.id/js/png/pngfix.js"></script>
     <![endif]-->
   <link rel="stylesheet" href="http://www.ipaconvex.com//fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="all" />
-    
+
   {{ HTML::script('js/jquery-1.8.3.min.js') }}
   {{ HTML::script('js/jquery-ui-1.9.2.custom.min.js') }}
 
   {{ HTML::script('js/select2.min.js') }}
   <script src="http://www.ipaconvex.com/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
   <script type="text/javascript" src="http://www.ipaconvex.com/css/jquery.cycle.all.js"></script>
-  
+
   <script type="text/javascript" src="http://www.ipaconvex.com/stmenu.js"></script>
   </head>
-  
+
   <body>
       <div align="center">
       <table width="940" border="0" cellspacing="0" cellpadding="0">
-        
+
         <tr height="340">
           <td background="http://www.ipaconvex.com/head_web.jpg" height="340" width="940" valign="bottom">
             <div align="left" style="margin-bottom:15px;margin-left:10px;">
-            
+
             <script src="http://www.ipaconvex.com/jquery-blink.js" language="javscript" type="text/javascript"></script>
-   
+
             <script type="text/javascript" language="javascript">
-   
+
               $(document).ready(function()
               {
                       $('.blink').blink(); // default is 500ms blink interval.
                       //$('.blink').blink({delay:100}); // causes a 100ms blink interval.
               });
-               
+
               </script>
               <div class="blink" style="margin: 0px 0px 15px 450px; color: black; font-size: 14px; font-weight: bold; font-family: Tahoma; visibility: visible;">
                 {{ HTML::link('register/landing','ONLINE REGISTRATION',array('class'=>'')) }}
@@ -61,7 +61,7 @@
         <tr>
           <td width="940" height="35" bgcolor="#b60002" align="center" style="padding-left:170px;">
             <script type="text/javascript">
-            
+
             stm_bm(["menu7def",980,"","blank.gif",0,"","",0,0,250,0,1000,1,0,0,"","",67109119,0,1,2,"default","hand","",2,30],this);
             stm_bp("p0",[0,4,0,0,0,5,0,0,100,"",-2,"",-2,50,0,0,"#999999","#b60002","",1,0,0,"#000000"]);
             stm_ai("p0i0",[0,"  HOME ","","",-1,-1,0,"http://www.ipaconvex.com/index.php","_self","","","","",0,7,0,"","",0,0,0,1,1,"#2d2e26",1,"#870002",0,"","",2,0,0,0,"#FFFFFF #490001","#FFFFFF #490001","#FFFFFF","#FFFFFF","bold 11px Trebuchet MS","bold 11px Trebuchet MS",0,0,"","","","",0,0,0],0,36);
@@ -112,7 +112,7 @@
   <td bgcolor="white" width="940">
     <div align="center">
       <table width="910" border="0" cellspacing="0" cellpadding="0" style="padding-top:20px;padding-bottom:30px;">
-        <tr valign="top">                 
+        <tr valign="top">
           <td width="605">
             <table width="605">
               <tr>
@@ -167,7 +167,7 @@
                   <strong>Exhibition Hours</strong><br />
                   <strong>Exhibitor</strong>&nbsp;: 08:00  –  19:00 WIB<br />
                   <strong>Visitor</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 10:00  –  18:00 WIB<br />
-                  <strong>Entrance</strong> : By registration (online and onsite) 
+                  <strong>Entrance</strong> : By registration (online and onsite)
                   <br /><br /><br />
 
 
@@ -255,7 +255,7 @@
                 </td>
                 <td style="background-position:right top; background-repeat:repeat-y " valign="top" width="241" height="147" ALT="" background="http://www.ipaconvex.com/images/dot.jpg"><table width="100%">
                   <tr>
-                    <td style="padding:5px 10px 0 15px;"> 
+                    <td style="padding:5px 10px 0 15px;">
                       <strong>Exhibition Launch</strong><br />
                       Join us in Exhibition Launch that will be held at:<br />
                       <br />
@@ -272,17 +272,17 @@
                       <strong>13:00 – 16:00 WIB</strong> (for booth below 100 sqm)<br />
                       <br />
                       <strong>Agenda</strong><br />
-                      Booth Drawing 
+                      Booth Drawing
                     </td>
                   </tr>
                 </table>
               </div>
-              
+
             </div>
-            
+
           </td>
-          
-          
+
+
           <td style="background-position:right top; background-repeat:repeat-y " valign="top" width="174" height="147" ALT="" background="http://www.ipaconvex.com/images/dot.jpg"><div style="margin-left:17px; margin-top:11px "> <a href="content.php?go=calendar"><img style="margin-right:8px " src="http://www.ipaconvex.com/images/1im2.jpg" align="absmiddle" /></a></div>
             <div style="margin-top:8px; margin-left:16px "> </div>
             <br />
@@ -348,14 +348,14 @@
   {{ HTML::script('js/jquery.foundation.forms.js') }}
   {{ HTML::script('js/jquery.tagsinput.min.js') }}
   {{ HTML::script('js/pnu.js') }}
-  
+
   <script type="text/javascript">
-  $(document).ready(function(){ 
+  $(document).ready(function(){
       $("input[name$='sameasinfo']").click(function() {
           var test = $(this).val();
           $(".billingInfo").hide();
           $("#"+test+"tsamebillingInfo").show();
-      }); 
+      });
   });
   </script>
   </body>

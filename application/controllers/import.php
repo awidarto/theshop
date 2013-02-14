@@ -345,8 +345,11 @@ class Import_Controller extends Base_Controller {
 					}
 				}
 
+				// import and group identifier
 				$tocommit['cache_id'] = $comobj['cache_id'];
 				$tocommit['cache_obj'] = $comobj['_id'];
+				$tocommit['groupName'] = $comobj['groupName'];
+				$tocommit['groupId'] = $comobj['groupId'];
 
 				if(isset($data['over'])){
 					if( in_array($comobj['_id']->__toString(), $data['over'])){
@@ -514,7 +517,7 @@ class Import_Controller extends Base_Controller {
 					->with('attendee',$commitedobj)
 					->render();
 
-				
+
 				Message::to($pic['email'])
 				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 				    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
@@ -522,7 +525,7 @@ class Import_Controller extends Base_Controller {
 				    ->body( $body )
 				    ->html(true)
 				    ->send();
-				
+
 
 				// send to pic , use
 				// $commitedobj as input array
@@ -552,7 +555,8 @@ class Import_Controller extends Base_Controller {
 	        'email'  => 'required',
 	        'firstname'  => 'required',
 	        'lastname'  => 'required',
-	        'position' => 'required'
+	        'position' => 'required',
+	        'groupName' => 'required'
 	    );
 
 	    $validation = Validator::make($input = Input::all(), $rules);
@@ -574,6 +578,24 @@ class Import_Controller extends Base_Controller {
 			$data['lastUpdate'] = new MongoDate();
 			$data['creatorName'] = Auth::user()->fullname;
 			$data['creatorId'] = Auth::user()->id;
+
+			if($data['groupId']=='' && $data['groupName'] != ''){
+				//create new group
+				$group = new Group();
+
+				$groupdata = array(
+					'firstname' => $data['firstname'],
+					'lastname' => $data['lastname'],
+					'email'=> $data['email'],
+					'company' => $data['company'],
+					'groupname'=>$data['groupName']
+				);
+
+				if($groupobj = $group->insert($groupdata)){
+					$data['groupId'] = $groupobj['_id']->__toString();
+				}
+
+			}
 
 
 			$docupload = Input::file('docupload');
@@ -656,7 +678,7 @@ class Import_Controller extends Base_Controller {
 					}
 
 					//print_r($trows);
-					
+
 					$rows = $trows;
 
 					$inhead = array();
@@ -703,7 +725,11 @@ class Import_Controller extends Base_Controller {
 							$ins['cache_id'] = $c_id;
 							$ins['cache_commit'] = false;
 
-							print_r($ins);
+							$ins['groupId'] =   $newobj['groupId'];
+							$ins['groupName'] = $newobj['groupName'];
+
+
+							//print_r($ins);
 
 							$icache->insert($ins);
 						}

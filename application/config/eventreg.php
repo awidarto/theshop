@@ -183,7 +183,6 @@ return array(
 			'salutation'=> '',
 			'zip'=> '',
 			'zipInvoice'=> ''
-
 		),
 
 
