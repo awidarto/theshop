@@ -220,7 +220,7 @@
 
         </fieldset>
 
-        @if($user['golfPaymentStatus'] != 'pending' && $user['golfPaymentStatus'] != 'paid' && $user['conventionPaymentStatus'] != 'pending' && $user['conventionPaymentStatus'] != 'paid')
+        @if($user['golfPaymentStatus'] != 'pending' && $user['golfPaymentStatus'] != 'paid' && $user['conventionPaymentStatus'] != 'pending' && $user['conventionPaymentStatus'] != 'paid' && $user['conventionPaymentStatus'] != 'unpaid' && $user['golfPaymentStatus'] != 'unpaid')
         <fieldset>
             @if($disable == true)
               <label for="checkbox2"><input type="checkbox" style="display: none;" disabled="disabled"><span class="custom checkbox disabled" id="invoiceSame" ></span> Also Confirm {{ $typeInverse }} Payment</label><br/>    
