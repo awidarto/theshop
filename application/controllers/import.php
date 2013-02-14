@@ -375,18 +375,18 @@ class Import_Controller extends Base_Controller {
 
 				if($override == true){
 
+					$attobj = $attendee->get(array('email'=>$tocommit['email']));
+
 					$tocommit['lastUpdate'] = new MongoDate();
 					$tocommit['role'] = 'attendee';
-					$tocommit['paymentStatus'] = 'unpaid';
-					$tocommit['conventionPaymentStatus'] = 'unpaid';
 
-					if($tocommit['golf'] == 'Yes'){
-						$tocommit['golfPaymentStatus'] = 'unpaid';
-					}else{
-						$tocommit['golfPaymentStatus'] = '-';
+					if(isset($tocommit['conventionPaymentStatus'])){
+						$tocommit['conventionPaymentStatus'] = $attobj['conventionPaymentStatus'];
 					}
 
-					$attobj = $attendee->get(array('email'=>$tocommit['email']));
+					if(isset($tocommit['golfPaymentStatus'])){
+						$tocommit['golfPaymentStatus'] = $attobj['golfPaymentStatus'];
+					}
 
 					$reg_number = array();
 					$seq = new Sequence();
@@ -614,15 +614,50 @@ class Import_Controller extends Base_Controller {
 
 					$excel = new Excel();
 
-					$xls = $excel->load($filepath);
+					$extension = File::extension($filepath);
+
+					$xls = $excel->load($filepath,$extension);
 
 					$rows = $xls['cells'];
 
 					$heads = $rows[1];
 
+					//print_r($heads);
 
-					unset($rows[0]);
-					unset($rows[1]);
+					$theads = array();
+					for($x = 0;$x < count($heads);$x++){
+						if(trim($heads[$x]) == ''){
+						}else{
+							$theads[] = $heads[$x];
+						}
+					}
+
+					$heads = $theads;
+
+					//print_r($heads);
+
+					//remove first two lines
+					array_shift($rows);
+					array_shift($rows);
+					//unset($rows[0]);
+					//unset($rows[1]);
+
+
+					//print_r($rows);
+
+					//remove empty line arrays
+					$trows = array();
+					for($x = 0;$x < count($rows);$x++){
+						if(trim(implode('',$rows[$x])) == ''){
+							unset($rows[$x]);
+						}else{
+							$trows[] = $rows[$x];
+						}
+					}
+
+					//print_r($trows);
+					
+					$rows = $trows;
 
 					$inhead = array();
 
@@ -643,6 +678,8 @@ class Import_Controller extends Base_Controller {
 					$inhead['cache_head'] = true;
 					$inhead['cache_id'] = $c_id;
 					$inhead['cache_commit'] = false;
+
+					//print_r($inhead);
 
 					$icache->insert($inhead);
 
@@ -665,6 +702,8 @@ class Import_Controller extends Base_Controller {
 							$ins['cache_head'] = false;
 							$ins['cache_id'] = $c_id;
 							$ins['cache_commit'] = false;
+
+							print_r($ins);
 
 							$icache->insert($ins);
 						}
