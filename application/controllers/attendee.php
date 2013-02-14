@@ -83,6 +83,7 @@ class Attendee_Controller extends Base_Controller {
 				->with('ajaxdel',URL::to('attendee/del'))
 				->with('ajaxpay',URL::to('attendee/paystatus'))
 				->with('ajaxpaygolf',URL::to('attendee/paystatusgolf'))
+				->with('ajaxpaygolfconvention',URL::to('attendee/paystatusgolfconvention'))
 				->with('printsource',URL::to('attendee/printbadge'))
 				->with('form',$form)
 				->with('crumb',$this->crumb)
@@ -221,6 +222,17 @@ class Attendee_Controller extends Base_Controller {
 				$rowGolfAction = '';
 			}
 
+			if(isset($doc['golfPaymentStatus']) && isset($doc['conventionPaymentStatus'])){
+				
+				if($doc['golfPaymentStatus'] == 'pending' && $doc['conventionPaymentStatus'] == 'pending' ){
+					$rowBoothAction = '<a class="icon-"  ><i>&#xe1e9;</i><span class="paygolfconvention" id="'.$doc['_id'].'" >Conv & Golf</span>';
+				}else{
+					$rowBoothAction = '';
+				}
+			}else{
+				$rowGolfAction = '';
+			}
+
 /*=======
 			if(isset($doc['paymentStatus'])){
 				$status = ($doc['paymentStatus'] == 'unpaid')?'<span class="fontRed fontBold">UNPAID</span>':'<span class="fontGreen fontBold">PAID</span>';
@@ -238,38 +250,16 @@ class Attendee_Controller extends Base_Controller {
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
 				$doc['lastname'],
 				$doc['company'],
-/*<<<<<<< HEAD*/
 				$doc['regtype'],
 				$doc['country'],
-				//$doc['mobile'],
 				$paymentStatus,
 				$paymentStatusGolf,
-				//'<span class="fontRed fontBold">UNPAID</span>',
-				//$doc['companyphone'],
-				//$doc['companyfax'],
-				//date('Y-m-d H:i:s', $doc['createdDate']->sec),
-				//isset($doc['lastUpdate'])?date('Y-m-d H:i:s', $doc['lastUpdate']->sec):'',
-				//date('Y-m-d', $doc['createdDate']->sec),
-				//isset($doc['lastUpdate'])?date('Y-m-d', $doc['lastUpdate']->sec):'',
+				$rowBoothAction.
 				'<a class="icon-"  ><i>&#xe1b0;</i><span class="pay" id="'.$doc['_id'].'" >Convention Status</span>'.
 				$rowGolfAction.
 				'<a class="icon-"  ><i>&#xe14c;</i><span class="pbadge" id="'.$doc['_id'].'" >Print Badge</span>'.
 				'<a class="icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
 				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
-/*=======
-				$doc['position'],
-				$status,
-				$doc['mobile'],
-				//$doc['companyphone'],
-				//$doc['companyfax'],
-				//date('Y-m-d H:i:s', $doc['createdDate']->sec),
-				date('Y-m-d', $doc['createdDate']->sec),
-				isset($doc['lastUpdate'])?date('Y-m-d', $doc['lastUpdate']->sec):'',
-				'<a class="action icon-"  ><i>&#xe164;</i><span class="action pay" id="'.$doc['_id'].'" >Payment Status</span>'.
-				'<a class="action icon-"  ><i>&#xe14c;</i><span class="action pbadge" id="'.$doc['_id'].'" >Print Badge</span>'.
-				'<a class="action icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
-				'<a class="action icon-"><i>&#xe001;</i><span class="action del" id="'.$doc['_id'].'" >Delete</span>',
->>>>>>> b59a7166cd34d09f3b78b47914a6e072c67392fb*/
 				
 				'extra'=>$extra
 			);
@@ -338,6 +328,7 @@ class Attendee_Controller extends Base_Controller {
 
 					Message::to($data['email'])
 					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 					    ->subject('CONFIRMATION OF REGISTRATION - Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
 					    ->body( $body )
 					    ->html(true)
@@ -379,6 +370,7 @@ class Attendee_Controller extends Base_Controller {
 
 					Message::to($data['email'])
 					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
 					    ->subject('CONFIRMATION OF REGISTRATION (GOLF)- Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
 					    ->body( $body )
 					    ->html(true)
@@ -386,6 +378,49 @@ class Attendee_Controller extends Base_Controller {
 				}
 			}else{
 				Event::fire('paymentstatusgolf.update',array('id'=>$id,'result'=>'FAILED'));
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+			}
+		}
+
+		print json_encode($result);
+	}
+
+
+	public function post_paystatusgolfconvention(){
+		$id = Input::get('id');
+		$paystatus = Input::get('paystatusgolfconvention');
+
+		$user = new Attendee();
+
+		if(is_null($id)){
+			$result = array('status'=>'ERR','data'=>'NOID');
+		}else{
+
+			$_id = new MongoId($id);
+
+
+			if($user->update(array('_id'=>$_id),array('$set'=>array('golfPaymentStatus'=>$paystatus,'conventionPaymentStatus'=>$paystatus)))){
+				Event::fire('paymentstatusgolf.update',array('id'=>$id,'result'=>'OK'));
+				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'OK'));
+				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
+				//mail to registrant about payment updated
+				//if only set to paid to send email
+				if($paystatus == 'paid'){
+					$data = $user->get(array('_id'=>$_id));
+
+					$body = View::make('email.confirmpaymentall')->with('data',$data)->render();
+
+
+					Message::to($data['email'])
+					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->subject('CONFIRMATION OF REGISTRATION - Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+					    ->body( $body )
+					    ->html(true)
+					    ->send();
+				}
+			}else{
+				Event::fire('paymentstatusgolfconvention.update',array('id'=>$id,'result'=>'FAILED'));
 				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
 			}
 		}
@@ -421,20 +456,20 @@ class Attendee_Controller extends Base_Controller {
 		//print_r(Session::get('permission'));
 
 	    $rules = array(
-	        'firstname' => 'required',
+	    	'firstname' => 'required',
 	    	'lastname' => 'required',
 	    	'position' => 'required',
 	        'email' => 'required|email|unique:attendee',
 	        
 	        'company' => 'required',
 	        'companyphone' => 'required',
-	        'address' => 'required',
+	        'address_1' => 'required',
 	        'city' => 'required',
 	        'zip' => 'required',
 	        'country' => 'required',
 	        'companyInvoice' => 'required',
 	        'companyphoneInvoice' => 'required',
-	        'addressInvoice' => 'required',
+	        'addressInvoice_1' => 'required',
 	        'cityInvoice' => 'required',
 	        'zipInvoice' => 'required',
 	        'countryInvoice' => 'required'
@@ -468,7 +503,7 @@ class Attendee_Controller extends Base_Controller {
 				$data['golfPaymentStatus'] = '-';
 			}
 
-			$reg_number[] = 'A';
+			$reg_number[] = 'C';
 			$reg_number[] = $data['regtype'];
 			$reg_number[] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
@@ -496,7 +531,7 @@ class Attendee_Controller extends Base_Controller {
 
 				//print_r($obj);
 
-				Event::fire('attendee.create',array($obj['_id'],$passwordRandom));
+				Event::fire('attendee.createformadmin',array($obj['_id'],$passwordRandom));
 				
 				/*
 				$body = View::make('email.regsuccess')
@@ -579,7 +614,7 @@ class Attendee_Controller extends Base_Controller {
 			if(isset($data['registrationnumber']) && $data['registrationnumber'] != ''){
 				$reg_number = explode('-',$data['registrationnumber']);			
 
-				$reg_number[0] = 'A';
+				$reg_number[0] = 'C';
 				$reg_number[1] = $data['regtype'];
 				$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
@@ -589,7 +624,7 @@ class Attendee_Controller extends Base_Controller {
 				$seq = new Sequence();
 				$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
 
-				$reg_number[0] = 'A';
+				$reg_number[0] = 'C';
 				$reg_number[1] = $data['regtype'];
 				$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 

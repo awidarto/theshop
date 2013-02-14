@@ -10,7 +10,8 @@
 
     {{ $form->hidden('id',$user['_id'])}}
     {{ $form->hidden('registrationnumber',$user['registrationnumber'])}}
-
+    {{ $form->hidden('totalUSD','',array('id'=>'totalUSDInput','class'=>'paymentSettle'))}}
+{{ $form->hidden('totalIDR','',array('id'=>'totalIDRInput','class'=>'paymentSettle'))}}
 <div class="row-fluid formNewAttendee">
     <div class="span6">
         <fieldset>
@@ -48,7 +49,7 @@
                         Professional / Delegate Domestic
                     </div>   
                     <div class="span6">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD') }} 
+                      {{ $form->radio('regtype','IDR 4.500.000','PD',true,array('class'=>'paymentSettle regType')) }} 
                     </div>   
                 </div>
 
@@ -57,7 +58,7 @@
                         Professional / Delegate Overseas
                     </div>   
                     <div class="span6">
-                      {{ $form->radio('regtype','USD 500','PO') }} 
+                      {{ $form->radio('regtype','USD 500','PO',false,array('class'=>'paymentSettle regType')) }} 
                     </div>   
                 </div>
 
@@ -66,7 +67,7 @@
                         Student Domestic
                     </div>   
                     <div class="span6">
-                      {{ $form->radio('regtype','IDR 400.000','SD') }} 
+                      {{ $form->radio('regtype','IDR 400.000','SD',false,array('class'=>'paymentSettle regType')) }} 
                     </div>   
                 </div>
 
@@ -75,7 +76,7 @@
                         Student Overseas
                     </div>   
                     <div class="span6">
-                      {{ $form->radio('regtype','USD 120','SO') }} 
+                      {{ $form->radio('regtype','USD 120','SO',false,array('class'=>'paymentSettle regType')) }} 
                     </div>   
                 </div>
         </fieldset>
@@ -84,7 +85,7 @@
 
                 <div class="row-fluid">
                     <div class="span2">
-                      {{ $form->radio('attenddinner','Yes','Yes') }} 
+                      {{ $form->radio('attenddinner','Yes','Yes',true) }} 
                     </div>   
                     <div class="span2">
                       {{ $form->radio('attenddinner','No','No') }} 
@@ -92,21 +93,22 @@
                     <div class="span8"></div>
                 </div>
 
-        </fieldset>        
+        </fieldset>
+
         <fieldset>
             <legend>Golf Tournament on 12 May 2013</legend>
 
                 <div class="row-fluid">
                     <div class="span2">
-                      {{ $form->radio('golf','Yes','Yes') }} 
+                      {{ $form->radio('golf','Yes','Yes',false,array('class'=>'paymentSettle field_golfType')) }} 
                     </div>   
                     <div class="span2">
-                      {{ $form->radio('golf','No','No') }} 
+                      {{ $form->radio('golf','No','No',true,array('class'=>'paymentSettle field_golfType')) }} 
                     </div>   
                     <div class="span8"></div>
                 </div>
 
-        </fieldset>        
+        </fieldset>
 
     </div>
 
@@ -114,16 +116,37 @@
 
         <fieldset>
             <legend>Company Information</legend>
-                {{ $form->text('company','Company / Institution.req','',array('class'=>'text span6','id'=>'company')) }}
-                {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text span6','id'=>'company')) }}
+            {{ $form->text('company','Company / Institution.req','',array('class'=>'text span6','id'=>'companyName')) }}
+                {{ $form->text('npwp','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text span6','id'=>'companyNPWP')) }}
 
+                {{ Form::label('companyphone','Phone Number *')}}
+                <div class="row-fluid inputInline">
+                  
+                    {{ $form->text('companyphonecountry','','',array('class'=>'text countrycodePhone','id'=>'companyPhoneCountry','placeholder'=>'Country Code')) }}
+                  
+                    {{ $form->text('companyphonearea','','',array('class'=>'text areacodePhone','id'=>'companyPhoneArea','placeholder'=>'Area Code')) }}
+                  
+                  
+                    {{ $form->text('companyphone','','',array('class'=>'text codePhone','id'=>'companyPhone','placeholder'=>'Phone Number')) }}
+                  
+                </div>
 
-                {{ $form->text('companyphone','Phone Number.req','',array('class'=>'text span6','id'=>'companyphone')) }}
-                {{ $form->text('companyfax','Fax Number.req','',array('class'=>'text span6','id'=>'companyfax')) }}
+                {{ Form::label('companyphone','Fax Number *')}}
 
-                {{ $form->text('address','Address.req','',array('class'=>'text span9','id'=>'address','placeholder'=>'Company Address')) }}
+                <div class="row-fluid inputInline">
+                  
+                    {{ $form->text('companyfaxcountry','','',array('class'=>'text countrycodePhone','id'=>'companyFaxCountry','placeholder'=>'Country Code')) }}
+                  
+                    {{ $form->text('companyfaxarea','','',array('class'=>'text areacodePhone','id'=>'companyFaxArea','placeholder'=>'Area Code')) }}
+                  
+                  
+                    {{ $form->text('companyfax','','',array('class'=>'text codePhone','id'=>'companyFax','placeholder'=>'Phone Number')) }}
+                  
+                </div>
 
-
+                {{ $form->text('address_1','Address.req','',array('class'=>'text span9','id'=>'address_1','placeholder'=>'Company Address')) }}
+                {{ $form->text('address_2','','',array('class'=>'text span9','id'=>'address_2')) }}
+                
                 <div class="row-fluid inputInline">
                     
                         {{ $form->text('city','','',array('class'=>'text span12','id'=>'city','placeholder'=>'City')) }}
@@ -132,50 +155,58 @@
                         {{ $form->text('zip','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
                     
                 </div>
-
                 {{$form->select('country','Country of Origin',Config::get('country.countries'),null)}}
+                
+                <br/>
+                
 
         </fieldset>
-       <fieldset>
+        <br/>
+        @if (isset($user['cache_obj']))
+        <fieldset>
             <legend>Invoice Address</legend>
-                {{ $form->text('companyInvoice','Company / Institution.req','',array('class'=>'text span6','id'=>'company')) }}
-                {{ $form->text('npwpInvoice','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text span6','id'=>'company')) }}
+                {{ $form->textarea('invoice_address_conv','','',array('class'=>'text invAdress span10','id'=>'companyNameInv')) }}
+        </fieldset>
+        @else
+        <fieldset>
+            <legend>Invoice Address</legend>
+                {{ $form->text('companyInvoice','Company / Institution.req','',array('class'=>'text span6 invAdress','id'=>'companyNameInv')) }}
+                {{ $form->text('npwpInvoice','Company NPWP ( only for Indonesian company ).req','',array('class'=>'text span6 invAdress','id'=>'companyNPWPInv')) }}
+                
+                {{ Form::label('companyphone','Phone Number *')}}
+                <div class="row-fluid inputInline">
+                  {{ $form->text('companyphoneInvoiceCountry','','',array('class'=>'text countrycodePhone invAdress','id'=>'companyPhoneInvCountry','placeholder'=>'Country Code')) }}
+                
+                  {{ $form->text('companyphoneInvoiceArea','','',array('class'=>'text areacodePhone invAdress','id'=>'companyPhoneInvArea','placeholder'=>'Area Code')) }}
+                
+                  {{ $form->text('companyphoneInvoice','','',array('class'=>'text invAdress codePhone invAdress','id'=>'companyPhoneInv','placeholder'=>'Phone Number')) }}
+                </div>
 
+                {{ Form::label('companyphone','Fax Number *')}}
 
-                {{ $form->text('companyphoneInvoice','Phone Number.req','',array('class'=>'text span6','id'=>'companyphone')) }}
-                {{ $form->text('companyfaxInvoice','Fax Number.req','',array('class'=>'text span6','id'=>'companyfax')) }}
+                <div class="row-fluid inputInline">
+                    {{ $form->text('companyfaxInvoiceCountry','','',array('class'=>'text countrycodePhone invAdress','id'=>'companyFaxInvCountry','placeholder'=>'Country Code')) }}
+                    {{ $form->text('companyfaxInvoiceArea','','',array('class'=>'text areacodePhone invAdress','id'=>'companyFaxInvArea','placeholder'=>'Area Code')) }}
+                    {{ $form->text('companyfaxInvoice','','',array('class'=>'text codePhone invAdress','id'=>'companyFaxInv','placeholder'=>'Phone Number')) }}
+                  
+                </div>
 
-                {{ $form->text('addressInvoice','Address.req','',array('class'=>'text span9','id'=>'address','placeholder'=>'Company Address')) }}
+                {{ $form->text('addressInvoice_1','Address.req','',array('class'=>'text invAdress span9','id'=>'addressInv_1','placeholder'=>'Company Address')) }}
+                {{ $form->text('addressInvoice_2','','',array('class'=>'text invAdress span9','id'=>'addressInv_2')) }}
 
 
                 <div class="row-fluid inputInline">
-                    
-                        {{ $form->text('cityInvoice','','',array('class'=>'text span12','id'=>'city','placeholder'=>'City')) }}
-                    
-                    
-                        {{ $form->text('zipInvoice','','',array('class'=>'text span3','id'=>'zip','placeholder'=>'ZIP Code')) }}
-                    
+                      {{ $form->text('cityInvoice','','',array('class'=>'text span12 invAdress','id'=>'cityInv','placeholder'=>'City')) }}
+                      {{ $form->text('zipInvoice','','',array('class'=>'text span3 invAdress','id'=>'zipInv','placeholder'=>'ZIP Code')) }}
+              
                 </div>
 
+                
                 {{$form->select('countryInvoice','Country of Origin',Config::get('country.countries'),null)}}
 
         </fieldset>
-
-
-        <!--<fieldset>
-            <legend>Invoice address same with Company Address ?</legend>
-                <div class="row-fluid">
-                    <div class="span2">
-                      {{ $form->radio('invoiceaddress','Yes','Yes') }} 
-                    </div>   
-                    <div class="span2">
-                      {{ $form->radio('invoiceaddress','No','No') }} 
-                    </div>   
-                    <div class="span8"></div>
-                </div>
-        </fieldset>-->
-
-
+        
+        @endif
 
     </div>
 </div>
@@ -197,6 +228,66 @@
       //alert($('#field_role').val());
       // load default permission here
   });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  function calculatefees(){
+    var regfeeIDR = '400';
+    var regfeeUSD = '';
+    var Golffee   = '2.500.000';
+    var totalUSD   = '';
+    var totalIDR   = '';
+    if($('.regType:checked').val() == 'PO'){
+      //alert($('.field_golfType:checked').val());
+      if($('.field_golfType:checked').val() == 'No'){
+        $('#totalUSDInput').val('500');
+        $('#totalIDRInput').val('-');
+      }else{
+        //alert($('.field_golfType:checked').val());
+
+        $('#totalUSDInput').val('500');
+        $('#totalIDRInput').val('2.500.000');
+        
+      }
+    }
+
+    if($('.regType:checked').val() == 'PD'){
+      //alert($('.field_golfType:checked').val());
+      if($('.field_golfType:checked').val() == 'No'){
+        $('#totalUSDInput').val('-');
+        $('#totalIDRInput').val('4.500.000');
+
+      }else{
+        // /alert($('.field_golfType:checked').val());
+
+        $('#totalUSDInput').val('-');
+        $('#totalIDRInput').val('7.000.000');
+      }
+    }
+
+    if($('.regType:checked').val() == 'SD'){
+      $('#totalUSDInput').val('-');
+      $('#totalIDRInput').val('400.000');
+    }
+
+    if($('.regType:checked').val() == 'SO'){
+
+      $('#totalUSDInput').val('120');
+      $('#totalIDRInput').val('');
+    }
+
+  }
+  //first total
+  
+  calculatefees();
+  $('.paymentSettle').change(
+      function(){
+        calculatefees();
+      }
+  );
+
+});
 </script>
 
 @endsection

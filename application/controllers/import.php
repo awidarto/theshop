@@ -505,7 +505,7 @@ class Import_Controller extends Base_Controller {
 
 			}
 
-			if($data['sendpic'] == 'Yes'){
+			if($data['attendeesummary'] == 'Yes'){
 
 				//print_r($commitedobj);
 
@@ -527,6 +527,11 @@ class Import_Controller extends Base_Controller {
 				// send to pic , use
 				// $commitedobj as input array
 				// $pic as PIC data
+			}
+
+			if($data['sendpic'] == 'Yes'){
+
+				
 			}
 
 			return Redirect::to('import/preview/'.$importid)->with('notify_success','Committing '.$commit_count.' record(s)');

@@ -279,39 +279,87 @@ class Register_Controller extends Base_Controller {
 
 				$_id = new MongoId($id);
 
-				$attendee->update(array('_id'=>$_id),array('$set'=>array($type.'PaymentStatus'=>'pending')));
-
 				$userdata = $attendee->get(array('_id'=>$_id));
 
 				$userdata = array_merge($userdata,$data);
 
-				$userdata[$type.'transferdate'] = date('d-m-Y',$userdata[$type.'transferdate']->sec);
+				//check first if booth payment selected
+				if(isset($data['confirmbooth'])){
 
-				$userdata['address'] = $userdata['address_1'].'<br />'.$userdata['address_2'];
+					
 
-				$body = View::make('email.regpayment')
-					->with('type',$type)
-					->with('data',$userdata)
-					->render();
+					$attendee->update(array('_id'=>$_id),array('$set'=>array('golfPaymentStatus'=>'pending')));
+					$attendee->update(array('_id'=>$_id),array('$set'=>array('conventionPaymentStatus'=>'pending')));
+					
+					
+					$userdata[$type.'transferdate'] = date('d-m-Y',$userdata[$type.'transferdate']->sec);
+					$data['confirmbooth'] = 'yes';
 
-				if($email_attachment == false){
-					Message::to($userdata['email'])
-					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-					    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
-					    ->subject(ucfirst($type).' Payment Confirmation – '.$userdata['registrationnumber'])
-					    ->body( $body )
-					    ->html(true)
-					    ->send();
+					$userdata['address'] = $userdata['address_1'].'<br />'.$userdata['address_2'];
+
+					$body = View::make('email.regpayment')
+						->with('type',$type)
+						->with('confirmAll','yes')
+						->with('data',$userdata)
+						->render();
+
+					if($email_attachment == false){
+						Message::to($userdata['email'])
+						    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+						    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
+						    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+						    ->subject('Convention & Golf Payment Confirmation – '.$userdata['registrationnumber'])
+						    ->body( $body )
+						    ->html(true)
+						    ->send();
+					}else{
+						Message::to($userdata['email'])
+						    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+						    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
+						    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+						    ->subject('Convention & Golf Payment Confirmation – '.$userdata['registrationnumber'])
+						    ->body( $body )
+						    ->html(true)
+						    ->attach($email_attachment)
+						    ->send();
+					}
+
 				}else{
-					Message::to($userdata['email'])
-					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-					    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
-					    ->subject(ucfirst($type).' Payment Confirmation – '.$userdata['registrationnumber'])
-					    ->body( $body )
-					    ->html(true)
-					    ->attach($email_attachment)
-					    ->send();
+					$attendee->update(array('_id'=>$_id),array('$set'=>array($type.'PaymentStatus'=>'pending')));
+				
+					$userdata[$type.'transferdate'] = date('d-m-Y',$userdata[$type.'transferdate']->sec);
+
+					$userdata['address'] = $userdata['address_1'].'<br />'.$userdata['address_2'];
+
+					$body = View::make('email.regpayment')
+						->with('type',$type)
+						->with('data',$userdata)
+						->render();
+
+					if($email_attachment == false){
+						Message::to($userdata['email'])
+						    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+						    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
+						    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+						    ->subject(ucfirst($type).' Payment Confirmation – '.$userdata['registrationnumber'])
+						    ->body( $body )
+						    ->html(true)
+						    ->send();
+					}else{
+						Message::to($userdata['email'])
+						    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+						    ->cc(Config::get('eventreg.reg_finance_email'), Config::get('eventreg.reg_finance_name'))
+						    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+						    ->subject(ucfirst($type).' Payment Confirmation – '.$userdata['registrationnumber'])
+						    ->body( $body )
+						    ->html(true)
+						    ->attach($email_attachment)
+						    ->send();
+					}
 				}
+					
+
+
 
 		    	return Redirect::to('paymentsubmitted')->with('notify_success',Config::get('site.payment_success'));
 			}else{
@@ -526,7 +574,13 @@ class Register_Controller extends Base_Controller {
 		//print_r(Session::get('permission'));
 
 	    $rules = array(
-	        'email'  => 'required'
+	    	'position' => 'required',
+	        'email' => 'required|email',
+	        'company' => 'required',
+	        'companyphone' => 'required',
+	        'city' => 'required',
+	        'zip' => 'required',
+	        
 	    );
 
 	    $validation = Validator::make($input = Input::all(), $rules);
@@ -578,7 +632,23 @@ class Register_Controller extends Base_Controller {
 			$data['registrationnumber'] = implode('-',$reg_number);
 
 			if($user->update(array('_id'=>$id),array('$set'=>$data))){
+
+				$ex = $user->get(array('_id'=>$id));
+
+				$body = View::make('email.regupdate')
+					->with('data',$ex)
+					->render();
+
+				Message::to($data['email'])
+				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+				    ->cc(Config::get('eventreg.reg_dyandra_admin_email'), Config::get('eventreg.reg_dyandra_admin_name'))
+				    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Profile Updated – '.$data['registrationnumber'].')')
+				    ->body( $body )
+				    ->html(true)
+				    ->send();
+
 		    	return Redirect::to('myprofile')->with('notify_success','Attendee saved successfully');
+
 			}else{
 		    	return Redirect::to('myprofile')->with('notify_success','Attendee saving failed');
 			}

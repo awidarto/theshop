@@ -121,10 +121,10 @@
                 {{ Form::label('companyphone','Phone Number *')}}
                 <div class="row">
                   <div class="one columns">
-                    {{ $form->text('companyphoneInvoiceCountry','','',array('class'=>'text','id'=>'companyPhoneInvCountry','placeholder'=>'Country Code')) }}
+                    {{ $form->text('companyphoneInvoiceCountry','','',array('class'=>'text invAdress','id'=>'companyPhoneInvCountry','placeholder'=>'Country Code')) }}
                   </div>
                   <div class="one columns">
-                    {{ $form->text('companyphoneInvoiceArea','','',array('class'=>'text','id'=>'companyPhoneInvArea','placeholder'=>'Area Code')) }}
+                    {{ $form->text('companyphoneInvoiceArea','','',array('class'=>'text invAdress','id'=>'companyPhoneInvArea','placeholder'=>'Area Code')) }}
                   </div>
                   <div class="ten columns">
                     {{ $form->text('companyphoneInvoice','','',array('class'=>'text invAdress','id'=>'companyPhoneInv','placeholder'=>'Phone Number')) }}
@@ -135,13 +135,13 @@
 
                 <div class="row">
                   <div class="one columns">
-                    {{ $form->text('companyfaxInvoiceCountry','','',array('class'=>'text','id'=>'companyFaxInvCountry','placeholder'=>'Country Code')) }}
+                    {{ $form->text('companyfaxInvoiceCountry','','',array('class'=>'text invAdress','id'=>'companyFaxInvCountry','placeholder'=>'Country Code')) }}
                   </div>
                   <div class="one columns">
-                    {{ $form->text('companyfaxInvoiceArea','','',array('class'=>'text','id'=>'companyFaxInvArea','placeholder'=>'Area Code')) }}
+                    {{ $form->text('companyfaxInvoiceArea','','',array('class'=>'text invAdress','id'=>'companyFaxInvArea','placeholder'=>'Area Code')) }}
                   </div>
                   <div class="ten columns">
-                    {{ $form->text('companyfaxInvoice','','',array('class'=>'text','id'=>'companyFaxInv','placeholder'=>'Phone Number')) }}
+                    {{ $form->text('companyfaxInvoice','','',array('class'=>'text invAdress','id'=>'companyFaxInv','placeholder'=>'Phone Number')) }}
                   </div>
                 </div>
 
@@ -424,8 +424,8 @@
 <script type="text/javascript">
 $(function() {
 
-  $("#s2id_field_countryInvoice").select2("val", "ID");
-  $("#s2id_field_country").select2("val", "ID");
+  $("#s2id_field_countryInvoice").select2("val", "Indonesia");
+  $("#s2id_field_country").select2("val", "Indonesia");
 
   function fillsame(){
     var companyName = $("#companyName").val();
@@ -530,52 +530,10 @@ $(function() {
       $(".golfYes").removeAttr('disabled');
     }
 
-    /*if($('.regType:checked').val() == 'PO' || $('.regType:checked').val() == 'PD'){
-      $(".golfYes").removeAttr('disabled');
-      
-    }*/
-
     
   }
 
-  /*$(".regTypeRecord").live("click", function(){
-    
-    if($(this).hasClass('checked' && 'student')){
-      $('.golfNoCheckBox').addClass('checked');
-      //$('.golfYesCheckBox').removeClass('checked');
-      $('.golfYesCheckBox').addClass('radioDisable');
-      $('.golfYesCheckBox').addClass('studentSelected');
-      $('.golfYesCheckBox').removeClass('checked');
-      $('.golfNoCheckBox').addClass('checked');
-      $('.golfYes').attr("disabled", true);
-      $(".golfYes").removeAttr('checked');
-    
-    }else{
-      $('.golfYes').attr("disabled", false);
-      if($('.golfNoCheckBox').hasClass('checked')){
-        $('.golfNoCheckBox').addClass('checked');
-        $('.golfYesCheckBox').removeClass('checked');
-        $(".golfYes").removeAttr('checked');
-      }else{
-        $('.golfNoCheckBox').removeClass('checked');
-        $('.golfYesCheckBox').addClass('checked');
-      }
-      $('.golfCheckBox').removeClass('radioDisable');
-      $('.golfYesCheckBox').addClass('profSelected');
-      $('.golfYesCheckBox').removeClass('studentSelected');
-    }
-  });
-
-  $(".golfYesCheckBox").live("click", function(){
-    if($(this).hasClass('studentSelected')){
-      $('.golfYesCheckBox').removeClass('checked');
-      $('.golfNoCheckBox').addClass('checked');
-      $(".golfYes").removeAttr('checked');
-    }
-  });*/
-
-
-  //
+  
   function calculatefees(){
     var regfeeIDR = '400';
     var regfeeUSD = '';

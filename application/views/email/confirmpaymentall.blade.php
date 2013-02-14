@@ -3,7 +3,7 @@
 	<div style="width:100%;position:relative;display:block;">
 		<div style="position:relative;display:inline-block;float:left;margin:0 30px 20px 0;"><img src="http://localhost/eventreg/public/images/ipa-logo.jpg"></div>
 		<div style="width:80%;position:relative;display:inline-block;float:left;">
-			<h2 style="display:inline-block;margin:15px 0 0 7px;">CONFIRMATION OF REGISTRATION (GOLF)</h2><br/>
+			<h2 style="display:inline-block;margin:15px 0 0 7px;">CONFIRMATION OF REGISTRATION</h2><br/>
 			<h3 style="display:inline-block;margin:0 0 0 4px;">THE 37TH IPA CONVENTION AND EXHIBITION 2013</h3><br/>
 			<h5 style="display:inline-block;margin:0 0 0 4px;">JAKARTA CONVENTION CENTER, 15-17 MAY 2013</h5>
 		</div>
@@ -71,21 +71,57 @@
 	<div style="width:100%;position:relative;display:block; float:left;border:1px solid #000; margin-top:15px;">
 		<div style="width:100%;position:relative;display:block;float:left;">
 			<div style="width:50%;position:relative;display:inline-block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
+				<strong>REGISTRATION FEES</strong><br/>
+				@if($data['regtype'] == 'PD' || $data['regtype'] == 'SD')
+					<span>Participant - Domestic</span>
+				@else
+					<span>Participant - International</span>
+				@endif
+			</div>
+			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
+				@if($data['regtype'] == 'PD')
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">4.500.000</span>
+				@elseif($data['regtype'] == 'SD')
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">400.000</span>					
+				@else
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				@endif
+			</div>
+
+			<div style="width:20%;position:relative;display:block;float:left;height:40px;padding:10px;">
+				@if($data['regtype'] == 'PO')
+					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
+				@elseif($data['regtype'] == 'SO')
+					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
+				@else
+					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				@endif
+			</div>
+		</div>
+	</div>
+
+	<div style="width:100%;position:relative;display:block; float:left;border:1px solid #000;border-top:none;">
+		<div style="width:100%;position:relative;display:block;float:left;">
+			<div style="width:50%;position:relative;display:inline-block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
 				<strong>GOLF TOURNAMENT</strong><br/>
-				<span>Pondok Indah Golf</span>
-				<span>(12 May 2013)</span>
 			</div>
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
 				
-					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>
+				<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+				<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>
 				
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:40px;padding:10px;">
 				
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
+				<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				
 			</div>
 		</div>
@@ -98,9 +134,16 @@
 			</div>
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
 				
+				@if($data['regtype'] == 'PD')
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">7.000.000</span>
+				@elseif($data['regtype'] == 'PO')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
 					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>
-				
+				@else
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				@endif
 
 
 				
@@ -108,9 +151,16 @@
 
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
 
-				
+				@if($data['regtype'] == 'PO')
+					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
+				@elseif($data['regtype'] == 'SO')
+					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
+				@else
 					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				@endif
 
 				
 			</div>
@@ -142,17 +192,30 @@
 				<strong>TOTAL PAYMENT DUE</strong><br/>
 			</div>
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
-				
+				@if($data['regtype'] == 'PD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">7.000.000</span>
+				@elseif($data['regtype'] == 'PO')
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>	
+				@else
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>	
+				@endif
 
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
-				
+				@if($data['regtype'] == 'PO')
+					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
+				@elseif($data['regtype'] == 'SO')
+					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
+				@else
 					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
-				
+				@endif
 
 				
 			</div>

@@ -231,6 +231,25 @@
 	</div>
 </div>
 
+
+<div id="updatePaymentGolfConvention" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 id="myModalLabel">Golf & Convention Status</h3>
+	</div>
+	<div class="modal-body">
+
+		{{ Form::select('paystatusgolfconvention', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselectgolfconvention'))}}
+		<span id="paystatusindicator"></span>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" id="savepaystatusGolfConvention">Save</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+</div>
+
+
 <div id="addToGroup" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -518,6 +537,34 @@
 		});
 
 
+		$('#savepaystatusGolfConvention').click(function(){
+			var paystat = $('#paystatusselectgolfconvention').val();
+			$('#savepaystatusGolfConvention').text('Processing..');
+			$('#savepaystatusGolfConvention').attr("disabled", true);	
+
+			<?php
+
+				$ajaxpay = (isset($ajaxpay))?$ajaxpay:'/';
+			?>
+
+			$.post('{{ URL::to($ajaxpaygolfconvention) }}',{'id':current_pay_id,'paystatusgolfconvention': paystat}, function(data) {
+				if(data.status == 'OK'){
+					//redraw table
+
+					oTable.fnDraw();
+					$('#paystatusindicator').html('Payment status updated');
+					$('#savepaystatusGolfConvention').text('Save');
+					$('#savepaystatusGolfConvention').attr("disabled", false);	
+
+					$('#paystatusselectgolfconvention').val('unpaid');
+
+					$('#updatePaymentGolfConvention').modal('toggle');
+
+				}
+			},'json');
+		});
+
+
 		$('#confirmdelete').click(function(){
 
 			$.post('{{ URL::to($ajaxdel) }}',{'id':current_del_id}, function(data) {
@@ -601,6 +648,15 @@
 				current_pay_id = _id;
 
 				$('#updatePaymentGolf').modal();
+
+		   	}
+
+		   	if ($(e.target).is('.paygolfconvention')) {
+				var _id = e.target.id;
+
+				current_pay_id = _id;
+
+				$('#updatePaymentGolfConvention').modal();
 
 		   	}
 

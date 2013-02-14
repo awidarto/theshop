@@ -15,9 +15,11 @@ Thank you for your payment confirmation in 37th IPA Convention & Exhibition. </b
 We have received your request and will process it shortly. </br>
 Please find below summary of your confirmation:</p>
 
-@if ($type == 'convention')
+@if (isset($data['confirmbooth']))
+	<p><strong><u>CONVENTION & GOLF PAYMENT INFORMATION</u></strong></p>
+@elseif ($type == 'convention')
 	<p><strong><u>CONVENTION PAYMENT INFORMATION</u></strong></p>
-@else
+@elseif ($type == 'golf')
 	<p><strong><u>GOLF PAYMENT INFORMATION</u></strong></p>
 @endif
 
@@ -60,4 +62,4 @@ Thank you very much for your participation and we look forward to see you on 37t
 PT Dyandra Promosindo<br/>
 The City Tower, 7th Floor | Jl. M.H. Thamrin No. 81 | Jakarta 10310 - Indonesia<br/>
 T. +62-21-31996077, 31997174 (direct) | F. +62-21-31997176<br/>
-E. ipaconvention@dyandra.com | W. www.ipaconvex.com</p>
+E. conventionipa2013@dyandra.com | W. www.ipaconvex.com</p>

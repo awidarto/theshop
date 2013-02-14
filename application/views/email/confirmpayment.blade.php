@@ -29,8 +29,9 @@
 				<td>{{ $data['salutation']}}. {{ $data['firstname'].' '.$data['lastname'] }}<br/>
 					{{ $data['position']}}<br/>
 					{{ $data['company']}}<br/>
-					{{ $data['address']}},<br/>
-					{{ $data['city']}}<br/>
+					{{ $data['address_1']}},<br/>
+					{{ $data['address_2']}},<br/>
+					{{ $data['city']}} - {{ $data['zip']}}<br/>
 					{{ $data['country']}}<br/>
 				</td>
 				
@@ -207,30 +208,30 @@
 				<strong>BALANCE DUE</strong><br/>
 			</div>
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
-				@if($data['regtype'] == 'PD')
+				<!--@if($data['regtype'] == 'PD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
 					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">4.500.000</span>
 				@elseif($data['regtype'] == 'SD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
 					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">400.000</span>
-				@else
+				@else-->
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">-</span>
-				@endif
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				<!--@endif-->
 				
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
-				@if($data['regtype'] == 'PO')
+				<!--@if($data['regtype'] == 'PO')
 					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
 				@elseif($data['regtype'] == 'SO')
 					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
-				@else
+				@else-->
 					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">-</span>
-				@endif
+					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				<!--@endif-->
 				
 			</div>
 		</div>
