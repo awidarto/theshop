@@ -224,7 +224,7 @@ class Attendee_Controller extends Base_Controller {
 
 			if(isset($doc['golfPaymentStatus']) && isset($doc['conventionPaymentStatus'])){
 				
-				if($doc['golfPaymentStatus'] == 'pending' && $doc['conventionPaymentStatus'] == 'pending' ){
+				if(($doc['golfPaymentStatus'] == 'pending' && $doc['conventionPaymentStatus'] == 'pending') || ($doc['golfPaymentStatus'] == 'unpaid' && $doc['conventionPaymentStatus'] == 'unpaid')){
 					$rowBoothAction = '<a class="icon-"  ><i>&#xe1e9;</i><span class="paygolfconvention" id="'.$doc['_id'].'" >Conv & Golf</span>';
 				}else{
 					$rowBoothAction = '';
