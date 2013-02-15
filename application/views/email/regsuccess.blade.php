@@ -110,7 +110,9 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 </table>
 </p>
 
-@if($fromadmin == 'yes')
+@if($passwordRandom == 'nochange')
+
+@elseif($fromadmin == 'yes')
 <p><strong><u>LOGIN INFO</u></strong></p>
 <table>
 	<tr>
@@ -126,6 +128,8 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 	</tr>
 </table>
 @endif
+
+
 
 <p><i>Convention registration fee includes admission to all Plenary & Technical Sessions, Conference Kits, Opening and Closing Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Entrance to Exhibition Area.<br/><br/>
 * The cost of the Golf Tournament includes green fee, caddy & cart fee.</i><br/><br/>

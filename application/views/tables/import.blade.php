@@ -79,7 +79,8 @@
 			{{ $form->hidden('head_count',$head_count)}}
 
 			<div class="row-fluid">
-				<div class="span3">
+				<div class="span1"><strong>Choose option :</strong></div>
+				<!--<div class="span3">
 			        <fieldset>
 			            <legend>Send Notification to PIC</legend>
 
@@ -94,7 +95,7 @@
 			                </div>
 
 			        </fieldset>
-				</div>
+				</div>-->
 
 				<div class="span3">
 			        <fieldset>
@@ -102,10 +103,10 @@
 
 			                <div class="row-fluid">
 			                    <div class="span4">
-			                      {{ $form->radio('attendeesummary','Yes','Yes') }}
+			                      {{ $form->radio('attendeesummary','Yes','Yes',true) }}
 			                    </div>
 			                    <div class="span4">
-			                      {{ $form->radio('attendeesummary','No','No',true) }}
+			                      {{ $form->radio('attendeesummary','No','No') }}
 			                    </div>
 			                    <div class="span4"></div>
 			                </div>
@@ -113,7 +114,7 @@
 			        </fieldset>
 				</div>
 
-				<div class="span3">
+				<!--<div class="span3">
 			        <fieldset>
 			            <legend>Send Notification to each attendee</legend>
 
@@ -129,7 +130,7 @@
 
 			        </fieldset>
 
-				</div>
+				</div>-->
 				<div class="span3">
 			        <fieldset>
 			            <legend>Update password for existing attendee</legend>

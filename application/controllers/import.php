@@ -430,15 +430,18 @@ class Import_Controller extends Base_Controller {
 						$plainpass = rand_string(8);
 						$tocommit['pass'] = Hash::make($plainpass);
 					}else{
-						$plainpass = '-';
+						$tocommit['pass'] = $attobj['golfPaymentStatus'];
+						$plainpass = 'nochange';
 					}
 
 					if($attendee->update(array('email'=>$tocommit['email']),array('$set'=>$tocommit))){
 
-						if($data['sendattendee'] == 'Yes'){
-							// send message to each attendee
+						Event::fire('attendee.update',array($attobj['_id'],$plainpass,$pic['email'],$pic['firstname'].$pic['lastname']));
+
+						//if($data['sendattendee'] == 'Yes'){
+						//	// send message to each attendee
 							//Event::fire('attendee.update',array($comobj['_id'],$plainpass));
-						}
+						//}
 
 						$commitedobj[] = $tocommit;
 
@@ -491,10 +494,10 @@ class Import_Controller extends Base_Controller {
 
 					if($obj = $attendee->insert($tocommit)){
 
-						if($data['sendattendee'] == 'Yes'){
+						//if($data['sendattendee'] == 'Yes'){
 							// send message to each attendee
 							Event::fire('attendee.create',array($obj['_id'],$plainpass,$pic['email'],$pic['firstname'].$pic['lastname']));
-						}
+						// /}
 
 						$commitedobj[] = $tocommit;
 
@@ -532,10 +535,10 @@ class Import_Controller extends Base_Controller {
 				// $pic as PIC data
 			}
 
-			if($data['sendpic'] == 'Yes'){
+			//if($data['sendpic'] == 'Yes'){
 
 				
-			}
+			//}
 
 			return Redirect::to('import/preview/'.$importid)->with('notify_success','Committing '.$commit_count.' record(s)');
 		}else{

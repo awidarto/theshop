@@ -364,3 +364,21 @@ color: #222222;
   line-height: 1.6;
   list-style-position: outside;
 }
+.tableStandard td{
+  padding: 15px;
+  border: 1px solid #c1c1c1;
+}
+.tableStandard thead td{
+  background-color: #eeeeee;
+}
+.six{
+  width: 50%;
+  position: relative;
+}
+.six ul{
+  margin-left: 15px;
+  margin-top: 10px;
+}
+.six li{
+  margin-bottom: 7px;
+}
