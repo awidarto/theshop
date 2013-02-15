@@ -110,6 +110,13 @@
 
         </fieldset>
 
+        <fieldset>
+            <legend>Notes</legend>
+
+                {{ $form->textarea('notes','','',array('class'=>'text invAdress span10','id'=>'companyNameInv')) }}
+
+        </fieldset>
+
     </div>
 
     <div class="span6">
