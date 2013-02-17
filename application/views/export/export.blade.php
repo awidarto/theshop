@@ -11,7 +11,6 @@
 <div class="row-fluid formNewAttendee">
     <div class="span6">
 <fieldset>
-            <legend>Criteria</legend>
 
                 {{$form->select('collection','Data to Export',Config::get('eventreg.collectiontype'),array('class'=>'span12'))}}
 
