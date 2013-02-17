@@ -22,6 +22,7 @@
 
             <li>{{ HTML::link('report','Reports')}}
             <li>{{ HTML::link('import','Import Data')}}
+            <li>{{ HTML::link('export','Export Data')}}
             
             <li class="has-dropdown">
               <a href="#">Sys Admin</a>

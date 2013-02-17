@@ -1,6 +1,12 @@
 <?php
 
 return array(
+		'collectiontype' => array(
+			'attendee'=>'Attendee',
+			'visitor'=>'Visitor',
+			'official'=>'Official',
+			//'exhibitor' => 'Exhibitor'
+			),
 		'officials' => array(
 			'COM'=>'Commitee',
 			'MDA'=>'Media',

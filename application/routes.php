@@ -32,7 +32,7 @@
 |
 */
 
-Route::controller(array('register','report','import','dashboard','attendee','official','visitor','user','message','search','activity','category','content','ajax'));
+Route::controller(array('register','report','import','export','dashboard','attendee','official','visitor','user','message','search','activity','category','content','ajax'));
 
 Route::get('/',function(){
     if(Auth::check()){
