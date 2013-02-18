@@ -434,6 +434,35 @@ class Import_Controller extends Base_Controller {
 						$plainpass = 'nochange';
 					}
 
+					if( $attobj['golfPaymentStatus']=='paid' || $attobj['conventionPaymentStatus']=='paid'){						
+
+						$tocommit['regtype'] == $attobj['regtype'];
+						$tocommit['golf'] == $attobj['golf'];
+
+					}else{
+						if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
+							$tocommit['totalIDR'] = '4500000';
+							$tocommit['totalUSD'] = '';
+						}elseif ($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'Yes'){
+							$tocommit['totalIDR'] = '7000000';
+							$tocommit['totalUSD'] = '';
+						}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'No'){
+							$tocommit['totalIDR'] = '';
+							$tocommit['totalUSD'] = '500';
+						}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'Yes'){
+							$tocommit['totalIDR'] = '2500000';
+							$tocommit['totalUSD'] = '500';
+						}elseif ($tocommit['regtype'] == 'SD'){
+							$tocommit['totalIDR'] = '400000';
+							$tocommit['totalUSD'] = '';
+						}elseif ($tocommit['regtype'] == 'SO'){
+							$tocommit['totalIDR'] = '';
+							$tocommit['totalUSD'] = '120';
+						}
+					}
+
+					
+
 					if($attendee->update(array('email'=>$tocommit['email']),array('$set'=>$tocommit))){
 
 						Event::fire('attendee.update',array($attobj['_id'],$plainpass,$pic['email'],$pic['firstname'].$pic['lastname']));
@@ -490,6 +519,26 @@ class Import_Controller extends Base_Controller {
 					if($tocommit['golf'] == 'Yes'){
 						$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
 						$tocommit['golfSequence'] = $gseq['seq'];
+					}
+
+					if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
+						$tocommit['totalIDR'] = '4500000';
+						$tocommit['totalUSD'] = '';
+					}elseif ($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'Yes'){
+						$tocommit['totalIDR'] = '7000000';
+						$tocommit['totalUSD'] = '';
+					}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'No'){
+						$tocommit['totalIDR'] = '';
+						$tocommit['totalUSD'] = '500';
+					}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'Yes'){
+						$tocommit['totalIDR'] = '2500000';
+						$tocommit['totalUSD'] = '500';
+					}elseif ($tocommit['regtype'] == 'SD'){
+						$tocommit['totalIDR'] = '400000';
+						$tocommit['totalUSD'] = '';
+					}elseif ($tocommit['regtype'] == 'SO'){
+						$tocommit['totalIDR'] = '';
+						$tocommit['totalUSD'] = '120';
 					}
 
 					if($obj = $attendee->insert($tocommit)){

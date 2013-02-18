@@ -229,9 +229,6 @@
                       {{ $form->radio('regtypeNormal','USD 120','PD',false,array('class'=>'disableRadio')) }}
                     </div>
                 </div>
-
-                {{ $form->hidden('totalUSD','',array('id'=>'totalUSDInput','class'=>'paymentSettle'))}}
-                {{ $form->hidden('totalIDR','',array('id'=>'totalIDRInput','class'=>'paymentSettle'))}}
         </fieldset>
 
         <fieldset>
@@ -250,6 +247,20 @@
               </div>
               <div class="two columns">
                 {{ $form->radio('attenddinner','No','No') }}
+              </div>
+              <div class="eight columns"></div>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>I need Invitation Letter from IPA Committee for Visa arrangement<br/>(for international participants only)  </legend>
+          <div class="row">
+              <div class="two columns">
+                {{ $form->radio('inv_letter','Yes','Yes') }}
+              </div>
+              <div class="two columns">
+                {{ $form->radio('inv_letter','No','No',true) }}
               </div>
               <div class="eight columns"></div>
           </div>

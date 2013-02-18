@@ -7,8 +7,7 @@
 </div>
 
 {{$form->open('attendee/add','POST',array('class'=>'custom addAttendeeForm'))}}
-{{ $form->hidden('totalUSD','',array('id'=>'totalUSDInput','class'=>'paymentSettle'))}}
-{{ $form->hidden('totalIDR','',array('id'=>'totalIDRInput','class'=>'paymentSettle'))}}
+
 <div class="row-fluid formNewAttendee">
     <div class="span6">
         <fieldset>
@@ -78,6 +77,21 @@
                     </div>   
                 </div>
         </fieldset>
+        <fieldset>
+            <legend>Need Invitation Letter from IPA Committee for Visa arrangement<br/>(for international participants only)</legend>
+
+                <div class="row-fluid">
+                    <div class="span2">
+                      {{ $form->radio('inv_letter','Yes','Yes') }} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('inv_letter','No','No',true) }} 
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+
+        </fieldset>
+
         <fieldset>
             <legend>Will attend the Industrial Dinner on 16 May 2013</legend>
 

@@ -183,6 +183,7 @@ return array(
 			'pass'=> '',
 			'golfPaymentStatus'=> 'unpaid',
 			'conventionPaymentStatus'=> 'unpaid',
+			'paymentStatus'=>'',
 			'position'=> '',
 			'registrationnumber'=> '',
 			'regtype'=> '',
@@ -190,6 +191,10 @@ return array(
 			'salutation'=> '',
 			'zip'=> '',
 			'zipInvoice'=> ''
+			//normalize
+			
+			
+
 		),
 
 		'attendee_csv_template'=>array(
