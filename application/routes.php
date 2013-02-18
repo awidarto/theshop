@@ -94,6 +94,9 @@ Route::get('hashme/(:any)',function($mypass){
 	print Hash::make($mypass);
 });
 
+Route::get('normalize',array('uses'=>'attendee@updateField'));
+
+
 // Auth routes
 
 Route::get('login', function()

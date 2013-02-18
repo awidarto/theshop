@@ -102,6 +102,7 @@ class Register_Controller extends Base_Controller {
 			$data['createdDate'] = new MongoDate();
 			$data['lastUpdate'] = new MongoDate();
 			$data['role'] = 'attendee';
+			$data['paymentStatus'] = 'unpaid';
 			$data['conventionPaymentStatus'] = 'unpaid';
 			//force to disable golf on student type
 			if(($data['regtype'] == 'SO') || ($data['regtype'] == 'SD')){
@@ -132,6 +133,36 @@ class Register_Controller extends Base_Controller {
 			if($data['golf'] == 'Yes'){
 				$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
 				$data['golfSequence'] = $gseq['seq'];
+			}
+
+			//normalize
+			$data['address'] = '';
+			$data['cache_id'] = '';
+			$data['cache_obj'] = '';
+			$data['companys_npwp'] = '';
+			$data['groupId'] = '';
+			$data['groupName'] = '';
+			$data['invoice_address_conv'] = '';
+			$data['addressInvoice'] = '';
+
+			if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+				$data['totalIDR'] = '4500000';
+				$data['totalUSD'] = '';
+			}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+				$data['totalIDR'] = '7000000';
+				$data['totalUSD'] = '';
+			}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+				$data['totalIDR'] = '';
+				$data['totalUSD'] = '500';
+			}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+				$data['totalIDR'] = '2500000';
+				$data['totalUSD'] = '500';
+			}elseif ($data['regtype'] == 'SD'){
+				$data['totalIDR'] = '400000';
+				$data['totalUSD'] = '';
+			}elseif ($data['regtype'] == 'SO'){
+				$data['totalIDR'] = '';
+				$data['totalUSD'] = '120';
 			}
 
 

@@ -667,6 +667,7 @@ class Attendee_Controller extends Base_Controller {
 			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
 			$data['conventionPaymentStatus'] = 'unpaid';
+
 			if($data['golf'] == 'Yes'){
 				$data['golfPaymentStatus'] = 'unpaid';
 			}else{
@@ -694,30 +695,44 @@ class Attendee_Controller extends Base_Controller {
 				$data['golfSequence'] = $gseq['seq'];
 			}
 
+			//normalize
+			$data['confirmation'] = 'none';
+			$data['address'] = '';
+			$data['cache_id'] = '';
+			$data['cache_obj'] = '';
+			$data['companys_npwp'] = '';
+			$data['groupId'] = '';
+			$data['groupName'] = '';
+			$data['invoice_address_conv'] = '';
+			$data['addressInvoice'] = '';
+
+			if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+				$data['totalIDR'] = '4500000';
+				$data['totalUSD'] = '';
+			}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+				$data['totalIDR'] = '7000000';
+				$data['totalUSD'] = '';
+			}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+				$data['totalIDR'] = '';
+				$data['totalUSD'] = '500';
+			}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+				$data['totalIDR'] = '2500000';
+				$data['totalUSD'] = '500';
+			}elseif ($data['regtype'] == 'SD'){
+				$data['totalIDR'] = '400000';
+				$data['totalUSD'] = '';
+			}elseif ($data['regtype'] == 'SO'){
+				$data['totalIDR'] = '';
+				$data['totalUSD'] = '120';
+			}
+
 
 			$user = new Attendee();
 
 			if($obj = $user->insert($data)){
 
-				//print_r($obj);
-
 				Event::fire('attendee.createformadmin',array($obj['_id'],$passwordRandom));
 				
-				/*
-				$body = View::make('email.regsuccess')
-					->with('data',$data)
-					->with('passwordRandom',$passwordRandom)
-					->with('fromadmin','yes')
-					->render();
-
-				Message::to($data['email'])
-				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-				    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
-				    ->body( $body )
-				    ->html(true)
-				    ->send();
-				*/
-
 		    	return Redirect::to('attendee')->with('notify_success',Config::get('site.register_success'));
 			}else{
 		    	return Redirect::to('attendee')->with('notify_success',Config::get('site.register_failed'));
@@ -888,6 +903,18 @@ class Attendee_Controller extends Base_Controller {
 
 		$attendees = $attendee->find();
 		$updateCount = 0;
+		$caheIDCount = 0;
+		$caheOBJCount = 0;
+		$companyNPWPCount = 0;
+		$groupIDCount = 0;
+		$groupNameCount = 0;
+		$invLetterCount = 0;
+		$invCompanyAddCount = 0;
+		$paymentStatCount = 0;
+		$AddCount = 0;
+		$AddCountInvoice = 0;
+		$ConfCount = 0;
+
 		foreach($attendees as $att){
 
 			if(!isset($att['totalIDR'])){
@@ -921,9 +948,111 @@ class Attendee_Controller extends Base_Controller {
 				}
 				
 			}
+
+			if(!isset($att['cache_id'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('cache_id'=>'')))){
+					$caheIDCount++;	
+				}
+			}
+
+			if(!isset($att['cache_obj'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('cache_obj'=>'')))){
+					$caheOBJCount++;	
+				}
+				
+			}
+
+			if(!isset($att['companys_npwp'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('companys_npwp'=>'')))){
+					$companyNPWPCount++;	
+				}
+				
+			}
+
+			if(!isset($att['groupId'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('groupId'=>'')))){
+					$groupIDCount++;	
+				}
+				
+			}
+			if(!isset($att['groupName'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('groupName'=>'')))){
+					$groupNameCount++;	
+				}
+				
+			}
+
+			if(!isset($att['inv_letter'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('inv_letter'=>'')))){
+					$invLetterCount++;	
+				}
+				
+			}
+
+			if(!isset($att['invoice_address_conv'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('invoice_address_conv'=>'')))){
+					$invCompanyAddCount++;	
+				}
+				
+			}
+			if(!isset($att['paymentStatus'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('paymentStatus'=>'')))){
+					$paymentStatCount++;	
+				}
+				
+			}
+			
+
+			if(!isset($att['address'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('address'=>'')))){
+					$AddCount++;	
+				}
+				
+			}
+
+			if(!isset($att['addressInvoice'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('addressInvoice'=>'')))){
+					$AddCountInvoice++;	
+				}
+				
+			}
+
+			if(!isset($att['confirmation'])){
+				$_id = $att['_id'];
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('confirmation'=>'none')))){
+					$ConfCount++;	
+				}
+				
+			}
+
+			
+
+
 		}
+		
 		return View::make('attendee.updateField')
 				->with('updateCount',$updateCount)
+				->with('caheIDCount',$caheIDCount)
+				->with('caheOBJCount',$caheOBJCount)
+				->with('companyNPWPCount',$companyNPWPCount)
+				->with('groupIDCount',$groupIDCount)
+				->with('groupNameCount',$groupNameCount)
+				->with('invLetterCount',$invLetterCount)
+				->with('invCompanyAddCount',$invCompanyAddCount)
+				->with('paymentStatCount',$paymentStatCount)
+				->with('AddCount',$AddCount)
+				->with('AddCountInvoice',$AddCountInvoice)
+				->with('ConfCount',$ConfCount)
 				->with('title','Update Field');
 	}
 
