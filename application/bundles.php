@@ -55,5 +55,6 @@ return array(
 	        ),
 	    ),
 	),
+	'formatter' => array('auto' => true),
 
 );
