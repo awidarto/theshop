@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="metro span12">
-	<div class="metro-sections">
+	<div class="metro-sections-noeffect">
 
 	   <div id="section1" class="metro-section tile-span-8">
-	   		<div class="blockseparate">
+	   		<div class="blockseparate marginbottom">
 		      <h2>Convention Registration</h2>
 		     <!-- <h5>Convention Registration</h5> -->
 		      <a class="tile imagetext bg-color-blue statistic" href="#">
@@ -121,7 +121,7 @@
 		         </div>
 		      </a>
 	      </div>
-	      <div class="separateMetro">
+	      <div class="separateMetro marginbottom">
 	      <h2>Registration by Country</h2>
 	      <table class="report">
 	      	<?php foreach ($country as $key =>$value ) {
@@ -133,14 +133,79 @@
 		      	</tr>
 	      	<?php 
 	      		}
+
 	      	}
-	      	
 	      	?>
-	      	
 	      </table>
-	  		</div>
+	  	  </div>
+
 	      <div class="clear"></div>
-	      
+	      <?php
+			$last = array_pop($getdate);
+			$lastCount = array_pop($getCount);	
+			?>
+	      	<script type="text/javascript">
+			$(function () {
+			    var chart;
+			    $(document).ready(function() {
+			        chart = new Highcharts.Chart({
+			            chart: {
+			                renderTo: 'charts',
+			                type: 'line',
+			                marginRight: 130,
+			                marginBottom: 25
+			            },
+			            title: {
+			                text: '',
+			                x: -20 //center
+			            },
+			            
+			            xAxis: {
+                            
+			                categories: [<?php foreach ($getdate as $date) { echo "'".$date."',";} echo "'".$last."'";?>]
+
+			            },
+			            yAxis: {
+			                title: {
+			                    text: ''
+			                },
+			                plotLines: [{
+			                    value: 0,
+			                    width: 1,
+			                    color: '#808080'
+			                }]
+			            },
+			            tooltip: {
+			                formatter: function() {
+			                        return '<b>'+ this.x +'</b><br/>'+
+			                        this.y +' Registration';
+			                }
+			            },
+			            legend: {
+			                layout: 'vertical',
+			                align: 'right',
+			                verticalAlign: 'top',
+			                x: -10,
+			                y: 100,
+			                borderWidth: 0
+			            },
+			            series: [
+			            {
+			                name: 'Attendee',
+			                data: [<?php foreach ($getCount as $att) { echo $att.",";} echo $lastCount;?>]
+			            }
+			            ]
+			        });
+			    });
+			    
+			});
+			</script>
+            {{ HTML::script('js/highcharts.js') }}
+            {{ HTML::script('js/highcharts-exporting.js') }}
+            <h2>Daily Registration</h2>
+	    	<div id="charts" style="min-width: 400px; height: 400px; margin: 0 auto">
+
+            </div>
 	   </div>
 
 		

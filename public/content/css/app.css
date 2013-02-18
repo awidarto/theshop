@@ -584,7 +584,7 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 }
 
 .separateMetro{
-	width: 320px;
+	width: 325px;
 	float: left;
 }
 
@@ -605,8 +605,10 @@ table.report td.countresult{
 }
 .blockseparate{
 	float: left;
-	margin-bottom: 15px;
 }
 .blockseparate:after{
 	clear: both;
+}
+.marginbottom{
+	margin-bottom: 20px;
 }

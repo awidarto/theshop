@@ -65,6 +65,10 @@ class Report_Controller extends Base_Controller {
 		$stat['Golf'] = $attendee->count(array('golf'=>'Yes'));
 		$stat['Dinner'] = $attendee->count(array('attenddinner'=>'Yes'));
 		$country = Config::get('country.countries');
+		$today = date('Y-m-d');
+		$getdate = $this->makeDateRange('2013-02-11', $today);
+		$getCount = $this->getCountAttendee('2013-02-11', $today);
+		
 
 		foreach ($country as $key => $value) {
 			$coutryValue[$value] = $attendee->count(array('country'=>$value));
@@ -75,9 +79,64 @@ class Report_Controller extends Base_Controller {
 			->with('stat',$stat)
 			->with('coutryValue',$coutryValue)
 			->with('country',$country)
+			->with('getdate',$getdate)
+			->with('getCount',$getCount)
+			
 			->with('crumb',$this->crumb);
 	}
 
+	private function makeDateRange($strDateFrom,$strDateTo){
+
+	  $aryRange=array();
+
+	  $iDateFrom=mktime(1,0,0,substr($strDateFrom,5,2),     substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+	  $iDateTo=mktime(1,0,0,substr($strDateTo,5,2),     substr($strDateTo,8,2),substr($strDateTo,0,4));
+
+	  if ($iDateTo>=$iDateFrom) {
+	    array_push($aryRange,date('d M',$iDateFrom)); // first entry
+
+	    while ($iDateFrom<$iDateTo) {
+	      $iDateFrom+=86400; // add 24 hours
+	      array_push($aryRange,date('d M',$iDateFrom));
+	    }
+	  }
+	  return $aryRange;
+	}
+
+	private function getCountAttendee($strDateFrom,$strDateTo){
+
+	  $attendee = new Attendee();
+	  $aryRange=array();
+
+	  $iDateFrom=mktime(1,0,0,substr($strDateFrom,5,2),     substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+	  $iDateTo=mktime(1,0,0,substr($strDateTo,5,2),     substr($strDateTo,8,2),substr($strDateTo,0,4));
+
+	  if ($iDateTo>=$iDateFrom) {
+	   
+	    
+	    $fromDate = date('d-M-Y',$iDateFrom);
+	    $toDate = date('d-M-Y',$iDateFrom);
+	    $dateFrom = new MongoDate(strtotime($fromDate." 00:00:00"));
+		$dateTo = new MongoDate(strtotime($toDate." 23:59:59"));
+
+		$dataresult = $attendee->count(array('createdDate'=>array('$gte'=>$dateFrom,'$lte'=>$dateTo)));
+		array_push($aryRange,$dataresult ); // first entry
+
+
+	    while ($iDateFrom<$iDateTo) {
+	      	$iDateFrom+=86400; // add 24 hours
+			$fromDate = date('d-M-Y',$iDateFrom);
+			$toDate = date('d-M-Y',$iDateFrom);
+			$dateFrom = new MongoDate(strtotime($fromDate." 00:00:00"));
+			$dateTo = new MongoDate(strtotime($toDate." 23:59:59"));
+
+			$dataresult = $attendee->count(array('createdDate'=>array('$gte'=>$dateFrom,'$lte'=>$dateTo)));
+			array_push($aryRange,$dataresult ); // first entry
+
+	    }
+	  }
+	  return $aryRange;
+	}
 }
 
 ?>
