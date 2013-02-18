@@ -247,7 +247,7 @@ class Attendee_Controller extends Base_Controller {
 			}
 
 			if(isset($doc['golfPaymentStatus'])){
-				if($doc['golfPaymentStatus'] == 'unpaid'){
+				if($doc['golfPaymentStatus'] == 'unpaid' && $doc['golf'] == 'Yes'){
 					$paymentStatusGolf = '<span class="fontRed fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
 				}elseif ($doc['golfPaymentStatus'] == 'pending') {
 					$paymentStatusGolf = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['golfPaymentStatus'].'</span>';
@@ -881,6 +881,50 @@ class Attendee_Controller extends Base_Controller {
 		}
 
 		return $str;
+	}
+
+	public function get_updateField(){
+		$attendee = new Attendee();
+
+		$attendees = $attendee->find();
+		$updateCount = 0;
+		foreach($attendees as $att){
+
+			if(!isset($att['totalIDR'])){
+				$_id = $att['_id'];
+				//check type and golf status
+				$regtype = $att['regtype'];
+				$golf = $att['golf'];
+				
+				if($regtype == 'PD' && $golf == 'No'){
+					$totalIDR = '4500000';
+					$totalUSD = '';
+				}elseif ($regtype == 'PD' && $golf == 'Yes'){
+					$totalIDR = '7000000';
+					$totalUSD = '';
+				}elseif ($regtype == 'PO' && $golf == 'No'){
+					$totalIDR = '';
+					$totalUSD = '500';
+				}elseif ($regtype == 'PO' && $golf == 'Yes'){
+					$totalIDR = '2500000';
+					$totalUSD = '500';
+				}elseif ($regtype == 'SD'){
+					$totalIDR = '400000';
+					$totalUSD = '';
+				}elseif ($regtype == 'SO'){
+					$totalIDR = '';
+					$totalUSD = '120';
+				}
+
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>$totalIDR,'totalUSD'=>$totalUSD)))){
+					$updateCount++;	
+				}
+				
+			}
+		}
+		return View::make('attendee.updateField')
+				->with('updateCount',$updateCount)
+				->with('title','Update Field');
 	}
 
 }

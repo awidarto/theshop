@@ -430,7 +430,7 @@ class Import_Controller extends Base_Controller {
 						$plainpass = rand_string(8);
 						$tocommit['pass'] = Hash::make($plainpass);
 					}else{
-						$tocommit['pass'] = $attobj['golfPaymentStatus'];
+						$tocommit['pass'] = $attobj['pass'];
 						$plainpass = 'nochange';
 					}
 
