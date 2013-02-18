@@ -555,3 +555,22 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 .details-expand table{
 
 }
+.metro .tile.square.text.reportBlock .text {
+	font-size: 12px;
+	font-weight: normal;
+	text-align: left;
+	
+}
+
+.metro .tile.square.text.reportBlock{
+	width: 130px;
+	height: 110px;
+	padding: 10px;
+}
+.metro .tile.totalBlockReport.text{
+	
+}
+.metro .tile .texttotal{
+	font-size: 60px;
+	text-align: right;
+}

@@ -45,8 +45,26 @@ class Report_Controller extends Base_Controller {
 
 	public function get_index()
 	{
+
+		$attendee = new Attendee();
+
+		$stat['PO'] = $attendee->count(array('regtype'=>'PO'));
+
+		$stat['PD'] = $attendee->count(array('regtype'=>'PD'));
+
+		$stat['SO'] = $attendee->count(array('regtype'=>'SO'));
+
+		$stat['SD'] = $attendee->count(array('regtype'=>'SD'));
+
+		$stat['Attendee'] = $attendee->count();
+
+		$stat['paidAttendee'] = $attendee->count(array('conventionPaymentStatus'=>'paid'));
+
+		$stat['unpaidAttendee'] = $attendee->count(array('conventionPaymentStatus'=>'unpaid'));
+
 		return View::make('report.summary')
 			->with('title','Report')
+			->with('stat',$stat)
 			->with('crumb',$this->crumb);
 	}
 
