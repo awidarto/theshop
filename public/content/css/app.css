@@ -494,6 +494,9 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 
 .clear{
 	clear:both;
+	float: none;
+	margin:0;
+	padding:0;
 }
 .DTTT_container{
 	position: absolute;
@@ -573,4 +576,37 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 .metro .tile .texttotal{
 	font-size: 60px;
 	text-align: right;
+}
+
+.metro-sections h2{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.separateMetro{
+	width: 320px;
+	float: left;
+}
+
+table.report{
+	margin-left: 20px;
+
+}
+table.report td{
+	font-size: 14px;
+	padding:8px 0;
+}
+table.report td.countresult{
+	font-size: 16px;
+	padding:8px 0 8px 15px;
+}
+.margintopFree{
+	margin-top: 10px;
+}
+.blockseparate{
+	float: left;
+	margin-bottom: 15px;
+}
+.blockseparate:after{
+	clear: both;
 }

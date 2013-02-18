@@ -62,9 +62,19 @@ class Report_Controller extends Base_Controller {
 
 		$stat['unpaidAttendee'] = $attendee->count(array('conventionPaymentStatus'=>'unpaid'));
 
+		$stat['Golf'] = $attendee->count(array('golf'=>'Yes'));
+		$stat['Dinner'] = $attendee->count(array('attenddinner'=>'Yes'));
+		$country = Config::get('country.countries');
+
+		foreach ($country as $key => $value) {
+			$coutryValue[$value] = $attendee->count(array('country'=>$value));
+		}
+
 		return View::make('report.summary')
 			->with('title','Report')
 			->with('stat',$stat)
+			->with('coutryValue',$coutryValue)
+			->with('country',$country)
 			->with('crumb',$this->crumb);
 	}
 
