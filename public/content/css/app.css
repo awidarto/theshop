@@ -546,3 +546,12 @@ label.checkbox input[type=checkbox] ~ span.metro-checkbox{
 	padding: 20px 0;
 	width:100px;
 }
+.details-expand thead td{
+	padding: 10px;
+	background-color: #dcdcdc;
+	text-align: center;
+
+}
+.details-expand table{
+
+}
