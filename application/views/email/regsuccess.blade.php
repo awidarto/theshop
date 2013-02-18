@@ -123,7 +123,6 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 	<tr>
 		<td>Password</td>
 		<td>:</td>
-		<!--<td><?php echo $passwordRandom ?></td>-->
 		<td>{{ $passwordRandom }}</td>
 	</tr>
 </table>

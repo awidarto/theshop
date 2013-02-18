@@ -18,6 +18,7 @@
 <p>{{ $AddCount }} Total data updated for AddStatCount</p>
 <p>{{ $AddCountInvoice }} Total data updated for AddStatCountInv</p>
 <p>{{ $ConfCount }} Total data updated for ConfCount</p>
+<p>{{ $normalRate }} Total data updated for normalRate</p>
 
 
 @endsection

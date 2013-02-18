@@ -208,30 +208,18 @@
 				<strong>BALANCE DUE</strong><br/>
 			</div>
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
-				<!--@if($data['regtype'] == 'PD')
-					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">4.500.000</span>
-				@elseif($data['regtype'] == 'SD')
-					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">400.000</span>
-				@else-->
+				
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
 					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
-				<!--@endif-->
+				
 				
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
-				<!--@if($data['regtype'] == 'PO')
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
-				@elseif($data['regtype'] == 'SO')
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
-				@else-->
+				
 					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
-				<!--@endif-->
+				
 				
 			</div>
 		</div>

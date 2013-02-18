@@ -223,7 +223,7 @@ return array(
 			'companyfaxInvoiceCountry'=> '',
 			'companyfaxInvoiceArea'=> '',
 			'companyfaxInvoice'=> '',
-			'confirmation'=> 'none',
+			//'confirmation'=> 'none',
 			'country'=> '',
 			'countryInvoice'=> '',
 			'email'=> '',
@@ -234,7 +234,7 @@ return array(
 			'mobile'=> '',
 			'npwp'=> '',
 			'npwpInvoice'=> '',
-			'pass'=> '',
+			//'pass'=> '',
 			'golfPaymentStatus'=> 'unpaid',
 			'conventionPaymentStatus'=> 'unpaid',
 			'position'=> '',
@@ -243,7 +243,9 @@ return array(
 			'role'=> 'attendee',
 			'salutation'=> '',
 			'zip'=> '',
-			'zipInvoice'=> ''
+			'zipInvoice'=> '',
+			'totalIDR'=> '',
+			'totalUSD'=> '',
 		),
 
 

@@ -914,6 +914,7 @@ class Attendee_Controller extends Base_Controller {
 		$AddCount = 0;
 		$AddCountInvoice = 0;
 		$ConfCount = 0;
+		$normalRate =0;
 
 		foreach($attendees as $att){
 
@@ -1035,6 +1036,38 @@ class Attendee_Controller extends Base_Controller {
 				
 			}
 
+			if($att['totalIDR']=='-' || $att['totalUSD']=='-'){
+				$_id = $att['_id'];
+				//check type and golf status
+				$regtype = $att['regtype'];
+				$golf = $att['golf'];
+				
+				if($regtype == 'PD' && $golf == 'No'){
+					$totalIDR = '4500000';
+					$totalUSD = '';
+				}elseif ($regtype == 'PD' && $golf == 'Yes'){
+					$totalIDR = '7000000';
+					$totalUSD = '';
+				}elseif ($regtype == 'PO' && $golf == 'No'){
+					$totalIDR = '';
+					$totalUSD = '500';
+				}elseif ($regtype == 'PO' && $golf == 'Yes'){
+					$totalIDR = '2500000';
+					$totalUSD = '500';
+				}elseif ($regtype == 'SD'){
+					$totalIDR = '400000';
+					$totalUSD = '';
+				}elseif ($regtype == 'SO'){
+					$totalIDR = '';
+					$totalUSD = '120';
+				}
+
+				if($attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>$totalIDR,'totalUSD'=>$totalUSD)))){
+					$normalRate++;	
+				}
+				
+			}
+
 			
 
 
@@ -1053,6 +1086,7 @@ class Attendee_Controller extends Base_Controller {
 				->with('AddCount',$AddCount)
 				->with('AddCountInvoice',$AddCountInvoice)
 				->with('ConfCount',$ConfCount)
+				->with('normalRate',$normalRate)
 				->with('title','Update Field');
 	}
 
