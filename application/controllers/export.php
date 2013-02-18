@@ -115,8 +115,40 @@ class Export_Controller extends Base_Controller {
 				$header['Expires'] = "0";
 				$header['Pragma'] = "public";
 
-				$dataresult = serialize($dataresult);
-				$result = Formatter::make($dataresult,'serialize')->to_csv();
+				$dataheader = Config::get('eventreg.'.$criteria['collection'].'_csv_template');
+
+				$dataheader = array_keys($dataheader);
+
+				for($i = 0; $i < count($dataheader);$i++){
+					$first_row[$i] = '"'.$dataheader[$i].'"';
+				}
+
+				$first_row = implode(',',$first_row);
+
+				//print $first_row;
+
+				$result = array();
+				$result[] = $first_row; // add the header
+
+				foreach($dataresult as $row){
+					$inrow = array();
+					for($i = 0; $i < count($dataheader); $i++){
+
+						if(isset($row[$dataheader[$i]])){
+							$inrow[$i] = '"'.$row[$dataheader[$i]].'"';
+						}else{
+							$inrow[$i] = '""';
+						}
+					}					
+					$result[] = implode(',',$inrow);
+				}
+
+				//$dataresult = serialize($dataresult);
+				//$result = Formatter::make($dataresult,'serialize')->to_csv();
+
+				//print_r($result);
+
+				$result = implode("\r\n",$result);
 				return Response::make($result,'200',$header);
 			}
 
