@@ -151,7 +151,7 @@
 			        chart = new Highcharts.Chart({
 			            chart: {
 			                renderTo: 'charts',
-			                type: 'line',
+			                type: 'bar',
 			                marginRight: 130,
 			                marginBottom: 25
 			            },
