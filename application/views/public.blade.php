@@ -131,24 +131,36 @@
               <tr>
                 <td style="padding:5px 10px 0 15px;" width="255">
                   <div id="login-form">
-                     <section>
-                          @if(Auth::attendeecheck())
+                      @if(Auth::attendeecheck())
+                      <section>
+                          
                             <div class="attendeeNav">
                             <p>Logged in as <strong>{{ Auth::attendee()->firstname.' '.Auth::attendee()->lastname}}</strong></p>
+                            @if (Auth::attendee()->role == "attendee")
+                              <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('myprofile','My Profile')}}</p>
 
-                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('myprofile','My Profile')}}</p>
+                              <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('myprofile/edit','Edit My Profile')}}</p>
 
-                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('myprofile/edit','Edit My Profile')}}</p>
+                              <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('payment/convention','Convention Payment Confirmation')}}</p>
+                              @if(Auth::attendee()->golf == 'Yes')
+                              <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('payment/golf','Golf Payment Confirmation')}}</p>
+                              @endif
+                            @else
+                              <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('exhibitor/profile','My Profile')}}</p>
 
-                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('payment/convention','Convention Payment Confirmation')}}</p>
-                            @if(Auth::attendee()->golf == 'Yes')
-                            <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('payment/golf','Golf Payment Confirmation')}}</p>
+                              <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('exhibitor/profile/edit','Edit My Profile')}}</p>
+
+                              <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('payment/convention','Operational Form')}}</p>
                             @endif
+
                             <p style="padding-left:7px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('logout','Logout')}}</p>
 
                             </div>
-                          @endif
-                     </section>
+                          
+                      </section>
+                      @endif
+                      
+                     
                   </div>
                   <h2 style="color:#A70405">General Information</h2>
                   <br />
@@ -169,27 +181,8 @@
                   <strong>Visitor</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 10:00  –  18:00 WIB<br />
                   <strong>Entrance</strong> : By registration (online and onsite)
                   <br /><br /><br />
-
-
-                  <!--<h2 style="color:#A70405">Event Update</h2>
-                  <br />
-                  <strong>Exhibition Launch</strong><br />Join us in Exhibition Launch that will be held at:<br />
-                  <br />
-                  <strong>Date</strong><br />
-                  Tuesday, 29 January 2013<br />
-                  <br />
-                  <strong>Venue</strong><br />
-                  Merak Room 1 & 2 – Lower Lobby<br />
-                  Jakarta Convention Center<br />
-                  <br />
-                  <strong>Time</strong><br />
-                  <strong>10:00 – 12:00 WIB</strong> (for booth 100 sqm and above)<br />
-                  And <br />
-                  <strong>13:00 – 16:00 WIB</strong> (for booth below 100 sqm)<br />
-                  <br />
-                  <strong>Agenda</strong><br />
-                  Booth Drawing -->
-                </td>                                        </tr>
+                </td>                                        
+              </tr>
               </table>
             </td>
           </tr>

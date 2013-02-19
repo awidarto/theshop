@@ -202,7 +202,7 @@
 			</script>
             {{ HTML::script('js/highcharts.js') }}
             {{ HTML::script('js/highcharts-exporting.js') }}
-            <h2>Daily Registration</h2>
+            <h2 style="margin-top: 5px;margin-bottom: 5px;">Daily Registration</h2>
 	    	<div id="charts" style="min-width: 400px; height: 400px; margin: 0 auto">
 
             </div>

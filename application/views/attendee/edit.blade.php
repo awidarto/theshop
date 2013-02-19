@@ -169,7 +169,7 @@
 
         </fieldset>
         <br/>
-        @if (isset($user['cache_obj']))
+        @if ( isset($user['cache_obj']) && $user['cache_obj']!= '')
         <fieldset>
             <legend>Invoice Address</legend>
                 {{ $form->textarea('invoice_address_conv','','',array('class'=>'text invAdress span10','id'=>'companyNameInv')) }}

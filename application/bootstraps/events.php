@@ -65,6 +65,9 @@ Event::listen('attendee.createformadmin',function($id,$newpass){
 
 });
 
+
+
+
 Event::listen('attendee.update',function($id,$newpass){
     $attendee = new Attendee();
     $_id = $id;
@@ -79,6 +82,27 @@ Event::listen('attendee.update',function($id,$newpass){
     Message::to($data['email'])
         ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
         ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+        ->body( $body )
+        ->html(true)
+        ->send();
+
+});
+
+Event::listen('exhibitor.createformadmin',function($id,$newpass){
+    $exhibitor = new Exhibitor();
+    $_id = $id;
+    $data = $exhibitor->get(array('_id'=>$_id));
+
+    $body = View::make('email.regsuccessexhib')
+        ->with('data',$data)
+        ->with('passwordRandom',$newpass)
+        ->with('fromadmin','yes')
+        ->render();
+
+    Message::to($data['email'])
+        ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+        ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+        ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Exhibitor – '.$data['registrationnumber'].')')
         ->body( $body )
         ->html(true)
         ->send();

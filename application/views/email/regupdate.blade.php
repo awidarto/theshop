@@ -161,7 +161,7 @@ Your profile has been updated successfully. Please find below summary of your pr
 		<tr>
 			<td colspan="2"><strong>Invoice Address</strong></td>
 		</tr>
-		@if ( isset($data['cache_obj']) )
+		@if ( isset($data['cache_obj']) && $data['cache_obj']!= '')
 			<tr>
 				<td style="padding:10px;" colspan="3">{{ $data['invoice_address_conv'] }}</strong></td>
 			</tr>

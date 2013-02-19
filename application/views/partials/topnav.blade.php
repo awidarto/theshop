@@ -19,6 +19,7 @@
             <li>{{ HTML::link('visitor','Visitors')}}</li>
             
             <li>{{ HTML::link('official','Officials')}}</li>
+            <li>{{ HTML::link('exhibitor','Exhibitors')}}</li>
 
             <li>{{ HTML::link('report','Reports')}}
             <li>{{ HTML::link('import','Import Data')}}

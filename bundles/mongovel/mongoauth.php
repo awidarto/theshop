@@ -52,6 +52,24 @@ class MongoAuth extends \Laravel\Auth\Drivers\Driver {
 			}
 
 		//}
+	}
+
+	public function exhibitorretrieve($id)
+	{
+		//if (filter_var($id, FILTER_VALIDATE_INT) !== false)
+		//{
+			$user = $this->exhbmodel()->get(array('_id'=>$id));
+
+			if(is_null($user)){
+				return null;
+			}else{
+				$user['id'] = $user['_id']->__toString();
+				unset($user['password']);
+				$user = $this->array_to_object($user);
+				return $user;
+			}
+
+		//}
 	}	
 
 	/**
@@ -68,6 +86,13 @@ class MongoAuth extends \Laravel\Auth\Drivers\Driver {
 		return $this->user = $this->attendeeretrieve($this->token);
 	}
 
+	public function exhibitor()
+	{
+		if ( ! is_null($this->user)) return $this->user;
+
+		return $this->user = $this->exhibitorretrieve($this->token);
+	}
+
 	/**
 	 * Determine if the user is logged in.
 	 *
@@ -78,12 +103,18 @@ class MongoAuth extends \Laravel\Auth\Drivers\Driver {
 		return ! is_null($this->attendee());
 	}	
 
+	public function exhibitorcheck()
+	{
+		return ! is_null($this->exhibitor());
+	}	
+
 	/**
 	 * Attempt to log a user into the application.
 	 *
 	 * @param  array  $arguments
 	 * @return void
 	 */
+
 	public function attempt($arguments = array())
 	{
 		$username = Config::get('auth.username');
@@ -115,6 +146,7 @@ class MongoAuth extends \Laravel\Auth\Drivers\Driver {
 	 * @param  array  $arguments
 	 * @return void
 	 */
+	
 	public function attendeeattempt($arguments = array())
 	{
 		$username = Config::get('auth.username');
@@ -144,7 +176,39 @@ class MongoAuth extends \Laravel\Auth\Drivers\Driver {
 
 
 		return false;
-	}	
+	}
+
+
+	public function exhibitorattempt($arguments = array())
+	{
+		$username = Config::get('auth.username');
+
+		$user = $this->exhbmodel()->get(array($username=>$arguments['username']));
+
+		$passfield = Config::get('auth.password');
+
+		// This driver uses a basic username and password authentication scheme
+		// so if the credentials match what is in the database we will just
+		// log the user into the application and remember them if asked.
+		$password = $arguments['password'];
+
+		if ( ! is_null($user) and Hash::check($password, $user[$passfield]))
+		{
+
+			//print_r($user);
+
+			//$user = $this->array_to_object($user);
+			
+			//Log::info('User '.$username->username.' id : '.$username->_id->toString().' Logged In');
+			return $this->login($user['_id'], array_get($arguments, 'remember'));
+		}
+		//else{
+		//	print 'failed to login';
+		//}
+
+
+		return false;
+	}
 
 	/**
 	 * Change password.
@@ -216,6 +280,13 @@ class MongoAuth extends \Laravel\Auth\Drivers\Driver {
 	protected function attmodel()
 	{
 		$model = Config::get('auth.attendeemodel');
+
+		return new $model;
+	}
+
+	protected function exhbmodel()
+	{
+		$model = Config::get('auth.exhibitmodel');
 
 		return new $model;
 	}
