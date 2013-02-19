@@ -105,7 +105,7 @@
 
 
         </fieldset>
-        @if ($user['addressInvoice_2'] != null)
+        @if ( isset($user['cache_obj']) && $user['cache_obj']!= '')
         <fieldset>
             <legend>Invoice Address</legend>
                 {{ $form->text('companyInvoice','Company / Institution.req','',array('class'=>'text invAdress','id'=>'companyNameInv')) }}

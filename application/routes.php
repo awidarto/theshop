@@ -32,7 +32,7 @@
 |
 */
 
-Route::controller(array('register','report','import','export','dashboard','attendee','official','visitor','user','message','search','activity','category','content','ajax'));
+Route::controller(array('register','exhibition','report','import','export','dashboard','attendee','exhibitor','official','visitor','user','message','search','activity','category','content','ajax'));
 
 Route::get('/',function(){
     if(Auth::check()){
@@ -50,12 +50,17 @@ Route::get('general',array('uses'=>'content@public'));
 
 Route::post('register',array('uses'=>'register@add'));
 
+Route::get('exhibitor/profile',array('uses'=>'exhibition@profile'));
+Route::get('exhibitor/login',array('uses'=>'exhibition@login'));
+Route::get('exhibitor/profile/edit',array('uses'=>'exhibition@edit'));
+Route::post('exhibitor/profile/edit',array('uses'=>'exhibition@edit'));
 
 Route::get('myprofile/edit',array('uses'=>'register@edit'));
-
 Route::post('myprofile/edit',array('uses'=>'register@edit'));
 
 Route::get('myprofile',array('uses'=>'register@profile'));
+
+
 
 Route::get('payment/(:any)',array('uses'=>'register@payment'));
 Route::post('payment/(:any)',array('uses'=>'register@payment'));
@@ -63,7 +68,11 @@ Route::post('payment/(:any)',array('uses'=>'register@payment'));
 Route::get('reset',array('uses'=>'register@reset'));
 Route::post('reset',array('uses'=>'register@reset'));
 
+Route::get('exhibitor/reset',array('uses'=>'exhibition@reset'));
+Route::post('exhibitor/reset',array('uses'=>'exhibition@reset'));
+
 Route::get('resetlanding',array('uses'=>'register@resetlanding'));
+Route::get('exhibitor/resetlanding',array('uses'=>'exhibition@resetlanding'));
 
 
 Route::get('paymentsubmitted',array('as'=>'register/paymentsubmitted','uses'=>'register@paymentsubmitted'));
@@ -152,6 +161,29 @@ Route::post('attendee/login', function()
 
 });
 
+Route::post('exhibitor/login', function()
+{
+    // get POST data
+    $username = Input::get('username');
+    $password = Input::get('password');
+
+    if ( $userdata = Auth::exhibitorattempt(array('username'=>$username, 'password'=>$password)) )
+    {
+        //print_r($userdata);
+        // we are now logged in, go to home
+        return Redirect::to('exhibitor/profile');
+
+    }
+    else
+    {
+        // auth failure! lets go back to the login
+        return Redirect::to('exhibitor/login')
+            ->with('login_errors', true);
+        // pass any error notification you want
+        // i like to do it this way  
+    }
+
+});
 
 Route::get('passwd', array('before'=>'auth',function(){
     return View::make('auth.password');

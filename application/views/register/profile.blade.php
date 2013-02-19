@@ -159,7 +159,7 @@
 
 				<tr><td colspan="3"><h4>Invoice Address</h4></td></tr>
 				<!--Find out if they are from import or not-->
-				@if ($profile['addressInvoice_2'] != null)
+				@if ( isset($profile['cache_obj']) && $profile['cache_obj']!= '')
 					<tr>
 						<td class="detail-title">Company Name</td>
 						<td>:&nbsp;</td>
