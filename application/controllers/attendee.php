@@ -45,9 +45,7 @@ class Attendee_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		//$this->crumb->add('attendee','Master Data');
 
-		//print_r(Auth::user());
 
 		$form = new Formly();
 
@@ -58,18 +56,14 @@ class Attendee_Controller extends Base_Controller {
 		$btn_add_to_group = '<span class=" add_to_group" id="add_to_group">'.$action_selection.'</span>';
 
 
-
-/*<<<<<<< HEAD*/
-
 		$heads = array('#',$select_all,'Reg. Number','Registered Date','Email','First Name','Last Name','Company','Reg. Type','Country','Conv. Status','Golf. Status','');
 
 		$searchinput = array(false,false,'Reg Number','Reg. Date','Email','First Name','Last Name','Company',false,'Country',false,false,false);
 
 
-		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
 		$colclass = array('','span1','span3','span1','span3','span3','span1','span1','span1','','','','','','','','','');
 
-		//$searchinput = false; // no searchinput form on footer
+
 
 		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
 			return View::make('tables.simple')
@@ -109,26 +103,19 @@ class Attendee_Controller extends Base_Controller {
 
 		$btn_add_to_group = '<span class=" add_to_group" id="add_to_group">'.$action_selection.'</span>';
 
+		$heads = array('#','','Import Date','Email','First Name','Last Name','Company','Country','Total Att.');
 
+		$searchinput = array(false,false,'Import Date','Email','First Name','Last Name','Company','Country',false,false);
 
-/*<<<<<<< HEAD*/
+		$colclass = array('','span1','span3','span1','span3','span3','span1','span1');
 
-		$heads = array('#',$select_all,'Reg. Number','Registered Date','Email','First Name','Last Name','Company','Reg. Type','Country','Conv. Status','Golf. Status','');
-
-		$searchinput = array(false,false,'Reg Number','Reg. Date','Email','First Name','Last Name','Company',false,'Country',false,false,false);
-
-
-		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
-		$colclass = array('','span1','span3','span1','span3','span3','span1','span1','span1','','','','','','','','','');
-
-		//$searchinput = false; // no searchinput form on footer
 
 		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
 			return View::make('tables.simple')
 				->with('title','Master Data')
 				->with('newbutton','New Visitor')
-				->with('disablesort','0,1,9,12')
-				->with('addurl','attendee/add')
+				->with('disablesort','0,1')
+				->with('addurl','import')
 				->with('colclass',$colclass)
 				->with('searchinput',$searchinput)
 				->with('ajaxsource',URL::to('attendee/groups'))
@@ -326,7 +313,7 @@ class Attendee_Controller extends Base_Controller {
 
 
 		//$fields = array('email','firstname','lastname','company','country',);
-		$fields = array('registrationnumber','createdDate','email','firstname','lastname','company','regtype','country','conventionPaymentStatus','golfPaymentStatus');
+		$fields = array('createdDate','email','firstname','lastname','company','country','');
 
 		$rel = array('like','like','like','like','like','like','like','like');
 
@@ -407,30 +394,19 @@ class Attendee_Controller extends Base_Controller {
 			$condition  = array('cache_id'=>$id);
 			$peoples = $attendee->find($condition, array(), array(),array());
 			$extra = $peoples;
-			
-			$select = $form->checkbox('sel_'.$doc['_id'],'','',false,array('id'=>$doc['_id'],'class'=>'selector'));
-			
-			$paymentStatus ='';
-			$paymentStatusGolf ='';
-			$rowGolfAction ='';
-			$rowBoothAction ='';
-			
 
+			$select = $form->checkbox('sel_'.$doc['_id'],'','',false,array('id'=>$doc['_id'],'class'=>'selectorAll'));
+			
 			$aadata[] = array(
 				$counter,
 				$select,
-				'PIC',
 				date('Y-m-d', $doc['createdDate']->sec),
 				$doc['email'],
 				'<span class="expander" id="'.$doc['_id'].'">'.$doc['firstname'].'</span>',
 				$doc['lastname'],
 				$doc['company'],
-				'',
 				$doc['country'],
-				$paymentStatus,
-				$paymentStatusGolf,
 				count($peoples),
-				
 				'extra'=>$extra
 			);
 			$counter++;

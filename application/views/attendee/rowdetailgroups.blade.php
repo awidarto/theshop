@@ -1,8 +1,10 @@
+
 @section('row')
 	
 	sOut += '<thead>';
 	sOut += '<tr>';
 	sOut += '<td>#</td>';
+	sOut += '<td>&nbsp;</td>';
 	sOut += '<td>REG.NUMBER</td>';
 	sOut += '<td>REG.DATE</td>';
 	sOut += '<td>EMAIL</td>';
@@ -18,11 +20,12 @@
 	var myArray = aData['extra'];
 	var no = 0;
 	$.each(myArray, function() {
-
 		
+		var select = '<label class="checkbox"><input class="selector_'+this.cache_id+'" style="display:none" type="checkbox" name="" value=""><span class="metro-checkbox"></span></label>';
 		no ++;
 		sOut += '<tr>';
 		sOut += '<td>'+no+'</td>';
+		sOut += '<td>'+select+'</td>';
 		sOut += '<td>'+this.registrationnumber+'</td>';
 		sOut += '<td>2013-02-16</td>';
 		sOut += '<td>'+this.email+'</td>';

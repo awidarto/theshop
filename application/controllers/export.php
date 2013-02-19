@@ -158,6 +158,106 @@ class Export_Controller extends Base_Controller {
 
 	}
 
+	public function get_report(){
+
+
+		$dataset = new Attendee();
+		$collection = 'attendee';
+
+		//$dataresult = $dataset->find(array('createdDate'=>array('$gte'=>$dateFrom,'$lte'=>$dateTo)));
+		
+		//all
+		if(isset($_GET['type'])){
+			$type = $_GET['type'];
+			if($type == 'all'){
+				$dataresult = $dataset->find();
+			}else{
+				$condition  = array('regtype'=>$type);
+				$dataresult = $dataset->find($condition, array(), array(),array());
+			}
+		}
+
+		if(isset($_GET['payment'])){
+			$paymentstatus = $_GET['payment'];
+			$condition  = array('conventionPaymentStatus'=>$paymentstatus);
+			$dataresult = $dataset->find($condition, array(), array(),array());
+			
+		}
+
+		if(isset($_GET['golf'])){
+
+			$condition  = array('golf'=>'Yes');
+			$dataresult = $dataset->find($condition, array(), array(),array());
+			
+		}
+
+		if(isset($_GET['dinner'])){
+
+			$condition  = array('attenddinner'=>'Yes');
+			$dataresult = $dataset->find($condition, array(), array(),array());
+			
+		}
+
+		if(isset($_GET['country'])){
+			$country =$_GET['country'];
+			$condition  = array('country'=>$country);
+			$dataresult = $dataset->find($condition, array(), array(),array());
+			
+		}
+
+		
+
+		if(isset($dataresult)){
+
+			$filename = date('Ymd_his',time()).'_'.$collection.'.csv';
+
+			$header['Cache-Control'] = "must-revalidate, post-check=0, pre-check=0";
+			$header['Content-Description'] = "File Transfer";
+			$header['Content-type'] = "text/csv";
+			$header['Content-Disposition'] = "attachment; filename=".$filename;
+			$header['Expires'] = "0";
+			$header['Pragma'] = "public";
+
+			$dataheader = Config::get('eventreg.'.$collection.'_csv_template');
+
+			$dataheader = array_keys($dataheader);
+
+			for($i = 0; $i < count($dataheader);$i++){
+				$first_row[$i] = '"'.$dataheader[$i].'"';
+			}
+
+			$first_row = implode(',',$first_row);
+
+			//print $first_row;
+
+			$result = array();
+			$result[] = $first_row; // add the header
+
+			foreach($dataresult as $row){
+				$inrow = array();
+				for($i = 0; $i < count($dataheader); $i++){
+
+					if(isset($row[$dataheader[$i]])){
+						$inrow[$i] = '"'.$row[$dataheader[$i]].'"';
+					}else{
+						$inrow[$i] = '""';
+					}
+				}					
+				$result[] = implode(',',$inrow);
+			}
+
+			//$dataresult = serialize($dataresult);
+			//$result = Formatter::make($dataresult,'serialize')->to_csv();
+
+			//print_r($result);
+
+			$result = implode("\r\n",$result);
+			return Response::make($result,'200',$header);
+		}
+
+	}
+
+
 }
 
 ?>

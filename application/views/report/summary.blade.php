@@ -8,7 +8,7 @@
 	   		<div class="blockseparate marginbottom">
 		      <h2>Convention Registration</h2>
 		     <!-- <h5>Convention Registration</h5> -->
-		      <a class="tile imagetext bg-color-blue statistic" href="#">
+		      <a class="tile imagetext bg-color-blue statistic" href="{{ URL::to('export/report/?type=PO') }}">
 		         <div class="image-wrapper text-big">
 		            <div class="text-big">{{ $stat['PO']}}</div>
 		         </div>
@@ -18,7 +18,7 @@
 		            <div class="text">Participants</div>
 		         </div>   
 		      </a>
-		      <a class="tile imagetext bg-color-purple statistic" href="#">
+		      <a class="tile imagetext bg-color-purple statistic" href="{{ URL::to('export/report/?type=PD') }}">
 		         <div class="image-wrapper text-big">
 		            <div class="text-big">{{ $stat['PD']}}</div>
 		         </div>
@@ -28,7 +28,7 @@
 		            <div class="text">Participants</div>
 		         </div>
 		      </a>
-		      <a class="tile imagetext bg-color-red statistic" href="#">
+		      <a class="tile imagetext bg-color-red statistic" href="{{ URL::to('export/report/?type=SO') }}">
 		         <div class="image-wrapper text-big">
 		            <div class="text-big">{{ $stat['SO']}}</div>
 		         </div>
@@ -38,7 +38,7 @@
 		            <div class="text">Participants</div>
 		         </div>
 		      </a>
-		      <a class="tile imagetext bg-color-orange statistic" href="#">
+		      <a class="tile imagetext bg-color-orange statistic" href="{{ URL::to('export/report/?type=SD') }}">
 		         <div class="image-wrapper text-big">
 		            <div class="text-big">{{ $stat['SD']}}</div>
 		         </div>
@@ -48,7 +48,7 @@
 		            <div class="text">Participants</div>
 		         </div>
 		      </a>
-		      <a class="tile wide imagetext greenDark statistic" href="#">
+		      <a class="tile wide imagetext greenDark statistic" href="{{ URL::to('export/report/?type=all') }}">
 		         <div class="image-wrapper">
 		            <div class="text-biggest">{{ $stat['Attendee']}}</div>
 		         </div>
@@ -64,7 +64,7 @@
 
 	      <div class="separateMetro">
 		      <h2>Paid & Unpaid </h2>
-		      <a class="tile imagetext bg-color-greenDark statistic" href="#">
+		      <a class="tile imagetext bg-color-greenDark statistic" href="{{ URL::to('export/report/?payment=paid') }}">
 		         <div class="image-wrapper text-big">
 		            <div class="text-big">{{ $stat['paidAttendee']}}</div>
 		         </div>
@@ -74,7 +74,7 @@
 		            <div class="text">Participants</div>
 		         </div>
 		      </a>
-		      <a class="tile imagetext bg-color-red statistic" href="#">
+		      <a class="tile imagetext bg-color-red statistic" href="{{ URL::to('export/report/?payment=unpaid') }}">
 		         <div class="image-wrapper text-big">
 		            <div class="text-big">{{ $stat['unpaidAttendee']}}</div>
 		         </div>
@@ -100,7 +100,7 @@
 		         <span class="app-label">(not including FOC)</span>
 		      </a>-->
 
-		      <a class="tile imagetext bg-color-blue statistic" href="#">
+		      <a class="tile imagetext bg-color-blue statistic" href="{{ URL::to('export/report/?golf=yes') }}">
 		         <div class="image-wrapper text-big">
 		            <div class="text-big">{{ $stat['Golf']}}</div>
 		         </div>
@@ -110,7 +110,7 @@
 		            <div class="text">Participants</div>
 		         </div>
 		      </a>
-		      <a class="tile imagetext bg-color-purple statistic" href="#">
+		      <a class="tile imagetext bg-color-purple statistic" href="{{ URL::to('export/report/?dinner=yes') }}">
 		         <div class="image-wrapper text-big">
 		            <div class="text-big">{{ $stat['Dinner']}}</div>
 		         </div>
@@ -129,7 +129,7 @@
 		      	<tr>
 		      		<td>{{$value}}</td>
 		      		<td>&nbsp;&nbsp;:&nbsp;&nbsp;</td>
-		      		<td class="countresult">{{$coutryValue[$value]}}</td>
+		      		<td class="countresult"><a href="{{ URL::to('export/report/?country='.$value) }}">{{$coutryValue[$value]}}</a></td>
 		      	</tr>
 	      	<?php 
 	      		}

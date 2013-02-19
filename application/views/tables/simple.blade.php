@@ -1,6 +1,7 @@
 @layout('master')
 
 @section('content')
+
 <!--<div class="tableHeader">
 	@if($title != '')
 		<h3>{{$title}}</h3>
@@ -328,6 +329,8 @@
 
 		$('.activity-list').tooltip();
 
+		
+
 		var asInitVals = new Array();
         
         oTable = $('.dataTable').DataTable(
@@ -481,6 +484,18 @@
 				$('.selector').attr('checked', false);
 			}
 		});
+
+		$(".selectorAll").live("click", function(){
+			var id = $(this).attr("id");
+			if($(this).is(':checked')){
+				$('.selector_'+id).attr('checked', true);
+			}else{
+				$('.selector_'+id).attr('checked', false);
+			}
+		});
+		
+
+		
 
 		$('#savepaystatus').click(function(){
 			var paystat = $('#paystatusselect').val();

@@ -13,8 +13,11 @@
         @endif
 
 
-        <li>{{ HTML::link('attendee','Attendees')}}
-        
+        <li class="has-dropdown">{{ HTML::link('attendee','Attendees')}}
+            <ul class="dropdown">
+                <li>{{ HTML::link('attendee/groups', 'Groups' ) }}</li>
+              </ul>
+        </li>
         @if(Auth::user()->role == 'root' || Auth::user()->role == 'super')
             <li>{{ HTML::link('visitor','Visitors')}}</li>
             
