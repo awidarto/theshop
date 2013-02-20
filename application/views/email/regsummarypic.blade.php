@@ -28,6 +28,8 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 $no = 0;
 $PDCount = 0;
 $POCount = 0;
+$SDCount = 0;
+$SOCount = 0;
 
 foreach($attendee as $data):
 	$no ++;
@@ -51,7 +53,8 @@ foreach($attendee as $data):
 		<?php endif; ?>
 	</tr>
 <?php
-	else:
+	elseif ($data['regtype'] == 'PO'):
+
 	$POCount ++;
 ?>
 	<tr style="border:1px solid #545454;border-top:0;">
@@ -67,6 +70,44 @@ foreach($attendee as $data):
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
 		<?php endif; ?>
 	</tr>
+
+<?php
+	elseif ($data['regtype'] == 'SO'):
+
+	$SOCount ++;
+?>
+	<tr style="border:1px solid #545454;border-top:0;">
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">USD 120.00</td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
+		<?php if($data['golf'] == 'Yes'): ?>
+			<td style="padding:3px 7px 2px 7px;">IDR 2.500.000</td>
+			<?php $golfCount++ ?>
+		<?php else: ?>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
+		<?php endif; ?>
+	</tr>
+
+<?php
+	elseif ($data['regtype'] == 'SD'):
+
+	$SDCount ++;
+?>
+	<tr style="border:1px solid #545454;border-top:0;">
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">IDR 400.000 </td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp; </td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
+		<?php if($data['golf'] == 'Yes'): ?>
+			<td style="padding:3px 7px 2px 7px;">IDR 2.500.000</td>
+			<?php $golfCount++ ?>
+		<?php else: ?>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
+		<?php endif; ?>
+	</tr>
 <?php 
 	endif;
 ?>
@@ -74,17 +115,19 @@ foreach($attendee as $data):
 <?php endforeach;
 	$totalConvFeePD = $PDCount*4500000;
 	$totalConvFeePO = $POCount*500;
+	$totalConvFeeSD = $SDCount*400000;
+	$totalConvFeeSO = $SOCount*120;
 	$totalGolfFee = $golfCount*2500000;
 	function formatrp($angka){
 		$rupiah=number_format($angka,2,',','.');
 		return $rupiah;
 	}
 	setlocale(LC_MONETARY, "en_US");
-	$rp=formatrp($totalConvFeePD);
-	$usd=money_format(" %i ", $totalConvFeePO);
+	$rp=formatrp($totalConvFeePD+$totalConvFeeSD);
+	$usd=money_format(" %i ", $totalConvFeePO+$totalConvFeeSO);
 	$rpGolf=formatrp($totalGolfFee);
-	$totalAllIDR=formatrp($totalGolfFee + $totalConvFeePD);
-	$totalAllUSD= money_format(" %i ", $totalConvFeePO);
+	$totalAllIDR=formatrp($totalGolfFee + $totalConvFeePD+$totalConvFeeSD);
+	$totalAllUSD= money_format(" %i ", $totalConvFeePO+$totalConvFeeSO);
 ?>
 <tr style="border:1px solid #545454;border-top:0;">
 	<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;text-align:right;" colspan="2">Total</td>
