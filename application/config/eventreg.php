@@ -40,7 +40,19 @@ return array(
 		'paystatus'=>array(
 			'unpaid'=>'Unpaid',
 			'paid'=>'Paid',
-			'cancel'=>'Cancel'
+			'cancel'=>'Cancel',
+			'free'=>'Free of Charge'
+		),
+		
+		'resendemailtype'=>array(
+			'email.regsuccess'=>'Registration',
+			/*'reset'=>'Reset Password',
+			'golfinfo'=>'Golf Payment Information',
+			'convinfo'=>'Convention Payment Information',
+			'boothinfo'=>'Convention & Golf Payment Information',
+			'golfconfirm'=>'Golf Payment Confirmation',
+			'convconfirm'=>'Convention Payment Confirmation',
+			'boothconfirm'=>'Convention & Golf Payment Confirmation',*/
 		),
 
 		'golfquota'=>100,

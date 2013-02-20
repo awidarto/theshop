@@ -78,6 +78,7 @@ class Attendee_Controller extends Base_Controller {
 				->with('ajaxpay',URL::to('attendee/paystatus'))
 				->with('ajaxpaygolf',URL::to('attendee/paystatusgolf'))
 				->with('ajaxpaygolfconvention',URL::to('attendee/paystatusgolfconvention'))
+				->with('ajaxresendmail',URL::to('attendee/resendmail'))
 				->with('printsource',URL::to('attendee/printbadge'))
 				->with('form',$form)
 				->with('crumb',$this->crumb)
@@ -211,6 +212,8 @@ class Attendee_Controller extends Base_Controller {
 
 		$form = new Formly();
 
+		$messagelog = new Logmessage();
+
 		$counter = 1 + $pagestart;
 		foreach ($attendees as $doc) {
 
@@ -270,6 +273,15 @@ class Attendee_Controller extends Base_Controller {
 				$rowGolfAction = '';
 			}
 
+			//find message log
+			
+			//$rowResendMessage = '';
+			//$messagelogs = $messagelog->find(array('user'=>$doc['_id']),array(),array(),array());
+			//if(count($messagelogs)>0){
+
+				$rowResendMessage = '<a class="icon-"  ><i>&#xe165;</i><span class="resendmail" id="'.$doc['_id'].'" >Resend Email</span>';
+			//}
+
 			$aadata[] = array(
 				$counter,
 				$select,
@@ -284,10 +296,13 @@ class Attendee_Controller extends Base_Controller {
 				$paymentStatus,
 				$paymentStatusGolf,
 				$rowBoothAction.
+				
 				'<a class="icon-"  ><i>&#xe1b0;</i><span class="pay" id="'.$doc['_id'].'" >Convention Status</span>'.
 				$rowGolfAction.
+
 				'<a class="icon-"  ><i>&#xe14c;</i><span class="pbadge" id="'.$doc['_id'].'" >Print Badge</span>'.
 				'<a class="icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
+				$rowResendMessage.
 				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
 				
 				'extra'=>$extra
@@ -574,6 +589,48 @@ class Attendee_Controller extends Base_Controller {
 		print json_encode($result);
 	}
 
+	public function post_resendmail(){
+		$id = Input::get('id');
+		$mailtype = Input::get('type');
+
+		$user = new Attendee();
+		$log = new Logmessage();
+
+		if(is_null($id)){
+			$result = array('status'=>'ERR','data'=>'NOID');
+		}else{
+
+			$_id = new MongoId($id);
+
+			//find user first
+			$data = $user->get(array('_id'=>$_id));
+			$logs = $log->get(array('user'=>$_id));
+			if($logs!=null){
+				if($mailtype == 'email.regsuccess'){
+					$body = View::make($mailtype)
+						->with('data',$data)
+						->with('fromadmin','yes')
+						->with('passwordRandom',$logs['passwordRandom'])
+						->render();
+
+					Message::to($logs['emailto'])
+					    ->from($logs['emailfrom'], $logs['emailfromname'])
+					    ->cc($logs['emailcc1'], $logs['emailcc1name'])
+					    ->subject($logs['emailsubject'])
+					    ->body( $body )
+					    ->html(true)
+					    ->send();
+					$result = array('status'=>'OK','data'=>'CONTENTDELETED','message'=>'Successfully resend email');
+				}
+			}else{
+				$result = array('status'=>'NOTFOUND','data'=>'CONTENTDELETED','message'=>'Not Found Email to resend');
+			}
+		}
+
+		print json_encode($result);
+	}
+
+
 	public function get_add($type = null){
 
 		if(is_null($type)){
@@ -642,13 +699,29 @@ class Attendee_Controller extends Base_Controller {
 
 			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
-			$data['conventionPaymentStatus'] = 'unpaid';
+			
 
-			if($data['golf'] == 'Yes'){
+			
+
+			if($data['foc'] == 'Yes'){
+				$data['conventionPaymentStatus'] = 'free';
+				$data['golfPaymentStatus'] = 'free';
+
+			}else{
+				$data['conventionPaymentStatus'] = 'unpaid';
+				
+
+			}
+			if($data['golf'] == 'Yes' && $data['foc'] == 'No'){
 				$data['golfPaymentStatus'] = 'unpaid';
+			}elseif ($data['golf'] == 'Yes' && $data['foc'] == 'Yes'){
+				$data['golfPaymentStatus'] = 'free';
+			
 			}else{
 				$data['golfPaymentStatus'] = '-';
 			}
+
+			unset($data['foc']);
 
 			$reg_number[] = 'C';
 			$reg_number[] = $data['regtype'];
@@ -707,7 +780,7 @@ class Attendee_Controller extends Base_Controller {
 
 			if($obj = $user->insert($data)){
 
-				Event::fire('attendee.createformadmin',array($obj['_id'],$passwordRandom));
+				Event::fire('attendee.createformadmin',array($obj['_id'],$passwordRandom,$obj['conventionPaymentStatus']));
 				
 		    	return Redirect::to('attendee')->with('notify_success',Config::get('site.register_success'));
 			}else{
