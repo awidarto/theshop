@@ -124,7 +124,7 @@
 
         </fieldset>
         <fieldset>
-            <legend>FOC</legend>
+            <legend>FOC (Free Of Charge)</legend>
 
                 <div class="row-fluid">
                     <div class="span2">
