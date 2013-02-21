@@ -90,17 +90,15 @@ class Import_Controller extends Base_Controller {
 			$searchinput[$cnt] = $form->select('map_'.$cnt,'',Config::get('eventreg.valid_head_selects'),$h);
 			if(!in_array($h, Config::get('eventreg.valid_heads'))){
 				$heads[$cnt] = '<span class="invalidhead">'.$heads[$cnt].'</span>';
-				//$colclass[$cnt] = ' invalidhead';
+
 			}else{
-				//$colclass[$cnt] = '';
+
 			}
 
 			$cnt++;
 		}
 
-		//$colclass = array_merge(array(''),$colclass);
 
-		//print_r($colclass);
 
 		$head_count = count($heads);
 
@@ -110,15 +108,7 @@ class Import_Controller extends Base_Controller {
 
 		$heads = array_merge(array('Select','Override'),$heads);
 
-		//reg.ipaconvex.com
 
-		//$heads = array('#','Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Created','Last Update','Action');
-
-		//$searchinput = array(false,'Reg Number','First Name','Last Name','Email','Company','Position','Mobile','Phone','Fax','Created','Last Update',false);
-
-		//$colclass = array('','span1','span1','span1','span1','span1','span1','span1','','','','','');
-
-		//$searchinput = false; // no searchinput form on footer
 
 		return View::make('tables.import')
 			->with('title','Data Preview')
