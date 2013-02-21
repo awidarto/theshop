@@ -63,6 +63,7 @@ return array(
 			'SD'=>400000,
 			'SO'=>120
 		),
+		'golffee'=>2500000,
 		'valid_heads'=>array(
 			'no',
 			'username',
@@ -257,7 +258,7 @@ return array(
 			'reg SO'=>'',
 			'foc'=>'',
 			'attenddinner'=> '',
-			'golf'=> '',
+			'Golf'=> '',
 			'totalIDR'=> '',
 			'totalUSD'=> '',
 			'PIC salutation'=> '',
@@ -273,6 +274,7 @@ return array(
 			'PIC zipcode'=> '',
 			'PIC country'=> '',
 			'groupname'=> '',
+			'address'=>''
 		),
 
 
