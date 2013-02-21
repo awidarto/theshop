@@ -65,6 +65,9 @@ Route::get('myprofile',array('uses'=>'register@profile'));
 Route::get('payment/(:any)',array('uses'=>'register@payment'));
 Route::post('payment/(:any)',array('uses'=>'register@payment'));
 
+Route::get('export/report/(:any)',array('uses'=>'export@report'));
+
+
 Route::get('reset',array('uses'=>'register@reset'));
 Route::post('reset',array('uses'=>'register@reset'));
 

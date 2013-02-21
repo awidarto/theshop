@@ -1,6 +1,7 @@
 @layout('master')
 
 @section('content')
+
 <!--<div class="tableHeader">
 	@if($title != '')
 		<h3>{{$title}}</h3>
@@ -232,6 +233,24 @@
 </div>
 
 
+<div id="updateResendmail" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 id="myModalLabel">Resend Email</h3>
+	</div>
+	<div class="modal-body">
+		<label>Select email type to resend:</label>
+		{{ Form::select('resendemailtype', Config::get('eventreg.resendemailtype'),null,array('id'=>'resendemailtype'))}}
+		<br/><span id="errormessagemodal" class="fontRed"></span><span id="successmessagemodal" class="fontGreen"></span>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" id="submitresend">Submit</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+</div>
+
+
 <div id="updatePaymentGolfConvention" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -327,6 +346,8 @@
     $(document).ready(function(){
 
 		$('.activity-list').tooltip();
+
+		
 
 		var asInitVals = new Array();
         
@@ -482,6 +503,18 @@
 			}
 		});
 
+		$(".selectorAll").live("click", function(){
+			var id = $(this).attr("id");
+			if($(this).is(':checked')){
+				$('.selector_'+id).attr('checked', true);
+			}else{
+				$('.selector_'+id).attr('checked', false);
+			}
+		});
+		
+
+		
+
 		$('#savepaystatus').click(function(){
 			var paystat = $('#paystatusselect').val();
 			$('#savepaystatus').text('Processing..');
@@ -560,6 +593,48 @@
 
 					$('#updatePaymentGolfConvention').modal('toggle');
 
+				}
+			},'json');
+		});
+
+
+		$('#submitresend').click(function(){
+			var emailtype = $('#resendemailtype').val();
+			$('#submitresend').text('Processing..');
+			$('#submitresend').attr("disabled", true);	
+
+			<?php
+
+				$ajaxresendmail = (isset($ajaxresendmail))?$ajaxresendmail:'/';
+			?>
+
+			$.post('{{ URL::to($ajaxresendmail) }}',{'id':current_pay_id,'type': emailtype}, function(data) {
+				if(data.status == 'OK'){
+					//redraw table
+
+					oTable.fnDraw();
+					//$('#paystatusindicator').html('Payment status updated');
+					$('#submitresend').text('Sumbit');
+					$('#submitresend').attr("disabled", false);	
+
+					$('#resendemailtype').val('email.regsuccess');
+					$('#errormessagemodal').text('');
+					$('#successmessagemodal').text(data.message);
+					
+					setTimeout(function() {
+					      $('#updateResendmail').modal('toggle');
+					}, 2000);
+					
+
+				}else if(data.status == 'NOTFOUND'){
+
+					//$('#paystatusindicator').html('Payment status updated');
+					$('#submitresend').text('Sumbit');
+					$('#submitresend').attr("disabled", false);	
+					$('#errormessagemodal').text(data.message);
+					$('#resendemailtype').val('email.regsuccess');
+
+					
 				}
 			},'json');
 		});
@@ -657,6 +732,16 @@
 				current_pay_id = _id;
 
 				$('#updatePaymentGolfConvention').modal();
+
+		   	}
+
+		   	if ($(e.target).is('.resendmail')) {
+				var _id = e.target.id;
+
+				current_pay_id = _id;
+				$('#errormessagemodal').text('');
+				$('#successmessagemodal').text('');
+				$('#updateResendmail').modal();
 
 		   	}
 

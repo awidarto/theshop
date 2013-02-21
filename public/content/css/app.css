@@ -49,6 +49,10 @@ padding-left: 7px;
 	cursor: text;
 	outline: none;
 }
+.metro-sections-noeffect .tile.statistic:hover{
+	outline: 3px #225a68 solid;
+	cursor: pointer;
+}
 .metro .tile.fullwidth.imagetext{
 	width: 92%;
 	height: 80px;

@@ -104,6 +104,7 @@ class Register_Controller extends Base_Controller {
 			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
 			$data['conventionPaymentStatus'] = 'unpaid';
+
 			//force to disable golf on student type
 			if(($data['regtype'] == 'SO') || ($data['regtype'] == 'SD')){
 				$data['golf'] == 'No';
@@ -170,19 +171,38 @@ class Register_Controller extends Base_Controller {
 
 			if($obj = $user->insert($data)){
 
-				$body = View::make('email.regsuccess')
-					->with('data',$data)
-					->with('fromadmin','yes')
-					->with('passwordRandom',$password)
-					->render();
+				//log message 
+				$message = new Logmessage();
 
-				Message::to($data['email'])
-				    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-				    ->cc(Config::get('eventreg.reg_dyandra_admin_email'), Config::get('eventreg.reg_dyandra_admin_name'))
-				    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
-				    ->body( $body )
-				    ->html(true)
-				    ->send();
+				$messagedata['user'] = $data['_id'];
+				$messagedata['type'] = 'email.regsuccess';
+				$messagedata['emailto'] = $data['email'];
+				$messagedata['emailfrom'] = Config::get('eventreg.reg_admin_email');
+				$messagedata['emailfromname'] = Config::get('eventreg.reg_admin_name');
+				$messagedata['passwordRandom'] = $password;
+				$messagedata['emailcc1'] = Config::get('eventreg.reg_dyandra_admin_email');
+				$messagedata['emailcc1name'] = Config::get('eventreg.reg_dyandra_admin_name');
+				$messagedata['emailcc2'] = '';
+				$messagedata['emailcc2name'] = '';
+				$messagedata['emailsubject'] = 'Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')';
+				$messagedata['createdDate'] = new MongoDate();
+				
+				if($message->insert($messagedata)){
+
+					$body = View::make('email.regsuccess')
+						->with('data',$data)
+						->with('fromadmin','yes')
+						->with('passwordRandom',$password)
+						->render();
+
+					Message::to($data['email'])
+					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->cc(Config::get('eventreg.reg_dyandra_admin_email'), Config::get('eventreg.reg_dyandra_admin_name'))
+					    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+					    ->body( $body )
+					    ->html(true)
+					    ->send();
+				}
 
 		    	return Redirect::to('register-success')->with('notify_success',Config::get('site.register_success'));
 			}else{

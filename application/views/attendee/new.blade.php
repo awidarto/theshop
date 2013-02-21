@@ -92,6 +92,8 @@
 
         </fieldset>
 
+
+
         <fieldset>
             <legend>Will attend the Industrial Dinner on 16 May 2013</legend>
 
@@ -121,7 +123,20 @@
                 </div>
 
         </fieldset>
+        <fieldset>
+            <legend>FOC (Free Of Charge)</legend>
 
+                <div class="row-fluid">
+                    <div class="span2">
+                      {{ $form->radio('foc','Yes','Yes') }} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('foc','No','No',true) }} 
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+
+        </fieldset>
     </div>
 
     <div class="span6">
