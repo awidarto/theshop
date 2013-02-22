@@ -133,12 +133,119 @@ class Export_Controller extends Base_Controller {
 				foreach($dataresult as $row){
 					$inrow = array();
 					for($i = 0; $i < count($dataheader); $i++){
+						
+						//regfee
+						$regtype = $row['regtype'];
+						$feeregtype = Config::get('eventreg.convetionfee');
+						$type = $feeregtype[$regtype];
+
+						if($regtype == 'PD'){
+							if($row['conventionPaymentStatus']!='free'){
+								$row[$dataheader[33]] =$type;
+							}else{
+								$row[$dataheader[33]] ='';
+							}
+							$row[$dataheader[34]] ='';
+							$row[$dataheader[35]] ='';
+							$row[$dataheader[36]] ='';
+						}elseif ($regtype == 'PO') {
+							$row[$dataheader[33]] ='';
+							if($row['conventionPaymentStatus']!='free'){
+								$row[$dataheader[34]] =$type;
+							}else{
+								$row[$dataheader[34]] ='';
+							}
+							$row[$dataheader[35]] ='';
+							$row[$dataheader[36]] ='';
+						}elseif ($regtype == 'SD') {
+							$row[$dataheader[33]] ='';
+							$row[$dataheader[34]] ='';
+							if($row['conventionPaymentStatus']!='free'){
+								$row[$dataheader[35]] =$type;
+							}else{
+								$row[$dataheader[35]] ='';
+							}
+							$row[$dataheader[36]] ='';
+						}elseif ($regtype == 'SO') {
+							$row[$dataheader[33]] ='';
+							$row[$dataheader[34]] ='';
+							$row[$dataheader[35]] ='';
+							if($row['conventionPaymentStatus']!='free'){
+								$row[$dataheader[36]] =$type;
+							}else{
+								$row[$dataheader[36]] ='';
+							}
+							
+						}
+
+						//FOC
+						if($row['conventionPaymentStatus']=='free'){
+							$row[$dataheader[37]] ='Yes';
+						}else{
+							$row[$dataheader[37]] ='No';
+						}
+						
+						
+
+						//PIC
+						$haspic = $row['cache_id'];
+
+						if($haspic!=''){
+							//find pic details
+							$pic = new import();
+							$picMongoID = new MongoId($haspic);
+							$picobjc = $pic->get(array('_id'=>$picMongoID));
+							$row[$dataheader[42]] =$picobjc['salutation'];
+							$row[$dataheader[43]] =$picobjc['firstname'];
+							$row[$dataheader[44]] =$picobjc['lastname'];
+							$row[$dataheader[45]] =$picobjc['position'];
+							$row[$dataheader[46]] =$picobjc['company'];
+							$row[$dataheader[47]] =$picobjc['email'];
+							$row[$dataheader[48]] =$picobjc['mobile'];
+							if(isset($picobjc['address_1'])){
+								$row[$dataheader[49]] =$picobjc['address_1'];
+							}else{
+								$row[$dataheader[49]] =$picobjc['address'];
+							}
+							if(isset($picobjc['address_1'])){
+								$row[$dataheader[50]] =$picobjc['address_2'];
+							}else{
+								$row[$dataheader[50]]='';
+							}
+							$row[$dataheader[51]] =$picobjc['city'];
+							$row[$dataheader[52]] =$picobjc['zip'];
+							$row[$dataheader[53]] =$picobjc['country'];
+							if(isset($picobjc['address_1'])){
+								$row[$dataheader[54]] =$picobjc['groupName'];
+							}
+						}
+
+						if($row['golf']=='Yes'){
+								$golffee = 2500000;
+								$row[$dataheader[39]] = $golffee;
+						}else{
+							$row[$dataheader[39]] = '';
+						}
+
+						if($row['conventionPaymentStatus']=='free'){
+							$row[$dataheader[40]] = '';
+							$row[$dataheader[41]] = '';
+
+						}
+						$a = $row['mobile'];
+						$b = (string)$a;
+						$row[$dataheader[6]] = $b;
 
 						if(isset($row[$dataheader[$i]])){
+
 							$inrow[$i] = '"'.$row[$dataheader[$i]].'"';
+
+
 						}else{
 							$inrow[$i] = '""';
 						}
+
+						
 					}					
 					$result[] = implode(',',$inrow);
 				}
@@ -236,6 +343,103 @@ class Export_Controller extends Base_Controller {
 			foreach($dataresult as $row){
 				$inrow = array();
 				for($i = 0; $i < count($dataheader); $i++){
+
+						//regfee
+						$regtype = $row['regtype'];
+						$feeregtype = Config::get('eventreg.convetionfee');
+						$type = $feeregtype[$regtype];
+
+						if($regtype == 'PD'){
+							if($row['conventionPaymentStatus']!='free'){
+								$row[$dataheader[33]] =$type;
+							}else{
+								$row[$dataheader[33]] ='';
+							}
+							$row[$dataheader[34]] ='';
+							$row[$dataheader[35]] ='';
+							$row[$dataheader[36]] ='';
+						}elseif ($regtype == 'PO') {
+							$row[$dataheader[33]] ='';
+							if($row['conventionPaymentStatus']!='free'){
+								$row[$dataheader[34]] =$type;
+							}else{
+								$row[$dataheader[34]] ='';
+							}
+							$row[$dataheader[35]] ='';
+							$row[$dataheader[36]] ='';
+						}elseif ($regtype == 'SD') {
+							$row[$dataheader[33]] ='';
+							$row[$dataheader[34]] ='';
+							if($row['conventionPaymentStatus']!='free'){
+								$row[$dataheader[35]] =$type;
+							}else{
+								$row[$dataheader[35]] ='';
+							}
+							$row[$dataheader[36]] ='';
+						}elseif ($regtype == 'SO') {
+							$row[$dataheader[33]] ='';
+							$row[$dataheader[34]] ='';
+							$row[$dataheader[35]] ='';
+							if($row['conventionPaymentStatus']!='free'){
+								$row[$dataheader[36]] =$type;
+							}else{
+								$row[$dataheader[36]] ='';
+							}
+							
+						}
+
+						//FOC
+						if($row['conventionPaymentStatus']=='free'){
+							$row[$dataheader[37]] ='Yes';
+						}else{
+							$row[$dataheader[37]] ='No';
+						}
+						
+						
+
+						//PIC
+						$haspic = $row['cache_id'];
+
+						if($haspic!=''){
+							//find pic details
+							$pic = new import();
+							$picMongoID = new MongoId($haspic);
+							$picobjc = $pic->get(array('_id'=>$picMongoID));
+							$row[$dataheader[42]] =$picobjc['salutation'];
+							$row[$dataheader[43]] =$picobjc['firstname'];
+							$row[$dataheader[44]] =$picobjc['lastname'];
+							$row[$dataheader[45]] =$picobjc['position'];
+							$row[$dataheader[46]] =$picobjc['company'];
+							$row[$dataheader[47]] =$picobjc['email'];
+							$row[$dataheader[48]] =$picobjc['mobile'];
+							if(isset($picobjc['address_1'])){
+								$row[$dataheader[49]] =$picobjc['address_1'];
+							}else{
+								$row[$dataheader[49]] =$picobjc['address'];
+							}
+							if(isset($picobjc['address_1'])){
+								$row[$dataheader[50]] =$picobjc['address_2'];
+							}else{
+								$row[$dataheader[50]]='';
+							}
+							$row[$dataheader[51]] =$picobjc['city'];
+							$row[$dataheader[52]] =$picobjc['zip'];
+							$row[$dataheader[53]] =$picobjc['country'];
+							if(isset($picobjc['address_1'])){
+								$row[$dataheader[54]] =$picobjc['groupName'];
+							}
+						}
+
+						if($row['golf']=='Yes'){
+								$golffee = 2500000;
+								$row[$dataheader[39]] = $golffee;
+						}else{
+							$row[$dataheader[39]] = '';
+						}
+
+						
+
+
 
 					if(isset($row[$dataheader[$i]])){
 						$inrow[$i] = '"'.$row[$dataheader[$i]].'"';

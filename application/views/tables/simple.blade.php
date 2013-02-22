@@ -345,6 +345,21 @@
 
     $(document).ready(function(){
 
+    	$.fn.dataTableExt.oApi.fnStandingRedraw = function(oSettings) {
+		    if(oSettings.oFeatures.bServerSide === false){
+		        var before = oSettings._iDisplayStart;
+		 
+		        oSettings.oApi._fnReDraw(oSettings);
+		 
+		        // iDisplayStart has been reset to zero - so lets change it back
+		        oSettings._iDisplayStart = before;
+		        oSettings.oApi._fnCalculateEnd(oSettings);
+		    }
+		      
+		    // draw the 'current' page
+		    oSettings.oApi._fnDraw(oSettings);
+		};
+
 		$('.activity-list').tooltip();
 
 		
@@ -528,8 +543,8 @@
 			$.post('{{ URL::to($ajaxpay) }}',{'id':current_pay_id,'paystatus': paystat}, function(data) {
 				if(data.status == 'OK'){
 					//redraw table
-
-					oTable.fnDraw();
+					oTable.fnStandingRedraw();
+					
 					$('#paystatusindicator').html('Payment status updated');
 					$('#savepaystatus').text('Save');
 					$('#savepaystatus').attr("disabled", false);	
@@ -556,7 +571,7 @@
 				if(data.status == 'OK'){
 					//redraw table
 
-					oTable.fnDraw();
+					oTable.fnStandingRedraw();
 					$('#paystatusindicator').html('Payment status updated');
 					$('#savepaystatusGolf').text('Save');
 					$('#savepaystatusGolf').attr("disabled", false);	
@@ -584,7 +599,7 @@
 				if(data.status == 'OK'){
 					//redraw table
 
-					oTable.fnDraw();
+					oTable.fnStandingRedraw();
 					$('#paystatusindicator').html('Payment status updated');
 					$('#savepaystatusGolfConvention').text('Save');
 					$('#savepaystatusGolfConvention').attr("disabled", false);	
@@ -612,7 +627,9 @@
 				if(data.status == 'OK'){
 					//redraw table
 
-					oTable.fnDraw();
+					
+					oTable.fnStandingRedraw();
+
 					//$('#paystatusindicator').html('Payment status updated');
 					$('#submitresend').text('Sumbit');
 					$('#submitresend').attr("disabled", false);	
@@ -646,7 +663,8 @@
 				if(data.status == 'OK'){
 					//redraw table
 
-					oTable.fnDraw();
+					
+					oTable.fnStandingRedraw();
 
 					$('#delstatusindicator').html('Payment status updated');
 
@@ -679,7 +697,8 @@
 					$.post('{{ URL::to($ajaxdel) }}',{'id':_id}, function(data) {
 						if(data.status == 'OK'){
 							//redraw table
-							oTable.fnDraw();
+							
+							oTable.fnStandingRedraw();
 							alert("Item id : " + _id + " deleted");
 						}
 					},'json');

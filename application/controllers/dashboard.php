@@ -86,7 +86,11 @@ class Dashboard_Controller extends Base_Controller {
 
 		$stat['unpaidAttendee'] = $attendee->count(array('conventionPaymentStatus'=>'unpaid'));
 
-		$stat['cancelledAttendee'] = $attendee->count(array('paymentStatus'=>'cancel'));
+		$stat['cancelledAttendee'] = $attendee->count(array('conventionPaymentStatus'=>'cancel'));
+
+		$stat['focAttendee'] = $attendee->count(array('conventionPaymentStatus'=>'free'));
+
+		$stat['paymentconf'] = $attendee->count(array('conventionPaymentStatus'=>'pending'));
 
 		return View::make('dashboard.restricted')
 							->with('stat',$stat)

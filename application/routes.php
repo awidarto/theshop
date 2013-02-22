@@ -107,6 +107,7 @@ Route::get('hashme/(:any)',function($mypass){
 });
 
 Route::get('normalize',array('uses'=>'attendee@updateField'));
+Route::get('normalTotal',array('uses'=>'attendee@normalTotal'));
 
 
 // Auth routes

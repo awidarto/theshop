@@ -947,6 +947,30 @@ class Attendee_Controller extends Base_Controller {
 		return $str;
 	}
 
+	public function get_normalTotal(){
+		$attendee = new Attendee();
+
+		$attendees = $attendee->find();
+		foreach($attendees as $att){
+			$_id = $att['_id'];
+			if($att["totalIDR"]=='-'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>'')));
+			}
+			if($att["totalUSD"]=='-'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalUSD'=>'')));
+			}
+			if($att["totalIDR"]=='4.500.000'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>'4500000')));
+			}
+			if($att["totalUSD"]=='4.500.000'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>'')));
+			}
+
+			
+		}
+
+	}
+
 	public function get_updateField(){
 		$attendee = new Attendee();
 

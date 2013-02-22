@@ -59,17 +59,27 @@
 	         <span class="app-label">(not including FOC)</span>
 	      </a>
 
-	      <a class="tile wide imagetext bg-color-purple statistic" href="#">
-	         <div class="image-wrapper">
-	            <div class="text-biggest">{{ $stat['Golf']}}</div>
+	      <a class="tile imagetext bg-color-greenDark statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['Golf']}}</div>
 	         </div>
 	         <div class="column-text">
-	            <div class="text">Total Golf</div>
+	            <div class="text">Total</div>
+	            <div class="text">Golf</div>
 	            <div class="text">Participants</div>
 	         </div>
-	         <span class="app-label">(not including FOC)</span>
 	      </a>
-
+	      <a class="tile imagetext bg-color-blue statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['paymentconf']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Payment</div>
+	            <div class="text">Confirmation</div>
+	            <div class="text">to Process</div>
+	         </div>
+	      </a>
+	      
 	      <a class="tile imagetext bg-color-blue statistic" href="#">
 	         <div class="image-wrapper text-big">
 	            <div class="text-big">{{ $stat['paidAttendee']}}</div>
@@ -80,6 +90,7 @@
 	            <div class="text">Participants</div>
 	         </div>
 	      </a>
+
 	      <a class="tile imagetext bg-color-purple statistic" href="#">
 	         <div class="image-wrapper text-big">
 	            <div class="text-big">{{ $stat['unpaidAttendee']}}</div>
@@ -101,16 +112,18 @@
 	         </div>
 	      </a>
 
-	      <a class="tile imagetext bg-color-orange" href="#">
+	      <a class="tile imagetext bg-color-orange statistic" href="#">
 	         <div class="image-wrapper text-big">
-	            <div class="text-big">5</div>
+	            <div class="text-big">{{ $stat['focAttendee']}}</div>
 	         </div>
 	         <div class="column-text">
-	            <div class="text-small">Payment Confirmation</div>
-	            <div class="text-small">to Process</div>
+	            <div class="text">Total</div>
+	            <div class="text">FOC</div>
+	            <div class="text">Registration</div>
 	         </div>
-	         
 	      </a>
+
+
 
 	   </div>
 
