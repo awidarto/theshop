@@ -442,7 +442,7 @@ class Export_Controller extends Base_Controller {
 
 
 					if(isset($row[$dataheader[$i]])){
-						if(is_float($row[$dataheader[$i]]) || is_long($row[$dataheader[$i]]) || is_integer($row[$dataheader[$i]])){
+						if(is_float($row[$dataheader[$i]]) || is_double($row[$dataheader[$i]]) || is_long($row[$dataheader[$i]]) || is_integer($row[$dataheader[$i]])){
 							$row[$dataheader[$i]] = (string) $row[$dataheader[$i]];
 							$inrow[$i] = '"\''.$row[$dataheader[$i]].'"';
 						}else{
