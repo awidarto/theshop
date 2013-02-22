@@ -86,7 +86,7 @@ class Attendee_Controller extends Base_Controller {
 				->nest('row','attendee.rowdetail');
 		}else{
 			return View::make('attendee.restricted')
-							->with('title',$title);			
+							->with('title',$title);
 		}
 	}
 
@@ -131,7 +131,7 @@ class Attendee_Controller extends Base_Controller {
 				->nest('row','attendee.rowdetailgroups');
 		}else{
 			return View::make('attendee.restricted')
-							->with('title',$title);			
+							->with('title',$title);
 		}
 	}
 
@@ -171,9 +171,9 @@ class Attendee_Controller extends Base_Controller {
 					if($cond[$idx] == 'both'){
 						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'/i');
 					}else if($cond[$idx] == 'before'){
-						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/i');						
+						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/i');
 					}else if($cond[$idx] == 'after'){
-						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/i');						
+						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/i');
 					}
 				}else if($rel[$idx] == 'equ'){
 					$q[$field] = Input::get('sSearch_'.$idx);
@@ -189,7 +189,7 @@ class Attendee_Controller extends Base_Controller {
 		/* first column is always sequence number, so must be omitted */
 		$fidx = Input::get('iSortCol_0');
 		if($fidx == 0){
-			$fidx = $defsort;			
+			$fidx = $defsort;
 			$sort_col = $fields[$fidx];
 			$sort_dir = $defdir;
 		}else{
@@ -228,7 +228,7 @@ class Attendee_Controller extends Base_Controller {
 					$paymentStatus = '<span class="fontOrange fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
 				}elseif ($doc['conventionPaymentStatus'] == 'cancel') {
 					$paymentStatus = '<span class="fontGray fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
-				
+
 				}else{
 					$paymentStatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['conventionPaymentStatus'].'</span>';
 				}
@@ -263,7 +263,7 @@ class Attendee_Controller extends Base_Controller {
 			}
 
 			if(isset($doc['golfPaymentStatus']) && isset($doc['conventionPaymentStatus'])){
-				
+
 				if(($doc['golfPaymentStatus'] == 'pending' && $doc['conventionPaymentStatus'] == 'pending') || ($doc['golfPaymentStatus'] == 'unpaid' && $doc['conventionPaymentStatus'] == 'unpaid')){
 					$rowBoothAction = '<a class="icon-"  ><i>&#xe1e9;</i><span class="paygolfconvention" id="'.$doc['_id'].'" >Conv & Golf</span>';
 				}else{
@@ -274,7 +274,7 @@ class Attendee_Controller extends Base_Controller {
 			}
 
 			//find message log
-			
+
 			//$rowResendMessage = '';
 			//$messagelogs = $messagelog->find(array('user'=>$doc['_id']),array(),array(),array());
 			//if(count($messagelogs)>0){
@@ -296,7 +296,7 @@ class Attendee_Controller extends Base_Controller {
 				$paymentStatus,
 				$paymentStatusGolf,
 				$rowBoothAction.
-				
+
 				'<a class="icon-"  ><i>&#xe1b0;</i><span class="pay" id="'.$doc['_id'].'" >Convention Status</span>'.
 				$rowGolfAction.
 
@@ -304,13 +304,13 @@ class Attendee_Controller extends Base_Controller {
 				'<a class="icon-"  href="'.URL::to('attendee/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
 				$rowResendMessage.
 				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
-				
+
 				'extra'=>$extra
 			);
 			$counter++;
 		}
 
-		
+
 		$result = array(
 			'sEcho'=> Input::get('sEcho'),
 			'iTotalRecords'=>$count_all,
@@ -360,9 +360,9 @@ class Attendee_Controller extends Base_Controller {
 					if($cond[$idx] == 'both'){
 						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'/i');
 					}else if($cond[$idx] == 'before'){
-						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/i');						
+						$q[$field] = new MongoRegex('/^'.Input::get('sSearch_'.$idx).'/i');
 					}else if($cond[$idx] == 'after'){
-						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/i');						
+						$q[$field] = new MongoRegex('/'.Input::get('sSearch_'.$idx).'$/i');
 					}
 				}else if($rel[$idx] == 'equ'){
 					$q[$field] = Input::get('sSearch_'.$idx);
@@ -372,14 +372,14 @@ class Attendee_Controller extends Base_Controller {
 		}
 
 		//print_r($q)
-		
+
 		$pic = new Import();
 		$attendee = new Attendee();
 
 		/* first column is always sequence number, so must be omitted */
 		$fidx = Input::get('iSortCol_0');
 		if($fidx == 0){
-			$fidx = $defsort;			
+			$fidx = $defsort;
 			$sort_col = $fields[$fidx];
 			$sort_dir = $defdir;
 		}else{
@@ -411,7 +411,7 @@ class Attendee_Controller extends Base_Controller {
 			$extra = $peoples;
 
 			$select = $form->checkbox('sel_'.$doc['_id'],'','',false,array('id'=>$doc['_id'],'class'=>'selectorAll'));
-			
+
 			$aadata[] = array(
 				$counter,
 				$select,
@@ -427,7 +427,7 @@ class Attendee_Controller extends Base_Controller {
 			$counter++;
 		}
 
-		
+
 		$result = array(
 			'sEcho'=> Input::get('sEcho'),
 			'iTotalRecords'=>$count_all,
@@ -456,7 +456,7 @@ class Attendee_Controller extends Base_Controller {
 				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
 			}else{
 				Event::fire('attendee.delete',array('id'=>$id,'result'=>'FAILED'));
-				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');
 			}
 		}
 
@@ -497,7 +497,7 @@ class Attendee_Controller extends Base_Controller {
 				}
 			}else{
 				Event::fire('paymentstatus.update',array('id'=>$id,'result'=>'FAILED'));
-				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');
 			}
 		}
 
@@ -539,7 +539,7 @@ class Attendee_Controller extends Base_Controller {
 				}
 			}else{
 				Event::fire('paymentstatusgolf.update',array('id'=>$id,'result'=>'FAILED'));
-				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');
 			}
 		}
 
@@ -582,7 +582,7 @@ class Attendee_Controller extends Base_Controller {
 				}
 			}else{
 				Event::fire('paymentstatusgolfconvention.update',array('id'=>$id,'result'=>'FAILED'));
-				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');
 			}
 		}
 
@@ -663,7 +663,7 @@ class Attendee_Controller extends Base_Controller {
 	    	'lastname' => 'required',
 	    	'position' => 'required',
 	        'email' => 'required|email|unique:attendee',
-	        
+
 	        'company' => 'required',
 	        'companyphone' => 'required',
 	        'address_1' => 'required',
@@ -691,7 +691,7 @@ class Attendee_Controller extends Base_Controller {
 			$passwordRandom = rand_string(8);
 
 			$data['pass'] = Hash::make($passwordRandom);
-	    	
+
 			unset($data['csrf_token']);
 
 			$data['createdDate'] = new MongoDate();
@@ -699,9 +699,15 @@ class Attendee_Controller extends Base_Controller {
 
 			$data['role'] = 'attendee';
 			$data['paymentStatus'] = 'unpaid';
-			
 
-			
+			//set number types into string 
+
+			foreach($data as $key=>$val){
+				if((is_integer($val) || is_float($val) || is_long($val) || is_double($val)) && ( $key != 'golfSequence')){
+					$data[$key] = strval($data[$key]);
+				}
+			}
+
 
 			if($data['foc'] == 'Yes'){
 				$data['conventionPaymentStatus'] = 'free';
@@ -709,14 +715,14 @@ class Attendee_Controller extends Base_Controller {
 
 			}else{
 				$data['conventionPaymentStatus'] = 'unpaid';
-				
+
 
 			}
 			if($data['golf'] == 'Yes' && $data['foc'] == 'No'){
 				$data['golfPaymentStatus'] = 'unpaid';
 			}elseif ($data['golf'] == 'Yes' && $data['foc'] == 'Yes'){
 				$data['golfPaymentStatus'] = 'free';
-			
+
 			}else{
 				$data['golfPaymentStatus'] = '-';
 			}
@@ -781,7 +787,7 @@ class Attendee_Controller extends Base_Controller {
 			if($obj = $user->insert($data)){
 
 				Event::fire('attendee.createformadmin',array($obj['_id'],$passwordRandom,$obj['conventionPaymentStatus']));
-				
+
 		    	return Redirect::to('attendee')->with('notify_success',Config::get('site.register_success'));
 			}else{
 		    	return Redirect::to('attendee')->with('notify_success',Config::get('site.register_failed'));
@@ -789,7 +795,7 @@ class Attendee_Controller extends Base_Controller {
 
 	    }
 
-		
+
 	}
 
 
@@ -836,7 +842,7 @@ class Attendee_Controller extends Base_Controller {
 	    }else{
 
 			$data = Input::get();
-	    	
+
 			$id = new MongoId($data['id']);
 			$data['lastUpdate'] = new MongoDate();
 
@@ -846,7 +852,7 @@ class Attendee_Controller extends Base_Controller {
 			$user = new Attendee();
 
 			if(isset($data['registrationnumber']) && $data['registrationnumber'] != ''){
-				$reg_number = explode('-',$data['registrationnumber']);			
+				$reg_number = explode('-',$data['registrationnumber']);
 
 				$reg_number[0] = 'C';
 				$reg_number[1] = $data['regtype'];
@@ -874,16 +880,16 @@ class Attendee_Controller extends Base_Controller {
 			}
 
 			$data['registrationnumber'] = implode('-',$reg_number);
-			
+
 			if($user->update(array('_id'=>$id),array('$set'=>$data))){
 		    	return Redirect::to('attendee')->with('notify_success','Attendee saved successfully');
 			}else{
 		    	return Redirect::to('attendee')->with('notify_success','Attendee saving failed');
 			}
-			
+
 	    }
 
-		
+
 	}
 
 	public function get_printbadge($id){
@@ -931,12 +937,12 @@ class Attendee_Controller extends Base_Controller {
 		$form = new Formly();
 
 		$file = URL::base().'/storage/'.$id.'/'.$doc['docFilename'];
-		
+
 		return View::make('pop.approval')->with('doc',$doc)->with('form',$form)->with('href',$file);
 	}
 
 	public function rand_string( $length ) {
-		$chars = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789";	
+		$chars = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789";
 
 		$size = strlen( $chars );
 		$str = '';
@@ -966,7 +972,7 @@ class Attendee_Controller extends Base_Controller {
 				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>'')));
 			}
 
-			
+
 		}
 
 	}
@@ -996,7 +1002,7 @@ class Attendee_Controller extends Base_Controller {
 				//check type and golf status
 				$regtype = $att['regtype'];
 				$golf = $att['golf'];
-				
+
 				if($regtype == 'PD' && $golf == 'No'){
 					$totalIDR = '4500000';
 					$totalUSD = '';
@@ -1018,95 +1024,95 @@ class Attendee_Controller extends Base_Controller {
 				}
 
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>$totalIDR,'totalUSD'=>$totalUSD)))){
-					$updateCount++;	
+					$updateCount++;
 				}
-				
+
 			}
 
 			if(!isset($att['cache_id'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('cache_id'=>'')))){
-					$caheIDCount++;	
+					$caheIDCount++;
 				}
 			}
 
 			if(!isset($att['cache_obj'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('cache_obj'=>'')))){
-					$caheOBJCount++;	
+					$caheOBJCount++;
 				}
-				
+
 			}
 
 			if(!isset($att['companys_npwp'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('companys_npwp'=>'')))){
-					$companyNPWPCount++;	
+					$companyNPWPCount++;
 				}
-				
+
 			}
 
 			if(!isset($att['groupId'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('groupId'=>'')))){
-					$groupIDCount++;	
+					$groupIDCount++;
 				}
-				
+
 			}
 			if(!isset($att['groupName'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('groupName'=>'')))){
-					$groupNameCount++;	
+					$groupNameCount++;
 				}
-				
+
 			}
 
 			if(!isset($att['inv_letter'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('inv_letter'=>'')))){
-					$invLetterCount++;	
+					$invLetterCount++;
 				}
-				
+
 			}
 
 			if(!isset($att['invoice_address_conv'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('invoice_address_conv'=>'')))){
-					$invCompanyAddCount++;	
+					$invCompanyAddCount++;
 				}
-				
+
 			}
 			if(!isset($att['paymentStatus'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('paymentStatus'=>'')))){
-					$paymentStatCount++;	
+					$paymentStatCount++;
 				}
-				
+
 			}
-			
+
 
 			if(!isset($att['address'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('address'=>'')))){
-					$AddCount++;	
+					$AddCount++;
 				}
-				
+
 			}
 
 			if(!isset($att['addressInvoice'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('addressInvoice'=>'')))){
-					$AddCountInvoice++;	
+					$AddCountInvoice++;
 				}
-				
+
 			}
 
 			if(!isset($att['confirmation'])){
 				$_id = $att['_id'];
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('confirmation'=>'none')))){
-					$ConfCount++;	
+					$ConfCount++;
 				}
-				
+
 			}
 
 			if($att['totalIDR']=='-' || $att['totalUSD']=='-'){
@@ -1114,7 +1120,7 @@ class Attendee_Controller extends Base_Controller {
 				//check type and golf status
 				$regtype = $att['regtype'];
 				$golf = $att['golf'];
-				
+
 				if($regtype == 'PD' && $golf == 'No'){
 					$totalIDR = '4500000';
 					$totalUSD = '';
@@ -1136,16 +1142,16 @@ class Attendee_Controller extends Base_Controller {
 				}
 
 				if($attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>$totalIDR,'totalUSD'=>$totalUSD)))){
-					$normalRate++;	
+					$normalRate++;
 				}
-				
+
 			}
 
-			
+
 
 
 		}
-		
+
 		return View::make('attendee.updateField')
 				->with('updateCount',$updateCount)
 				->with('caheIDCount',$caheIDCount)
