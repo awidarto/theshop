@@ -234,7 +234,7 @@ class Export_Controller extends Base_Controller {
 						}
 						$a = $row['mobile'];
 						$b = (string)$a;
-						$row[$dataheader[6]] = $b;
+						$row[$dataheader[6]] = (string)'::'.$b;
 
 						if(isset($row[$dataheader[$i]])){
 
