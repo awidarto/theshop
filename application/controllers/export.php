@@ -232,6 +232,9 @@ class Export_Controller extends Base_Controller {
 							$row[$dataheader[41]] = '';
 
 						}
+						$a = $row['mobile'];
+						$b = (string)$a;
+						$row[$dataheader[6]] = $b;
 
 						if(isset($row[$dataheader[$i]])){
 

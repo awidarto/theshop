@@ -224,7 +224,7 @@ return array(
 			'lastname'=> '',
 			'position'=> '',
 			'email'=> '',
-			'mobile'=> '',
+			'mobile no.'=> '',
 			'company'=> '',
 			'npwp'=> '',
 			'companyphonecountry'=> '',
