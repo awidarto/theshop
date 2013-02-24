@@ -291,6 +291,18 @@ class Exhibition_Controller extends Base_Controller {
 
 	}
 
+	public function get_operationalform(){
+
+		$this->crumb->add('exhibition','Operational Form');
+
+		$form = new Formly();
+		return View::make('exhibition.operationalform')
+					->with('form',$form)
+					->with('crumb',$this->crumb)
+					->with('title','Operational Form');
+
+	}
+
 	public function get_landing(){
 
 		$this->crumb->add('exhibition','Exhibition');
