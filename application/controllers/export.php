@@ -101,7 +101,7 @@ class Export_Controller extends Base_Controller {
 				$dateFrom = new MongoDate(strtotime($criteria['fromDate']." 00:00:00"));
 				$dateTo = new MongoDate(strtotime($criteria['toDate']." 23:59:59"));
 
-				$dataresult = $dataset->find(array('createdDate'=>array('$gte'=>$dateFrom,'$lte'=>$dateTo)));
+				$dataresult = $dataset->find(array('createdDate'=>array('$gte'=>$dateFrom,'$lte'=>$dateTo),array(),array('regsequence'=> -1)));
 			}
 
 			if($criteria['format'] == 'csv'){
