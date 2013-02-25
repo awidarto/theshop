@@ -985,6 +985,24 @@ class Attendee_Controller extends Base_Controller {
 
 	}
 
+
+	public function get_addSequencetoCollection(){
+		$attendee = new Attendee();
+		$countSeq = 0;
+		$attendees = $attendee->find();
+		foreach($attendees as $att){
+			$_id = $att['_id'];
+			$reg_number = explode('-',$att['registrationnumber']);
+			$reg_seq = $reg_number[3];
+			$attendee->update(array('_id'=>$_id),array('$set'=>array('regsequence'=>$reg_seq)));
+			$countSeq ++;
+		}
+		return View::make('attendee.updateField')
+				->with('countSeq',$countSeq)
+				->with('title','Update Field');
+
+	}
+
 	public function get_updateField(){
 		$attendee = new Attendee();
 

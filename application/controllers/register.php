@@ -127,6 +127,12 @@ class Register_Controller extends Base_Controller {
 
 			$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 
+			$regsequence = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
+
+			$reg_number[] = $regsequence;
+
+			$data['regsequence'] = $regsequence;
+
 			$data['registrationnumber'] = implode('-',$reg_number);
 
 			$data['golfSequence'] = 0;
