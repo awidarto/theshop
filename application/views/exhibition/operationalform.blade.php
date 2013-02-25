@@ -131,7 +131,7 @@
             </tr>
         </table>
         
-        <table id="shipping-table">
+        <!--<table id="shipping-table">
         
          <tr>
              <th>Total Qty.</th>
@@ -149,11 +149,34 @@
              <td style="text-align: right;"><input type="text" class="total-box" value="$ 0" id="shipping-subtotal" disabled="disabled"></input></td>
          </tr>
         
+        </table>-->
+
+        <table id="total-electric">
+          <tr>
+            <td class="grayTable alignRight">Total (USD)</td>
+            <td class="result">USD</td>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">Late Order Surcharge 30%</td>
+            <td class="result">USD</td>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
+            <td class="result">USD</td>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
+            <td class="result">USD</td>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">Grand Total</td>
+            <td class="result">USD</td>
+          </tr>
         </table>
         
         <div class="clear"></div>
         
-        <div style="text-align: right;">
+        <!--<div style="text-align: right;">
             <span>ORDER TOTAL: </span> 
             <input type="text" class="total-box" value="$ 0" id="order-total" disabled="disabled"></input>
             
@@ -167,7 +190,7 @@
                 <input type="submit" value="Submit Order" class="submit" />
                 
             </form>
-        </div>
+        </div>-->
         <!--<div class="clear"></div>
         <div>
             <h4>Terms & Conditions:</h4>

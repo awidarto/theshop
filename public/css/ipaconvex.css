@@ -396,21 +396,21 @@ h2.StepTitle{
 }
 #order-table { width: 653px; height: 100%;margin-top:7px;}
 #order-table td { padding: 5px; }
-#order-table th { padding: 5px; background: #696969; color: white; text-align: center; }
+#order-table th { padding: 5px; background: #696969; color: white; text-align: center;font-size: 11px; }
 
 #order-table td input { width: 30px; text-align: center;font-size: 11px; }
 #order-table tr.even td { background: #eee; }
 .num-pallets input { background: white; }
 .num-pallets input.warning { background: #ffdcdc; }
-#order-table td.row-total{text-align: center;margin:0 auto;padding-left: 35px;}
-#order-table td.row-total input{width: 50px;}
+#order-table td.row-total{text-align: center;margin:0 auto;padding-left: 45px;}
+#order-table td.row-total input{width: 65px;}
 #order-table td.price-per-pallet{text-align: center}
-#order-table td.num-pallets{text-align: center;margin:0 auto;padding-left: 20px;}
+#order-table td.num-pallets{text-align: center;margin:0 auto;padding-left: 30px;}
 #order-table td .total-box, .total-box { border: 3px solid green; width: 50px; padding: 3px; margin: 5px 0 5px 0; text-align: center; font-size: 14px; display: inline-block;}
 
 
 .orderform td { padding: 5px; }
-.orderform th { padding: 5px; background: #696969; color: white; text-align: center; }
+.orderform th { padding: 5px; background: #696969; color: white; text-align: center;font-size: 11px; }
 
 .orderform td input { width: 30px; text-align: center;font-size: 11px; }
 .orderform tr.even td { background: #eee; }
@@ -423,10 +423,10 @@ h2.StepTitle{
 .orderform td .total-box, .total-box { border: 3px solid green; width: 50px; padding: 3px; margin: 5px 0 5px 0; text-align: center; font-size: 14px; display: inline-block;}
 
 .instalationfee{
-  width: 200px;
+  width: 176px;
 }
 .priceinstall{
-  width: 120px;
+  width: 116px;
 }
 .qinstall{
   width:96px;
@@ -449,3 +449,23 @@ h2.StepTitle{
 #shipping-table td input { width: 30px;  text-align: center; }
 
 #order-total { font-weight: bold; font-size: 20px; width: 110px; display: inline-block;}
+
+#total-electric{
+  float: right;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+#total-electric td{
+  padding:10px;
+}
+#total-electric .result{
+  padding: 8px;
+  width: 168px;
+}
+.grayTable{
+  padding: 5px; background: #696969; color: white; text-align: center;
+}
+.alignRight{
+  text-align: right;
+}
