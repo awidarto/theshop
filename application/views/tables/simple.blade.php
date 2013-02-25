@@ -374,6 +374,11 @@
 				"oLanguage": { "sSearch": "Search "},
 				"sPaginationType": "full_numbers",
 				"sDom": 'Tlrpit',
+				@if(isset($excludecol) && $excludecol != '')
+				"oColVis": {
+					"aiExclude": [ {{ $excludecol }} ]
+				},
+				@endif
 				"oTableTools": {
 					"sSwfPath": "{{ URL::base() }}/swf/copy_csv_xls_pdf.swf"
 				},
