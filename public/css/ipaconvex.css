@@ -470,9 +470,12 @@ h2.StepTitle{
 .alignRight{
   text-align: right;
 }
-#product-subtotal{
+td.result span{
   font-weight: bold;
   text-align: right;
   font-size: 13px;
   float: right;
+}
+#order-total{
+  font-size: 18px;
 }

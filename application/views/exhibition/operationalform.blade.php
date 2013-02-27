@@ -19,7 +19,8 @@
           <label class="stepNumber">4</label>
       </a></li>
   </ul>
-  <div id="step-1">   
+  <div id="step-1">
+
     <h2 class="StepTitle">ELECTRICITY INSTALLATION</h2>
     <div id="page-wrap">
         <table id="order-table">
@@ -115,26 +116,6 @@
                 <td class="textcentertable">USD 50</td>
             </tr>
         </table>
-        
-        <!--<table id="shipping-table">
-        
-         <tr>
-             <th>Total Qty.</th>
-             <th>X</th>
-             <th>Shipping Rate</th>
-             <th>=</th>
-             <th style="text-align: right;">Shipping Total</th>
-         </tr>
-         
-         <tr>
-             <td id="total-pallets"><input id="total-pallets-input" value="0" type="text" disabled="disabled"></input></td>
-             <td>X</td>
-             <td id="shipping-rate">10.00</td>
-             <td>=</td>
-             <td style="text-align: right;"><input type="text" class="total-box" value="$ 0" id="shipping-subtotal" disabled="disabled"></input></td>
-         </tr>
-        
-        </table>-->
 
         <table id="total-electric">
           <tr>
@@ -151,32 +132,16 @@
           </tr>
           <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
-            <td class="result">USD</td>
+            <td class="result">USD<span id="product-tax"></span></td>
           </tr>
           <tr>
             <td class="grayTable alignRight">Grand Total</td>
-            <td class="result">USD</td>
+            <td class="result">USD<span id="order-total"></span></td>
           </tr>
         </table>
         
         <div class="clear"></div>
-        
-        <!--<div style="text-align: right;">
-            <span>ORDER TOTAL: </span> 
-            <input type="text" class="total-box" value="$ 0" id="order-total" disabled="disabled"></input>
-            
-            <br />
-            
-            <form class="foxycart" action="https://css-tricks.foxycart.com/cart" method="post" accept-charset="utf-8" id="foxycart-order-form">
-                
-                <input type="hidden" name="name" value="Multi Product Order" />
-                <input type="hidden" id="fc-price" name="price" value="0" />
 
-                <input type="submit" value="Submit Order" class="submit" />
-                
-            </form>
-        </div>-->
-        <!--<div class="clear"></div>-->
         <div>
             <h4>Terms & Conditions:</h4>
             <ol>
@@ -191,11 +156,83 @@
         
     </div>
 
-
   </div>
   <div id="step-2">
-      <h2 class="StepTitle">Step 2 Content</h2> 
-       <!-- step content -->
+    <h2 class="StepTitle">TELEPHONE INSTALLATION</h2>
+    <div id="page-wrap">
+        <table id="order-table">
+            <tr>
+                 <th>No.</th>
+                 <th>TELEPHONE TYPE</th> 
+                 <th>PRICE/UNIT</th>
+                 <th>QUANTITY</th>
+                 <th style="padding-right: 30px;">SUB TOTAL (USD)</th> 
+            </tr>
+            <tr class="odd">
+                <td>1</td>
+                <td class="product-title"><strong>Dial 9</strong><br/>
+                • Service coverage: local call only (within Jakarta).<br/>
+                • Price includes call credit & installation.
+                </td>
+                <td class="price-per-pallet">USD <span>252</span></td>
+                <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="sparkle-num-pallets"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input></td>
+            </tr>
+            <tr class="even">
+                <td>2</td>
+                <td class="product-title"><Strong>Hotline</strong><br/>
+                • Service coverage: local, national, mobile phone, credit or debit card authorization.<br/>
+                • Commonly used for EDC / credit card purchasing.<br/>
+                • Price includes call credit & installation.<br/>
+                • Call back is not applicable.<br/></td>
+</td>
+                <td class="price-per-pallet">USD <span>402</span></td>
+                <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="turface-mvp-num-pallets"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="turface-mvp-row-total" disabled="disabled"></input></td>
+            </tr>
+            
+        </table>
+
+        
+
+        <table id="total-electric">
+          <tr>
+            <td class="grayTable alignRight">Total (USD)</td>
+            <td class="result">USD <span id="subTotalPhone"></span></td>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">Late Order Surcharge 30%</td>
+            <td class="result">USD</td>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
+            <td class="result">USD</td>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
+            <td class="result">USD<span id="faxTotalPhone"></span></td>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">Grand Total</td>
+            <td class="result">USD<span id="grandTotalPhone"></span></td>
+          </tr>
+        </table>
+        
+        <div class="clear"></div>
+
+        <div>
+            <h4>Terms & Conditions:</h4>
+            <ol>
+              <li>Rental price during the exhibition starts at 9.00 am until 9.00 pm. </li>
+              <li>Please submit a drawing which indicates specific location for the telephone.</li>
+              <li>Telephone handset must be returned after the exhibition ends</li>
+              <li>On-site order for telephone cannot be granted</li>
+              <li>Orders without payment will not be executed</li>
+              <li>As stocks are limited, late orders will be subject to a 30% surcharge after 14 April 2013</li>
+            </ol>
+        </div>
+        
+    </div>
   </div>                      
   <div id="step-3">
       <h2 class="StepTitle">Step 3 Title</h2>   

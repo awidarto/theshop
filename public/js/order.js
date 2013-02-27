@@ -94,10 +94,54 @@ function calcProdSubTotal() {
         var valString = $(this).val() || 0;
         
         prodSubTotal += parseInt(valString);
-                    
-    });
+
         
+    });
+    var instalationFee = 50;
+    prodSubTotal = prodSubTotal+instalationFee;
     $("#product-subtotal").text(CommaFormatted(prodSubTotal));
+
+}
+
+function calcTax() {
+
+    var totaltax = 0;
+
+    var productSubtotal = $("#product-subtotal").text() || 0;
+
+    var totaltax = (10 * parseInt(CleanNumber(productSubtotal)))/100;    
+    
+    $("#product-tax").text(CommaFormatted(totaltax));
+
+}
+
+
+function calcProdSubTotalPhone() {
+    
+    var prodSubTotal = 0;
+
+    $(".row-total-input").each(function() {
+    
+        var valString = $(this).val() || 0;
+        
+        prodSubTotal += parseInt(valString);
+
+        
+    });
+    
+    $("#subTotalPhone").text(CommaFormatted(prodSubTotal));
+
+}
+
+function calcTaxPhone() {
+
+    var totaltax = 0;
+
+    var productSubtotal = $("#subTotalPhone").text() || 0;
+
+    var totaltax = (10 * parseInt(CleanNumber(productSubtotal)))/100;    
+    
+    $("#faxTotalPhone").text(CommaFormatted(totaltax));
 
 }
 
@@ -115,15 +159,29 @@ function calcOrderTotal() {
 
     var orderTotal = 0;
 
-    var productSubtotal = $("#product-subtotal").val() || 0;
-    var shippingSubtotal = $("#shipping-subtotal").val() || 0;
-    var underTotal = $("#under-box").val() || 0;
+    var productSubtotal = $("#product-subtotal").text() || 0;
+    var taxTotal = $("#product-tax").text() || 0;
         
-    var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(shippingSubtotal));    
+    var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
         
-    $("#order-total").val(CommaFormatted(orderTotal));
+    $("#order-total").text(CommaFormatted(orderTotal));
     
-    $("#fc-price").attr("value", orderTotal);
+    //$("#fc-price").attr("value", orderTotal);
+    
+}
+
+function calcOrderTotalPhone() {
+
+    var orderTotal = 0;
+
+    var productSubtotal = $("#subTotalPhone").text() || 0;
+    var taxTotal = $("#faxTotalPhone").text() || 0;
+        
+    var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
+        
+    $("#grandTotalPhone").text(CommaFormatted(orderTotal));
+    
+    //$("#fc-price").attr("value", orderTotal);
     
 }
 
@@ -212,9 +270,73 @@ $(function() {
         
         // Calcuate the overal totals
         calcProdSubTotal();
+        calcTax();
         //calcTotalPallets();
         //calcShippingTotal();
         calcOrderTotal();
+    
+    });
+
+    $('.num-pallets-input-phone').bind("focus blur change keyup", function(){
+    
+        // Caching the selector for efficiency 
+        var $el = $(this);
+    
+        // Grab the new quantity the user entered
+        var numPallets = CleanNumber($el.val());
+                
+        // Find the pricing
+        var multiplier = $el
+            .parent().parent()
+            .find("td.price-per-pallet span")
+            .text();
+        
+        // If the quantity is empty, reset everything back to empty
+        if ( (numPallets == '') || (numPallets == 0) ) {
+        
+            $el
+                .removeClass("warning")
+                .parent().parent()
+                .find("td.row-total input")
+                .val("");
+                
+            var titleClass = $el.parent().parent().find("td.product-title").attr("rel");
+            
+            removeName(titleClass);
+        
+        // If the quantity is valid, calculate the row total
+        } else if ( (IsNumeric(numPallets)) && (numPallets != '') ) {
+            
+            var rowTotal = numPallets * multiplier;
+            
+            $el
+                .removeClass("warning")
+                .parent().parent()
+                .find("td.row-total input")
+                .val(rowTotal);
+                
+            var titleClass = $el.parent().parent().find("td.product-title").attr("rel");
+                    
+            applyName(titleClass, numPallets);
+                                       
+        } else {
+        
+            $el
+                .addClass("warning")
+                .parent().parent()
+                .find("td.row-total input")
+                .val("");
+            
+            var titleClass = $el.parent().parent().find("td.product-title").attr("rel");
+            
+            removeName(titleClass);
+                                          
+        };
+        
+        
+        calcProdSubTotalPhone();
+        calcTaxPhone();
+        calcOrderTotalPhone();
     
     });
 
