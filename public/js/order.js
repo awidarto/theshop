@@ -40,7 +40,7 @@ function CommaFormatted(amount) {
 	
 	n = a.join(delimiter);
 	
-	amount = "$" + minus + n;
+	amount = minus + n;
 	
 	return amount;
 	
@@ -97,7 +97,7 @@ function calcProdSubTotal() {
                     
     });
         
-    $("#product-subtotal").val(CommaFormatted(prodSubTotal));
+    $("#product-subtotal").text(CommaFormatted(prodSubTotal));
 
 }
 
@@ -146,11 +146,11 @@ $(function() {
     
     // Reset form on page load, optional
     $("#order-table input[type=text]:not('#product-subtotal')").val("");
-    $("#product-subtotal").val("$0");
-    $("#shipping-subtotal").val("$0");
-    $("#fc-price").val("$0");
-    $("#order-total").val("$0");
-    $("#total-pallets-input").val("0");
+    $("#product-subtotal").val("0");
+    //$("#shipping-subtotal").val("$0");
+    //$("#fc-price").val("$0");
+    //$("#order-total").val("$0");
+    //$("#total-pallets-input").val("0");
     
     // "The Math" is performed pretty much whenever anything happens in the quanity inputs
     $('.num-pallets-input').bind("focus blur change keyup", function(){
@@ -212,8 +212,8 @@ $(function() {
         
         // Calcuate the overal totals
         calcProdSubTotal();
-        calcTotalPallets();
-        calcShippingTotal();
+        //calcTotalPallets();
+        //calcShippingTotal();
         calcOrderTotal();
     
     });

@@ -132,7 +132,7 @@ ul, ol, dl {
   margin-bottom: 17px;
   list-style-position: outside;
 }
-.button {
+.button,.buttonNext {
   width: auto;
   background: #b60002;
   border: 1px solid #1e728c;
@@ -160,7 +160,7 @@ ul, ol, dl {
   margin-top: 10px;
   margin-bottom: 30px;
 }
-.button:hover{
+.button:hover,.buttonNext:hover{
   background: #8d0002;
 }
 form input{
@@ -462,10 +462,17 @@ h2.StepTitle{
 #total-electric .result{
   padding: 8px;
   width: 168px;
+  position: relative;
 }
 .grayTable{
   padding: 5px; background: #696969; color: white; text-align: center;
 }
 .alignRight{
   text-align: right;
+}
+#product-subtotal{
+  font-weight: bold;
+  text-align: right;
+  font-size: 13px;
+  float: right;
 }

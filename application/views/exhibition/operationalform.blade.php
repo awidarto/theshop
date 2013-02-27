@@ -8,30 +8,15 @@
   <ul>
     <li><a href="#step-1">
           <label class="stepNumber">1</label>
-          <span class="stepDesc">
-             <small>ELECTRICITY INSTALLATION</small>
-          </span>
       </a></li>
     <li><a href="#step-2">
           <label class="stepNumber">2</label>
-          <span class="stepDesc">
-             Step 2<br />
-             <small>Step 2 description</small>
-          </span>
       </a></li>
     <li><a href="#step-3">
           <label class="stepNumber">3</label>
-          <span class="stepDesc">
-             Step 3<br />
-             <small>Step 3 description</small>
-          </span>                   
        </a></li>
     <li><a href="#step-4">
           <label class="stepNumber">4</label>
-          <span class="stepDesc">
-             Step 4<br />
-             <small>Step 4 description</small>
-          </span>                   
       </a></li>
   </ul>
   <div id="step-1">   
@@ -154,7 +139,7 @@
         <table id="total-electric">
           <tr>
             <td class="grayTable alignRight">Total (USD)</td>
-            <td class="result">USD</td>
+            <td class="result">USD <span id="product-subtotal"></span></td>
           </tr>
           <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
@@ -191,10 +176,18 @@
                 
             </form>
         </div>-->
-        <!--<div class="clear"></div>
+        <!--<div class="clear"></div>-->
         <div>
             <h4>Terms & Conditions:</h4>
-        </div>-->
+            <ol>
+              <li>Every order of the electricity power will be charged with Installation fee. </li>
+              <li>Rental price during the exhibition starts at 9.00 am until 9.00 pm.</li>
+              <li>Every on-site order request for electricity installation must be paid in cash.</li>
+              <li>24 hours electrical requirement will be charged double.</li>
+              <li>Orders without payment will not be executed.</li>
+              <li>As stocks are limited, late orders will be subjected to a 30% surcharge after 14 April 2013 and 50% surcharge for onsite orders.</li>
+            </ol>
+        </div>
         
     </div>
 

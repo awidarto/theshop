@@ -110,7 +110,7 @@
   position:relative;
   float:left;
   margin:0;
-  padding:3px;
+  padding:3px 15px;
   height:30px;
   /*width:100px;*/
   text-decoration: none;
@@ -122,11 +122,11 @@
 .swMain ul.anchor li a .stepNumber{
   position:relative;
   float:left;
-  width:15px;
   text-align: center;
-  padding:5px;
+  /*padding:5px;*/
   padding-top:0;
   font: bold 15px Verdana, Arial, Helvetica, sans-serif;
+  display: inline-block;
 }
 .swMain ul.anchor li a .stepDesc{
   position:relative;
@@ -194,11 +194,12 @@
   font: bold 13px Verdana, Arial, Helvetica, sans-serif;
   width:100px;
   color:#FFF;
-  outline-style:none;
-  background-color:   #5A5655;
-  border: 1px solid #5A5655;
-  -moz-border-radius  : 5px; 
-  -webkit-border-radius: 5px;    
+  background: #b60002;
+  border: 1px solid #1e728c;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  color: #fff;  
 }
 .swMain .buttonDisabled {
   color:#F8F8F8  !important;
@@ -219,8 +220,7 @@
   outline-style:none;
   background-color:   #5A5655;
   border: 1px solid #5A5655;
-  -moz-border-radius  : 5px; 
-  -webkit-border-radius: 5px;    
+
 }
 .swMain .buttonFinish {
   display:block;
@@ -235,8 +235,7 @@
   outline-style:none;
   background-color:   #5A5655;
   border: 1px solid #5A5655;
-  -moz-border-radius  : 5px; 
-  -webkit-border-radius: 5px;    
+
 }
 
 /* Form Styles */
