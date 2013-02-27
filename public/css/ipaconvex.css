@@ -405,7 +405,7 @@ h2.StepTitle{
 #order-table td input { width: 30px; text-align: center;font-size: 11px; }
 #order-table tr.even td { background: #eee; }
 .num-pallets input { background: white; }
-.num-pallets input.warning { background: #ffdcdc; }
+.num-pallets input.warning,input.warning { background: #ffdcdc; }
 #order-table td.row-total{text-align: center;margin:0 auto;padding-left: 45px;}
 #order-table td.row-total input{width: 65px;}
 #order-table td.price-per-pallet{text-align: center}

@@ -626,9 +626,10 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture1.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer">
-            <input type="text" id="" placeholder="0"></input><br/>
-            <span id="furnitureprice1" class="furnitureprice" price="15">USD 15/Unit</span>
+          <div class="furniturepricecontainer" price="15">
+            <input type="text" id="furnitureinput1" placeholder="0" class="num-pallets-input-furniture"></input><br/>
+            <span id="furnitureprice1" class="furnitureprice" >USD 15/Unit</span>
+            <input class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
 
@@ -637,9 +638,10 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture2.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer">
-            <input type="text" id="" placeholder="0"></input><br/>
-            <span id="furnitureprice1" class="furnitureprice" price="15">USD 15/Unit</span>
+          <div class="furniturepricecontainer" price="15">
+            <input type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
+            <span id="furnitureprice1" class="furnitureprice">USD 15/Unit</span>
+            <input class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
 
@@ -648,9 +650,10 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture3.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer">
-            <input type="text" id="" placeholder="0"></input><br/>
-            <span id="furnitureprice1" class="furnitureprice" price="45">USD 45/Unit</span>
+          <div class="furniturepricecontainer" price="45">
+            <input type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
+            <span id="furnitureprice1" class="furnitureprice">USD 45/Unit</span>
+            <input class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
       </div>
@@ -663,9 +666,10 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture4.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer">
-            <input type="text" id="" placeholder="0"></input><br/>
-            <span id="furnitureprice1" class="furnitureprice" price="21">USD 21/Unit</span>
+          <div class="furniturepricecontainer" price="21">
+            <input type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
+            <span id="furnitureprice1" class="furnitureprice" >USD 21/Unit</span>
+            <input class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
 
@@ -674,9 +678,10 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture5.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer">
-            <input type="text" id="" placeholder="0"></input><br/>
-            <span id="furnitureprice1" class="furnitureprice" price="15">USD 15/Unit</span>
+          <div class="furniturepricecontainer" price="15">
+            <input type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
+            <span id="furnitureprice1" class="furnitureprice" >USD 15/Unit</span>
+            <input class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
 
@@ -685,9 +690,10 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture6.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer">
-            <input type="text" id="" placeholder="0"></input><br/>
-            <span id="furnitureprice1" class="furnitureprice" price="45">USD 45/Unit</span>
+          <div class="furniturepricecontainer" price="45">
+            <input type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
+            <span id="furnitureprice1" class="furnitureprice">USD 45/Unit</span>
+            <input class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
       </div>
@@ -709,7 +715,7 @@
         </tr>
         <tr>
           <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
-          <td class="result">USD<span id="faxTotalPhone"></span></td>
+          <td class="result">USD<span id="faxTotalFurniture"></span></td>
         </tr>
         <tr>
           <td class="grayTable alignRight">Grand Total</td>
@@ -738,22 +744,22 @@
                 <td><strong>Package : 1 Mbps</strong></td>
                 <td class="price-per-pallet">USD <span>200</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input-internet" id="sparkle-num-pallets"></input></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input-internet" id="sparkle-num-pallets"></input></td>
+                <td class="num-pallets"><input type="text" class="num-pallets-input-internet quantitypalets" id="sparkle-num-pallets"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled"></input></td>
             </tr>
             <tr class="even">
-                <td><strong>Package : 1 Mbps</strong></td>
-                <td class="price-per-pallet">USD <span>200</span></td>
+                <td><strong>Package : 2 Mbps</strong></td>
+                <td class="price-per-pallet">USD <span>401</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input-internet" id="sparkle-num-pallets"></input></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input-internet" id="sparkle-num-pallets"></input></td>
+                <td class="num-pallets"><input type="text" class="num-pallets-input-internet quantitypalets" id="sparkle-num-pallets"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled"></input></td>
             </tr>
             <tr class="odd">
                 <td><strong>Instalation Fee</strong></td>
                 <td class="price-per-pallet">USD <span>5</span></td>
                 <td class="num-pallets"></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input-internet" id="sparkle-num-pallets"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled"></input></td>
+                <td class="num-pallets"><span class="" id="totalDayInternet"></span></td>
+                <td class="row-total"><input type="text" class="row-total-input-internet" id="totalFeeInstallInternet" disabled="disabled"></input></td>
             </tr>
 
             
@@ -836,18 +842,19 @@
             </tr>
             
             <tr class="even">
-                <td><strong style="font-size:12.5px;margin-left:20px;">USD 480,-</strong></td>
-                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 1</span><input type="text" class="num-pallets-input-internet" id="sparkle-num-pallets" style="margin:0 auto;margin-bottom:10px;"></input></td>
-                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 2</span><input type="text" class="num-pallets-input-internet" id="sparkle-num-pallets" style="margin:0 auto;margin-bottom:10px;"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled" style="margin-left:20px;margin-top:20px;"></input></td>
+                <td class="price-per-pallet"><strong style="font-size:12.5px;margin-left:20px;">USD <span>480</span>,-</strong></td>
+                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 1</span><input type="text" class="num-pallets-input-kiosk" id="sparkle-num-pallets" style="margin:0 auto;margin-bottom:10px;"></input></td>
+                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 2</span><input type="text" class="num-pallets-input-kiosk" id="sparkle-num-pallets" style="margin:0 auto;margin-bottom:10px;"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input-kiosk" id="sparkle-row-total" disabled="disabled" style="margin-left:20px;margin-top:20px;"></input></td>
             </tr>
             
         </table>
-        
-        <table id="total-internet" class="total-table">
+        <br/>
+        <br/>
+        <table id="total-kiosk" class="total-table">
           <tr>
             <td class="grayTable alignRight">Total (USD)</td>
-            <td class="result">USD <span id="subTotalInternet"></span></td>
+            <td class="result">USD <span id="subTotalKiosk"></span></td>
           </tr>
           <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
@@ -859,11 +866,11 @@
           </tr>
           <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
-            <td class="result">USD<span id="faxTotalInternet"></span></td>
+            <td class="result">USD<span id="faxTotalKiosk"></span></td>
           </tr>
           <tr>
             <td class="grayTable alignRight">Grand Total</td>
-            <td class="result">USD<span id="grandTotalInternet"></span></td>
+            <td class="result">USD<span id="grandTotalKiosk"></span></td>
           </tr>
         </table>
         
@@ -947,8 +954,6 @@
 
 <script>
   var index = 1;
-  
-
   function addfield() {
     index++;
     var appendStr = '<tr>';
