@@ -394,7 +394,7 @@ h2.StepTitle{
   font-size: 12px;
   margin-bottom: 10px;
 }
-#order-table { width: 653px; height: 100%;margin-top:7px;}
+#order-table { width: 880px; height: 100%;margin-top:7px;}
 #order-table td { padding: 5px; }
 #order-table th { padding: 5px; background: #696969; color: white; text-align: center;font-size: 11px; }
 
@@ -478,4 +478,68 @@ td.result span{
 }
 #order-total{
   font-size: 18px;
+}
+
+#boothcontractor label{
+  display: inline-block;
+  width: 130px;
+  float: left;
+  font-size: 12px;
+  margin-top: 3px;
+}
+#boothcontractor input{
+  display: inline-block;
+  float: left; 
+  width: 50%;
+  font-size: 11px;
+  padding: 2px 6px;
+}
+#boothcontractor input:after{
+  clear: both;
+  float: none;
+}
+.terms ol li{
+  font-size: 11px;
+}
+#boothcontractor{
+  padding:8px;
+}
+
+.stepContainer .content{
+  width: 100%;
+}
+img.booothImage{
+  float: left;
+  margin: 0 10px 10px 0;
+  display: block;
+  width: 208px;
+  border: 1px solid #c2c2c2;
+}
+.boothDetail{
+  
+  width: 380px;
+}
+.blockDisplay{
+  display: block;
+
+}
+.overlimit{
+   color: red;
+}
+#text_counter{
+  margin-left: 3px;
+  margin-top: -7px;
+  font-size: 10px;
+  display: block;
+}
+.regularTable td{
+  font-size: 12px;
+}
+.exhibitorpass{
+  margin-left: 155px;
+  margin-bottom: 23px;
+}
+.exhibitorpass td{
+  font-weight: bold;
+  padding:4px 0;
 }

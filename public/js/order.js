@@ -120,7 +120,7 @@ function calcProdSubTotalPhone() {
     
     var prodSubTotal = 0;
 
-    $(".row-total-input").each(function() {
+    $(".row-total-input-phone").each(function() {
     
         var valString = $(this).val() || 0;
         
