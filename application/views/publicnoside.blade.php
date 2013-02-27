@@ -121,7 +121,13 @@
                 <p><br />
                 </p>
                 <td width="900">
+                  @if(Auth::attendeecheck())
+                  @if (Auth::attendee()->role == "EXH")
+                  <p style="padding-left:7px;float:right;margin-right:30px;"><img src="http://www.ipaconvex.com/images/arrow1.jpg" border="0" align="absmiddle" style="margin-right:5px ">{{ HTML::link('exhibitor/profile','Back to my profile')}}</p>
+                  <div class="clear"></div>
                   @yield('content')
+                  @endif
+                  @endif
                 </td>
 
               </tr>

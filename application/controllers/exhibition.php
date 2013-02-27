@@ -292,7 +292,9 @@ class Exhibition_Controller extends Base_Controller {
 	}
 
 	public function get_operationalform(){
-
+		if(!Auth::exhibitor()){
+			return Redirect::to('exhibition/login');
+		}
 		$this->crumb->add('exhibition','Operational Form');
 
 		$form = new Formly();

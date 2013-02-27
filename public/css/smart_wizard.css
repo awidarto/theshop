@@ -247,11 +247,15 @@
   width:100px;
   color:#FFF;
   outline-style:none;
-  background-color:   #5A5655;
-  border: 1px solid #5A5655;
+  background-color: #5da423;
+  border: 1px solid #396516;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+
 
 }
-
+.swMain .buttonFinish:hover, .swMain .buttonFinish:focus { background-color: #457a1a; }
 /* Form Styles */
 
 .txtBox {
@@ -315,4 +319,12 @@
 .swMain .msgBox .close:hover{
   color: #EA8511;
   border: 1px solid #EA8511;  
+}
+
+.swMain ul.anchor li#step12 a#step-12{
+  color: #fff;
+background: transparent;
+cursor: text;
+border-right: none;
+
 }
