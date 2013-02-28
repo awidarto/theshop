@@ -215,6 +215,23 @@
 	</div>
 </div>
 
+<div id="updateFormStatus" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 id="myModalLabel">Operational Form Status</h3>
+	</div>
+	<div class="modal-body">
+
+		{{ Form::select('formstatus', Config::get('eventreg.formstatus'),null,array('id'=>'formstatusselect'))}}
+		
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" id="saveformstatus">Save</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+</div>
+
 <div id="updatePaymentGolf" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -562,6 +579,34 @@
 			},'json');
 		});
 
+
+		$('#saveformstatus').click(function(){
+			var paystat = $('#formstatusselect').val();
+			$('#saveformstatus').text('Processing..');
+			$('#saveformstatus').attr("disabled", true);	
+
+			<?php
+
+				$ajaxformstatus = (isset($ajaxformstatus))?$ajaxformstatus:'/';
+			?>
+
+			$.post('{{ URL::to($ajaxformstatus) }}',{'id':current_pay_id,'formstatus': paystat}, function(data) {
+				if(data.status == 'OK'){
+					//redraw table
+					oTable.fnStandingRedraw();
+					
+					//$('#paystatusindicator').html('Payment status updated');
+					$('#saveformstatus').text('Save');
+					$('#saveformstatus').attr("disabled", false);	
+					
+					$('#formstatusselect').val('open');
+
+					$('#updateFormStatus').modal('toggle');
+
+				}
+			},'json');
+		});
+
 		$('#savepaystatusGolf').click(function(){
 			var paystat = $('#paystatusselectgolf').val();
 			$('#savepaystatusGolf').text('Processing..');
@@ -741,6 +786,15 @@
 
 		   	}
 
+		   	if ($(e.target).is('.formstatus')) {
+				var _id = e.target.id;
+
+				current_pay_id = _id;
+
+				$('#updateFormStatus').modal();
+
+		   	}
+
 		   	if ($(e.target).is('.paygolf')) {
 				var _id = e.target.id;
 
@@ -768,6 +822,8 @@
 				$('#updateResendmail').modal();
 
 		   	}
+
+
 
 			if ($(e.target).is('.del')) {
 				var _id = e.target.id;

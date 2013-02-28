@@ -616,3 +616,248 @@ table.report td.countresult{
 .marginbottom{
 	margin-bottom: 20px;
 }
+
+/*operational form*/
+.clear { clear: both; }
+h2.StepTitle{
+  background-color: #000;
+  padding:10px;
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+#order-table { width: 100%; height: 100%;margin-top:7px;}
+#order-table td { padding: 5px; }
+#order-table th { padding: 5px; background: #696969; color: white; text-align: center;font-size: 11px; }
+
+#order-table td input { width: 30px; text-align: center;font-size: 11px; }
+#order-table tr.even td { background: #eee; }
+.num-pallets input { background: white; }
+.num-pallets input.warning,input.warning { background: #ffdcdc; }
+#order-table td.row-total{text-align: center;margin:0 auto;padding-left: 45px;}
+#order-table td.row-total input{width: 65px;}
+#order-table td.price-per-pallet{text-align: center}
+#order-table td.num-pallets{text-align: center;margin:0 auto;padding-left: 30px;}
+#order-table td .total-box, .total-box { border: 3px solid green; width: 50px; padding: 3px; margin: 5px 0 5px 0; text-align: center; font-size: 14px; display: inline-block;}
+
+
+.orderform td { padding: 5px; }
+.orderform th { padding: 5px; background: #696969; color: white; text-align: center;font-size: 11px; }
+
+.orderform td input { width: 30px; text-align: center;font-size: 11px; }
+.orderform tr.even td { background: #eee; }
+.num-pallets input { background: white; }
+.num-pallets input.warning { background: #ffdcdc; }
+.orderform td.row-total{text-align: center;margin:0 auto;padding-left: 35px;}
+.orderform td.row-total input{width: 50px;}
+.orderform td.price-per-pallet{text-align: center}
+.orderform td.num-pallets{text-align: center;margin:0 auto;padding-left: 20px;}
+.orderform td .total-box, .total-box { border: 3px solid green; width: 50px; padding: 3px; margin: 5px 0 5px 0; text-align: center; font-size: 14px; display: inline-block;}
+
+.instalationfee{
+  width: 176px;
+}
+.priceinstall{
+  width: 116px;
+}
+.qinstall{
+  width:96px;
+}
+.subinstall{
+  width: 157px;
+}
+#operationalfee{
+  margin-bottom: 10px;
+  width:98%;
+}
+.textcentertable{
+  text-align: center;
+}
+#shipping-subtotal { margin: 0; }
+
+#shipping-table { float: right; }
+#shipping-table td { padding: 5px; }
+
+#shipping-table th { padding: 5px; background: black; color: white; text-align: left; }
+#shipping-table td input { width: 30px;  text-align: center; }
+
+#order-total { font-weight: bold; font-size: 20px; width: 110px; display: inline-block;}
+
+#total-electric,.total-table{
+  float: right;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+#total-electric td,.total-table td{
+  padding:10px;
+}
+#total-electric .result,.total-table .result{
+  padding: 8px;
+  width: 168px;
+  position: relative;
+}
+.grayTable{
+  padding: 5px; background: #696969; color: white; text-align: center;
+}
+.alignRight{
+  text-align: right;
+}
+td.result span{
+  font-weight: bold;
+  text-align: right;
+  font-size: 13px;
+  float: right;
+}
+#order-total{
+  font-size: 18px;
+}
+
+#boothcontractor label{
+  display: inline-block;
+  width: 130px;
+  float: left;
+  font-size: 12px;
+  margin-top: 3px;
+}
+#boothcontractor input{
+  display: inline-block;
+  float: left; 
+  width: 50%;
+  font-size: 11px;
+  padding: 2px 6px;
+}
+#boothcontractor input:after{
+  clear: both;
+  float: none;
+}
+.terms ol li{
+  font-size: 11px;
+}
+#boothcontractor{
+  padding:8px;
+}
+
+.stepContainer .content{
+  width: 100%;
+}
+img.booothImage{
+  float: left;
+  margin: 0 10px 10px 0;
+  display: block;
+  width: 208px;
+  border: 1px solid #c2c2c2;
+}
+.boothDetail{
+  float: left;
+  width: 380px;
+}
+.blockDisplay{
+  display: block;
+
+}
+.overlimit{
+   color: red;
+}
+#text_counter{
+  margin-left: 3px;
+  margin-top: -7px;
+  font-size: 10px;
+  display: block;
+}
+.regularTable td{
+  font-size: 12px;
+}
+.exhibitorpass{
+  margin-left: 155px;
+  margin-bottom: 23px;
+}
+.exhibitorpass td{
+  font-weight: bold;
+  padding:4px 0;
+}
+#order-table td input.passholderbooth{
+  width: 93%;
+  font-size: 11.5px;
+  text-align: left;
+}
+.buttonBrown{
+  padding: 5px;
+  text-decoration: none;
+  text-align: center;
+  font: bold 11px Verdana, Arial, Helvetica, sans-serif;
+  width: 100px;
+  background:#E9E9E9;
+  border: 1px solid #c3c3c3;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  color: #1d1d1d;
+}
+
+.buttonBrown:hover{
+  padding: 5px;
+  text-decoration: none;
+  text-align: center;
+  font: bold 11px Verdana, Arial, Helvetica, sans-serif;
+  width: 100px;
+  border: 1px solid #c3c3c3;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  color: #1d1d1d;
+  background: #d0d0d0;
+}
+.furniturelistcontainer{
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  float: left;
+}
+.furnitureItem{
+  float: left;
+  margin-right: 10px;
+  position: relative;
+  width:30%;
+}
+.furnitureItem .furnituredetailcontainer{
+  float: left;
+  display: block;
+  width: auto;
+}
+.furnitureItem .furniturepricecontainer{
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+
+}
+
+img.furnitureImage{
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #c2c2c2;
+}
+span.furnitureTitle{
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+#boothcontractor .furniturepricecontainer input{
+  display: block;
+  width: 30px;
+  font-size: 12px;
+  padding: 2px 6px;
+  text-align: center;
+}
+#boothcontractor .furniturepricecontainer span{
+  display: block;
+  float: left;
+  font-style: italic;
+}
+.kiosklist{
+	display: inline-block;
+}

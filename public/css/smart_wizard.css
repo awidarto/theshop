@@ -27,7 +27,9 @@
   height:700px;
   width: 900px;
 }
-
+.adminview .swMain .stepContainer{
+ width: 1100px; 
+}
 .swMain .stepContainer div.content {
   display:block;
   position: absolute;  

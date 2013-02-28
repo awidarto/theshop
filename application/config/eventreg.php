@@ -55,6 +55,18 @@ return array(
 			'boothconfirm'=>'Convention & Golf Payment Confirmation',*/
 		),
 
+		'formstatus'=>array(
+			'open'=>'Open',
+			'approved'=>'Approved',
+			/*'reset'=>'Reset Password',
+			'golfinfo'=>'Golf Payment Information',
+			'convinfo'=>'Convention Payment Information',
+			'boothinfo'=>'Convention & Golf Payment Information',
+			'golfconfirm'=>'Golf Payment Confirmation',
+			'convconfirm'=>'Convention Payment Confirmation',
+			'boothconfirm'=>'Convention & Golf Payment Confirmation',*/
+		),
+
 		'golfquota'=>100,
 
 		'convetionfee'=>array(

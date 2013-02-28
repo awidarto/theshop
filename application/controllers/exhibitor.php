@@ -55,9 +55,9 @@ class Exhibitor_Controller extends Base_Controller {
 
 		$btn_add_to_group = '<span class=" add_to_group" id="add_to_group">'.$action_selection.'</span>';
 
-		$heads = array('#',$select_all,'Reg. Number','Reg. Date','Email','First Name','Last Name','Company','Country','');
+		$heads = array('#',$select_all,'Reg. Number','Reg. Date','Email','First Name','Last Name','Company','Country','Form Status','');
 
-		$searchinput = array(false,false,'Reg Number','Reg. Date','Email','First Name','Last Name','Company','Country',false);
+		$searchinput = array(false,false,'Reg Number','Reg. Date','Email','First Name','Last Name','Company','Country',false,false);
 
 		$colclass = array('','span1','span3','span1','span3','span3','span1','span1','span1','','','','');
 
@@ -72,6 +72,7 @@ class Exhibitor_Controller extends Base_Controller {
 				->with('ajaxsource',URL::to('exhibitor'))
 				->with('ajaxdel',URL::to('exhibitor/del'))
 				->with('ajaxpay',URL::to('exhibitor/paystatus'))
+				->with('ajaxformstatus',URL::to('exhibitor/setformstatus'))
 				->with('ajaxpaygolf',URL::to('exhibitor/paystatusgolf'))
 				->with('ajaxpaygolfconvention',URL::to('exhibitor/paystatusgolfconvention'))
 				->with('printsource',URL::to('exhibitor/printbadge'))
@@ -91,7 +92,7 @@ class Exhibitor_Controller extends Base_Controller {
 	{
 
 
-		$fields = array('registrationnumber','createdDate','email','firstname','lastname','company','country');
+		$fields = array('registrationnumber','createdDate','email','firstname','lastname','company','country','formstatus');
 
 		$rel = array('like','like','like','like','like','like','like','like');
 
@@ -165,13 +166,24 @@ class Exhibitor_Controller extends Base_Controller {
 		$form = new Formly();
 
 		$counter = 1 + $pagestart;
+
 		foreach ($exhibitors as $doc) {
 
 			$extra = $doc;
 
 			$select = $form->checkbox('sel_'.$doc['_id'],'','',false,array('id'=>$doc['_id'],'class'=>'selector'));
 
-			
+			if(isset($doc['formstatus'])){
+				if($doc['formstatus'] == 'submitted'){
+					$formstatus = '<span class="fontRed fontBold paymentStatusTable">'.$doc['formstatus'].'</span>';
+				}elseif ($doc['formstatus'] == 'approved') {
+					$formstatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['formstatus'].'</span>';
+				}else{
+					$formstatus = '<span class="fontGray fontBold paymentStatusTable">'.$doc['formstatus'].'</span>';
+				}
+			}else{
+				$formstatus = '<span class="fontGreen fontBold paymentStatusTable">'.$doc['formstatus'].'</span>';
+			}
 
 			$aadata[] = array(
 				$counter,
@@ -183,7 +195,9 @@ class Exhibitor_Controller extends Base_Controller {
 				$doc['lastname'],
 				$doc['company'],
 				$doc['country'],
-				'<a class="icon-"  ><i>&#xe1b0;</i><span class="pay" id="'.$doc['_id'].'" >Convention Status</span>'.
+				$formstatus,
+				'<a class="icon-"  ><i>&#xe1b0;</i><span class="formstatus" id="'.$doc['_id'].'" > Set Form Status</span>'.
+				'<a class="icon-"  href="'.URL::to('exhibitor/viewform/'.$doc['_id']).'"><i>&#x0035;</i><span> View Form</span>'.
 				'<a class="icon-"  href="'.URL::to('exhibitor/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
 				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
 				
@@ -310,6 +324,51 @@ class Exhibitor_Controller extends Base_Controller {
 
 		print json_encode($result);
 	}
+
+
+	public function post_setformstatus(){
+		$id = Input::get('id');
+		$paystatus = Input::get('formstatus');
+
+		$user = new Exhibitor();
+
+		if(is_null($id)){
+			$result = array('status'=>'ERR','data'=>'NOID');
+		}else{
+
+			$_id = new MongoId($id);
+
+
+			if($user->update(array('_id'=>$_id),array('$set'=>array('formstatus'=>$paystatus)))){
+				//Event::fire('paymentstatusgolf.update',array('id'=>$id,'result'=>'OK'));
+				$result = array('status'=>'OK','data'=>'CONTENTDELETED');
+				//mail to registrant about payment updated
+				//if only set to paid to send email
+				/*if($paystatus == 'paid'){
+					$data = $user->get(array('_id'=>$_id));
+
+					$body = View::make('email.confirmpaymentgolf')->with('data',$data)->render();
+
+
+					Message::to($data['email'])
+					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+					    ->subject('CONFIRMATION OF REGISTRATION (GOLF)- Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$data['registrationnumber'].')')
+					    ->body( $body )
+					    ->html(true)
+					    ->send();
+				}*/
+			}else{
+				//Event::fire('paymentstatusgolf.update',array('id'=>$id,'result'=>'FAILED'));
+				$result = array('status'=>'ERR','data'=>'DELETEFAILED');				
+			}
+		}
+
+		print json_encode($result);
+	}
+
+
+	
 
 
 	public function post_paystatusgolfconvention(){
@@ -542,6 +601,44 @@ class Exhibitor_Controller extends Base_Controller {
 	    }
 
 		
+	}
+
+	public function get_viewform($id){
+
+		$this->crumb->add('exhibitor','Form Submission',false);
+
+		$user = new Exhibitor();
+
+		$formData = new Operationalform();
+
+
+
+		$data = $formData->get(array('userid'=>$id));
+
+		if (isset($data['programdate1']) && $data['programdate1']!='') {$data['programdate1'] = date('Y-m-d', $data['programdate1']->sec); }
+		if (isset($data['programdate2']) && $data['programdate2']!='') {$data['programdate2'] = date('Y-m-d', $data['programdate2']->sec); }
+		if (isset($data['programdate3']) && $data['programdate3']!='') {$data['programdate3'] = date('Y-m-d', $data['programdate3']->sec); }
+		if (isset($data['programdate4']) && $data['programdate4']!='') {$data['programdate4'] = date('Y-m-d', $data['programdate4']->sec); }
+		if (isset($data['programdate5']) && $data['programdate5']!='') {$data['programdate5'] = date('Y-m-d', $data['programdate5']->sec); }
+		if (isset($data['programdate6']) && $data['programdate6']!='') {$data['programdate6'] = date('Y-m-d', $data['programdate6']->sec); }
+
+		if (isset ($data['cocktaildate1'])&& $data['cocktaildate1']!='') { $data['cocktaildate1'] = date('Y-m-d', $data['cocktaildate1']->sec);; }
+		if (isset ($data['cocktaildate2'])&& $data['programdate2']!='') { $data['cocktaildate2']  = date('Y-m-d', $data['cocktaildate2']->sec);; }
+		if (isset ($data['cocktaildate3'])&& $data['programdate3']!='') { $data['cocktaildate3']  = date('Y-m-d', $data['cocktaildate3']->sec);; }
+		if (isset ($data['cocktaildate4'])&& $data['programdate4']!='') { $data['cocktaildate4']  = date('Y-m-d', $data['cocktaildate4']->sec);; }
+
+		$form = new Formly();
+		//$form = Formly::make($user_profile);
+
+		//$form->framework = 'zurb';
+
+		return View::make('exhibitor.viewform')
+					->with('form',$form)
+					->with('data',$data)
+					->with('id',$id)
+					->with('crumb',$this->crumb)
+					->with('title','Operational Form Submission');
+
 	}
 
 	public function get_printbadge($id){

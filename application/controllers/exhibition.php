@@ -349,7 +349,7 @@ class Exhibition_Controller extends Base_Controller {
 
 		if($obj = $submitdata->insert($data)){
 
-			$exhibitor->update(array('_id'=>$_id),array('$set'=>array('formstatus'=>'inreview')));
+			$exhibitor->update(array('_id'=>$_id),array('$set'=>array('formstatus'=>'submitted')));
 			
 			//Event::fire('exhibitor.createformadmin',array($obj['_id'],$passwordRandom));
 			
