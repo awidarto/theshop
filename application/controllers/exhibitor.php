@@ -431,6 +431,7 @@ class Exhibitor_Controller extends Base_Controller {
 
 			//normalize
 			$data['confirmation'] = 'none';
+			$data['formstatus'] = 'open';
 			$data['address'] = '';
 			$data['cache_id'] = '';
 			$data['cache_obj'] = '';

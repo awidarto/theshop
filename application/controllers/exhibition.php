@@ -316,16 +316,17 @@ class Exhibition_Controller extends Base_Controller {
 
 		$exhibitor = new Exhibitor();
 		
-    	if (isset($data['programdate1'])) {$data['programdate1'] = new MongoDate(strtotime($data['programdate1']." 00:00:00")); }
-		if (isset($data['programdate2'])) {$data['programdate2'] = new MongoDate(strtotime($data['programdate2']." 00:00:00")); }
-		if (isset($data['programdate3'])) {$data['programdate3'] = new MongoDate(strtotime($data['programdate3']." 00:00:00")); }
-		if (isset($data['programdate4'])) {$data['programdate4'] = new MongoDate(strtotime($data['programdate4']." 00:00:00")); }
-		if (isset($data['programdate5'])) {$data['programdate5'] = new MongoDate(strtotime($data['programdate5']." 00:00:00")); }
-		if (isset($data['programdate6'])) {$data['programdate6'] = new MongoDate(strtotime($data['programdate6']." 00:00:00")); }
-		if (isset ($data['cocktaildate1'])) { $data['cocktaildate1'] = new MongoDate(strtotime($data['cocktaildate1']." 00:00:00")); }
-		if (isset ($data['cocktaildate2'])) { $data['cocktaildate2'] = new MongoDate(strtotime($data['cocktaildate2']." 00:00:00")); }
-		if (isset ($data['cocktaildate3'])) { $data['cocktaildate3'] = new MongoDate(strtotime($data['cocktaildate3']." 00:00:00")); }
-		if (isset ($data['cocktaildate4'])) { $data['cocktaildate4'] = new MongoDate(strtotime($data['cocktaildate4']." 00:00:00")); }
+    	if (isset($data['programdate1']) && $data['programdate1']!='') {$data['programdate1'] = new MongoDate(strtotime($data['programdate1']." 00:00:00")); }
+		if (isset($data['programdate2']) && $data['programdate2']!='') {$data['programdate2'] = new MongoDate(strtotime($data['programdate2']." 00:00:00")); }
+		if (isset($data['programdate3']) && $data['programdate3']!='') {$data['programdate3'] = new MongoDate(strtotime($data['programdate3']." 00:00:00")); }
+		if (isset($data['programdate4']) && $data['programdate4']!='') {$data['programdate4'] = new MongoDate(strtotime($data['programdate4']." 00:00:00")); }
+		if (isset($data['programdate5']) && $data['programdate5']!='') {$data['programdate5'] = new MongoDate(strtotime($data['programdate5']." 00:00:00")); }
+		if (isset($data['programdate6']) && $data['programdate6']!='') {$data['programdate6'] = new MongoDate(strtotime($data['programdate6']." 00:00:00")); }
+
+		if (isset ($data['cocktaildate1'])&& $data['cocktaildate1']!='') { $data['cocktaildate1'] = new MongoDate(strtotime($data['cocktaildate1']." 00:00:00")); }
+		if (isset ($data['cocktaildate2'])&& $data['programdate2']!='') { $data['cocktaildate2'] = new MongoDate(strtotime($data['cocktaildate2']." 00:00:00")); }
+		if (isset ($data['cocktaildate3'])&& $data['programdate3']!='') { $data['cocktaildate3'] = new MongoDate(strtotime($data['cocktaildate3']." 00:00:00")); }
+		if (isset ($data['cocktaildate4'])&& $data['programdate4']!='') { $data['cocktaildate4'] = new MongoDate(strtotime($data['cocktaildate4']." 00:00:00")); }
 
 		unset($data['csrf_token']);
 
@@ -375,6 +376,18 @@ class Exhibition_Controller extends Base_Controller {
 
 		$data = $formData->get(array('userid'=>$id));
 
+		if (isset($data['programdate1']) && $data['programdate1']!='') {$data['programdate1'] = date('Y-m-d', $data['programdate1']->sec); }
+		if (isset($data['programdate2']) && $data['programdate2']!='') {$data['programdate2'] = date('Y-m-d', $data['programdate2']->sec); }
+		if (isset($data['programdate3']) && $data['programdate3']!='') {$data['programdate3'] = date('Y-m-d', $data['programdate3']->sec); }
+		if (isset($data['programdate4']) && $data['programdate4']!='') {$data['programdate4'] = date('Y-m-d', $data['programdate4']->sec); }
+		if (isset($data['programdate5']) && $data['programdate5']!='') {$data['programdate5'] = date('Y-m-d', $data['programdate5']->sec); }
+		if (isset($data['programdate6']) && $data['programdate6']!='') {$data['programdate6'] = date('Y-m-d', $data['programdate6']->sec); }
+
+		if (isset ($data['cocktaildate1'])&& $data['cocktaildate1']!='') { $data['cocktaildate1'] = date('Y-m-d', $data['cocktaildate1']->sec);; }
+		if (isset ($data['cocktaildate2'])&& $data['programdate2']!='') { $data['cocktaildate2']  = date('Y-m-d', $data['cocktaildate2']->sec);; }
+		if (isset ($data['cocktaildate3'])&& $data['programdate3']!='') { $data['cocktaildate3']  = date('Y-m-d', $data['cocktaildate3']->sec);; }
+		if (isset ($data['cocktaildate4'])&& $data['programdate4']!='') { $data['cocktaildate4']  = date('Y-m-d', $data['cocktaildate4']->sec);; }
+
 		$form = new Formly();
 		//$form = Formly::make($user_profile);
 
@@ -385,7 +398,7 @@ class Exhibition_Controller extends Base_Controller {
 					->with('data',$data)
 					->with('id',$id)
 					->with('crumb',$this->crumb)
-					->with('title','Edit My Profile');
+					->with('title','Operational Form Submission');
 
 	}
 

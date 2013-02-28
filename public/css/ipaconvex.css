@@ -352,6 +352,14 @@ color: #222222;
   margin-bottom: 15px;
   color: #fff;
 }
+.alert-warning{
+  padding: 15px;
+  background-color: #b7a356;
+  width: 70%;
+  display: block;
+  margin-bottom: 15px;
+  color: #fff;
+}
 
 .details-expand h4{
   border-bottom: 1px solid #afafaf;

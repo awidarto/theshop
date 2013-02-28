@@ -517,15 +517,15 @@
         <tbody id="listadditionalbooth">
           <tr>
             <td><input name="addpassboothno1" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="addpassboothno1" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td><input name="addpassboothname1" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
           </tr>
           <tr>
             <td><input name="addpassboothno2" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="addpassboothno2" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td><input name="addpassboothname2" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
           </tr>
           <tr>
             <td><input name="addpassboothno3" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="addpassboothno3" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td><input name="addpassboothname3" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
           </tr>
           <input name="noaddpass" id="noaddpass" type="hidden" value="3"></input>
           
@@ -812,7 +812,7 @@
                 <input name="internetinstallday" type="hidden" id="internetinstallday"></input>
                 <td class="row-total">
                   <input type="text" class="row-total-input-internet" id="totalFeeInstallInternet" disabled="disabled"></input>
-                  <input name="internetinstallfee" type="hidden" class="row-total-input-internet" ></input>
+                  <input name="internetinstallfee" type="hidden" id="internetinstallfee" class="row-total-input-internet" ></input>
 
                 </td>
             </tr>
@@ -1027,7 +1027,7 @@
     index++;
     var appendStr = '<tr>';
     appendStr += '<td><input name="addpassboothno'+index+'" type="text" class="passholderbooth" id="" placeholder="15"></input></td>';
-    appendStr += '<td><input name="addpassboothno'+index+'" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>';
+    appendStr += '<td><input name="addpassboothname'+index+'" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>';
     appendStr +=  '</tr>';
     //var appendStr = '<div class="form-label"><label for="newfield'+index+'">New field no '+index+'</label></div>'
     //appendStr += '<div class="form-field"><input id="newfield'+index+'" name="newfield'+index+'" size="20" class="exit-detect"></div>'

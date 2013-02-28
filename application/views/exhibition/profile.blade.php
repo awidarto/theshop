@@ -40,6 +40,17 @@
 					<td>:&nbsp;</td>
 					<td class="detail-info">{{ $profile['mobile'] }}</td>
 				</tr>
+				<tr>
+					<td class="detail-title">Operational Form Status</td>
+					<td>:</td>
+					<?php
+					
+						//$countries = Config::get('country.countries');
+					?>
+					
+					<td class="detail-info" style="text-transform:uppercase;color:#A70405;">{{ $profile['formstatus']  }}</td>
+					
+				</tr>
 
 				
 
@@ -86,6 +97,9 @@
 					<td class="detail-info">{{ $profile['country']  }}</td>
 					
 				</tr>
+
+
+				
 
 				
 				

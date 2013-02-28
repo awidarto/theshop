@@ -545,6 +545,8 @@ $(function() {
         $("#internetinstallday").val(totalDay);
         
         $("#totalFeeInstallInternet").val(totalFeeInstallInternet);
+        
+        $("#internetinstallfee").val(totalFeeInstallInternet);
 
     }
 
