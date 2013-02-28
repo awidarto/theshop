@@ -373,16 +373,17 @@ class Exhibition_Controller extends Base_Controller {
 		$id = Auth::exhibitor()->id;
 
 
-		$data = $formData->get(array('_id'=>$id));
+		$data = $formData->get(array('userid'=>$id));
 
+		$form = new Formly();
+		//$form = Formly::make($user_profile);
 
-		$form = Formly::make($user_profile);
-
-		$form->framework = 'zurb';
+		//$form->framework = 'zurb';
 
 		return View::make('exhibition.readform')
-					->with('user',$user_profile)
+					->with('form',$form)
 					->with('data',$data)
+					->with('id',$id)
 					->with('crumb',$this->crumb)
 					->with('title','Edit My Profile');
 
