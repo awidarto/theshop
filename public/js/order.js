@@ -100,6 +100,7 @@ function calcProdSubTotal() {
     var instalationFee = 50;
     prodSubTotal = prodSubTotal+instalationFee;
     $("#product-subtotal").text(CommaFormatted(prodSubTotal));
+    $("#electricsubtotal").val(prodSubTotal);
 
 }
 
@@ -112,6 +113,7 @@ function calcTax() {
     var totaltax = (10 * parseInt(CleanNumber(productSubtotal)))/100;    
     
     $("#product-tax").text(CommaFormatted(totaltax));
+    $("#electrictax").val(totaltax);
 
 }
 
@@ -130,6 +132,7 @@ function calcProdSubTotalPhone() {
     });
     
     $("#subTotalPhone").text(CommaFormatted(prodSubTotal));
+    $("#phonesubtotal").val(prodSubTotal);
 
 }
 
@@ -142,6 +145,7 @@ function calcTaxPhone() {
     var totaltax = (10 * parseInt(CleanNumber(productSubtotal)))/100;    
     
     $("#faxTotalPhone").text(CommaFormatted(totaltax));
+    $("#phonetax").val(totaltax);
 
 }
 
@@ -166,7 +170,7 @@ function calcOrderTotal() {
         
     $("#order-total").text(CommaFormatted(orderTotal));
     
-    //$("#fc-price").attr("value", orderTotal);
+    $("#electricgrandtotal").val(orderTotal);
     
 }
 
@@ -181,7 +185,8 @@ function calcOrderTotalPhone() {
         
     $("#grandTotalPhone").text(CommaFormatted(orderTotal));
     
-    //$("#fc-price").attr("value", orderTotal);
+    $("#phonegrandtotal").val(orderTotal);
+    
     
 }
 
@@ -419,6 +424,7 @@ $(function() {
         });
         
         $("#subTotalFurniture").text(CommaFormatted(prodSubTotal));
+        $("#furnituresubtotal").val(prodSubTotal);
 
     }
     function calcTaxFurniture() {
@@ -430,6 +436,7 @@ $(function() {
         var totaltax = (10 * parseInt(CleanNumber(productSubtotal)))/100;    
         
         $("#faxTotalFurniture").text(CommaFormatted(totaltax));
+        $("#furnituretax").val(totaltax);
 
     }
 
@@ -443,8 +450,7 @@ $(function() {
         var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
             
         $("#grandTotalFurniture").text(CommaFormatted(orderTotal));
-        
-        //$("#fc-price").attr("value", orderTotal);
+        $("#furnituregrandtotal").val(orderTotal);
         
     }
 
@@ -535,6 +541,9 @@ $(function() {
 
         $("#totalDayInternet").text((totalDay));
         var totalFeeInstallInternet = totalDay*5;
+
+        $("#internetinstallday").val(totalDay);
+        
         $("#totalFeeInstallInternet").val(totalFeeInstallInternet);
 
     }
@@ -553,6 +562,7 @@ $(function() {
         });
         
         $("#subTotalInternet").text(CommaFormatted(prodSubTotal));
+        $("#internetsubtotal").val(prodSubTotal);
 
     }
     function calcTaxInternet() {
@@ -564,6 +574,7 @@ $(function() {
         var totaltax = (10 * parseInt(CleanNumber(productSubtotal)))/100;    
         
         $("#faxTotalInternet").text(CommaFormatted(totaltax));
+        $("#internettax").val(totaltax);
 
     }
 
@@ -578,7 +589,7 @@ $(function() {
             
         $("#grandTotalInternet").text(CommaFormatted(orderTotal));
         
-        //$("#fc-price").attr("value", orderTotal);
+        $("#internetgrandtotal").val(orderTotal);
         
     }
 
@@ -661,6 +672,7 @@ $(function() {
         });
         
         $("#subTotalKiosk").text(CommaFormatted(prodSubTotal));
+        $("#kiosksubtotal").val(prodSubTotal);
 
     }
     function calcTaxKiosk() {
@@ -672,6 +684,7 @@ $(function() {
         var totaltax = (10 * parseInt(CleanNumber(productSubtotal)))/100;    
         
         $("#faxTotalKiosk").text(CommaFormatted(totaltax));
+        $("#kiosktax").val(totaltax);
 
     }
 
@@ -685,7 +698,7 @@ $(function() {
         var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
             
         $("#grandTotalKiosk").text(CommaFormatted(orderTotal));
-        
+        $("#kioskgrandtotal").val(orderTotal);
         //$("#fc-price").attr("value", orderTotal);
         
     }

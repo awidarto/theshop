@@ -305,6 +305,101 @@ class Exhibition_Controller extends Base_Controller {
 
 	}
 
+
+	public function post_operationalform(){
+
+		//print_r(Session::get('permission'));
+
+	   
+
+		$data = Input::get();
+
+		$exhibitor = new Exhibitor();
+		
+    	if (isset($data['programdate1'])) {$data['programdate1'] = new MongoDate(strtotime($data['programdate1']." 00:00:00")); }
+		if (isset($data['programdate2'])) {$data['programdate2'] = new MongoDate(strtotime($data['programdate2']." 00:00:00")); }
+		if (isset($data['programdate3'])) {$data['programdate3'] = new MongoDate(strtotime($data['programdate3']." 00:00:00")); }
+		if (isset($data['programdate4'])) {$data['programdate4'] = new MongoDate(strtotime($data['programdate4']." 00:00:00")); }
+		if (isset($data['programdate5'])) {$data['programdate5'] = new MongoDate(strtotime($data['programdate5']." 00:00:00")); }
+		if (isset($data['programdate6'])) {$data['programdate6'] = new MongoDate(strtotime($data['programdate6']." 00:00:00")); }
+		if (isset ($data['cocktaildate1'])) { $data['cocktaildate1'] = new MongoDate(strtotime($data['cocktaildate1']." 00:00:00")); }
+		if (isset ($data['cocktaildate2'])) { $data['cocktaildate2'] = new MongoDate(strtotime($data['cocktaildate2']." 00:00:00")); }
+		if (isset ($data['cocktaildate3'])) { $data['cocktaildate3'] = new MongoDate(strtotime($data['cocktaildate3']." 00:00:00")); }
+		if (isset ($data['cocktaildate4'])) { $data['cocktaildate4'] = new MongoDate(strtotime($data['cocktaildate4']." 00:00:00")); }
+
+		unset($data['csrf_token']);
+
+		$userid = Auth::exhibitor()->id;
+
+		$_id = new MongoId($userid);
+
+		$userdata = $exhibitor->get(array('_id'=>$_id));
+		$data['userid'] = $userdata['_id']->__toString();
+
+		$data['createdDate'] = new MongoDate();
+		$data['lastUpdate'] = new MongoDate();
+
+		
+		
+
+		$exhibitor = new Exhibitor();
+
+		$submitdata = new Operationalform();
+
+		if($obj = $submitdata->insert($data)){
+
+			$exhibitor->update(array('_id'=>$_id),array('$set'=>array('formstatus'=>'inreview')));
+			
+			//Event::fire('exhibitor.createformadmin',array($obj['_id'],$passwordRandom));
+			
+	    	return Redirect::to('exhibition/formsubmitted')->with('notify_success',Config::get('site.register_success'));
+		}else{
+	    	return Redirect::to('exhibition/formsubmitted')->with('notify_success',Config::get('site.register_failed'));
+		}
+
+	    
+
+		
+	}
+
+	public function get_readform(){
+
+		//$this->crumb->add('user/edit','Edit',false);
+
+		$user = new Exhibitor();
+
+		$formData = new Operationalform();
+
+		$id = Auth::exhibitor()->id;
+
+
+		$data = $formData->get(array('_id'=>$id));
+
+
+		$form = Formly::make($user_profile);
+
+		$form->framework = 'zurb';
+
+		return View::make('exhibition.readform')
+					->with('user',$user_profile)
+					->with('data',$data)
+					->with('crumb',$this->crumb)
+					->with('title','Edit My Profile');
+
+	}
+
+	public function get_formsubmitted(){
+
+		$this->crumb->add('exhibition','Exhibition');
+
+		$form = new Formly();
+		return View::make('exhibition.formsubmitted')
+					->with('form',$form)
+					->with('crumb',$this->crumb)
+					->with('title','Thank you for your submission!');
+
+	}
+
 	public function get_landing(){
 
 		$this->crumb->add('exhibition','Exhibition');
