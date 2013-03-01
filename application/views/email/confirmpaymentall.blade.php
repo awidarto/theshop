@@ -81,26 +81,26 @@
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
 				@if($data['regtype'] == 'PD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">4.500.000</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">4.500.000</span>
 				@elseif($data['regtype'] == 'SD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">400.000</span>					
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">400.000</span>					
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				@endif
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:40px;padding:10px;">
 				@if($data['regtype'] == 'PO')
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
 				@elseif($data['regtype'] == 'SO')
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
 				@else
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				@endif
 			</div>
 		</div>
@@ -114,14 +114,14 @@
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
 				
 				<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-				<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>
+				<span style="width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>
 				
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:40px;padding:10px;">
 				
-				<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-				<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+				<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				
 			</div>
 		</div>
@@ -136,13 +136,13 @@
 				
 				@if($data['regtype'] == 'PD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">7.000.000</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">7.000.000</span>
 				@elseif($data['regtype'] == 'PO')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				@endif
 
 
@@ -152,14 +152,14 @@
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
 
 				@if($data['regtype'] == 'PO')
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
 				@elseif($data['regtype'] == 'SO')
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
 				@else
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				@endif
 
 				
@@ -171,16 +171,16 @@
 		<div style="width:100%;position:relative;display:block;float:left;">
 			<div style="width:50%;position:relative;display:inline-block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
 				<strong style="width:60%;position:relative;display:block;float:left;">PAYMENT RECEIVED</strong>
-				<span style="color:red;width:40%;position:relative;display:block;float:left;"><?php echo date('l jS F Y');?></span>
+				<span style="width:40%;position:relative;display:block;float:left;"><?php echo date('l jS F Y');?></span>
 			</div>
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
-				<span style="color:red;width:50%;position:relative;display:block;float:left;">&nbsp;</span>
-				<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				<span style="width:50%;position:relative;display:block;float:left;">&nbsp;</span>
+				<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:40px;padding:10px;">
-				<span style="color:red;width:50%;position:relative;display:block;float:left;">&nbsp;</span>
-				<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				<span style="width:50%;position:relative;display:block;float:left;">&nbsp;</span>
+				<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 			</div>
 		</div>
 	</div>
@@ -194,27 +194,27 @@
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
 				@if($data['regtype'] == 'PD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">7.000.000</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">7.000.000</span>
 				@elseif($data['regtype'] == 'PO')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>	
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000</span>	
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>	
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>	
 				@endif
 
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
 				@if($data['regtype'] == 'PO')
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">500</span>
 				@elseif($data['regtype'] == 'SO')
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">120</span>
 				@else
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				@endif
 
 				
@@ -231,15 +231,15 @@
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
 				
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				
 				
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
 				
-					<span style="color:red;width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="color:red;width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				
 				
 			</div>
@@ -251,7 +251,7 @@
 			<li style="padding:5px 0 0 0;">PLEASE REGARD THIS SLIP AS AN OFFICIAL RECEIPT</li>
 			<li style="padding:5px 0 0 0;">PLEASE TAKE THIS SLIP TO THE REGISTRATION DESK TO OBTAIN YOUR ID BADGE & CONVENTION KITS</li>
 			<li style="padding:5px 0 0 0;">REGISTRATION WILL START AT <strong>10:00 - 15:00 HOURS ON 13-14 MAY 2013 AND AT 08:00 - 15:00 HOURS ON 15-17 MAY 2013 (AT JCC REGISTRATION COUNTER)</strong></li>
-			<li style="padding:5px 0 0 0;">PLEASE CHECK THE SPELLING OF YOUR NAME, AS THIS IS HOW IT WILL APPEAR ON YOUR BADGE.  IF THERE ARE ANY ERRORS, PLEASE MAKE THE CORRECTIONS ONTO THIS PAGE AND FAX BACK TO (62-21) 570 5798</li>
+			<li style="padding:5px 0 0 0;">PLEASE CHECK THE SPELLING OF YOUR NAME, AS THIS IS HOW IT WILL APPEAR ON YOUR BADGE.  IF THERE ARE ANY ERRORS, PLEASE MAKE THE CORRECTIONS ONTO THIS PAGE AND FAX BACK TO (62-21) 31997176</li>
 			<li style="padding:5px 0 0 0;"><strong>NO REFUND</strong>WILL BE GRANTED FOR <strong>CANCELLATION AFTER 14 APRIL 2013</strong></li>
 			<li style="padding:5px 0 0 0;">PLEASE CHECK YOUR NAME ON THIS RECEIPT AS THIS WILL BE USED FOR YOUR ID BADGE</li>
 		</ul>
