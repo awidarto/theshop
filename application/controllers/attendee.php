@@ -739,7 +739,7 @@ class Attendee_Controller extends Base_Controller {
 
 			$regsequence = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 
-			$reg_number[] = $regsequence;
+			//$reg_number[] = $regsequence;
 
 			$data['regsequence'] = $regsequence;
 			$data['registrationnumber'] = implode('-',$reg_number);
