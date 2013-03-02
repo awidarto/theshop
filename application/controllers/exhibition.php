@@ -363,6 +363,97 @@ class Exhibition_Controller extends Base_Controller {
 		
 	}
 
+	public function get_editform(){
+
+		//$this->crumb->add('user/edit','Edit',false);
+		$formoperational = new Operationalform();
+
+		$id = Auth::exhibitor()->id;
+
+		//$id = new MongoId($id);
+
+		$user_form = $formoperational->get(array('userid'=>$id));
+
+		if (isset($user_form['programdate1']) && $user_form['programdate1']!='') {$user_form['programdate1'] = date('d-m-Y', $user_form['programdate1']->sec); }
+		if (isset($user_form['programdate2']) && $user_form['programdate2']!='') {$user_form['programdate2'] = date('d-m-Y', $user_form['programdate2']->sec); }
+		if (isset($user_form['programdate3']) && $user_form['programdate3']!='') {$user_form['programdate3'] = date('d-m-Y', $user_form['programdate3']->sec); }
+		if (isset($user_form['programdate4']) && $user_form['programdate4']!='') {$user_form['programdate4'] = date('d-m-Y', $user_form['programdate4']->sec); }
+		if (isset($user_form['programdate5']) && $user_form['programdate5']!='') {$user_form['programdate5'] = date('d-m-Y', $user_form['programdate5']->sec); }
+		if (isset($user_form['programdate6']) && $user_form['programdate6']!='') {$user_form['programdate6'] = date('d-m-Y', $user_form['programdate6']->sec); }
+
+		if (isset ($user_form['cocktaildate1'])&& $user_form['cocktaildate1']!='') { $user_form['cocktaildate1'] = date('d-m-Y', $user_form['cocktaildate1']->sec);; }
+		if (isset ($user_form['cocktaildate2'])&& $user_form['programdate2']!='') { $user_form['cocktaildate2']  = date('d-m-Y', $user_form['cocktaildate2']->sec);; }
+		if (isset ($user_form['cocktaildate3'])&& $user_form['programdate3']!='') { $user_form['cocktaildate3']  = date('d-m-Y', $user_form['cocktaildate3']->sec);; }
+		if (isset ($user_form['cocktaildate4'])&& $user_form['programdate4']!='') { $user_form['cocktaildate4']  = date('d-m-Y', $user_form['cocktaildate4']->sec);; }
+
+
+		$form = Formly::make($user_form);
+
+		$form->framework = 'zurb';
+
+		return View::make('exhibition.editform')
+					->with('data',$user_form)
+					->with('form',$form)
+					->with('crumb',$this->crumb)
+					->with('title','Edit My Profile');
+
+	}
+
+
+	public function post_editform(){
+
+		//print_r(Session::get('permission'));
+
+
+		$data = Input::get();
+
+		$id = new MongoId($data['id']);
+		$data['lastUpdate'] = new MongoDate();
+		
+		
+		unset($data['csrf_token']);
+		unset($data['id']);
+
+		$operationalform = new Operationalform();
+		
+		if (isset($data['programdate1']) && $data['programdate1']!='') {$data['programdate1'] = new MongoDate(strtotime($data['programdate1']." 00:00:00")); }
+		if (isset($data['programdate2']) && $data['programdate2']!='') {$data['programdate2'] = new MongoDate(strtotime($data['programdate2']." 00:00:00")); }
+		if (isset($data['programdate3']) && $data['programdate3']!='') {$data['programdate3'] = new MongoDate(strtotime($data['programdate3']." 00:00:00")); }
+		if (isset($data['programdate4']) && $data['programdate4']!='') {$data['programdate4'] = new MongoDate(strtotime($data['programdate4']." 00:00:00")); }
+		if (isset($data['programdate5']) && $data['programdate5']!='') {$data['programdate5'] = new MongoDate(strtotime($data['programdate5']." 00:00:00")); }
+		if (isset($data['programdate6']) && $data['programdate6']!='') {$data['programdate6'] = new MongoDate(strtotime($data['programdate6']." 00:00:00")); }
+
+		if (isset ($data['cocktaildate1'])&& $data['cocktaildate1']!='') { $data['cocktaildate1'] = new MongoDate(strtotime($data['cocktaildate1']." 00:00:00")); }
+		if (isset ($data['cocktaildate2'])&& $data['programdate2']!='') { $data['cocktaildate2'] = new MongoDate(strtotime($data['cocktaildate2']." 00:00:00")); }
+		if (isset ($data['cocktaildate3'])&& $data['programdate3']!='') { $data['cocktaildate3'] = new MongoDate(strtotime($data['cocktaildate3']." 00:00:00")); }
+		if (isset ($data['cocktaildate4'])&& $data['programdate4']!='') { $data['cocktaildate4'] = new MongoDate(strtotime($data['cocktaildate4']." 00:00:00")); }
+
+		
+
+
+		if($operationalform->update(array('_id'=>$id),array('$set'=>$data))){
+
+			/*$ex = $user->get(array('_id'=>$id));
+
+			$body = View::make('email.regupdateexhbition')
+				->with('data',$ex)
+				->render();
+
+			Message::to($data['email'])
+			    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+			    ->cc(Config::get('eventreg.reg_dyandra_admin_email'), Config::get('eventreg.reg_dyandra_admin_name'))
+			    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibitionion (Profile Updated – '.$data['registrationnumber'].')')
+			    ->body( $body )
+			    ->html(true)
+			    ->send();*/
+
+	    	return Redirect::to('exhibition/formsubmitted')->with('notify_success',Config::get('site.register_success'));
+
+		}else{
+	    	return Redirect::to('exhibitor/profile/')->with('notify_success','Exhibitor saving failed');
+		}
+	}
+
 	public function get_readform(){
 
 		//$this->crumb->add('user/edit','Edit',false);
