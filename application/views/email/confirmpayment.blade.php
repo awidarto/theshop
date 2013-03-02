@@ -46,7 +46,7 @@
 			<tr style="vertical-align: top;">
 				<td><strong>Telephone</strong></td>
 				<td>:</td>
-				<td>{{ $data['companyphone']}}</td>
+				<td>{{ $data['companyphonecountry']}}-{{ $data['companyphonearea']}}-{{ $data['companyphone']}}</td>
 			</tr>
 			<tr style="vertical-align: top;margin:10px 0;">
 				<td>&nbsp;</td>
@@ -56,7 +56,7 @@
 			<tr style="vertical-align: top;">
 				<td><strong>Fax</strong></td>
 				<td>:</td>
-				<td>{{ $data['companyfax']}}</td>
+				<td>{{ $data['companyfaxcountry']}}-{{ $data['companyfaxarea']}}-{{ $data['companyfax']}}</td>
 			</tr>
 
 			</table>

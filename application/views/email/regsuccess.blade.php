@@ -77,12 +77,14 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 				<td style="padding:10px;"><strong>IDR 2.500.000</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PD' && $data['golf'] == 'Yes')
+
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
 				<td style="padding:10px;"><strong>IDR 7.000.000</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PO' && $data['golf'] == 'No')
+			
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
 				<td style="padding:10px;"><strong>USD 500</strong></td>
@@ -181,9 +183,14 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 			</tr>
 		@elseif($data['regtype'] == 'PD' && $data['golf'] == 'No')
 			<tr>
+				<td style="padding:10px;"><strong>VAT </strong></td>
+				<td style="padding:10px;"><strong>&nbsp;</strong></td>
+				<td style="padding:10px;"><strong>10%</strong></td>
+			</tr>
+			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 4.500.000</strong></td>
+				<td style="padding:10px;"><strong>IDR 4.950.000</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'SD')
 			<tr>
@@ -237,7 +244,9 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 
 <p><i>Convention registration fee includes admission to all Plenary & Technical Sessions, Conference Kits, Opening and Closing Ceremony, Lunches, Coffee Breaks, Exhibition Cocktail, Industry Dinner, and Entrance to Exhibition Area.<br/><br/>
 * The cost of the Golf Tournament includes green fee, caddy & cart fee.</i><br/><br/>
+@if($data['regtype'] != 'PD')
 <strong>* Fees above exclude VAT 10%</strong></i>
+@endif
 </p>
 <p>For the registration payment, you can settle it by bank transfer to:</p>
 
