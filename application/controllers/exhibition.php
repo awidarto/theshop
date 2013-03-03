@@ -350,7 +350,9 @@ class Exhibition_Controller extends Base_Controller {
 		if($obj = $submitdata->insert($data)){
 
 			$exhibitor->update(array('_id'=>$_id),array('$set'=>array('formstatus'=>'submitted')));
-			
+			$user_id = $_id;
+			Event::fire('exhibition.postoperationalform',array($obj['_id'],$user_id));
+
 			//Event::fire('exhibitor.createformadmin',array($obj['_id'],$passwordRandom));
 			
 	    	return Redirect::to('exhibition/formsubmitted')->with('notify_success',Config::get('site.register_success'));
@@ -433,19 +435,14 @@ class Exhibition_Controller extends Base_Controller {
 
 		if($operationalform->update(array('_id'=>$id),array('$set'=>$data))){
 
-			/*$ex = $user->get(array('_id'=>$id));
+			$userid = Auth::exhibitor()->id;
 
-			$body = View::make('email.regupdateexhbition')
-				->with('data',$ex)
-				->render();
+			$_id = new MongoId($userid);
 
-			Message::to($data['email'])
-			    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-			    ->cc(Config::get('eventreg.reg_dyandra_admin_email'), Config::get('eventreg.reg_dyandra_admin_name'))
-			    ->subject('Indonesia Petroleum Association – 37th Convention & Exhibitionion (Profile Updated – '.$data['registrationnumber'].')')
-			    ->body( $body )
-			    ->html(true)
-			    ->send();*/
+			
+
+			Event::fire('exhibition.postoperationalform',array($id,$_id));
+
 
 	    	return Redirect::to('exhibition/formsubmitted')->with('notify_success',Config::get('site.register_success'));
 

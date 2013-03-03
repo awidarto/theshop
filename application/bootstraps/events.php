@@ -127,6 +127,7 @@ Event::listen('attendee.update',function($id,$newpass){
 
 });
 
+//EXHIBITOR
 Event::listen('exhibitor.createformadmin',function($id,$newpass){
     $exhibitor = new Exhibitor();
     $_id = $id;
@@ -145,6 +146,34 @@ Event::listen('exhibitor.createformadmin',function($id,$newpass){
         ->body( $body )
         ->html(true)
         ->send();
+
+});
+
+
+Event::listen('exhibition.postoperationalform',function($id,$exhibitorid){
+
+    $operationalform = new Operationalform();
+    $exhibitor = new Exhibitor();
+
+    $_id = $id;
+    $data = $operationalform->get(array('_id'=>$_id));
+
+    $user = $exhibitor->get(array('_id'=>$exhibitorid));
+
+        
+    $body = View::make('email.confirmpaymentexhibitor')
+        ->with('data',$data)
+        ->with('user',$user)
+        ->render();
+
+    Message::to($user['email'])
+        ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+        ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
+        ->subject('CONFIRMATION OF OPERATIONAL FORMS - Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$user['registrationnumber'].')')
+        ->body( $body )
+        ->html(true)
+        ->send();
+    
 
 });
 
