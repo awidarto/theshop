@@ -13,8 +13,8 @@
   {{ HTML::style('css/flick/jquery-ui-1.9.2.custom.min.css') }}
   {{ HTML::style('css/smart_wizard.css') }}
 
-  <link rel="stylesheet" type="text/css" media="screen" href="http://www.ipaconvex.com/css/cycle_index.css">
-  <link rel="stylesheet" type="text/css" href="http://www.ipaconvex.com/css/navbar.css" />
+  <!--<link rel="stylesheet" type="text/css" media="screen" href="http://www.ipaconvex.com/css/cycle_index.css">
+  <link rel="stylesheet" type="text/css" href="http://www.ipaconvex.com/css/navbar.css" />-->
 
     <!--<script type="text/javascript" src="http://ipa.or.id/js/smooth_top/smooth.pack.js"></script>
     <link rel="stylesheet" type="text/css" href="http://ipa.or.id/js/htmltooltip/htmltooltip.css" />
@@ -23,17 +23,17 @@
     <!--[if lt IE 7.]>
     <script defer type="text/javascript" src="http://ipa.or.id/js/png/pngfix.js"></script>
     <![endif]-->
-  <link rel="stylesheet" href="http://www.ipaconvex.com//fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="all" />
+  <!--<link rel="stylesheet" href="http://www.ipaconvex.com//fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="all" />-->
 
   {{ HTML::script('js/jquery-1.8.3.min.js') }}
   {{ HTML::script('js/jquery-ui-1.9.2.custom.min.js') }}
 
   {{ HTML::script('js/select2.min.js') }}
   {{ HTML::script('js/jquery.smartWizard-2.0.min.js') }}
-  <script src="http://www.ipaconvex.com/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+  <!--<script src="http://www.ipaconvex.com/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
   <script type="text/javascript" src="http://www.ipaconvex.com/css/jquery.cycle.all.js"></script>
 
-  <script type="text/javascript" src="http://www.ipaconvex.com/stmenu.js"></script>
+  <script type="text/javascript" src="http://www.ipaconvex.com/stmenu.js"></script>-->
   </head>
 
   <body>
@@ -44,7 +44,7 @@
           <td background="http://www.ipaconvex.com/head_web.jpg" height="340" width="940" valign="bottom">
             <div align="left" style="margin-bottom:15px;margin-left:10px;">
 
-            <script src="http://www.ipaconvex.com/jquery-blink.js" language="javscript" type="text/javascript"></script>
+            <!--<script src="http://www.ipaconvex.com/jquery-blink.js" language="javscript" type="text/javascript"></script>
 
             <script type="text/javascript" language="javascript">
 
@@ -54,7 +54,7 @@
                       //$('.blink').blink({delay:100}); // causes a 100ms blink interval.
               });
 
-              </script>
+              </script>-->
               <div class="blink" style="margin: 0px 0px 15px 450px; color: black; font-size: 14px; font-weight: bold; font-family: Tahoma; visibility: visible;">
                 {{ HTML::link('register/landing','ONLINE REGISTRATION',array('class'=>'')) }}
               </div>

@@ -861,3 +861,44 @@ span.furnitureTitle{
 .kiosklist{
 	display: inline-block;
 }
+input.inputhightlights,.swMain ul.anchor li a.filledyes{
+	background-color: rgb(250, 255, 189);
+
+}
+.swMain ul.anchor li a.selected,.swMain ul.anchor li a:hover,.swMain ul.anchor li a.selected:hover,.swMain ul.anchor li a.done:hover{
+	background-color: #67bde5;
+	color: #fff;
+}
+.swMain ul.anchor li a small{
+	font-size: 13px;
+}
+.swMain ul.anchor li a{
+	padding:7px 13px; 
+}
+.swMain ul.anchor li a{
+	color: #5A5655;
+	font:normal 13px "Open Sans",Arial,Helvetica,Sans-Serif;
+	background-color: #d2d2d2;
+	
+}
+input.inputhightlights{
+	background-color: rgb(250, 255, 189);
+}
+.swMain ul.anchor li a .stepNumber {
+	font:bold 14px "Open Sans",Arial,Helvetica,Sans-Serif;
+	margin-top: -2px;
+}
+
+.swMain .stepContainer div.content{
+	font:normal 12px "Open Sans",Arial,Helvetica,Sans-Serif;
+}
+#viewformModal{
+	padding: 0 3%;
+	width: 94%;
+	top:5%;
+	height: 90%;
+}
+#viewformModal .modal-body{
+	max-height: 85%;
+	overflow: auto;
+}

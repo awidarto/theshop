@@ -268,6 +268,21 @@
 </div>
 
 
+<div id="viewformModal" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	
+	<div class="modal-header">
+		<button type="button" id="removeviewform" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 id="myModalLabel">Form Submission</h3>
+	</div>
+	<div class="modal-body" id="loaddata">
+		
+	</div>
+	
+	
+
+</div>
+
+
 <div id="updatePaymentGolfConvention" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -823,6 +838,24 @@
 
 		   	}
 
+		   	if ($(e.target).is('.viewform')) {
+				
+				var _id = e.target.id;
+				var _rel = $(e.target).attr('rel');
+				var url = '{{ URL::base() }}' + '/exhibitor/' + _rel + '/' + _id;
+				
+
+				//var url = $(this).attr('url');
+			    //var modal_id = $(this).attr('data-controls-modal');
+			    $("#viewformModal .modal-body").load(url);
+				
+				
+				$('#viewformModal').modal();
+
+		   	}
+
+		   	
+
 
 
 			if ($(e.target).is('.del')) {
@@ -845,7 +878,19 @@
 					autosize: true
 				});
 
-		   	}	
+		   	}
+
+		   	/*if ($(e.target).is('.viewform')) {
+				var _id = e.target.id;
+				var _rel = $(e.target).attr('rel');
+
+				$.fancybox({
+					type:'iframe',
+					href: '{{ URL::base() }}' + '/' + _rel + '/' + _id,
+					autosize: true
+				});
+
+		   	}*/	
 
 			if ($(e.target).is('.fileview')) {
 				var _id = e.target.id;

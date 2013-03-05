@@ -111,7 +111,7 @@
   position:relative;
   float:left;
   margin:0;
-  padding:3px 15px;
+  padding:3px 7px;
   /*width:100px;*/
   text-decoration: none;
   outline-style:none;
@@ -126,8 +126,11 @@
   text-align: center;
   /*padding:5px;*/
   padding-top:0;
-  font: bold 15px Verdana, Arial, Helvetica, sans-serif;
+  font: bold 13px Verdana, Arial, Helvetica, sans-serif;
   display: inline-block;
+}
+.swMain ul.anchor li:last-child a{
+  border-right: none;
 }
 .swMain ul.anchor li a small{
   float: left;

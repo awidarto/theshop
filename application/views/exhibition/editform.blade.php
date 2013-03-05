@@ -66,11 +66,117 @@
           <label class="stepNumber">11</label>
       </a>
     </li>
+    <li>
+      <a href="#step-12">
+          <small>step</small>
+          <label class="stepNumber">12</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-13">
+          <small>step</small>
+          <label class="stepNumber">13</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-14">
+          <small>step</small>
+          <label class="stepNumber">14</label>
+      </a>
+    </li>
 
   </ul>
 
   
   <div id="step-1">
+   <h2 class="StepTitle"></h2>
+    <div id="page-wrap">
+      <div id="boothcontractor">
+          <h4>Terms & Conditions:</h4>
+          <ol>
+            <li>Please check your booth requirements  to your booth contractor or organizer.</li>
+            <li>Only filled the required forms.</li>
+            <li>Remember only to submit if your requirements are final. <strong>The forms cannot be modified if already submitted.</strong></li>
+            <li>The organizer will issue an invoice of the total amount of the additional facilities request based on filled forms after the exhibitors finalize it.</li>
+          </ol>
+      </div>
+      <table id="order-table" class="withborder">
+        <tr>
+          <th colspan="4">USEFUL CONTACTS</th>
+        </tr>
+        <tr class="odd">
+          <td rowspan="2">1.</td>
+          <td rowspan="2">Operational</td>
+          <td>Raymond</td>
+          <td>raymond@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Rain</td>
+          <td>rain.januardo@dyandra.com</td>
+        </tr>
+
+        <tr class="odd">
+          <td rowspan="2">2.</td>
+          <td rowspan="2">Hall A</td>
+          <td>Rain</td>
+          <td>rain.januardo@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Tia</td>
+          <td>tia.hamidah@dyandra.com</td>
+        </tr>
+
+         <tr class="odd">
+          <td>3.</td>
+          <td>Hall B</td>
+          <td>Raymond</td>
+          <td>raymond@dyandra.com</td>
+        </tr>
+
+        <tr class="odd">
+          <td>4.</td>
+          <td>Cendrawasih Room</td>
+          <td>Trias</td>
+          <td>trias.nugrahasanah@dyandra.com</td>
+        </tr>
+        
+        <tr class="odd">
+          <td>5.</td>
+          <td>Plenary Hall & Convention</td>
+          <td>Ati</td>
+          <td>luh.ariati@dyandraconvex.com</td>
+        </tr>
+        <tr class="odd">
+          <td>6.</td>
+          <td>Main Lobby</td>
+          <td>Trisa</td>
+          <td>trisa@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>7.</td>
+          <td>Assembly Hall</td>
+          <td>Dian</td>
+          <td>dian@dyandra.com</td>
+        </tr>
+
+        <tr class="odd">
+          <td rowspan="2">8.</td>
+          <td rowspan="2">PR Department</td>
+          <td>Mirna</td>
+          <td>mirna@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Putri</td>
+          <td>diahputri@dyandra.com</td>
+        </tr>
+      </table>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  </div>
+
+  <div id="step-2">
 
     <h2 class="StepTitle">ELECTRICITY INSTALLATION</h2>
     <div id="page-wrap">
@@ -86,9 +192,9 @@
                 <td>1</td>
                 <td class="product-title">2A / 1 ph / 440 Watt</td>
                 <td class="price-per-pallet">USD <span>89</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input" id="sparkle-num-pallets" name="electric1" value="{{ $data['electric1']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled" value="{{ $data['rowelectric1']}}"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric1" value="{{ $data['rowelectric1']}}"></input>
+                <td class="num-pallets"><input type="text" class="num-pallets-input" id="sparkle-num-pallets" name="electric1" value="{{ $data['electric1'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled" value="{{ $data['rowelectric1'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric1" value="{{ $data['rowelectric1'] }}"></input>
                 </td>
                 
             </tr>
@@ -96,18 +202,18 @@
                 <td>2</td>
                 <td class="product-title">4A / 1 ph / 880 Watt</td>
                 <td class="price-per-pallet">USD <span>177</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mvp-num-pallets" name="electric2" value="{{ $data['electric2']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="turface-mvp-row-total" disabled="disabled" value="{{ $data['rowelectric2']}}"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric2" value="{{ $data['rowelectric2']}}"></input>
+                <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mvp-num-pallets" name="electric2" value="{{ $data['electric2'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="turface-mvp-row-total" disabled="disabled" value="{{ $data['rowelectric2'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric2" value="{{ $data['rowelectric2'] }}"></input>
                 </td>
             </tr>
             <tr class="odd">
                 <td>3</td>
                 <td class="product-title">6A / 1 ph / 1.320 Watt</td>
                 <td class="price-per-pallet">USD <span>265</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-pro-league-num-pallets" name="electric3" value="{{ $data['electric3']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-row-total" disabled="disabled" value="{{ $data['rowelectric3']}}"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric3" value="{{ $data['rowelectric3']}}"></input>
+                <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-pro-league-num-pallets" name="electric3" value="{{ $data['electric3'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-row-total" disabled="disabled" value="{{ $data['rowelectric3'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric3" value="{{ $data['rowelectric3'] }}"></input>
                 </td>
             </tr>
            
@@ -115,54 +221,54 @@
                 <td>4</td>
                 <td class="product-title">10A / 1 ph / 2.200 Watt</em></td>
                 <td class="price-per-pallet">USD <span>442</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-quick-dry-num-pallets" name="electric4" value="{{ $data['electric4']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="turface-quick-dry-row-total" disabled="disabled" value="{{ $data['rowelectric4']}}"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric4" value="{{ $data['rowelectric4']}}"></input>
+                <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-quick-dry-num-pallets" name="electric4" value="{{ $data['electric4'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="turface-quick-dry-row-total" disabled="disabled" value="{{ $data['rowelectric4'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric4" value="{{ $data['rowelectric4'] }}"></input>
                 </td>
             </tr>
             <tr class="even">
                 <td>5</td>
                 <td class="product-title">16A / 1 ph / 3.520 Watt</td>
                 <td class="price-per-pallet">USD <span>706</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mound-clay-red-num-pallets" name="electric5" value="{{ $data['electric5']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="turface-mound-clay-red-row-total" disabled="disabled" value="{{ $data['rowelectric5']}}"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric5" value="{{ $data['rowelectric5']}}"></input>
+                <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mound-clay-red-num-pallets" name="electric5" value="{{ $data['electric5'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="turface-mound-clay-red-row-total" disabled="disabled" value="{{ $data['rowelectric5'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric5" value="{{ $data['rowelectric5'] }}"></input>
                 </td>
             </tr>
             <tr class="odd">
                 <td>6</td>
                 <td class="product-title">32A / 1 ph / 7.040 Watt</td>
                 <td class="price-per-pallet">USD <span>1412</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-red-num-pallets" name="electric6" value="{{ $data['electric6']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-red-row-total" disabled="disabled" value="{{ $data['rowelectric6']}}"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric6" value="{{ $data['rowelectric6']}}"></input>
+                <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-red-num-pallets" name="electric6" value="{{ $data['electric6'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-red-row-total" disabled="disabled" value="{{ $data['rowelectric6'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric6" value="{{ $data['rowelectric6'] }}"></input>
                 </td>
             </tr>
             <tr class="even">
                 <td>7</td>
                 <td class="product-title">16A / 3 ph / 10.560 Watt</td>
                 <td class="price-per-pallet">USD <span>2118</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-drying-agent-num-pallets" name="electric7" value="{{ $data['electric7']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-drying-agent-row-total" disabled="disabled" value="{{ $data['rowelectric7']}}"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric7" value="{{ $data['rowelectric7']}}"></input>
+                <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-drying-agent-num-pallets" name="electric7" value="{{ $data['electric7'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-drying-agent-row-total" disabled="disabled" value="{{ $data['rowelectric7'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric7" value="{{ $data['rowelectric7'] }}"></input>
                 </td>
             </tr>
             <tr class="odd">
                 <td>8</td>
                 <td class="product-title">32A / 3 ph / 21.120 Watt</em></td>
                 <td class="price-per-pallet">USD <span>4235</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-professional-num-pallets" name="electric8" value="{{ $data['electric8']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-professional-row-total" disabled="disabled" value="{{ $data['rowelectric8']}}"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric8" value="{{ $data['rowelectric8']}}"></input>
+                <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-professional-num-pallets" name="electric8" value="{{ $data['electric8'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-professional-row-total" disabled="disabled" value="{{ $data['rowelectric8'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric8" value="{{ $data['rowelectric8'] }}"></input>
                 </td>
             </tr>
             <tr class="even">
                 <td>9</td>
                 <td class="product-title">60A / 3 ph / 39.600 Watt</td>
                 <td class="price-per-pallet">USD <span>7941</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-top-dressing-num-pallets" name="electric9" value="{{ $data['electric9']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-top-dressing-row-total" disabled="disabled" value="{{ $data['rowelectric9']}}"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric9" value="{{ $data['rowelectric9']}}"></input>
+                <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-top-dressing-num-pallets" name="electric9" value="{{ $data['electric9'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-top-dressing-row-total" disabled="disabled" value="{{ $data['rowelectric9'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric9" value="{{ $data['rowelectric9'] }}"></input>
 
                 </td>
             </tr>
@@ -182,38 +288,38 @@
             </tr>
             <tr class="odd">
                 <td class="instalationfee" colspan"2" style="padding-left:30px;">Installation fee</td>
-                <td class="textcentertable">USD 50</td>
+                <td class="textcentertable">USD 30</td>
                 <td class="textcentertable">1</td>
-                <td class="textcentertable">USD 50</td>
-                <input type="hidden" value="50" name="electricinstallfee"></input>
+                <td class="textcentertable">USD 30</td>
+                <input type="hidden" id="operationalfeeelectric" value="30" name="electricinstallfee" value="{{ $data['electricinstallfee'] }}"></input>
             </tr>
         </table>
 
         <table id="total-electric">
           <tr>
             <td class="grayTable alignRight">Total (USD)</td>
-            <td class="result">USD <span id="product-subtotal" > {{ $data['electricsubtotal']}} </span></td>
-            <input type="hidden" id="electricsubtotal" name="electricsubtotal" value="{{ $data['electricsubtotal']}}"></input>
+            <td class="result">USD <span id="product-subtotal">{{ $data['electricsubtotal'] }}</span></td>
+            <input type="hidden" id="electricsubtotal" name="electricsubtotal" value="{{ $data['electricsubtotal'] }}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
             <td class="result">USD</td>
-            <input type="hidden" id="electriclate" name="electriclate" value="{{ $data['electriclate']}}"></input>
+            <input type="hidden" id="electriclate" name="electriclate" value="{{ $data['electriclate'] }}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
             <td class="result">USD</td>
-            <input type="hidden" id="electriconsite" name="electriconsite" value="{{ $data['electriclate']}}"></input>
+            <input type="hidden" id="electriconsite" name="electriconsite" value="{{ $data['electriconsite'] }}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
-            <td class="result">USD<span id="product-tax">{{ $data['electrictax']}}</span></td>
-            <input type="hidden" id="electrictax" name="electrictax" value="{{ $data['electrictax']}}"></input>
+            <td class="result">USD<span id="product-tax">{{ $data['electrictax'] }}</span></td>
+            <input type="hidden" id="electrictax" name="electrictax" value="{{ $data['electrictax'] }}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">Grand Total</td>
-            <td class="result">USD<span id="order-total">{{ $data['electricgrandtotal']}}</span></td>
-            <input type="hidden" id="electricgrandtotal" name="electricgrandtotal" value="{{ $data['electricgrandtotal']}}"></input>
+            <td class="result">USD<span id="order-total">{{ $data['electricgrandtotal'] }}</span></td>
+            <input type="hidden" id="electricgrandtotal" name="electricgrandtotal" value="{{ $data['electricgrandtotal'] }}"></input>
           </tr>
         </table>
         
@@ -234,7 +340,7 @@
     </div>
   </div>
 
-  <div id="step-2">
+  <div id="step-3">
     <h2 class="StepTitle">TELEPHONE INSTALLATION</h2>
     <div id="page-wrap">
         <table id="order-table">
@@ -251,10 +357,10 @@
                 • Service coverage: local call only (within Jakarta).<br/>
                 • Price includes call credit & installation.
                 </td>
-                <td class="price-per-pallet">USD <span>252</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="sparkle-num-pallets" name="phone1" value="{{ $data['phone1']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input-phone" id="sparkle-row-total" disabled="disabled" value="{{ $data['rowphone1']}}"></input>
-                  <input type="hidden" class="row-total-input" id="" name="rowphone1" value="{{ $data['rowphone1']}}"></input>
+                <td class="price-per-pallet">USD <span>250</span></td>
+                <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="sparkle-num-pallets" name="phone1" value="{{$data['phone1']}}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input-phone" id="sparkle-row-total" disabled="disabled" value="{{$data['rowphone1']}}"></input>
+                  <input type="hidden" class="row-total-input" id="" name="rowphone1" value="{{$data['rowphone1']}}"></input>
                 </td>
             </tr>
             <tr class="even">
@@ -265,42 +371,40 @@
                 • Price includes call credit & installation.<br/>
                 • Call back is not applicable.<br/></td>
                 
-                <td class="price-per-pallet">USD <span>402</span></td>
-                <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="turface-mvp-num-pallets" name="phone2" value="{{ $data['phone2']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input-phone" id="turface-mvp-row-total" disabled="disabled" value="{{ $data['rowphone2']}}"></input>
-                  <input type="hidden" class="row-total-input" id="" name="rowphone2" value="{{ $data['rowphone2']}}"></input>
+                <td class="price-per-pallet">USD <span>400</span></td>
+                <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="turface-mvp-num-pallets" name="phone2" value="{{$data['phone2']}}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input-phone" id="turface-mvp-row-total" disabled="disabled" value="{{$data['rowphone2']}}"></input>
+                  <input type="hidden" class="row-total-input" id="" name="rowphone2" value="{{$data['rowphone2']}}"></input>
                 </td>
             </tr>
             
         </table>
 
-        
-
-        <table id="total-electric">
+        <table class="total-table">
           <tr>
             <td class="grayTable alignRight">Total (USD)</td>
-            <td class="result">USD <span id="subTotalPhone">{{ $data['phonesubtotal']}}</span></td>
-            <input type="hidden" class="" id="phonesubtotal" name="phonesubtotal" value="{{ $data['phonesubtotal']}}"></input>
+            <td class="result">USD <span id="subTotalPhone">{{$data['phonesubtotal']}}</span></td>
+            <input type="hidden" class="" id="phonesubtotal" name="phonesubtotal" value="{{$data['phonesubtotal']}}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
             <td class="result">USD</td>
-            <input type="hidden" class="" id="" name="phonelate" value="{{ $data['phonelate']}}"></input>
+            <input type="hidden" class="" id="" name="phonelate" value="{{$data['phonelate']}}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
             <td class="result">USD</td>
-            <input type="hidden" class="" id="" name="phoneonsite" value="{{ $data['phoneonsite']}}"></input>
+            <input type="hidden" class="" id="" name="phoneonsite" value="{{$data['phoneonsite']}}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
-            <td class="result">USD<span id="faxTotalPhone">{{ $data['phonetax']}}</span></td>
-            <input type="hidden" class="" id="phonetax" name="phonetax" value="{{ $data['phonetax']}}"></input>
+            <td class="result">USD<span id="faxTotalPhone">{{$data['phonetax']}}</span></td>
+            <input type="hidden" class="" id="phonetax" name="phonetax" value="{{$data['phonetax']}}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">Grand Total</td>
-            <td class="result">USD<span id="grandTotalPhone">{{ $data['phonegrandtotal']}}</span></td>
-            <input type="hidden" class="" id="phonegrandtotal" name="phonegrandtotal" value="{{ $data['phonegrandtotal']}}"></input>
+            <td class="result">USD<span id="grandTotalPhone">{{$data['phonegrandtotal']}}</span></td>
+            <input type="hidden" class="" id="phonegrandtotal" name="phonegrandtotal" value="{{$data['phonegrandtotal']}}"></input>
           </tr>
         </table>
         
@@ -321,7 +425,7 @@
     </div>
   </div>
 
-  <div id="step-3">
+  <div id="step-4">
       <h2 class="StepTitle">BOOTH CONTRACTOR (SPECIAL DESIGN ONLY)</h2>   
       <div id="boothcontractor">
         <br/>
@@ -355,19 +459,16 @@
         <div class="terms">
            <strong>Terms & Conditions:</strong>
             <ol>
-              <li>Every order of the electricity power will be charged with Installation fee. </li>
-              <li>Rental price during the exhibition starts at 9.00 am until 9.00 pm.</li>
-              <li>Every on-site order request for electricity installation must be paid in cash.</li>
-              <li>24 hours electrical requirement will be charged double.</li>
-              <li>Orders without payment will not be executed.</li>
-              <li>As stocks are limited, late orders will be subjected to a 30% surcharge after 14 April 2013 and 50% surcharge for onsite orders.</li>
+              <li>Exhibitor or booth contractor must submit a copy of complete booth design before <strong>14 April 2013</strong></li>
+              <li>The design must be approved both by the organizer and IPA committee before going to production phase.</li>
+              <li>Contractors are obliged to wear contractor’s own uniform during Set Up and Dismantling period.</li>
             </ol>
         </div>
 
       </div>
   </div>
 
-  <div id="step-4">
+  <div id="step-5">
     <h2 class="StepTitle">FASCIA NAME (STANDARD BOOTH ONLY)</h2>   
     <div id="boothcontractor">
       <br/>
@@ -398,7 +499,7 @@
     </div>                     
   </div>
 
-  <div id="step-5">
+  <div id="step-6">
     <h2 class="StepTitle">FREE EXHIBITOR PASS</h2>   
     <div id="boothcontractor">
       <br/>
@@ -445,109 +546,161 @@
       <table id="order-table">
         <thead>
           <tr>
-            <th style="width:150px;">Booth #</th>
+            <th>No.</th>            
             <th>Names of Exhibitor’s Free Pass Holders</th>
           </tr>
         </thead>
         <tbody>
+          <?php for($i=1;$i<=10;$i++): ?>
           <tr>
-            <td>{{ $form->text('freepassboothno1','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname1','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
+            <td>{{$i}}. </td>
+            <td>{{ $form->text('freepassname'.$i,'','',array('id'=>'','class'=>'passholderbooth','placeholder'=>'Type name here')) }}</td>
           </tr>
-          <tr>
-            <td>{{ $form->text('freepassboothno2','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname2','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
-          </tr>
-          <tr>
-            <td>{{ $form->text('freepassboothno3','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname3','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
-          </tr>
-          <tr>
-            <td>{{ $form->text('freepassboothno4','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname4','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
-          </tr>
-          <tr>
-            <td>{{ $form->text('freepassboothno5','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname5','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
-          </tr>
-          <tr>
-            <td>{{ $form->text('freepassboothno6','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname6','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
-          </tr>
-          <tr>
-            <td>{{ $form->text('freepassboothno7','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname7','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
-          </tr>
-          <tr>
-            <td>{{ $form->text('freepassboothno8','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname8','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
-          </tr>
-          <tr>
-            <td>{{ $form->text('freepassboothno9','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname9','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
-          </tr>
-          <tr>
-            <td>{{ $form->text('freepassboothno10','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'15')) }}</td>
-            <td>{{ $form->text('freepassname10','','',array('id'=>'fascianame','class'=>'passholderbooth','placeholder'=>'John Dochin')) }}</td>
-          </tr>
+          <?php endfor; ?>
         </tbody>
       </table>
       <br/>
       <strong>Terms & Conditions:</strong><br/>
-      <small>•  Free ID card are already include lunch and 2x coffee break.</small><br/>
-      <br/>
-      <br/>
-    </div>                     
-  </div>
-
-  <div id="step-6">
-    <h2 class="StepTitle">ADDITIONAL EXHIBITOR PASS</h2>   
-    <div id="boothcontractor">
-      <br/>
-      <p>Additional Booth Assistant(s) will be admitted only on requested of Additional Booth Assistant's Badge valid for 3 days. There is no limit to the number of Additional Booth Assistants. </p>
-      <p>Booth Assistant's Badges are permitted to assist Exhibitor in Exhibition areas only.</p>
-      <p>Please list below the names of Additional Booth Assistant you wish to register and return by email to each Hall PIC(s).</p>
-      <div class="clear"></div>
-      <table id="order-table">
-        <thead>
-          <tr>
-            <th style="width:150px;">Booth #</th>
-            <th>Names of Exhibitor’s Free Pass Holders</th>
-          </tr>
-        </thead>
-        <tbody id="listadditionalbooth">
-          <?php
-          $nopass = $data['noaddpass'];
-          $countdata = 0;
-          for ($i=1;$i<=$nopass;$i++):?>
-          <tr>
-            <td>
-              <?php 
-              
-                echo '<input name="addpassboothno'.$i.'" type="text" class="passholderbooth" id="" placeholder="" value="'.$data['addpassboothno'.$i.''].'"></input>';
-              ?>
-            </td>
-            <td>
-              <?php
-              
-                
-                echo '<input name="addpassboothname'.$i.'" type="text" class="passholderbooth" id="" placeholder="" value="'.$data['addpassboothname'.$i.''].'"></input>';
-              ?>
-            </td>
-          </tr>
-          <?php endfor; ?>
-
-          <input name="noaddpass" id="noaddpass" type="hidden" value="{{ $nopass }}"></input>
-          
-        </tbody>
-      </table>
-      <a href="javascript:void(0);" id="add-field" class="buttonBrown">Add field</a>
+      <ol>
+        <li>Exhibitor Pass entitled lunch and coffee break during 3 days of exhibition</li>
+        <li>Exhibitor pass (ID Card) does not include free entry to the <strong>Conference‘s Plenary Session, but can attend the TPC</strong></li>
+      </ol>
       <br/>
       <br/>
     </div>                     
   </div>
 
   <div id="step-7">
+    <h2 class="StepTitle">BOOTH ASSISTANT PASS</h2>   
+    <div id="boothcontractor">
+      <br/>
+      <h4>Terms & Conditions:</h4>
+      <ol>
+        <li>Booth Assistant's Pass is valid for 3 days. </li>
+        <li>Booth Assistant's Pass are permitted to assist Exhibitor in Exhibition areas only, and is <strong>not entitled to participate on the Conference‘s Plenary Session nor the  TPC.</strong></li>
+        <li>Booth assistants Pass are free of charge (include coffee break, exclude lunch) at the maximum of 10 persons.</li>
+        <li>More than 10 will be charged USD 35 per pass (include coffee break, exclude lunch)</li>
+        <li>There is no limit to the purchase of the number of Additional Booth Assistant(s).</li>
+      </ol>
+      <p><strong>Please list below the names of BOOTH ASSISTANT PASS HOLDERS you wish to register and send by email to the hall PIC(s)</strong></p>
+      <div class="clear"></div>      
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th>No.</th>            
+            <th>Names of Booth Assistant Pass Holders</th>
+          </tr>
+        </thead>
+        <tbody id="listadditionalbooth">
+          
+          <?php for($i=1;$i<=10;$i++): ?>
+          <tr>
+            <td>{{$i}}. </td>
+            <td>{{ $form->text('boothassistant'.$i,'','',array('id'=>'','class'=>'passholderbooth','placeholder'=>'Type name here')) }}</td>
+          </tr>
+          <?php endfor; ?>
+
+          
+          <input name="noaddpass" id="noaddpass" type="hidden" value="10"></input>
+        </tbody>
+      </table>
+      <a href="javascript:void(0);" id="add-field" class="buttonBrown">Add field</a>
+      
+      <br/>
+      <br/>
+    </div>                     
+  </div>
+  
+  <div id="step-8">
+    <h2 class="StepTitle">ADDITIONAL EXHIBITOR PASS</h2>   
+    <div id="boothcontractor">
+      <br/>
+      <h4>Terms & Conditions:</h4>
+      <ol>
+        <li>Additional Booth Assistant(s) pass is charged USD 35 per pass (include coffee break, exclude lunch)</li>
+        <li>Additional Booth Assistant(s) is valid for 3 days. </li>
+        <li>Additional Booth Assistant(s)  Pass are permitted to assist Exhibitor in Exhibition areas only, and is <strong>not entitled to participate on the Conference‘s Plenary Session nor the TPC.</strong></li>
+        <li>Booth assistants are free of charge (include coffee break, exclude lunch) at the maximum of 10 persons.</li>
+      </ol>
+
+      <table id="order-table">
+          <tr>
+               <th>Price/UNIT</th>
+               <th>QUANTITY</th>
+               <th style="padding-right: 30px;">SUB TOTAL (USD)</th> 
+          </tr>
+          <tr class="odd">
+              
+              <td class="price-per-pallet">USD <span>35</span></td>
+              <td class="num-pallets"><input type="text" class="num-pallets-input-phone" name="totaladdbooth" id="totaladdboothinput" value="{{ $data['totaladdbooth'] }}"></input></td>
+              <td class="row-total" style="text-align:right;float:right;"><input type="text" class="row-total-input-addBooth" id="sparkle-row-total" disabled="disabled" value="{{ $data['rowaddbooth'] }}"></input>
+                <input type="hidden" class="row-total-input" id="" name="rowaddbooth" value="{{ $data['rowaddbooth'] }}"></input>
+              </td>
+          </tr>
+          
+          
+      </table>
+
+      
+
+      <table id="total-addbooth" class="total-table">
+        <tr>
+          <td class="grayTable alignRight">Total (USD)</td>
+          <td class="result">USD <span id="subTotalAddbooth">{{ $data['addboothsubtotal'] }}</span></td>
+          <input type="hidden" class="" id="addboothsubtotal" name="addboothsubtotal" value="{{ $data['addboothsubtotal'] }}"></input>
+        </tr>
+        <tr>
+          <td class="grayTable alignRight">Late Order Surcharge 30%</td>
+          <td class="result">USD</td>
+          <input type="hidden" class="" id="" name="addboothlate" value="{{ $data['addboothlate'] }}"></input>
+        </tr>
+        <tr>
+          <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
+          <td class="result">USD</td>
+          <input type="hidden" class="" id="" name="addboothonsite" value="{{ $data['addboothonsite'] }}"></input>
+        </tr>
+        <tr>
+          <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
+          <td class="result">USD<span id="faxTotalAddbooth">{{ $data['addboothtax'] }}</span></td>
+          <input type="hidden" class="" id="addboothtax" name="addboothtax" value="{{ $data['addboothtax'] }}"></input>
+        </tr>
+        <tr>
+          <td class="grayTable alignRight">Grand Total</td>
+          <td class="result">USD<span id="grandTotalAddbooth">{{ $data['addboothgrandtotal'] }}</span></td>
+          <input type="hidden" class="" id="addboothgrandtotal" name="addboothgrandtotal" value="{{ $data['addboothgrandtotal'] }}"></input>
+        </tr>
+      </table>
+      <div class="clear"></div>
+      <br/>
+      <br/>
+      <p><strong>Please list below the names of Additional Booth Assistant you wish to register and return by email to each Hall PIC(s).</strong></p>
+      <div class="clear"></div>
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th style="width:150px;">No.</th>
+            <th>Names of Additional Booth Assistant Pass Holders</th>
+          </tr>
+        </thead>
+        <tbody id="listaddboothedit">
+
+          <?php for($i=1;$i<=$data['totaladdbooth'];$i++): ?>
+          <tr>
+            <td>{{$i}}. </td>
+            <td>{{ $form->text('addboothname'.$i,'','',array('id'=>'','class'=>'passholderbooth','placeholder'=>'Type name here')) }}</td>
+          </tr>
+          <?php endfor; ?>
+
+          
+        </tbody>
+      </table>
+      
+      <br/>
+      <br/>
+    </div>                     
+  </div>
+
+  <div id="step-9">
     <h2 class="StepTitle">BOOTH PROGRAM SCHEDULE</h2>   
     <div id="boothcontractor">
       <br/>
@@ -563,15 +716,16 @@
           </tr>
         </thead>
         <tbody>
-          <?php for ($i=1;$i<=6;$i++):?>
+
+          <?php for($i=1;$i<=6;$i++): ?>
           <tr>
-            <td>{{$i}}.</td>
-            <td><?php echo '<input name="programdetail'.$i.'" type="text" class="passholderbooth" id="" placeholder="Details here" value="'.$data['programdetail'.$i.''].'"></input>';?></td>
-            <td><?php echo '<input name="programdate'.$i.'" type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy" value="'.$data['programdate'.$i.''].'"></input>';?></td>
-            <td><?php echo '<input name="programtime'.$i.'" type="text" class="passholderbooth" id="" placeholder="2:00 AM" value="'.$data['programtime'.$i.''].'"></input>';?></td>
+            <td>{{$i}}. </td>
+            <td>{{ $form->text('programdetail'.$i,'','',array('id'=>'','class'=>'passholderbooth','placeholder'=>'Details here')) }}</td>
+            <td>{{ $form->text('programdate'.$i,'','',array('id'=>'','class'=>'passholderbooth date','placeholder'=>'dd-mm-yyyy')) }}</td>
+            <td>{{ $form->text('programtime'.$i,'','',array('id'=>'','class'=>'passholderbooth date','placeholder'=>'2:00 PM')) }}</td>
           </tr>
-          
           <?php endfor; ?>
+          
           
         </tbody>
       </table>
@@ -587,16 +741,14 @@
           </tr>
         </thead>
         <tbody>
-          <?php for ($i=1;$i<=4;$i++):?>
+          <?php for($i=1;$i<=3;$i++): ?>
           <tr>
-            <td>{{$i}}.</td>
-            <td><?php echo '<input name="cocktaildetail'.$i.'" type="text" class="passholderbooth" id="" placeholder="Details here" value="'.$data['cocktaildetail'.$i.''].'"></input>';?></td>
-            <td><?php echo '<input name="cocktaildate'.$i.'" type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy" value="'.$data['cocktaildate'.$i.''].'"></input>';?></td>
-            <td><?php echo '<input name="cocktailtime'.$i.'" type="text" class="passholderbooth" id="" placeholder="2:00 AM" value="'.$data['cocktailtime'.$i.''].'"></input>';?></td>
+            <td>{{$i}}. </td>
+            <td>{{ $form->text('cocktaildetail'.$i,'','',array('id'=>'','class'=>'passholderbooth','placeholder'=>'Details here')) }}</td>
+            <td>{{ $form->text('cocktaildate'.$i,'','',array('id'=>'','class'=>'passholderbooth date','placeholder'=>'dd-mm-yyyy')) }}</td>
+            <td>{{ $form->text('cocktailtime'.$i,'','',array('id'=>'','class'=>'passholderbooth date','placeholder'=>'2:00 PM')) }}</td>
           </tr>
-          
           <?php endfor; ?>
-          
           
         </tbody>
       </table>
@@ -622,14 +774,86 @@
       <br/>
       <br/>
     </div>                     
-  </div>  
+  </div>
 
-  <div id="step-8">
+  <div id="step-10">
+    <h2 class="StepTitle">ADVERTISING</h2>
+    <div id="page-wrap">
+        <table id="order-table">
+            <tr>
+                 <th>No.</th>
+                 <th>TYPE</th> 
+                 <th>PRICE/UNIT</th>
+                 <th>QUANTITY</th>
+                 <th style="padding-right: 30px;">SUB TOTAL (USD)</th> 
+            </tr>
+            <tr class="odd">
+                <td>1</td>
+                <td class="product-title"><strong>Hanging Banner – Above the booth</strong><br/><br/>
+                &nbsp;&nbsp;&nbsp;• Size : 1,05m x 4m (portrait).<br/>
+                </td>
+                <td class="price-per-pallet">USD <span>200</span></td>
+                <td class="num-pallets"><input type="text" class="num-pallets-input-advert" id="sparkle-num-pallets" name="advert" value="{{ $data['advert'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input-advert" id="sparkle-row-total" disabled="disabled" value="{{ $data['rowadvert'] }}"></input>
+                  <input type="hidden" class="row-total-advert" id="" name="rowadvert" value="{{ $data['rowadvert'] }}"></input>
+                </td>
+            </tr>
+            
+            
+        </table>
+
+        
+
+        <table id="total-electric">
+          <tr>
+            <td class="grayTable alignRight">Total (USD)</td>
+            <td class="result">USD <span id="subTotalAdvert">{{ $data['advertsubtotal'] }}</span></td>
+            <input type="hidden" class="" id="advertsubtotal" name="advertsubtotal" value="{{ $data['advertsubtotal'] }}"></input>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">Late Order Surcharge 30%</td>
+            <td class="result">USD</td>
+            <input type="hidden" class="" id="" name="advertlate" value="{{ $data['advertlate'] }}"></input>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
+            <td class="result">USD</td>
+            <input type="hidden" class="" id="" name="advertonsite" value="{{ $data['advertonsite'] }}"></input>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
+            <td class="result">USD<span id="faxTotalAdvert">{{ $data['adverttax'] }}</span></td>
+            <input type="hidden" class="" id="adverttax" name="adverttax" value="{{ $data['adverttax'] }}"></input>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">Grand Total</td>
+            <td class="result">USD<span id="grandTotalAdvert">{{ $data['advertgrandtotal'] }}</span></td>
+            <input type="hidden" class="" id="advertgrandtotal" name="advertgrandtotal" value="{{ $data['advertgrandtotal'] }}"></input>
+          </tr>
+        </table>
+        
+        <div class="clear"></div>
+
+        <div>
+            <h4>Terms & Conditions:</h4>
+            <ol>
+              <li>Exhibitors must provide their own promotional material.</li>
+              <li>First come first serve basis is applied.</li>
+              <li>Payment must be in cash on setup days or the showdays.</li>
+              <li>The placement of hanging banner above the exhibitor’s booth depends on the availability of the roof hanger point, makes reservation before order.</li>
+            </ol>
+        </div>
+        
+    </div>
+  </div>
+
+  <div id="step-11">
     <h2 class="StepTitle">FURNITURE RENTAL</h2>   
     <div id="boothcontractor">
       <br/>
       <p>Please fill in the box with the quantity of your order:</p>
       <div class="clear"></div>
+
 
       <div class="furniturelistcontainer">
         <div class="furnitureItem">
@@ -637,10 +861,12 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture1.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="15">
-            <input name="furniture1" type="text" id="furnitureinput1" placeholder="0" class="num-pallets-input-furniture" value="{{$data['furniture1']}}"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice" >USD 15/Unit</span>
-            <input name="rowfurniture1" class="row-total-input-furniture" type="hidden" value="{{$data['furniture1']}}"></input>
+          <div class="furniturepricecontainer" price="20">
+            {{ $form->text('furniture1','','',array('id'=>'furnitureinput1','class'=>'num-pallets-input-furniture','placeholder'=>'0')) }}
+            <br/>
+            <span      id="furnitureprice1" class="furnitureprice" >USD 20/Unit</span>
+            <input type="hidden" class="row-total-input-furniture" id="" name="rowfurniture1" value="{{ $data['rowfurniture1'] }}"></input>
+
           </div>
         </div>
 
@@ -649,10 +875,12 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture2.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="15">
-            <input name="furniture2"  type="text" id="" placeholder="0" class="num-pallets-input-furniture" value="{{$data['furniture2']}}"></input><br/>
-            <span     id="furnitureprice1" class="furnitureprice">USD 15/Unit</span>
-            <input name="rowfurniture2" class="row-total-input-furniture" type="hidden" value="{{$data['furniture2']}}"></input>
+          <div class="furniturepricecontainer" price="20">
+            {{ $form->text('furniture2','','',array('id'=>'furnitureinput1','class'=>'num-pallets-input-furniture','placeholder'=>'0')) }}
+            <br/>
+            <span     id="furnitureprice1" class="furnitureprice">USD 20/Unit</span>
+            <input type="hidden" class="row-total-input-furniture" id="" name="rowfurniture2" value="{{ $data['rowfurniture2'] }}"></input>
+
           </div>
         </div>
 
@@ -661,10 +889,12 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture3.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="45">
-            <input name="furniture3" type="text" id="" placeholder="0" class="num-pallets-input-furniture" value="{{$data['furniture3']}}"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice">USD 45/Unit</span>
-            <input name="rowfurniture3" class="row-total-input-furniture" type="hidden" value="{{$data['furniture3']}}"></input>
+          <div class="furniturepricecontainer" price="55">
+            {{ $form->text('furniture3','','',array('id'=>'furnitureinput3','class'=>'num-pallets-input-furniture','placeholder'=>'0')) }}
+            <br/>
+            <span      id="furnitureprice1" class="furnitureprice">USD 55/Unit</span>
+            <input type="hidden" class="row-total-input-furniture" id="" name="rowfurniture3" value="{{ $data['rowfurniture3'] }}"></input>
+
           </div>
         </div>
       </div>
@@ -677,10 +907,12 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture4.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="21">
-            <input name="furniture4" type="text" id="" placeholder="0" class="num-pallets-input-furniture" value="{{$data['furniture4']}}"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice" >USD 21/Unit</span>
-            <input name="rowfurniture4" class="row-total-input-furniture" type="hidden" value="{{$data['furniture4']}}"></input>
+          <div class="furniturepricecontainer" price="25">
+            {{ $form->text('furniture4','','',array('id'=>'furnitureinput4','class'=>'num-pallets-input-furniture','placeholder'=>'0')) }}
+            <br/>
+            <span      id="furnitureprice1" class="furnitureprice" >USD 25/Unit</span>
+            <input type="hidden" class="row-total-input-furniture" id="" name="rowfurniture4" value="{{ $data['rowfurniture4'] }}"></input>
+
           </div>
         </div>
 
@@ -689,10 +921,11 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture5.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="15">
-            <input name="furniture5" type="text" id="" placeholder="0" class="num-pallets-input-furniture" value="{{$data['furniture5']}}"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice" >USD 15/Unit</span>
-            <input name="rowfurniture5" class="row-total-input-furniture" type="hidden" value="{{$data['furniture5']}}"></input>
+          <div class="furniturepricecontainer" price="20">
+            {{ $form->text('furniture5','','',array('id'=>'furnitureinput5','class'=>'num-pallets-input-furniture','placeholder'=>'0')) }}
+            <span      id="furnitureprice1" class="furnitureprice" >USD 20/Unit</span>
+            <input type="hidden" class="row-total-input-furniture" id="" name="rowfurniture5" value="{{ $data['rowfurniture5'] }}"></input>
+
           </div>
         </div>
 
@@ -701,10 +934,11 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture6.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="45">
-            <input name="furniture6" type="text" id="" placeholder="0" class="num-pallets-input-furniture" value="{{$data['furniture6']}}"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice">USD 45/Unit</span>
-            <input name="rowfurniture6" class="row-total-input-furniture" type="hidden" value="{{$data['furniture6']}}"></input>
+          <div class="furniturepricecontainer" price="55">
+            {{ $form->text('furniture6','','',array('id'=>'furnitureinput6','class'=>'num-pallets-input-furniture','placeholder'=>'0')) }}
+            <span      id="furnitureprice1" class="furnitureprice">USD 55/Unit</span>
+            <input type="hidden" class="row-total-input-furniture" id="" name="rowfurniture6" value="{{ $data['rowfurniture6'] }}"></input>
+
           </div>
         </div>
       </div>
@@ -714,28 +948,28 @@
       <table id="total-furniture" class="total-table">
         <tr>
           <td class="grayTable alignRight">Total (USD)</td>
-          <td class="result">USD <span id="subTotalFurniture">{{$data['furnituresubtotal']}}</span></td>
-          <input name="furnituresubtotal" id="furnituresubtotal" type="hidden" value="{{$data['furnituresubtotal']}}"></input>
+          <td class="result">USD <span id="subTotalFurniture">{{ $data['furnituresubtotal'] }}</span></td>
+          <input name="furnituresubtotal" id="furnituresubtotal" type="hidden" value="{{ $data['furnituresubtotal'] }}"></input>
         </tr>
         <tr>
           <td class="grayTable alignRight">Late Order Surcharge 30%</td>
           <td class="result">USD</td>
-          <input name="furniturelate" id="furniturelate" type="hidden" value="{{$data['furniturelate']}}"></input>
+          <input name="furniturelate" id="furniturelate" type="hidden" value="{{ $data['furniturelate'] }}"></input>
         </tr>
         <tr>
           <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
           <td class="result">USD</td>
-          <input name="furnitureonsite" id="furnitureonsite" type="hidden" value="{{$data['furnitureonsite']}}"></input>
+          <input name="furnitureonsite" id="furnitureonsite" type="hidden" value="{{ $data['furnitureonsite'] }}"></input>
         </tr>
         <tr>
           <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
-          <td class="result">USD<span id="faxTotalFurniture">{{$data['furnituretax']}}</span></td>
-          <input name="furnituretax" id="furnituretax" type="hidden" value="{{$data['furnituretax']}}"></input>
+          <td class="result">USD<span id="faxTotalFurniture">{{ $data['furnituresubtotal'] }}</span></td>
+          <input name="furnituretax" id="furnituretax" type="hidden" value="{{ $data['furnituretax'] }}"></input>
         </tr>
         <tr>
           <td class="grayTable alignRight">Grand Total</td>
-          <td class="result">USD<span id="grandTotalFurniture">{{$data['furnituregrandtotal']}}</span></td>
-          <input name="furnituregrandtotal" id="furnituregrandtotal" type="hidden" value="{{$data['furnituregrandtotal']}}"></input>
+          <td class="result">USD<span id="grandTotalFurniture">{{ $data['furnituresubtotal'] }}</span></td>
+          <input name="furnituregrandtotal" id="furnituregrandtotal" type="hidden" value="{{ $data['furnituregrandtotal'] }}"></input>
         </tr>
       </table>
       <br/>
@@ -743,9 +977,9 @@
       <br/>
       <br/>
     </div>                     
-  </div>  
+  </div> 
 
-  <div id="step-9">
+  <div id="step-12">
     <h2 class="StepTitle">INTERNET CONNECTION</h2>
     <div id="page-wrap">
         <table id="order-table">
@@ -753,42 +987,35 @@
                  <th>INTERNET CONNECTION (CABLE)</th>
                  <th>PRICE /PACKAGE</th> 
                  <th>QUANTITY</th>
-                 <th>DAY</th>
                  <th style="padding-right: 30px;">SUB TOTAL (USD)</th> 
             </tr>
             <tr class="odd">
                 <td><strong>Package : 1 Mbps</strong></td>
-                <td class="price-per-pallet">USD <span>200</span></td>
-                <td class="num-pallets"><input name="internet1"    type="text" class="num-pallets-input-internet" id="sparkle-num-pallets" value="{{$data['internet1']}}"></input></td>
-                <td class="num-pallets"><input name="internetday1" type="text" class="num-pallets-input-internet quantitypalets" id="sparkle-num-pallets" value="{{$data['internetday1']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled" value="{{$data['rowinternet1']}}"></input>
-                  <input name="rowinternet1" class="row-total-input-internet" type="hidden" id="rowinternet1" value="{{$data['rowinternet1']}}"></input>
+                <td class="price-per-pallet">USD <span>380</span></td>
+                <td class="num-pallets"><input name="internet1"    type="text" class="num-pallets-input-internet" id="sparkle-num-pallets" value="{{ $data['internet1'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled" value="{{ $data['rowinternet1'] }}"></input>
+                  <input name="rowinternet1" class="row-total-input-internet-hidden" type="hidden" id="rowinternet1" value="{{ $data['rowinternet1'] }}"></input>
                 </td>
             </tr>
             <tr class="even">
                 <td><strong>Package : 2 Mbps</strong></td>
-                <td class="price-per-pallet">USD <span>401</span></td>
-                <td class="num-pallets"><input name="internet2"    type="text" class="num-pallets-input-internet" id="sparkle-num-pallets" value="{{$data['internet2']}}"></input></td>
-                <td class="num-pallets"><input name="internetday2" type="text" class="num-pallets-input-internet quantitypalets" id="sparkle-num-pallets" value="{{$data['internetday2']}}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled" value="{{$data['rowinternet2']}}"></input>
-                  <input name="rowinternet2" class="row-total-input-internet" type="hidden" id="rowinternet2" value="{{$data['rowinternet2']}}"></input>
+                <td class="price-per-pallet">USD <span>760</span></td>
+                <td class="num-pallets"><input name="internet2"    type="text" class="num-pallets-input-internet" id="sparkle-num-pallets" value="{{ $data['internet2'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled" value="{{ $data['rowinternet2'] }}"></input>
+                  <input name="rowinternet2" class="row-total-input-internet-hidden" type="hidden" id="rowinternet2" value="{{ $data['rowinternet2'] }}"></input>
                 </td>
             </tr>
             <tr class="odd">
                 <td><strong>Instalation Fee</strong></td>
-                <td class="price-per-pallet">USD <span>5</span></td>
-                <td class="num-pallets"></td>
-                <td class="num-pallets"><span class="" id="totalDayInternet">{{$data['internetinstallday']}}</span></td>
-                <input name="internetinstallday" type="hidden" id="internetinstallday" value="{{$data['internetinstallday']}}"></input>
+                <td class="price-per-pallet">USD <span id="internetinstallfeeperqty">50</span></td>
+                <td class="num-pallets"><input type="text" class="internetinstallqty" disabled="disabled" value="{{ $data['internetinstallqty'] }}"></input></td>
+                <input name="internetinstallqty" type="hidden" class="internetinstallqty" value="{{ $data['internetinstallqty'] }}"></input>
                 <td class="row-total">
-                  <input type="text" class="row-total-input-internet" id="totalFeeInstallInternet" disabled="disabled" value="{{$data['internetinstallfee']}}"></input>
-                  <input name="internetinstallfee" type="hidden" id="internetinstallfee" class="row-total-input-internet"  value="{{$data['internetinstallfee']}}"></input>
+                  <input type="text" class="row-total-input-internetfee" id="totalFeeInstallInternet" disabled="disabled" value="{{ $data['internetinstallfee'] }}"></input>
+                  <input name="internetinstallfee" type="hidden" id="internetinstallfee" class="row-total-input-internetfee"  value="{{ $data['internetinstallfee'] }}"></input>
 
                 </td>
             </tr>
-
-            
-            
         </table>
 
         
@@ -796,28 +1023,28 @@
         <table id="total-internet" class="total-table">
           <tr>
             <td class="grayTable alignRight">Total (USD)</td>
-            <td class="result">USD <span id="subTotalInternet">{{$data['internetsubtotal']}}</span></td>
-            <input name="internetsubtotal" id="internetsubtotal" type="hidden" class="" value="{{$data['internetsubtotal']}}"></input>
+            <td class="result">USD <span id="subTotalInternet">{{ $data['internetsubtotal'] }}</span></td>
+            <input name="internetsubtotal" id="internetsubtotal" type="hidden" class="" value="{{ $data['internetsubtotal'] }}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
             <td class="result">USD</td>
-            <input name="internetlate" id="internetlate" type="hidden" class="" value="{{$data['internetlate']}}"></input>
+            <input name="internetlate" id="internetlate" type="hidden" class="" value="{{ $data['internetlate'] }}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
             <td class="result">USD</td>
-            <input name="internetonsite" id="internetonsite" type="hidden" class="" value="{{$data['internetonsite']}}"></input>
+            <input name="internetonsite" id="internetonsite" type="hidden" class="" value="{{ $data['internetonsite'] }}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
-            <td class="result">USD<span id="faxTotalInternet">{{$data['internettax']}}</span></td>
-            <input name="internettax" id="internettax" type="hidden" class="" value="{{$data['internettax']}}"></input>
+            <td class="result">USD<span id="faxTotalInternet">{{ $data['internettax'] }}</span></td>
+            <input name="internettax" id="internettax" type="hidden" class="" value="{{ $data['internettax'] }}"></input>
           </tr>
           <tr>
             <td class="grayTable alignRight">Grand Total</td>
-            <td class="result">USD<span id="grandTotalInternet">{{$data['internetgrandtotal']}}</span></td>
-            <input name="internetgrandtotal" id="internetgrandtotal" type="hidden" class="" value="{{$data['internetgrandtotal']}}"></input>
+            <td class="result">USD<span id="grandTotalInternet">{{ $data['internetgrandtotal'] }}</span></td>
+            <input name="internetgrandtotal" id="internetgrandtotal" type="hidden" class="" value="{{ $data['internetgrandtotal'] }}"></input>
           </tr>
         </table>
         
@@ -836,7 +1063,7 @@
     </div>
   </div>
 
-  <div id="step-10">
+  <div id="step-13">
     <h2 class="StepTitle">KIOSK RENTAL</h2>
     <div id="page-wrap">
         <table id="order-table">
@@ -873,11 +1100,11 @@
             
             <tr class="even">
                 <td class="price-per-pallet"><strong style="font-size:12.5px;margin-left:20px;">USD <span>480</span>,-</strong></td>
-                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 1</span><input name="kiosk1" type="text" class="num-pallets-input-kiosk" id="sparkle-num-pallets" style="margin:0 auto;margin-bottom:10px;" value="{{ $data['kiosk1'] }}"></input></td>
-                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 2</span><input name="kiosk2" type="text" class="num-pallets-input-kiosk" id="sparkle-num-pallets" style="margin:0 auto;margin-bottom:10px;" value="{{ $data['kiosk2'] }}"></input></td>
+                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 1</span><input name="kiosk1" type="text" id="numpalletskiosk1" class="num-pallets-input-kiosk" id="" style="margin:0 auto;margin-bottom:10px;" value="{{ $data['kiosk1'] }}"></input></td>
+                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 2</span><input name="kiosk2" type="text" id="numpalletskiosk2" class="num-pallets-input-kiosk" id="" style="margin:0 auto;margin-bottom:10px;" value="{{ $data['kiosk2'] }}"></input></td>
                 <td class="row-total">
-                  <input type="text" class="row-total-input-kiosk" id="sparkle-row-total" disabled="disabled" style="margin-left:20px;margin-top:20px;" value="{{ $data['rowkiosk'] }}"></input>
-                  <input type="hidden" class="row-total-input-kiosk" name="rowkiosk" value="{{ $data['rowkiosk'] }}"></input>
+                  <input type="text" class="row-total-input-kiosk" id="" disabled="disabled" style="margin-left:20px;margin-top:20px;" value="{{ $data['rowkiosk'] }}"></input>
+                  <input type="hidden" class="row-total-input-kiosk-hidden" name="rowkiosk" value="{{ $data['rowkiosk'] }}"></input>
                 </td>
             </tr>
             
@@ -902,7 +1129,7 @@
           </tr>
           <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
-            <td class="result">USD<span id="faxTotalKiosk">{{ $data['kiosktax'] }}</span></td>
+            <td class="result">USD<span id="faxTotalKiosk">{{ $data['rowkiosk'] }}</span></td>
             <input type="hidden" name="kiosktax" id="kiosktax" value="{{ $data['kiosktax'] }}"></input>
           </tr>
           <tr>
@@ -926,7 +1153,7 @@
     </div>
   </div>
 
-  <div id="step-11">
+  <div id="step-14">
     <h2 class="StepTitle">REMINDER</h2>
     <div id="page-wrap">
         
@@ -943,10 +1170,11 @@
         </div>
         
     </div>
-  </div>  
-  
+  </div> 
+
 </div>
 {{$form->close()}}
+
 <script type="text/javascript">
   $(document).ready(function() {
         $('#wizard').smartWizard({
@@ -988,16 +1216,15 @@
         });
   }); 
 </script>
-{{ HTML::script('js/edit-order.js') }}
-
+{{ HTML::script('js/edit_order.js') }}
 
 <script>
   var index = <?php echo $data['noaddpass'];?>;
   function addfield() {
     index++;
     var appendStr = '<tr>';
-    appendStr += '<td><input name="addpassboothno'+index+'" type="text" class="passholderbooth" id="" placeholder="15"></input></td>';
-    appendStr += '<td><input name="addpassboothname'+index+'" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>';
+    appendStr += '<td>'+index+'. </td>';
+    appendStr += '<td><input name="boothassistant'+index+'" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>';
     appendStr +=  '</tr>';
     //var appendStr = '<div class="form-label"><label for="newfield'+index+'">New field no '+index+'</label></div>'
     //appendStr += '<div class="form-field"><input id="newfield'+index+'" name="newfield'+index+'" size="20" class="exit-detect"></div>'
@@ -1017,5 +1244,165 @@
     });
 
   });
+</script>
+
+<script type="text/javascript">
+
+var stepContainerHeightcurrent;
+var stepContainerDefault;
+$(document).ready(function() {
+  stepContainerDefault = 700;
+  $('#step-8').show();
+  stepContainerHeightcurrent = $('#step-8').height();
+  if(stepContainerHeightcurrent!=null){
+    
+    $('#step-8').hide();  
+  }
+});
+
+
+
+$('#totaladdboothinput').bind("focus blur change keyup", function(){
+    
+  // Caching the selector for efficiency 
+  var $el = $(this);
+
+  // Grab the new quantity the user entered
+  var numPallets = CleanNumber($el.val());
+          
+
+
+  // If the quantity is empty, reset everything back to empty
+  if ( (numPallets == '') || (numPallets == 0) ) {
+
+      $el
+          .removeClass("warning")
+          .parent().parent()
+          .find("td.row-total input")
+          .val("");
+          
+      var titleClass = $el.parent().parent().find("td.product-title").attr("rel");
+      
+      removeName(titleClass);
+
+  // If the quantity is valid, calculate the row total
+  } else if ( (IsNumeric(numPallets)) && (numPallets != '') ) {
+      
+      //var rowTotal = numPallets * multiplier;
+      
+      /*$el
+          .removeClass("warning")
+          .parent().parent()
+          .find("td.row-total input")
+          .val(rowTotal);*/
+          
+      var titleClass = $el.parent().parent().find("td.product-title").attr("rel");
+              
+      applyName(titleClass, numPallets);
+                                 
+  } else {
+
+      $el
+          .addClass("warning")
+          .parent().parent()
+          .find("td.row-total input")
+          .val("");
+      
+      var titleClass = $el.parent().parent().find("td.product-title").attr("rel");
+      
+      removeName(titleClass);
+                                    
+  };
+
+
+  displayinputadditionalboot();
+  calcProdSubTotalAddbooth();
+  calcTaxAddbooth();
+  calcOrderTotalAddbooth();
+
+
+  });
+
+  function displayinputadditionalboot(){
+  
+  var totalfields = 0;
+  var totalfields = $("#totaladdboothinput").val()|| 0;
+  var totalfieldsNum = parseFloat(totalfields);
+  var totalfieldsNumtoadd = parseFloat(totalfields-totalfields);
+  
+
+  $('.addboothrow').remove();
+  var totaladdboothrecent = <?php echo $data['totaladdbooth'];?>
+  //alert(totalfields);
+  if((totalfieldsNum!=totaladdboothrecent)){
+      for(var i=totaladdboothrecent; i<totalfieldsNum; i++){
+          console.log(totalfieldsNumtoadd);
+          totaladdboothrecent++;
+          var appendStr = '<tr class="addboothrow">';
+          appendStr += '<td>'+totaladdboothrecent+'. </td>';
+          appendStr += '<td><input name="addboothname'+totaladdboothrecent+'" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>';
+          appendStr +=  '</tr>';
+          //var appendStr = '<div class="form-label"><label for="newfield'+index+'">New field no '+index+'</label></div>'
+          //appendStr += '<div class="form-field"><input id="newfield'+index+'" name="newfield'+index+'" size="20" class="exit-detect"></div>'
+          var stepContainerHeight = $('.stepContainer').height();
+          $('#listaddboothedit').append(appendStr);
+      }
+      var totalheight = window.stepContainerDefault+(60*totalfieldsNum);
+      $('.stepContainer').css("height",totalheight);
+      //console.log(window.stepContainerHeightcurrent+(60*totalfieldsNum));
+  }else if(totalfieldsNum==totaladdboothrecent){
+    $('.stepContainer').css("height",window.stepContainerHeightcurrent);
+  }
+  /*}else if(totalfieldsNum<totaladdboothrecent){
+    $('#totaladdboothinput').val(totaladdboothrecent);
+  }*/
+
+  }
+
+  function calcProdSubTotalAddbooth() {
+
+  var prodSubTotal = 0;
+
+  $(".row-total-input-addBooth").each(function() {
+
+      var valString = $(this).val() || 0;
+      
+      prodSubTotal += parseInt(valString);
+
+      
+  });
+
+  $("#subTotalAddbooth").text(CommaFormatted(prodSubTotal));
+  $("#addboothsubtotal").val(prodSubTotal);
+
+  }
+  function calcTaxAddbooth() {
+
+  var totaltax = 0;
+
+  var productSubtotal = $("#subTotalAddbooth").text() || 0;
+
+  var totaltax = (10 * parseInt(CleanNumber(productSubtotal)))/100;    
+
+  $("#faxTotalAddbooth").text(CommaFormatted(totaltax));
+  $("#addboothtax").val(totaltax);
+
+  }
+
+  function calcOrderTotalAddbooth() {
+
+  var orderTotal = 0;
+
+  var productSubtotal = $("#subTotalAddbooth").text() || 0;
+  var taxTotal = $("#faxTotalAddbooth").text() || 0;
+      
+  var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
+      
+  $("#grandTotalAddbooth").text(CommaFormatted(orderTotal));
+  $("#addboothgrandtotal").val(orderTotal);
+  //$("#fc-price").attr("value", orderTotal);
+
+  }
+
 </script>
 @endsection

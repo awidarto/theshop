@@ -197,7 +197,7 @@ class Exhibitor_Controller extends Base_Controller {
 				$doc['country'],
 				$formstatus,
 				'<a class="icon-"  ><i>&#xe1b0;</i><span class="formstatus" id="'.$doc['_id'].'" > Set Form Status</span>'.
-				'<a class="icon-"  href="'.URL::to('exhibitor/viewform/'.$doc['_id']).'"><i>&#x0035;</i><span> View Form</span>'.
+				'<a class="icon-"  ><i>&#x0035;</i><span class="viewform" id="'.$doc['_id'].'" rel="viewform"> View Form</span>'.
 				'<a class="icon-"  href="'.URL::to('exhibitor/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update Profile</span>'.
 				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>',
 				
@@ -607,37 +607,44 @@ class Exhibitor_Controller extends Base_Controller {
 
 		$this->crumb->add('exhibitor','Form Submission',false);
 
+		//$this->crumb->add('user/edit','Edit',false);
 		$user = new Exhibitor();
 
 		$formData = new Operationalform();
 
+		
+		
+
+		$user_form = $formData->get(array('userid'=>$id));
+
+		if (isset($user_form['programdate1']) && $user_form['programdate1']!='') {$user_form['programdate1'] = date('d-m-Y', $user_form['programdate1']->sec); }
+		if (isset($user_form['programdate2']) && $user_form['programdate2']!='') {$user_form['programdate2'] = date('d-m-Y', $user_form['programdate2']->sec); }
+		if (isset($user_form['programdate3']) && $user_form['programdate3']!='') {$user_form['programdate3'] = date('d-m-Y', $user_form['programdate3']->sec); }
+		if (isset($user_form['programdate4']) && $user_form['programdate4']!='') {$user_form['programdate4'] = date('d-m-Y', $user_form['programdate4']->sec); }
+		if (isset($user_form['programdate5']) && $user_form['programdate5']!='') {$user_form['programdate5'] = date('d-m-Y', $user_form['programdate5']->sec); }
+		if (isset($user_form['programdate6']) && $user_form['programdate6']!='') {$user_form['programdate6'] = date('d-m-Y', $user_form['programdate6']->sec); }
+
+		if (isset ($user_form['cocktaildate1'])&& $user_form['cocktaildate1']!='') { $user_form['cocktaildate1'] = date('d-m-Y', $user_form['cocktaildate1']->sec);; }
+		if (isset ($user_form['cocktaildate2'])&& $user_form['programdate2']!='') { $user_form['cocktaildate2']  = date('d-m-Y', $user_form['cocktaildate2']->sec);; }
+		if (isset ($user_form['cocktaildate3'])&& $user_form['programdate3']!='') { $user_form['cocktaildate3']  = date('d-m-Y', $user_form['cocktaildate3']->sec);; }
+		if (isset ($user_form['cocktaildate4'])&& $user_form['programdate4']!='') { $user_form['cocktaildate4']  = date('d-m-Y', $user_form['cocktaildate4']->sec);; }
 
 
-		$data = $formData->get(array('userid'=>$id));
+		$form = Formly::make($user_form);
 
-		if (isset($data['programdate1']) && $data['programdate1']!='') {$data['programdate1'] = date('Y-m-d', $data['programdate1']->sec); }
-		if (isset($data['programdate2']) && $data['programdate2']!='') {$data['programdate2'] = date('Y-m-d', $data['programdate2']->sec); }
-		if (isset($data['programdate3']) && $data['programdate3']!='') {$data['programdate3'] = date('Y-m-d', $data['programdate3']->sec); }
-		if (isset($data['programdate4']) && $data['programdate4']!='') {$data['programdate4'] = date('Y-m-d', $data['programdate4']->sec); }
-		if (isset($data['programdate5']) && $data['programdate5']!='') {$data['programdate5'] = date('Y-m-d', $data['programdate5']->sec); }
-		if (isset($data['programdate6']) && $data['programdate6']!='') {$data['programdate6'] = date('Y-m-d', $data['programdate6']->sec); }
 
-		if (isset ($data['cocktaildate1'])&& $data['cocktaildate1']!='') { $data['cocktaildate1'] = date('Y-m-d', $data['cocktaildate1']->sec);; }
-		if (isset ($data['cocktaildate2'])&& $data['programdate2']!='') { $data['cocktaildate2']  = date('Y-m-d', $data['cocktaildate2']->sec);; }
-		if (isset ($data['cocktaildate3'])&& $data['programdate3']!='') { $data['cocktaildate3']  = date('Y-m-d', $data['cocktaildate3']->sec);; }
-		if (isset ($data['cocktaildate4'])&& $data['programdate4']!='') { $data['cocktaildate4']  = date('Y-m-d', $data['cocktaildate4']->sec);; }
-
-		$form = new Formly();
 		//$form = Formly::make($user_profile);
 
 		//$form->framework = 'zurb';
 
 		return View::make('exhibitor.viewform')
 					->with('form',$form)
-					->with('data',$data)
+					->with('data',$user_form)
 					->with('id',$id)
 					->with('crumb',$this->crumb)
 					->with('title','Operational Form Submission');
+
+		
 
 	}
 

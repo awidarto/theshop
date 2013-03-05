@@ -26,6 +26,7 @@
     {{ HTML::style('content/css/bootmetro-charms.css') }}
     {{ HTML::style('content/css/metro-ui-light.css') }}
     {{ HTML::style('content/css/icomoon.css') }}
+    {{ HTML::style('css/smart_wizard.css') }}
     {{ HTML::style('content/css/app.css') }}
 
     {{ HTML::style('css/jquery-datatables/TableTools.css')}}

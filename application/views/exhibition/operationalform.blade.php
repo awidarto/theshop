@@ -65,11 +65,116 @@
           <label class="stepNumber">11</label>
       </a>
     </li>
+    <li>
+      <a href="#step-12">
+          <small>step</small>
+          <label class="stepNumber">12</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-13">
+          <small>step</small>
+          <label class="stepNumber">13</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-14">
+          <small>step</small>
+          <label class="stepNumber">14</label>
+      </a>
+    </li>
 
   </ul>
 
-  
   <div id="step-1">
+   <h2 class="StepTitle"></h2>
+    <div id="page-wrap">
+      <div id="boothcontractor">
+          <h4>Terms & Conditions:</h4>
+          <ol>
+            <li>Please check your booth requirements  to your booth contractor or organizer.</li>
+            <li>Only filled the required forms.</li>
+            <li>Remember only to submit if your requirements are final. <strong>The forms cannot be modified if already submitted.</strong></li>
+            <li>The organizer will issue an invoice of the total amount of the additional facilities request based on filled forms after the exhibitors finalize it.</li>
+          </ol>
+      </div>
+      <table id="order-table" class="withborder">
+        <tr>
+          <th colspan="4">USEFUL CONTACTS</th>
+        </tr>
+        <tr class="odd">
+          <td rowspan="2">1.</td>
+          <td rowspan="2">Operational</td>
+          <td>Raymond</td>
+          <td>raymond@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Rain</td>
+          <td>rain.januardo@dyandra.com</td>
+        </tr>
+
+        <tr class="odd">
+          <td rowspan="2">2.</td>
+          <td rowspan="2">Hall A</td>
+          <td>Rain</td>
+          <td>rain.januardo@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Tia</td>
+          <td>tia.hamidah@dyandra.com</td>
+        </tr>
+
+         <tr class="odd">
+          <td>3.</td>
+          <td>Hall B</td>
+          <td>Raymond</td>
+          <td>raymond@dyandra.com</td>
+        </tr>
+
+        <tr class="odd">
+          <td>4.</td>
+          <td>Cendrawasih Room</td>
+          <td>Trias</td>
+          <td>trias.nugrahasanah@dyandra.com</td>
+        </tr>
+        
+        <tr class="odd">
+          <td>5.</td>
+          <td>Plenary Hall & Convention</td>
+          <td>Ati</td>
+          <td>luh.ariati@dyandraconvex.com</td>
+        </tr>
+        <tr class="odd">
+          <td>6.</td>
+          <td>Main Lobby</td>
+          <td>Trisa</td>
+          <td>trisa@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>7.</td>
+          <td>Assembly Hall</td>
+          <td>Dian</td>
+          <td>dian@dyandra.com</td>
+        </tr>
+
+        <tr class="odd">
+          <td rowspan="2">8.</td>
+          <td rowspan="2">PR Department</td>
+          <td>Mirna</td>
+          <td>mirna@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Putri</td>
+          <td>diahputri@dyandra.com</td>
+        </tr>
+      </table>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  </div>
+
+  <div id="step-2">
 
     <h2 class="StepTitle">ELECTRICITY INSTALLATION</h2>
     <div id="page-wrap">
@@ -87,7 +192,7 @@
                 <td class="price-per-pallet">USD <span>89</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="sparkle-num-pallets" name="electric1"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric1"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric1"></input>
                 </td>
                 
             </tr>
@@ -97,7 +202,7 @@
                 <td class="price-per-pallet">USD <span>177</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mvp-num-pallets" name="electric2"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="turface-mvp-row-total" disabled="disabled"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric2"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric2"></input>
                 </td>
             </tr>
             <tr class="odd">
@@ -106,7 +211,7 @@
                 <td class="price-per-pallet">USD <span>265</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-pro-league-num-pallets" name="electric3"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-row-total" disabled="disabled"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric3"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric3"></input>
                 </td>
             </tr>
            
@@ -116,7 +221,7 @@
                 <td class="price-per-pallet">USD <span>442</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-quick-dry-num-pallets" name="electric4"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="turface-quick-dry-row-total" disabled="disabled"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric4"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric4"></input>
                 </td>
             </tr>
             <tr class="even">
@@ -125,7 +230,7 @@
                 <td class="price-per-pallet">USD <span>706</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mound-clay-red-num-pallets" name="electric5"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="turface-mound-clay-red-row-total" disabled="disabled"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric5"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric5"></input>
                 </td>
             </tr>
             <tr class="odd">
@@ -134,7 +239,7 @@
                 <td class="price-per-pallet">USD <span>1412</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-red-num-pallets" name="electric6"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-red-row-total" disabled="disabled"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric6"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric6"></input>
                 </td>
             </tr>
             <tr class="even">
@@ -143,7 +248,7 @@
                 <td class="price-per-pallet">USD <span>2118</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-drying-agent-num-pallets" name="electric7"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-drying-agent-row-total" disabled="disabled"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric7"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric7"></input>
                 </td>
             </tr>
             <tr class="odd">
@@ -152,7 +257,7 @@
                 <td class="price-per-pallet">USD <span>4235</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-professional-num-pallets" name="electric8"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-professional-row-total" disabled="disabled"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric8"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric8"></input>
                 </td>
             </tr>
             <tr class="even">
@@ -161,7 +266,7 @@
                 <td class="price-per-pallet">USD <span>7941</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-top-dressing-num-pallets" name="electric9"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-top-dressing-row-total" disabled="disabled"></input>
-                  <input type="hidden" class="row-total-input" id="sparkle-row-total" name="rowelectric9"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric9"></input>
 
                 </td>
             </tr>
@@ -181,10 +286,10 @@
             </tr>
             <tr class="odd">
                 <td class="instalationfee" colspan"2" style="padding-left:30px;">Installation fee</td>
-                <td class="textcentertable">USD 50</td>
+                <td class="textcentertable">USD 30</td>
                 <td class="textcentertable">1</td>
-                <td class="textcentertable">USD 50</td>
-                <input type="hidden" value="50" name="electricinstallfee"></input>
+                <td class="textcentertable">USD 30</td>
+                <input type="hidden" id="operationalfeeelectric" value="30" name="electricinstallfee"></input>
             </tr>
         </table>
 
@@ -233,7 +338,7 @@
     </div>
   </div>
 
-  <div id="step-2">
+  <div id="step-3">
     <h2 class="StepTitle">TELEPHONE INSTALLATION</h2>
     <div id="page-wrap">
         <table id="order-table">
@@ -250,7 +355,7 @@
                 • Service coverage: local call only (within Jakarta).<br/>
                 • Price includes call credit & installation.
                 </td>
-                <td class="price-per-pallet">USD <span>252</span></td>
+                <td class="price-per-pallet">USD <span>250</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="sparkle-num-pallets" name="phone1"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input-phone" id="sparkle-row-total" disabled="disabled"></input>
                   <input type="hidden" class="row-total-input" id="" name="rowphone1"></input>
@@ -264,7 +369,7 @@
                 • Price includes call credit & installation.<br/>
                 • Call back is not applicable.<br/></td>
                 
-                <td class="price-per-pallet">USD <span>402</span></td>
+                <td class="price-per-pallet">USD <span>400</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="turface-mvp-num-pallets" name="phone2"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input-phone" id="turface-mvp-row-total" disabled="disabled"></input>
                   <input type="hidden" class="row-total-input" id="" name="rowphone2"></input>
@@ -273,9 +378,7 @@
             
         </table>
 
-        
-
-        <table id="total-electric">
+        <table class="total-table">
           <tr>
             <td class="grayTable alignRight">Total (USD)</td>
             <td class="result">USD <span id="subTotalPhone"></span></td>
@@ -320,7 +423,7 @@
     </div>
   </div>
 
-  <div id="step-3">
+  <div id="step-4">
       <h2 class="StepTitle">BOOTH CONTRACTOR (SPECIAL DESIGN ONLY)</h2>   
       <div id="boothcontractor">
         <br/>
@@ -354,19 +457,16 @@
         <div class="terms">
            <strong>Terms & Conditions:</strong>
             <ol>
-              <li>Every order of the electricity power will be charged with Installation fee. </li>
-              <li>Rental price during the exhibition starts at 9.00 am until 9.00 pm.</li>
-              <li>Every on-site order request for electricity installation must be paid in cash.</li>
-              <li>24 hours electrical requirement will be charged double.</li>
-              <li>Orders without payment will not be executed.</li>
-              <li>As stocks are limited, late orders will be subjected to a 30% surcharge after 14 April 2013 and 50% surcharge for onsite orders.</li>
+              <li>Exhibitor or booth contractor must submit a copy of complete booth design before <strong>14 April 2013</strong></li>
+              <li>The design must be approved both by the organizer and IPA committee before going to production phase.</li>
+              <li>Contractors are obliged to wear contractor’s own uniform during Set Up and Dismantling period.</li>
             </ol>
         </div>
 
       </div>
   </div>
 
-  <div id="step-4">
+  <div id="step-5">
     <h2 class="StepTitle">FASCIA NAME (STANDARD BOOTH ONLY)</h2>   
     <div id="boothcontractor">
       <br/>
@@ -397,7 +497,7 @@
     </div>                     
   </div>
 
-  <div id="step-5">
+  <div id="step-6">
     <h2 class="StepTitle">FREE EXHIBITOR PASS</h2>   
     <div id="boothcontractor">
       <br/>
@@ -444,100 +544,219 @@
       <table id="order-table">
         <thead>
           <tr>
-            <th style="width:150px;">Booth #</th>
+            <th>No.</th>            
             <th>Names of Exhibitor’s Free Pass Holders</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><input name="freepassboothno1" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname1" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>1. </td>
+            <td><input name="freepassname1" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
           <tr>
-            <td><input name="freepassboothno2" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname2" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>2. </td>
+            <td><input name="freepassname2" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
           <tr>
-            <td><input name="freepassboothno3" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname3" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>3. </td>
+            <td><input name="freepassname3" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
           <tr>
-            <td><input name="freepassboothno4" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname4" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>4. </td>
+            <td><input name="freepassname4" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
           <tr>
-            <td><input name="freepassboothno5" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname5" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>5. </td>
+            <td><input name="freepassname5" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
           <tr>
-            <td><input name="freepassboothno6" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname6" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>6. </td>
+            <td><input name="freepassname6" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
           <tr>
-            <td><input name="freepassboothno7" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname7" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>7. </td>
+            <td><input name="freepassname7" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
           <tr>
-            <td><input name="freepassboothno8" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname8" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>8. </td>
+            <td><input name="freepassname8" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
           <tr>
-            <td><input name="freepassboothno9" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname9" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>9. </td>
+            <td><input name="freepassname9" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
           <tr>
-            <td><input name="freepassboothno10" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="freepassname10" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
+            <td>10. </td>
+            <td><input name="freepassname10" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
           </tr>
         </tbody>
       </table>
       <br/>
       <strong>Terms & Conditions:</strong><br/>
-      <small>•  Free ID card are already include lunch and 2x coffee break.</small><br/>
-      <br/>
-      <br/>
-    </div>                     
-  </div>
-
-  <div id="step-6">
-    <h2 class="StepTitle">ADDITIONAL EXHIBITOR PASS</h2>   
-    <div id="boothcontractor">
-      <br/>
-      <p>Additional Booth Assistant(s) will be admitted only on requested of Additional Booth Assistant's Badge valid for 3 days. There is no limit to the number of Additional Booth Assistants. </p>
-      <p>Booth Assistant's Badges are permitted to assist Exhibitor in Exhibition areas only.</p>
-      <p>Please list below the names of Additional Booth Assistant you wish to register and return by email to each Hall PIC(s).</p>
-      <div class="clear"></div>
-      <table id="order-table">
-        <thead>
-          <tr>
-            <th style="width:150px;">Booth #</th>
-            <th>Names of Exhibitor’s Free Pass Holders</th>
-          </tr>
-        </thead>
-        <tbody id="listadditionalbooth">
-          <tr>
-            <td><input name="addpassboothno1" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="addpassboothname1" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
-          </tr>
-          <tr>
-            <td><input name="addpassboothno2" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="addpassboothname2" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
-          </tr>
-          <tr>
-            <td><input name="addpassboothno3" type="text" class="passholderbooth" id="" placeholder="15"></input></td>
-            <td><input name="addpassboothname3" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>
-          </tr>
-          <input name="noaddpass" id="noaddpass" type="hidden" value="3"></input>
-          
-        </tbody>
-      </table>
-      <a href="javascript:void(0);" id="add-field" class="buttonBrown">Add field</a>
+      <ol>
+        <li>Exhibitor Pass entitled lunch and coffee break during 3 days of exhibition</li>
+        <li>Exhibitor pass (ID Card) does not include free entry to the <strong>Conference‘s Plenary Session, but can attend the TPC</strong></li>
+      </ol>
       <br/>
       <br/>
     </div>                     
   </div>
 
   <div id="step-7">
+    <h2 class="StepTitle">BOOTH ASSISTANT PASS</h2>   
+    <div id="boothcontractor">
+      <br/>
+      <h4>Terms & Conditions:</h4>
+      <ol>
+        <li>Booth Assistant's Pass is valid for 3 days. </li>
+        <li>Booth Assistant's Pass are permitted to assist Exhibitor in Exhibition areas only, and is <strong>not entitled to participate on the Conference‘s Plenary Session nor the  TPC.</strong></li>
+        <li>Booth assistants Pass are free of charge (include coffee break, exclude lunch) at the maximum of 10 persons.</li>
+        <li>More than 10 will be charged USD 35 per pass (include coffee break, exclude lunch)</li>
+        <li>There is no limit to the purchase of the number of Additional Booth Assistant(s).</li>
+      </ol>
+      <p><strong>Please list below the names of BOOTH ASSISTANT PASS HOLDERS you wish to register and send by email to the hall PIC(s)</strong></p>
+      <div class="clear"></div>      
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th>No.</th>            
+            <th>Names of Booth Assistant Pass Holders</th>
+          </tr>
+        </thead>
+        <tbody id="listadditionalbooth">
+          <tr>
+            <td>1. </td>
+            <td><input name="boothassistant1" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>2. </td>
+            <td><input name="boothassistant2" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>3. </td>
+            <td><input name="boothassistant3" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>4. </td>
+            <td><input name="boothassistant4" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>5. </td>
+            <td><input name="boothassistant5" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>6. </td>
+            <td><input name="boothassistant6" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>7. </td>
+            <td><input name="boothassistant7" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>8. </td>
+            <td><input name="boothassistant8" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>9. </td>
+            <td><input name="boothassistant9" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>10. </td>
+            <td><input name="boothassistant10" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <input name="noaddpass" id="noaddpass" type="hidden" value="10"></input>
+        </tbody>
+      </table>
+      <a href="javascript:void(0);" id="add-field" class="buttonBrown">Add field</a>
+      
+      <br/>
+      <br/>
+    </div>                     
+  </div>
+
+  <div id="step-8">
+    <h2 class="StepTitle">ADDITIONAL EXHIBITOR PASS</h2>   
+    <div id="boothcontractor">
+      <br/>
+      <h4>Terms & Conditions:</h4>
+      <ol>
+        <li>Additional Booth Assistant(s) pass is charged USD 35 per pass (include coffee break, exclude lunch)</li>
+        <li>Additional Booth Assistant(s) is valid for 3 days. </li>
+        <li>Additional Booth Assistant(s)  Pass are permitted to assist Exhibitor in Exhibition areas only, and is <strong>not entitled to participate on the Conference‘s Plenary Session nor the TPC.</strong></li>
+        <li>Booth assistants are free of charge (include coffee break, exclude lunch) at the maximum of 10 persons.</li>
+      </ol>
+
+      <table id="order-table">
+          <tr>
+               <th>Price/UNIT</th>
+               <th>QUANTITY</th>
+               <th style="padding-right: 30px;">SUB TOTAL (USD)</th> 
+          </tr>
+          <tr class="odd">
+              
+              <td class="price-per-pallet">USD <span>35</span></td>
+              <td class="num-pallets"><input type="text" class="num-pallets-input-phone" name="totaladdbooth" id="totaladdboothinput"></input></td>
+              <td class="row-total" style="text-align:right;float:right;"><input type="text" class="row-total-input-addBooth" id="sparkle-row-total" disabled="disabled"></input>
+                <input type="hidden" class="row-total-input" id="" name="rowaddbooth"></input>
+              </td>
+          </tr>
+          
+          
+      </table>
+
+      
+
+      <table id="total-addbooth" class="total-table">
+        <tr>
+          <td class="grayTable alignRight">Total (USD)</td>
+          <td class="result">USD <span id="subTotalAddbooth"></span></td>
+          <input type="hidden" class="" id="addboothsubtotal" name="addboothsubtotal"></input>
+        </tr>
+        <tr>
+          <td class="grayTable alignRight">Late Order Surcharge 30%</td>
+          <td class="result">USD</td>
+          <input type="hidden" class="" id="" name="addboothlate"></input>
+        </tr>
+        <tr>
+          <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
+          <td class="result">USD</td>
+          <input type="hidden" class="" id="" name="addboothonsite"></input>
+        </tr>
+        <tr>
+          <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
+          <td class="result">USD<span id="faxTotalAddbooth"></span></td>
+          <input type="hidden" class="" id="addboothtax" name="addboothtax"></input>
+        </tr>
+        <tr>
+          <td class="grayTable alignRight">Grand Total</td>
+          <td class="result">USD<span id="grandTotalAddbooth"></span></td>
+          <input type="hidden" class="" id="addboothgrandtotal" name="addboothgrandtotal"></input>
+        </tr>
+      </table>
+      <div class="clear"></div>
+      <br/>
+      <br/>
+      <p><strong>Please list below the names of Additional Booth Assistant you wish to register and return by email to each Hall PIC(s).</strong></p>
+      <div class="clear"></div>
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th style="width:150px;">No.</th>
+            <th>Names of Additional Booth Assistant Pass Holders</th>
+          </tr>
+        </thead>
+        <tbody id="listaddbooth">
+          
+          
+        </tbody>
+      </table>
+      
+      <br/>
+      <br/>
+    </div>                     
+  </div>
+
+  <div id="step-9">
     <h2 class="StepTitle">BOOTH PROGRAM SCHEDULE</h2>   
     <div id="boothcontractor">
       <br/>
@@ -654,7 +873,78 @@
     </div>                     
   </div>  
 
-  <div id="step-8">
+  <div id="step-10">
+    <h2 class="StepTitle">ADVERTISING</h2>
+    <div id="page-wrap">
+        <table id="order-table">
+            <tr>
+                 <th>No.</th>
+                 <th>TYPE</th> 
+                 <th>PRICE/UNIT</th>
+                 <th>QUANTITY</th>
+                 <th style="padding-right: 30px;">SUB TOTAL (USD)</th> 
+            </tr>
+            <tr class="odd">
+                <td>1</td>
+                <td class="product-title"><strong>Hanging Banner – Above the booth</strong><br/><br/>
+                &nbsp;&nbsp;&nbsp;• Size : 1,05m x 4m (portrait).<br/>
+                </td>
+                <td class="price-per-pallet">USD <span>200</span></td>
+                <td class="num-pallets"><input type="text" class="num-pallets-input-advert" id="sparkle-num-pallets" name="advert"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input-advert" id="sparkle-row-total" disabled="disabled"></input>
+                  <input type="hidden" class="row-total-advert" id="" name="rowadvert"></input>
+                </td>
+            </tr>
+            
+            
+        </table>
+
+        
+
+        <table id="total-electric">
+          <tr>
+            <td class="grayTable alignRight">Total (USD)</td>
+            <td class="result">USD <span id="subTotalAdvert"></span></td>
+            <input type="hidden" class="" id="advertsubtotal" name="advertsubtotal"></input>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">Late Order Surcharge 30%</td>
+            <td class="result">USD</td>
+            <input type="hidden" class="" id="" name="advertlate"></input>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
+            <td class="result">USD</td>
+            <input type="hidden" class="" id="" name="advertonsite"></input>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
+            <td class="result">USD<span id="faxTotalAdvert"></span></td>
+            <input type="hidden" class="" id="adverttax" name="adverttax"></input>
+          </tr>
+          <tr>
+            <td class="grayTable alignRight">Grand Total</td>
+            <td class="result">USD<span id="grandTotalAdvert"></span></td>
+            <input type="hidden" class="" id="advertgrandtotal" name="advertgrandtotal"></input>
+          </tr>
+        </table>
+        
+        <div class="clear"></div>
+
+        <div>
+            <h4>Terms & Conditions:</h4>
+            <ol>
+              <li>Exhibitors must provide their own promotional material.</li>
+              <li>First come first serve basis is applied.</li>
+              <li>Payment must be in cash on setup days or the showdays.</li>
+              <li>The placement of hanging banner above the exhibitor’s booth depends on the availability of the roof hanger point, makes reservation before order.</li>
+            </ol>
+        </div>
+        
+    </div>
+  </div>
+
+  <div id="step-11">
     <h2 class="StepTitle">FURNITURE RENTAL</h2>   
     <div id="boothcontractor">
       <br/>
@@ -667,9 +957,9 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture1.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="15">
+          <div class="furniturepricecontainer" price="20">
             <input name="furniture1" type="text" id="furnitureinput1" placeholder="0" class="num-pallets-input-furniture"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice" >USD 15/Unit</span>
+            <span      id="furnitureprice1" class="furnitureprice" >USD 20/Unit</span>
             <input name="rowfurniture1" class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
@@ -679,9 +969,9 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture2.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="15">
+          <div class="furniturepricecontainer" price="20">
             <input name="furniture2"  type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
-            <span     id="furnitureprice1" class="furnitureprice">USD 15/Unit</span>
+            <span     id="furnitureprice1" class="furnitureprice">USD 20/Unit</span>
             <input name="rowfurniture2" class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
@@ -691,9 +981,9 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture3.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="45">
+          <div class="furniturepricecontainer" price="55">
             <input name="furniture3" type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice">USD 45/Unit</span>
+            <span      id="furnitureprice1" class="furnitureprice">USD 55/Unit</span>
             <input name="rowfurniture3" class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
@@ -707,9 +997,9 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture4.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="21">
+          <div class="furniturepricecontainer" price="25">
             <input name="furniture4" type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice" >USD 21/Unit</span>
+            <span      id="furnitureprice1" class="furnitureprice" >USD 25/Unit</span>
             <input name="rowfurniture4" class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
@@ -719,9 +1009,9 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture5.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="15">
+          <div class="furniturepricecontainer" price="20">
             <input name="furniture5" type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice" >USD 15/Unit</span>
+            <span      id="furnitureprice1" class="furnitureprice" >USD 20/Unit</span>
             <input name="rowfurniture5" class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
@@ -731,9 +1021,9 @@
           <div class="furnituredetailcontainer">
             {{ HTML::image('images/exhibitor/furniture6.png','',array('class'=>'furnitureImage')) }}
           </div>
-          <div class="furniturepricecontainer" price="45">
+          <div class="furniturepricecontainer" price="55">
             <input name="furniture6" type="text" id="" placeholder="0" class="num-pallets-input-furniture"></input><br/>
-            <span      id="furnitureprice1" class="furnitureprice">USD 45/Unit</span>
+            <span      id="furnitureprice1" class="furnitureprice">USD 55/Unit</span>
             <input name="rowfurniture6" class="row-total-input-furniture" type="hidden"></input>
           </div>
         </div>
@@ -775,7 +1065,7 @@
     </div>                     
   </div>  
 
-  <div id="step-9">
+  <div id="step-12">
     <h2 class="StepTitle">INTERNET CONNECTION</h2>
     <div id="page-wrap">
         <table id="order-table">
@@ -783,36 +1073,32 @@
                  <th>INTERNET CONNECTION (CABLE)</th>
                  <th>PRICE /PACKAGE</th> 
                  <th>QUANTITY</th>
-                 <th>DAY</th>
                  <th style="padding-right: 30px;">SUB TOTAL (USD)</th> 
             </tr>
             <tr class="odd">
                 <td><strong>Package : 1 Mbps</strong></td>
-                <td class="price-per-pallet">USD <span>200</span></td>
+                <td class="price-per-pallet">USD <span>380</span></td>
                 <td class="num-pallets"><input name="internet1"    type="text" class="num-pallets-input-internet" id="sparkle-num-pallets"></input></td>
-                <td class="num-pallets"><input name="internetday1" type="text" class="num-pallets-input-internet quantitypalets" id="sparkle-num-pallets"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled"></input>
-                  <input name="rowinternet1" class="row-total-input-internet" type="hidden" id="rowinternet1"></input>
+                  <input name="rowinternet1" class="row-total-input-internet-hidden" type="hidden" id="rowinternet1"></input>
                 </td>
             </tr>
             <tr class="even">
                 <td><strong>Package : 2 Mbps</strong></td>
-                <td class="price-per-pallet">USD <span>401</span></td>
+                <td class="price-per-pallet">USD <span>760</span></td>
                 <td class="num-pallets"><input name="internet2"    type="text" class="num-pallets-input-internet" id="sparkle-num-pallets"></input></td>
-                <td class="num-pallets"><input name="internetday2" type="text" class="num-pallets-input-internet quantitypalets" id="sparkle-num-pallets"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled"></input>
-                  <input name="rowinternet2" class="row-total-input-internet" type="hidden" id="rowinternet2"></input>
+                  <input name="rowinternet2" class="row-total-input-internet-hidden" type="hidden" id="rowinternet2"></input>
                 </td>
             </tr>
             <tr class="odd">
                 <td><strong>Instalation Fee</strong></td>
-                <td class="price-per-pallet">USD <span>5</span></td>
-                <td class="num-pallets"></td>
-                <td class="num-pallets"><span class="" id="totalDayInternet"></span></td>
-                <input name="internetinstallday" type="hidden" id="internetinstallday"></input>
+                <td class="price-per-pallet">USD <span id="internetinstallfeeperqty">50</span></td>
+                <td class="num-pallets"><input type="text" class="internetinstallqty" disabled="disabled"></input></td>
+                <input name="internetinstallqty" type="hidden" class="internetinstallqty"></input>
                 <td class="row-total">
-                  <input type="text" class="row-total-input-internet" id="totalFeeInstallInternet" disabled="disabled"></input>
-                  <input name="internetinstallfee" type="hidden" id="internetinstallfee" class="row-total-input-internet" ></input>
+                  <input type="text" class="row-total-input-internetfee" id="totalFeeInstallInternet" disabled="disabled"></input>
+                  <input name="internetinstallfee" type="hidden" id="internetinstallfee" class="row-total-input-internetfee" ></input>
 
                 </td>
             </tr>
@@ -866,7 +1152,7 @@
     </div>
   </div>
 
-  <div id="step-10">
+  <div id="step-13">
     <h2 class="StepTitle">KIOSK RENTAL</h2>
     <div id="page-wrap">
         <table id="order-table">
@@ -903,11 +1189,11 @@
             
             <tr class="even">
                 <td class="price-per-pallet"><strong style="font-size:12.5px;margin-left:20px;">USD <span>480</span>,-</strong></td>
-                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 1</span><input name="kiosk1" type="text" class="num-pallets-input-kiosk" id="sparkle-num-pallets" style="margin:0 auto;margin-bottom:10px;"></input></td>
-                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 2</span><input name="kiosk2" type="text" class="num-pallets-input-kiosk" id="sparkle-num-pallets" style="margin:0 auto;margin-bottom:10px;"></input></td>
+                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 1</span><input name="kiosk1" type="text" id="numpalletskiosk1" class="num-pallets-input-kiosk" id="" style="margin:0 auto;margin-bottom:10px;"></input></td>
+                <td class="num-pallets" style="text-align:center;margin:0 auto;"><span style="display:block;margin-bottom:8px;">Type 2</span><input name="kiosk2" type="text" id="numpalletskiosk2" class="num-pallets-input-kiosk" id="" style="margin:0 auto;margin-bottom:10px;"></input></td>
                 <td class="row-total">
-                  <input type="text" class="row-total-input-kiosk" id="sparkle-row-total" disabled="disabled" style="margin-left:20px;margin-top:20px;"></input>
-                  <input type="hidden" class="row-total-input-kiosk" name="rowkiosk"></input>
+                  <input type="text" class="row-total-input-kiosk" id="" disabled="disabled" style="margin-left:20px;margin-top:20px;"></input>
+                  <input type="hidden" class="row-total-input-kiosk-hidden" name="rowkiosk"></input>
                 </td>
             </tr>
             
@@ -956,7 +1242,7 @@
     </div>
   </div>
 
-  <div id="step-11">
+  <div id="step-14">
     <h2 class="StepTitle">REMINDER</h2>
     <div id="page-wrap">
         
@@ -1022,12 +1308,12 @@
 
 
 <script>
-  var index = 3;
+  var index = 10;
   function addfield() {
     index++;
     var appendStr = '<tr>';
-    appendStr += '<td><input name="addpassboothno'+index+'" type="text" class="passholderbooth" id="" placeholder="15"></input></td>';
-    appendStr += '<td><input name="addpassboothname'+index+'" type="text" class="passholderbooth" id="" placeholder="John Dochin"></input></td>';
+    appendStr += '<td>'+index+'. </td>';
+    appendStr += '<td><input name="boothassistant'+index+'" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>';
     appendStr +=  '</tr>';
     //var appendStr = '<div class="form-label"><label for="newfield'+index+'">New field no '+index+'</label></div>'
     //appendStr += '<div class="form-field"><input id="newfield'+index+'" name="newfield'+index+'" size="20" class="exit-detect"></div>'
