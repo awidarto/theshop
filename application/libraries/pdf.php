@@ -5,11 +5,14 @@ class Pdf
     public $workbook;
     public $papersize = 'a4';
     public $orientation = 'portrait';
-    public $outputname = 'pdf_export.pdf';
+    public $outputname = 'pdf_output.pdf';
+    public $savename = 'pdf_save.pdf';
+    public $dompdf;
     
     function __construct()
     {
         require_once('dompdf/dompdf_config.inc.php');
+        $this->dompdf = new DOMPDF();
     }
 
     function set_paper($size, $orientation)
@@ -22,19 +25,42 @@ class Pdf
     {
         $this->outputname = $name;
     }
+
+    function set_save_name($name)
+    {
+        $this->savename = $name;
+    }
     
-    function make($doc,$filename = null){
-        $dompdf = new DOMPDF();
-        $dompdf->load_html($doc);
-        $dompdf->set_paper($this->papersize, $this->orientation );
+    function make($doc){
+        $this->dompdf->load_html($doc);
+        $this->dompdf->set_paper($this->papersize, $this->orientation );
+        return true;
+    }
 
-        $dompdf->render();
+    function render()
+    {
+        $this->dompdf->render();
+    }
 
-        $dompdf->stream($this->outputname, array("Attachment" => false));
+    function stream(){
+        $this->dompdf->stream($this->outputname, array("Attachment" => false));
+    }
 
-        exit(0);
+    function save($filename = null)
+    {
+        if(is_null($filename)){
+            $filename = $this->savename;
+        }else{
+            $filename = $filename;
+        }
+
+        $out = $this->dompdf->output();
+
+        file_put_contents($filename, $out);
 
     }
+
+
 
 }
 

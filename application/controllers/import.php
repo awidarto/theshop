@@ -805,6 +805,25 @@ class Import_Controller extends Base_Controller {
 
 	}
 
+	public function get_pdftest()
+	{
+	    $doc = View::make('pdf.test')->render();
+
+	    $pdf = new Pdf();
+
+	    $pdf->make($doc);
+
+		$newdir = realpath(Config::get('kickstart.storage'));
+
+		$path = $newdir.'/test.pdf';
+
+		$pdf->render();
+
+	    $pdf->stream();
+
+	    $pdf->save($path);
+
+	}
 
 }
 
