@@ -86,6 +86,14 @@ Route::get('register-success',array('as'=>'register/success','uses'=>'register@s
 Route::get('register-landing',array('as'=>'register/landing','uses'=>'register@landing'));
 Route::get('register-group',array('as'=>'register/group','uses'=>'register@group'));
 
+Route::get('pdftest',function(){
+    $doc = View::make('pdf.test')->render();
+
+    $pdf = new Pdf();
+
+    $pdf->make($doc);
+});
+
 /*
 Route::get('/',  function(){
     $heads = array('Home','Action');
