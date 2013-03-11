@@ -103,7 +103,7 @@
                       {{ $form->radio('golf','Yes','Yes',false,array('class'=>'paymentSettle field_golfType')) }} 
                     </div>   
                     <div class="span2">
-                      {{ $form->radio('golf','No','No',true,array('class'=>'paymentSettle field_golfType')) }} 
+                      {{ $form->radio('golf','No','No',array('class'=>'paymentSettle field_golfType')) }} 
                     </div>   
                     <div class="span8"></div>
                 </div>

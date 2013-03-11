@@ -69,6 +69,7 @@ class Dashboard_Controller extends Base_Controller {
 		}*/
 
 		$attendee = new Attendee();
+		$exhibitor = new Exhibitor();
 
 		$stat['PO'] = $attendee->count(array('regtype'=>'PO'));
 
@@ -77,6 +78,8 @@ class Dashboard_Controller extends Base_Controller {
 		$stat['SO'] = $attendee->count(array('regtype'=>'SO'));
 
 		$stat['SD'] = $attendee->count(array('regtype'=>'SD'));
+
+		$stat['ExhibitorTotal'] = $exhibitor->count();
 
 		$stat['Attendee'] = $attendee->count();
 

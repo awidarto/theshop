@@ -861,7 +861,6 @@ class Attendee_Controller extends Base_Controller {
 				$reg_number[1] = $data['regtype'];
 				$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
-
 			}else if($data['registrationnumber'] == ''){
 				$reg_number = array();
 				$seq = new Sequence();
@@ -883,8 +882,10 @@ class Attendee_Controller extends Base_Controller {
 			$data['golfSequence'] = 0;
 
 			if($data['golf'] == 'Yes'){
+				$seq = new Sequence();
 				$gseq = $seq->find_and_modify(array('_id'=>'golf'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true,'upsert'=>true));
 				$data['golfSequence'] = $gseq['seq'];
+				$data['golfPaymentStatus'] = 'unpaid';
 			}
 
 			$data['registrationnumber'] = implode('-',$reg_number);

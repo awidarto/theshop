@@ -141,7 +141,6 @@ Event::listen('exhibitor.createformadmin',function($id,$newpass){
 
     Message::to($data['email'])
         ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-        ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
         ->subject('Indonesia Petroleum Association – 37th Convention & Exhibition (Exhibitor – '.$data['registrationnumber'].')')
         ->body( $body )
         ->html(true)
@@ -168,7 +167,6 @@ Event::listen('exhibition.postoperationalform',function($id,$exhibitorid){
 
     Message::to($user['email'])
         ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
-        ->cc(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
         ->subject('CONFIRMATION OF OPERATIONAL FORMS - Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$user['registrationnumber'].')')
         ->body( $body )
         ->html(true)
