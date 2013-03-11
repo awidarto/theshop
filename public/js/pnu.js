@@ -305,5 +305,34 @@
 			}
 		});
 
+		var hallId;
+
+		$('.auto_hall').autocomplete({
+			source: base + 'ajax/hall',
+			select: function(event, ui){
+				$('#hallid').val(ui.item.id);
+				hallId = $('#hallid').val();
+			},
+			change: function( event, ui ) {
+				$('#boothid').val('');
+				$('.auto_booth').val('');
+			}
+		});
+		
+		
+		$('.auto_booth').bind("focus blur change keyup", function(){
+			hallId = $('#hallid').val();
+
+			$('.auto_booth').autocomplete({
+				
+				source: base + 'ajax/booth/'+hallId,
+				
+				select: function(event, ui){
+					$('#boothid').val(ui.item.id);
+					
+				}
+			});
+		});
+
 
     });

@@ -96,6 +96,47 @@ class Ajax_Controller extends Base_Controller {
 		}
 
 		return Response::json($result);		
+	}
+
+	public function get_hall()
+	{
+		$q = Input::get('term');
+
+		$hall = new Hall();
+		$qemail = new MongoRegex('/'.$q.'/i');
+
+		$res = $hall->find(array('name'=>$qemail));
+
+		$result = array();
+
+		foreach($res as $r){
+			$result[] = array('id'=>$r['_id']->__toString(),'value'=>$r['name']);
+		}
+
+		return Response::json($result);		
+	}
+
+	public function get_booth($id)
+	{
+		$q = Input::get('term');
+		
+		$booth = new Booth();
+		$qemail = new MongoRegex('/'.$q.'/i');
+
+		$res = $booth->find(array('boothno'=>$qemail,'hall_id'=>$id));
+
+		$result = array();
+		
+		
+		foreach($res as $r){
+			$result[] = array('id'=>$r['_id']->__toString(),'value'=>$r['boothno']);
+		}
+			
+		
+
+		
+
+		return Response::json($result);		
 	}	
 
 	public function get_userdata()
