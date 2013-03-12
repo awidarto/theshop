@@ -55,7 +55,23 @@ class Import_Controller extends Base_Controller {
 			->with('crumb',$this->crumb);
 	}
 
-	public function get_preview($id)
+	public function get_exhibitor($exid)
+	{
+		$this->crumb = new Breadcrumb();
+		$this->crumb->add('exhibitor','Exhibitor');
+		$this->crumb->add('import','Import Worker Data');
+
+
+		$form = new Formly();
+
+		return View::make('import.eximport')
+			->with('title','Import Exhibitor Data')
+			->with('exid',$exid)
+			->with('form',$form)
+			->with('crumb',$this->crumb);
+	}
+
+	public function get_preview($id,$type = null)
 	{
 
 		$this->crumb->add('import/preview','Preview');
@@ -129,7 +145,7 @@ class Import_Controller extends Base_Controller {
 			->nest('row','attendee.rowdetail');
 	}
 
-	public function post_loader($id)
+	public function post_loader($id,$type = null)
 	{
 
 		$imp = new Importcache();
@@ -598,26 +614,37 @@ class Import_Controller extends Base_Controller {
 
 	}
 
-	public function post_preview()
+	public function post_preview($type = null,$exid = null)
 	{
 
 		//print_r(Session::get('permission'));
-
 		$back = 'import/preview';
 
-	    $rules = array(
-	        'email'  => 'required',
-	        'firstname'  => 'required',
-	        'lastname'  => 'required',
-	        'position' => 'required',
-	        'groupName' => 'required'
-	    );
+		if(is_null($type)){
+		    $rules = array(
+		        'email'  => 'required',
+		        'firstname'  => 'required',
+		        'lastname'  => 'required',
+		        'position' => 'required',
+		        'groupName' => 'required'
+		    );			
+		}else{
+			if($type == 'exhibitor'){
+			    $rules = array(
+			        'email'  => 'required',
+			        'firstname'  => 'required',
+			        'lastname'  => 'required'
+			    );			
+
+			}
+		}
 
 	    $validation = Validator::make($input = Input::all(), $rules);
 
 	    if($validation->fails()){
 
-	    	return Redirect::to('import')->with_errors($validation)->with_input(Input::all());
+	    	return Redirect::to('import/'.$type.'/'.$exid)->with_errors($validation)->with_input(Input::all());
+
 
 	    }else{
 
@@ -794,7 +821,15 @@ class Import_Controller extends Base_Controller {
 
 				Event::fire('import.create',array('id'=>$newobj['_id'],'result'=>'OK','department'=>Auth::user()->department,'creator'=>Auth::user()->id));
 
-		    	return Redirect::to($back.'/'.$newobj['_id'])->with('notify_success','Document uploaded successfully');
+				if(is_null($type)){
+					$back = $back.'/'.$newobj['_id'];
+				}else{
+					if($type == 'exhibitor'){
+						$back = $back.'/'.$newobj['_id'].'/exhibitor';
+					}
+				}
+
+		    	return Redirect::to($back)->with('notify_success','Document uploaded successfully');
 			}else{
 				Event::fire('import.create',array('id'=>$id,'result'=>'FAILED'));
 		    	return Redirect::to($back)->with('notify_success','Document upload failed');
