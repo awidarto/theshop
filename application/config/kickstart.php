@@ -1,6 +1,6 @@
 <?php 
 return array(
-  'storage'=>'public/storage/',
+  'storage'=>'public/storage/operationalforms',
   'avatarstorage'=>'public/avatar/',
   'photostorage'=>'public/employees/',
   'currencies'=>array( 'IDR'=>'IDR','USD'=>'USD','SGD'=>'SGD','EU'=>'EU','AUD'=>'AUD'),
