@@ -2,22 +2,11 @@
 
 @section('content')
 
-<!--<div class="tableHeader">
-	@if($title != '')
-		<h3>{{$title}}</h3>
-	@endif
-	@if(isset($addurl) && $addurl != '')
-		<a class="foundicon-add-doc button right newdoc action clearfix" href="{{URL::to($addurl)}}">&nbsp;&nbsp;<span>{{$newbutton}}</span></a>
-	@endif
-</div>
--->
-<div class="span12">
-   
+<div class="row-fluid">
+	<div class="span8">
 
-    <div class="row-fluid">
-       <div class="span12">
-
-          <table class="table table-condensed dataTable attendeeTable">
+          <h4>Attendee</h4>
+          <table class="table table-condensed dataTable attendeeTable" id="onsite">
 
 			    <thead>
 			        <tr>
@@ -68,237 +57,131 @@
              	<!-- will be replaced by ajax content -->
              </tbody>
 
-             <!--
+          </table>
+
+          <h4>Visitor</h4>
+          <table class="table table-condensed dataTable visitorTable" id="onsite">
+
+			    <thead>
+			        <tr>
+			        	<?php
+				        	if(!isset($colclass)){
+				        		$colclass = array();
+				        	}
+			        		$hid = 0;
+			        	?>
+			        	@foreach($heads as $head)
+			        		<th 
+			        			@if(isset($colclass[$hid]))
+			        				class="{{$colclass[$hid]}}"
+			        			@endif
+			        			<?php $hid++ ?>
+			        		>
+			        			{{ $head }}
+			        		</th>
+			        	@endforeach
+			        </tr>
+
+
+			    </thead>
+
+				<?php
+					$form = new Formly();
+				?>
+
 		    	@if($searchinput)
-				    <tfoot>
+				    <thead id="searchinput">
 					    <tr>
 				    	@foreach($searchinput as $in)
 				    		@if($in)
-				        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
+				    			@if($in == 'select_all')
+				    				<td>{{ $form->checkbox('select_all','','',false,array('id'=>'select_all')) }}</td>
+				    			@else
+					        		<td><input type="text" name="search_{{$in}}" id="search_{{$in}}" value="Search {{$in}}" class="search_init" /></td>
+				    			@endif
 				    		@else
 				        		<td>&nbsp;</td>
 				    		@endif
 				    	@endforeach
 					    </tr>
-				    </tfoot>
+				    </thead>
 			    @endif
-			-->
+
+             <tbody>
+             	<!-- will be replaced by ajax content -->
+             </tbody>
+
           </table>
 
-       </div>
-    </div>
-
- </div>
-<footer class="win-ui-dark win-commandlayout navbar-fixed-bottom">
-  <div class="container">
-     <div class="row-fluid">
-        <div class="span12 align-left">
-           <a class="win-command" href="{{ URL::base()}}">
-              <span class="win-commandimage win-commandring">!</span>
-              <span class="win-label">Home</span>
-           </a>
-
-           <hr class="win-command" />
-
-		   	@if(isset($addurl) && $addurl != '')
-				<a class="win-command" href="{{URL::to($addurl)}}">
-					<span class="win-commandimage win-commandring">&#xe03e;</span>
-					<span class="win-label">Add</span>
-				</a>
-			@endif
-
-		   	@if(isset($reimporturl) && $reimporturl != '')
-				<a class="win-command" href="{{URL::to($reimporturl)}}">
-					<span class="win-commandimage win-commandring">&#x0055;</span>
-					<span class="win-label">Re-Import</span>
-				</a>
-			@endif
-
-		   	@if(isset($commiturl) && $commiturl != '')
-				<a class="win-command" href="{{URL::to($commiturl)}}">
-					<span class="win-commandimage win-commandring">&#x0056;&#x0054;</span>
-					<span class="win-label">Commit</span>
-				</a>
-			@endif
-
-		   	@if(isset($form))
-	           <hr class="win-command" />
-
-		   		<div class="row-fluid selectionCommandList">
-		   			<div class="span3 text">
-		   				Use selection for:
-		   			</div>
-		   			<div class="span5">
-				   		{{ $form->select('action','',Config::get('kickstart.actionselection'))}}
-		   			</div>
-						<a class="win-command" id="do_action">
-							<span class="win-commandimage win-commandring">&#xe132;</span>
-						</a>
-		   			
-		   			<!--<div class="span7">
-		   				&nbsp;
-		   			</div>-->
-		   		</div>
-			@endif
-
-        </div>
-        
-     </div>
-  </div>
-</footer>
-
-<div id="updatePayment" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Convention Status</h3>
 	</div>
-	<div class="modal-body">
+	<div class="span4">
 
-		{{ Form::select('paystatus', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselect'))}}
-		<span id="paystatusindicator"></span>
+		<div class="metro row-fluid">
+			<div class="metro-sections span12">
 
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="savepaystatus">Save</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			   <div id="section2" class="metro-section tile-span-2">
+			      <h2>Quick Access</h2>
+			      <a class="tile app imagetext bg-color-greenDark" href="{{ URL::to('attendee')}}">
+			         <div class="image-wrapper">
+			         	{{ HTML::image('content/img/My Apps.png') }}
+			         </div>
+			         <div class="column-text">
+			            <div class="text">Attendees</div>
+			         </div>
+			      </a>
+
+			      <a class="tile app bg-color-blueDark" href="{{ URL::to('attendee/add') }}">
+			         <div class="image-wrapper">
+			            <span class="icon icon-user-2"></span>
+			         </div>
+			         <span class="app-label">Register New Attendee</span>
+			      </a>
+
+			      <a class="tile app imagetext bg-color-greenDark" href="{{ URL::to('visitor')}}">
+			         <div class="image-wrapper">
+			         	{{ HTML::image('content/img/My Apps.png') }}
+			         </div>
+			         <div class="column-text">
+			            <div class="text">Visitors</div>
+			         </div>
+			      </a>
+
+			      <a class="tile app bg-color-blueDark" href="{{ URL::to('visitor/add') }}">
+			         <div class="image-wrapper">
+			            <span class="icon icon-user-2"></span>
+			         </div>
+			         <span class="app-label">Register New Visitor</span>
+			      </a>
+
+			      <a class="tile app imagetext bg-color-greenDark" href="{{ URL::to('official')}}">
+			         <div class="image-wrapper">
+			         	{{ HTML::image('content/img/My Apps.png') }}
+			         </div>
+			         <div class="column-text">
+			            <div class="text">Officials</div>
+			         </div>
+			      </a>
+
+			      <a class="tile app bg-color-blueDark" href="{{ URL::to('official/add') }}">
+			         <div class="image-wrapper">
+			            <span class="icon icon-user-2"></span>
+			         </div>
+			         <span class="app-label">Register New Official</span>
+			      </a>
+
+			   </div>
+			</div>
+		</div>
+
+
 	</div>
 </div>
 
-<div id="updateFormStatus" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Operational Form Status</h3>
-	</div>
-	<div class="modal-body">
-
-		{{ Form::select('formstatus', Config::get('eventreg.formstatus'),null,array('id'=>'formstatusselect'))}}
-		
-
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="saveformstatus">Save</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	</div>
-</div>
-
-<div id="updatePaymentGolf" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Golf Status</h3>
-	</div>
-	<div class="modal-body">
-
-		{{ Form::select('paystatusgolf', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselectgolf'))}}
-		<span id="paystatusindicator"></span>
-
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="savepaystatusGolf">Save</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	</div>
-</div>
-
-
-<div id="updateResendmail" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Resend Email</h3>
-	</div>
-	<div class="modal-body">
-		<label>Select email type to resend:</label>
-		{{ Form::select('resendemailtype', Config::get('eventreg.resendemailtype'),null,array('id'=>'resendemailtype'))}}
-		<br/><span id="errormessagemodal" class="fontRed"></span><span id="successmessagemodal" class="fontGreen"></span>
-
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="submitresend">Submit</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	</div>
-</div>
-
-
-<div id="viewformModal" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	
-	<div class="modal-header">
-		<button type="button" id="removeviewform" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Form Submission</h3>
-	</div>
-	<div class="modal-body" id="loaddata">
-		
-	</div>
-	
-	
-
-</div>
-
-
-<div id="updatePaymentGolfConvention" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Golf & Convention Status</h3>
-	</div>
-	<div class="modal-body">
-
-		{{ Form::select('paystatusgolfconvention', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselectgolfconvention'))}}
-		<span id="paystatusindicator"></span>
-
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="savepaystatusGolfConvention">Save</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	</div>
-</div>
-
-
-<div id="addToGroup" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Add Selected to Group</h3>
-	</div>
-	<div class="modal-body">
-
-		{{ Form::select('paystatus', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselect'))}}
-		<span id="paystatusindicator"></span>
-
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="savepaystatus">Save</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	</div>
-</div>
-
-
-<div id="printBadge" class="modal message hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Print Badge</h3>
-	</div>
-	<div class="modal-body">
-		<iframe src="{{ URL::base().'/print/badge' }}" id="print_frame" class="span12"></iframe>
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="printstart">Print</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	</div>
-</div>
-
-<div id="deleteWarning" class="modal warning hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 id="myModalLabel">Confirm Delete</h3>
-	</div>
-	<div class="modal-body">
-		<p id="delstatusindicator" >Are you sure you want to delete this item ?</p>
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="confirmdelete">Yes</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-	</div>
-</div>
 
 <script type="text/javascript">
 
 	var oTable;
+	var vTable;
 
 	var current_pay_id = 0;
 	var current_del_id = 0;
@@ -312,6 +195,21 @@
 	function fnFormatDetails ( nTr )
 	{
 	    var aData = oTable.fnGetData( nTr );
+
+	    console.log(aData);
+
+	    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+
+	    @yield('row')
+
+	    sOut += '</table>';
+	     
+	    return sOut;
+	}
+
+	function vfnFormatDetails ( nTr )
+	{
+	    var aData = vTable.fnGetData( nTr );
 
 	    console.log(aData);
 
@@ -347,22 +245,15 @@
 
 		var asInitVals = new Array();
         
-        oTable = $('.dataTable').DataTable(
+        oTable = $('.dataTable.attendeeTable').DataTable(
 			{
 				"bProcessing": true,
 		        "bServerSide": true,
 		        "sAjaxSource": "{{$ajaxsource}}",
 				"oLanguage": { "sSearch": "Search "},
 				"sPaginationType": "full_numbers",
-				"sDom": 'Tlrpit',
-				@if(isset($excludecol) && $excludecol != '')
-				"oColVis": {
-					"aiExclude": [ {{ $excludecol }} ]
-				},
-				@endif
-				"oTableTools": {
-					"sSwfPath": "{{ URL::base() }}/swf/copy_csv_xls_pdf.swf"
-				},
+				"iDisplayLength": 5,
+				"sDom": 'tr',
 				"aoColumnDefs": [ 
 				    { "bSortable": false, "aTargets": [ {{ $disablesort }} ] }
 				 ],
@@ -378,7 +269,31 @@
 			}
         );
 
-		$('.dataTable tbody td .expander').live( 'click', function () {
+        vTable = $('.dataTable.visitorTable').DataTable(
+			{
+				"bProcessing": true,
+		        "bServerSide": true,
+		        "sAjaxSource": "{{$ajaxvisitorsource}}",
+				"oLanguage": { "sSearch": "Search "},
+				"sPaginationType": "full_numbers",
+				"iDisplayLength": 5,
+				"sDom": 'tr',
+				"aoColumnDefs": [ 
+				    { "bSortable": false, "aTargets": [ {{ $disablesort }} ] }
+				 ],
+			    "fnServerData": function ( sSource, aoData, fnCallback ) {
+		            $.ajax( {
+		                "dataType": 'json', 
+		                "type": "POST", 
+		                "url": sSource, 
+		                "data": aoData, 
+		                "success": fnCallback
+		            } );
+		        }
+			}
+        );
+
+		$('.dataTable.attendeeTable tbody td .expander').live( 'click', function () {
 
 		    var nTr = $(this).parents('tr')[0];
 		    if ( oTable.fnIsOpen(nTr) )
@@ -392,6 +307,23 @@
 		        /* Open this row */
 		        //this.src = "../examples_support/details_close.png";
 		        oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details-expand' );
+		    }
+		} );        
+
+		$('.dataTable.visitorTable tbody td .expander').live( 'click', function () {
+
+		    var nTr = $(this).parents('tr')[0];
+		    if ( vTable.fnIsOpen(nTr) )
+		    {
+		        /* This row is already open - close it */
+		        //this.src = "../examples_support/details_open.png";
+		        vTable.fnClose( nTr );
+		    }
+		    else
+		    {
+		        /* Open this row */
+		        //this.src = "../examples_support/details_close.png";
+		        vTable.fnOpen( nTr, vfnFormatDetails(nTr), 'details-expand' );
 		    }
 		} );        
 
@@ -881,5 +813,7 @@
 
     });
   </script>
+
+
 
 @endsection

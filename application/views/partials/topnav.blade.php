@@ -13,16 +13,25 @@
         @endif
 
 
-        <li class="has-dropdown">{{ HTML::link('attendee','Attendees')}}
-            <ul class="dropdown">
-                <li>{{ HTML::link('attendee/groups', 'Groups' ) }}</li>
-              </ul>
-        </li>
-        @if(Auth::user()->role == 'root' || Auth::user()->role == 'super')
+        @if(Auth::user()->role == 'onsite')
+            <li>{{ HTML::link('attendee','Attendees')}}</li>
+        @else
+            <li class="has-dropdown">{{ HTML::link('attendee','Attendees')}}
+                <ul class="dropdown">
+                    <li>{{ HTML::link('attendee/groups', 'Groups' ) }}</li>
+                  </ul>
+            </li>
+        @endif        
+
+
+        @if(Auth::user()->role == 'root' || Auth::user()->role == 'super' || Auth::user()->role == 'onsite')
             <li>{{ HTML::link('visitor','Visitors')}}</li>
             
             <li>{{ HTML::link('official','Officials')}}</li>
             <li>{{ HTML::link('exhibitor','Exhibitors')}}</li>
+        @endif
+
+        @if(Auth::user()->role == 'root' || Auth::user()->role == 'super')
 
             <li>{{ HTML::link('report','Reports')}}
             <li>{{ HTML::link('import','Import Data')}}
@@ -38,7 +47,11 @@
 
         @endif
         <li class="divider"></li>
-        <li>{{ HTML::link('dashboard', 'Home') }}</li>
+        @if(Auth::user()->role == 'onsite')
+            <li>{{ HTML::link('onsite', 'Home') }}</li>
+        @else
+            <li>{{ HTML::link('dashboard', 'Home') }}</li>
+        @endif        
         <li>{{ HTML::link('logout', 'Logout') }}</li>
     </ul>
 

@@ -61,10 +61,10 @@ class Exhibitor_Controller extends Base_Controller {
 
 		$colclass = array('','span1','span3','span1','span3','span3','span1','span1','span1','','','','');
 
-		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
+		if(Auth::user()->role == 'root' || Auth::user()->role == 'super' || Auth::user()->role == 'onsite'){
 			return View::make('tables.simple')
-				->with('title','Master Data')
-				->with('newbutton','New Visitor')
+				->with('title','Exhibitors')
+				->with('newbutton','New Exhibitors')
 				->with('disablesort','0,1,9')
 				->with('addurl','exhibitor/add')
 				->with('colclass',$colclass)
@@ -82,7 +82,7 @@ class Exhibitor_Controller extends Base_Controller {
 				->nest('row','exhibitor.rowdetail');
 		}else{
 			return View::make('exhibitor.restricted')
-							->with('title',$title);			
+							->with('title','Exhibitors');			
 		}
 	}
 

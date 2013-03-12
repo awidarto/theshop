@@ -57,7 +57,7 @@ class Visitor_Controller extends Base_Controller {
 
 		$searchinput = false; // no searchinput form on footer
 
-		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
+		if(Auth::user()->role == 'root' || Auth::user()->role == 'super' || Auth::user()->role == 'onsite'){
 			return View::make('tables.simple')
 				->with('title','Visitors')
 				->with('newbutton','New Visitor')
@@ -76,7 +76,7 @@ class Visitor_Controller extends Base_Controller {
 				->nest('row','visitor.rowdetail');
 		}else{
 			return View::make('visitor.restricted')
-							->with('title',$title);			
+							->with('title','Visitors');			
 		}
 	}
 

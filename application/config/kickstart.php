@@ -133,5 +133,7 @@ return array(
       'paygolf'=>'Set Golf payment status',
       'payconvention'=>'Set Convention payment status'
 
-    )
+    ),
+    'invalidchars'=>array('%','&','|','\'','(',')','/'),
+
 );

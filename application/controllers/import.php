@@ -96,6 +96,13 @@ class Import_Controller extends Base_Controller {
 
 		$override_all = $form->checkbox('override_all','','',false,array('id'=>'override_all'));
 
+		if(is_null($type)){
+			$valid_heads = 'eventreg.valid_heads';
+			$valid_heads_select = 'eventreg.valid_head_selects';
+		}else{
+			$valid_heads = 'eventreg.'.$type.'_valid_heads';
+			$valid_heads_select = 'eventreg.'.$type.'_valid_head_selects';
+		}
 
 		foreach ($ihead['head_labels'] as $h) {
 
@@ -103,8 +110,8 @@ class Import_Controller extends Base_Controller {
 
 			$heads[$cnt] = $h.$hidden_head;
 
-			$searchinput[$cnt] = $form->select('map_'.$cnt,'',Config::get('eventreg.valid_head_selects'),$h);
-			if(!in_array($h, Config::get('eventreg.valid_heads'))){
+			$searchinput[$cnt] = $form->select('map_'.$cnt,'',Config::get($valid_heads_select),$h);
+			if(!in_array($h, Config::get($valid_heads))){
 				$heads[$cnt] = '<span class="invalidhead">'.$heads[$cnt].'</span>';
 
 			}else{
@@ -124,21 +131,29 @@ class Import_Controller extends Base_Controller {
 
 		$heads = array_merge(array('Select','Override'),$heads);
 
-
+		if(is_null($type)){
+			$ajaxsource = URL::to('import/loader/'.$id);
+			$commiturl = 'import/commit/'.$id;
+			$disablesort = '0,5,6';
+		}else{
+			$ajaxsource = URL::to('import/loader/'.$id.'/'.$type);
+			$commiturl = 'import/commit/'.$id.'/'.$type;
+			$disablesort = '0,1';
+		}
 
 		return View::make('tables.import')
 			->with('title','Data Preview')
 			->with('newbutton','Commit Import')
-			->with('disablesort','0,5,6')
+			->with('disablesort',$disablesort)
 			->with('addurl','')
-			->with('commiturl','import/commit/'.$id)
+			->with('commiturl',$commiturl)
 			->with('importid',$id)
 			->with('reimporturl','import')
 			->with('form',$form)
 			->with('head_count',$head_count)
 			->with('colclass',$colclass)
 			->with('searchinput',$searchinput)
-			->with('ajaxsource',URL::to('import/loader/'.$id))
+			->with('ajaxsource',$ajaxsource)
 			->with('ajaxdel',URL::to('attendee/del'))
 			->with('crumb',$this->crumb)
 			->with('heads',$heads)
@@ -224,23 +239,48 @@ class Import_Controller extends Base_Controller {
 			$count_display_all = $attendee->count();
 		}
 
-		$attending = new Attendee();
+		if(is_null($type)){
+			$attending = new Attendee();
 
-		$email_arrays = array();
+			$email_arrays = array();
 
-		foreach($attendees as $e){
-			$email_arrays[] = array('email'=>$e['email']);
+			foreach($attendees as $e){
+				$email_arrays[] = array('email'=>$e['email']);
+			}
+
+			//print_r($email_arrays);
+
+			$email_check = $attending->find(array('$or'=>$email_arrays),array('email'=>1,'_id'=>-1));
+
+			$email_arrays = array();
+
+			foreach($email_check as $ec){
+				$email_arrays[] = $ec['email'];
+			}
+
+		}else{
+			if($type == 'exhibitor'){
+				$attending = new Official();
+			}
+
+			$email_arrays = array();
+
+			foreach($attendees as $e){
+				$email_arrays[] = array('firstname'=>$e['first_name']);
+			}
+
+			//print_r($email_arrays);
+
+			$email_check = $attending->find(array('$or'=>$email_arrays),array('firstname'=>1,'_id'=>-1));
+
+			$email_arrays = array();
+
+			foreach($email_check as $ec){
+				$email_arrays[] = $ec['firstname'];
+			}
+
 		}
 
-		//print_r($email_arrays);
-
-		$email_check = $attending->find(array('$or'=>$email_arrays),array('email'=>1,'_id'=>-1));
-
-		$email_arrays = array();
-
-		foreach($email_check as $ec){
-			$email_arrays[] = $ec['email'];
-		}
 
 		//print_r($email_arrays);
 
@@ -273,8 +313,15 @@ class Import_Controller extends Base_Controller {
 
 			$select = $form->checkbox('sel[]','',$doc['_id'],false,array('id'=>$doc['_id'],'class'=>'selector'));
 
+			if(is_null($type)){
+				$compindex = 'email';
+			}else{
+				if($type == 'exhibitor'){
+					$compindex = 'first_name';
+				}
+			}
 
-			if(in_array($doc['email'], $email_arrays)){
+			if(in_array($doc[$compindex], $email_arrays)){
 				$override = $form->checkbox('over[]','',$doc['_id'],'',array('id'=>'over_'.$doc['_id'],'class'=>'overselector'));
 				$exist = $form->hidden('existing[]',$doc['_id']);
 			}else{
@@ -660,20 +707,23 @@ class Import_Controller extends Base_Controller {
 			$data['creatorName'] = Auth::user()->fullname;
 			$data['creatorId'] = Auth::user()->id;
 
-			if($data['groupId']=='' && $data['groupName'] != ''){
-				//create new group
-				$group = new Group();
+			if(is_null($type)){
+				if($data['groupId']=='' && $data['groupName'] != ''){
+					//create new group
+					$group = new Group();
 
-				$groupdata = array(
-					'firstname' => $data['firstname'],
-					'lastname' => $data['lastname'],
-					'email'=> $data['email'],
-					'company' => $data['company'],
-					'groupname'=>$data['groupName']
-				);
+					$groupdata = array(
+						'firstname' => $data['firstname'],
+						'lastname' => $data['lastname'],
+						'email'=> $data['email'],
+						'company' => $data['company'],
+						'groupname'=>$data['groupName']
+					);
 
-				if($groupobj = $group->insert($groupdata)){
-					$data['groupId'] = $groupobj['_id']->__toString();
+					if($groupobj = $group->insert($groupdata)){
+						$data['groupId'] = $groupobj['_id']->__toString();
+					}
+
 				}
 
 			}
@@ -682,6 +732,8 @@ class Import_Controller extends Base_Controller {
 			$docupload = Input::file('docupload');
 
 			$docupload['uploadTime'] = new MongoDate();
+
+			$docupload['name'] = fixfilename($docupload['name']);
 
 			$data['docFilename'] = $docupload['name'];
 
@@ -701,7 +753,12 @@ class Import_Controller extends Base_Controller {
 
 					$newid = $newobj['_id']->__toString();
 
-					$newdir = realpath(Config::get('kickstart.storage')).'/imports/'.$newid;
+					if(is_null($type)){
+						$newdir = realpath(Config::get('kickstart.storage')).'/imports/'.$newid;
+					}else{
+						$newdir = realpath(Config::get('kickstart.storage')).'/imports/'.$type.'/'.$newid;
+					}
+
 
 					Input::upload('docupload',$newdir,$docupload['name']);
 
@@ -713,7 +770,11 @@ class Import_Controller extends Base_Controller {
 
 					$c_id = $newobj['_id']->__toString();
 
-					$filepath = Config::get('kickstart.storage').'/imports/'.$c_id.'/'.$newobj['docFilename'];
+					if(is_null($type)){
+						$filepath = Config::get('kickstart.storage').'/imports/'.$c_id.'/'.$newobj['docFilename'];
+					}else{
+						$filepath = Config::get('kickstart.storage').'/imports/'.$type.'/'.$c_id.'/'.$newobj['docFilename'];
+					}
 
 					$excel = new Excel();
 
@@ -723,7 +784,13 @@ class Import_Controller extends Base_Controller {
 
 					$rows = $xls['cells'];
 
-					$heads = $rows[1];
+					if(is_null($type)){
+						$heads = $rows[1];
+					}else{
+						if($type == 'exhibitor'){
+							$heads = $rows[6];
+						}
+					}
 
 					//print_r($heads);
 
@@ -740,8 +807,18 @@ class Import_Controller extends Base_Controller {
 					//print_r($heads);
 
 					//remove first two lines
-					array_shift($rows);
-					array_shift($rows);
+					if(is_null($type)){
+						$headindex = 1;
+					}else{
+						if($type == 'exhibitor'){
+							$headindex = 6;
+						}
+					}
+
+					for($i = 0;$i <= $headindex;$i++){
+						array_shift($rows);
+					}
+					//array_shift($rows);
 					//unset($rows[0]);
 					//unset($rows[1]);
 
@@ -806,9 +883,10 @@ class Import_Controller extends Base_Controller {
 							$ins['cache_id'] = $c_id;
 							$ins['cache_commit'] = false;
 
-							$ins['groupId'] =   $newobj['groupId'];
-							$ins['groupName'] = $newobj['groupName'];
-
+							if(is_null($type)){
+								$ins['groupId'] =   $newobj['groupId'];
+								$ins['groupName'] = $newobj['groupName'];								
+							}
 
 							//print_r($ins);
 

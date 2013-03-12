@@ -229,10 +229,10 @@ class User_Controller extends Base_Controller {
 				$doc['email'],
 				isset($doc['department'])?depttitle($doc['department']):'',
 				roletitle($doc['role']),
-				'<a href="'.URL::to('user/pass/'.$doc['_id']).'"><i class="foundicon-lock action"></i></a>&nbsp;'.
-				'<a href="'.URL::to('user/picture/'.$doc['_id']).'"><i class="foundicon-smiley action"></i></a>&nbsp;'.
-				'<a href="'.URL::to('user/edit/'.$doc['_id']).'"><i class="foundicon-edit action"></i></a>&nbsp;'.
-				'<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>'
+				//'<a href="'.URL::to('user/pass/'.$doc['_id']).'"><i class="foundicon-lock action"></i></a>&nbsp;'.
+				//'<a href="'.URL::to('user/picture/'.$doc['_id']).'"><i class="foundicon-smiley action"></i></a>&nbsp;'.
+				'<a class="icon-"  href="'.URL::to('user/edit/'.$doc['_id']).'"><i>&#xe164;</i><span>Update User</span>'.
+				'<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$doc['_id'].'" >Delete</span>'
 			);
 			$counter++;
 		}
@@ -600,7 +600,6 @@ class User_Controller extends Base_Controller {
 	    $rules = array(
 	        'fullname'  => 'required|max:50',
 	        'email' => 'required|email|unique:user',
-	        'username' => 'required|unique:user',
 	        'pass' => 'required|same:repass',
 	        'repass'=> 'required'
 	    );
@@ -662,9 +661,9 @@ class User_Controller extends Base_Controller {
 			$user = new User();
 
 			if($user->insert($data)){
-		    	return Redirect::to('user')->with('notify_success','User saved successfully');
+		    	return Redirect::to('users')->with('notify_success','User saved successfully');
 			}else{
-		    	return Redirect::to('user')->with('notify_success','User saving failed');
+		    	return Redirect::to('users')->with('notify_success','User saving failed');
 			}
 			
 

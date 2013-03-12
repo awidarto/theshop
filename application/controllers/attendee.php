@@ -65,7 +65,7 @@ class Attendee_Controller extends Base_Controller {
 
 
 
-		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
+		if(Auth::user()->role == 'root' || Auth::user()->role == 'super' || Auth::user()->role == 'onsite'){
 			return View::make('tables.simple')
 				->with('title','Master Data')
 				->with('newbutton','New Visitor')
@@ -86,7 +86,7 @@ class Attendee_Controller extends Base_Controller {
 				->nest('row','attendee.rowdetail');
 		}else{
 			return View::make('attendee.restricted')
-							->with('title',$title);
+							->with('title','Master Data');
 		}
 	}
 

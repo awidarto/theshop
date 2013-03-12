@@ -98,7 +98,7 @@ function getproject($id){
 }
 
 function roletitle($role){
-	$roletitles = Config::get('kickstart.roles');
+	$roletitles = Config::get('acl.roles');
 	return $roletitles[$role];
 }
 
@@ -117,4 +117,13 @@ function limitwords($string, $word_limit)
     }
 }
 
+function fixfilename($filename)
+{
+	$label = $filename;
+	$label = str_replace(Config::get('kickstart.invalidchars'), ' ', trim($label));
+	$label = preg_replace('/[ ][ ]+/', ' ', $label);
+	$label = str_replace(array(' '), '_', $label);
+
+	return $label;
+}
 ?>
