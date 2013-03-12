@@ -159,6 +159,24 @@ Event::listen('exhibition.postoperationalform',function($id,$exhibitorid){
 
     $user = $exhibitor->get(array('_id'=>$exhibitorid));
 
+    $doc = View::make('pdf.confirmexhibitor')
+            ->with('data',$data)
+            ->with('user',$user)
+            ->render();
+
+    $pdf = new Pdf();
+
+    $pdf->make($doc);
+
+    $newdir = realpath(Config::get('kickstart.storage'));
+
+    $path = $newdir.'/confirmexhibitor'.$id.'.pdf';
+
+    $pdf->render();
+
+    //$pdf->stream();
+
+    $pdf->save($path);
         
     $body = View::make('email.confirmpaymentexhibitor')
         ->with('data',$data)
@@ -170,7 +188,9 @@ Event::listen('exhibition.postoperationalform',function($id,$exhibitorid){
         ->subject('CONFIRMATION OF OPERATIONAL FORMS - Indonesia Petroleum Association – 37th Convention & Exhibition (Registration – '.$user['registrationnumber'].')')
         ->body( $body )
         ->html(true)
+        ->attach($path)
         ->send();
+    
     
 
 });
