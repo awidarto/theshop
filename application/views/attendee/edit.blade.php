@@ -100,10 +100,18 @@
 
                 <div class="row-fluid">
                     <div class="span2">
-                      {{ $form->radio('golf','Yes','Yes',false,array('class'=>'paymentSettle field_golfType')) }} 
+                      @if($user['golf']=='Yes')
+                        {{ $form->radio('golf','Yes','Yes',true,array('class'=>'paymentSettle field_golfType')) }} 
+                      @else
+                        {{ $form->radio('golf','Yes','Yes',false,array('class'=>'paymentSettle field_golfType')) }} 
+                      @endif
                     </div>   
                     <div class="span2">
-                      {{ $form->radio('golf','No','No',array('class'=>'paymentSettle field_golfType')) }} 
+                      @if($user['golf']=='Yes')
+                        {{ $form->radio('golf','No','No',false,array('class'=>'paymentSettle field_golfType')) }} 
+                      @else
+                        {{ $form->radio('golf','No','No',true,array('class'=>'paymentSettle field_golfType')) }} 
+                      @endif
                     </div>   
                     <div class="span8"></div>
                 </div>
