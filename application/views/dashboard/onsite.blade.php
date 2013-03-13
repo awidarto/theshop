@@ -224,6 +224,7 @@
 
     $(document).ready(function(){
 
+    	/*
     	$.fn.dataTableExt.oApi.fnStandingRedraw = function(oSettings) {
 		    if(oSettings.oFeatures.bServerSide === false){
 		        var before = oSettings._iDisplayStart;
@@ -238,7 +239,7 @@
 		    // draw the 'current' page
 		    oSettings.oApi._fnDraw(oSettings);
 		};
-
+		*/
 		$('.activity-list').tooltip();
 
 		
@@ -295,24 +296,31 @@
 
 		$('.dataTable.attendeeTable tbody td .expander').live( 'click', function () {
 
-		    var nTr = $(this).parents('tr')[0];
-		    if ( oTable.fnIsOpen(nTr) )
+
+		    var xTr = $(this).parents('tr')[0];
+
+			console.log(xTr);
+
+		    if ( oTable.fnIsOpen(xTr) )
 		    {
 		        /* This row is already open - close it */
 		        //this.src = "../examples_support/details_open.png";
-		        oTable.fnClose( nTr );
+		        oTable.fnClose( xTr );
 		    }
 		    else
 		    {
 		        /* Open this row */
 		        //this.src = "../examples_support/details_close.png";
-		        oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details-expand' );
+		        oTable.fnOpen( xTr, fnFormatDetails(xTr), 'details-expand' );
 		    }
 		} );        
 
 		$('.dataTable.visitorTable tbody td .expander').live( 'click', function () {
 
 		    var nTr = $(this).parents('tr')[0];
+
+			//console.log(nTr);
+
 		    if ( vTable.fnIsOpen(nTr) )
 		    {
 		        /* This row is already open - close it */
