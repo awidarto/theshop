@@ -123,7 +123,132 @@
 	         </div>
 	      </a>
 
-	     
+	     <!--inside-->
+	     <h2 class="inside">Exhibition Statistics</h2>
+	     <!-- <h5>Convention Registration</h5> -->
+	     <a class="tile wide imagetext greenDark statistic" href="#">
+	         <div class="image-wrapper">
+	            <div class="text-biggest">{{ $stat['ExhibitorTotal']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Total Exhibitor</div>
+	            <div class="text">Registration</div>
+	         </div>
+	         <span class="app-label">&nbsp;</span>
+	      </a>
+
+	      <a class="tile wide imagetext bg-color-purple statistic" href="#">
+	         <div class="image-wrapper">
+	            <div class="text-biggest">{{ $stat['formSumitted']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Total Form</div>
+	            <div class="text">Submitted</div>
+	         </div>
+	         <span class="app-label">&nbsp;</span>
+	      </a>
+	      
+	      
+	      <div class="clear"></div>
+	      <h2 class="inside">Total Exhibitor Perhall</h2>
+	      <a class="tile imagetext  bg-color-red statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['cendrawasih']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Cendrawasih</div>
+	            <div class="text">Hall</div>
+	            <div class="text">&nbsp;</div>
+	         </div>   
+	      </a>
+
+	      <a class="tile imagetext  bg-color-orange statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['assembly']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Assembly</div>
+	            <div class="text">Hall</div>
+	            <div class="text">&nbsp;</div>
+	            
+	         </div>   
+	      </a>
+	      
+
+	      <a class="tile imagetext  bg-color-greenDark statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['halla']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Hall A</div>
+	            <div class="text">&nbsp;</div>
+	            <div class="text">&nbsp;</div>
+	         </div>   
+	      </a>
+
+	      <a class="tile imagetext  bg-color-blueDark statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['mainlobby']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Main</div>
+	            <div class="text">Lobby</div>
+	            <div class="text">&nbsp;</div>
+	            
+	         </div>   
+	      </a>
+	      
+
+	      <!--new-->
+	      <div class="clear"></div>
+	      <h2 class="inside">Total Form Submitted Perhall</h2>
+	      <a class="tile imagetext  bg-color-red statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['form_cendrawasih']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Cendrawasih</div>
+	            <div class="text">Hall</div>
+	            <div class="text">&nbsp;</div>
+	         </div>   
+	      </a>
+
+	      <a class="tile imagetext  bg-color-orange statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['form_assembly']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Assembly</div>
+	            <div class="text">Hall</div>
+	            <div class="text">&nbsp;</div>
+	            
+	         </div>   
+	      </a>
+	      
+
+	      <a class="tile imagetext  bg-color-greenDark statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['form_halla']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Hall A</div>
+	            <div class="text">&nbsp;</div>
+	            <div class="text">&nbsp;</div>
+	         </div>   
+	      </a>
+
+	      <a class="tile imagetext  bg-color-blueDark statistic" href="#">
+	         <div class="image-wrapper text-big">
+	            <div class="text-big">{{ $stat['form_mainlobby']}}</div>
+	         </div>
+	         <div class="column-text">
+	            <div class="text">Main</div>
+	            <div class="text">Lobby</div>
+	            <div class="text">&nbsp;</div>
+	            
+	         </div>   
+	      </a>
+	      
 
 
 	   </div>
@@ -184,7 +309,7 @@
 	         </div>
 	         <span class="app-label">Register New Official</span>
 	      </a>
-
+	      
 	   </div>
 	</div>
 </div>

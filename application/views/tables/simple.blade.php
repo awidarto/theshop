@@ -273,6 +273,7 @@
 	<div class="modal-header">
 		<button type="button" id="removeviewform" class="close" data-dismiss="modal" aria-hidden="true"></button>
 		<h3 id="myModalLabel">Form Submission</h3>
+		
 	</div>
 	<div class="modal-body" id="loaddata">
 		
@@ -354,6 +355,8 @@
 	var current_pay_id = 0;
 	var current_del_id = 0;
 	var current_print_id = 0;
+
+	
 
 	function toggle_visibility(id) {
 		$('#' + id).toggle();

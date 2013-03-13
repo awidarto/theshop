@@ -902,3 +902,38 @@ input.inputhightlights{
 	max-height: 85%;
 	overflow: auto;
 }
+
+.metro-sections h2.inside{
+	font-size: 21px;
+	margin:7px 0;
+}
+a.actionright{
+	position: absolute;
+	top: 15px;
+	right: 100px;
+	display: inline-block;
+	min-width: 0;
+	min-height: 0;
+	width: 30px;
+	height: 40px;
+	font-weight: normal;
+	font-size: 12px;
+	text-indent: 0;
+	text-shadow: none;
+	opacity: 1;
+	background-clip: border-box;
+	box-sizing: border-box;
+	border: 0;
+	text-align: center;
+	vertical-align: baseline;
+}
+a.actionright.icon- {
+display: block;
+width: 120px;
+padding-bottom: 9px;
+}
+a.actionright i {
+float: left;
+width: 20px;
+color: #717171;
+}

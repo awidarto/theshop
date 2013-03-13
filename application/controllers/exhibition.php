@@ -410,7 +410,7 @@ class Exhibition_Controller extends Base_Controller {
 
 		
 		//security purposes
-		if(Auth::exhibitor()->formstatus != 'approved'){
+		if(Auth::exhibitor()->formstatus == 'revision'){
 			$data = Input::get();
 
 			$id = new MongoId($data['id']);
@@ -434,7 +434,7 @@ class Exhibition_Controller extends Base_Controller {
 			if (isset ($data['cocktaildate3'])&& $data['programdate3']!='') { $data['cocktaildate3'] = new MongoDate(strtotime($data['cocktaildate3']." 00:00:00")); }
 			if (isset ($data['cocktaildate4'])&& $data['programdate4']!='') { $data['cocktaildate4'] = new MongoDate(strtotime($data['cocktaildate4']." 00:00:00")); }
 
-			
+			$exhibitor = new Exhibitor();
 
 
 			if($operationalform->update(array('_id'=>$id),array('$set'=>$data))){
@@ -443,7 +443,7 @@ class Exhibition_Controller extends Base_Controller {
 
 				$_id = new MongoId($userid);
 
-				
+				$exhibitor->update(array('_id'=>$_id),array('$set'=>array('formstatus'=>'submitted')));
 
 				Event::fire('exhibition.postoperationalform',array($id,$_id));
 
@@ -463,7 +463,12 @@ class Exhibition_Controller extends Base_Controller {
 
 		$id = Auth::exhibitor()->id;
 
-		//$id = new MongoId($id);
+		$exhibitor = new Exhibitor();
+
+		$_id = new MongoId($id);
+
+		$userdata = $exhibitor->get(array('_id'=>$_id));
+
 
 		$user_form = $formoperational->get(array('userid'=>$id));
 
@@ -486,6 +491,7 @@ class Exhibition_Controller extends Base_Controller {
 
 		return View::make('exhibition.viewform')
 					->with('data',$user_form)
+					->with('userdata',$userdata)
 					->with('form',$form)
 					->with('crumb',$this->crumb)
 					->with('title','Edit My Profile');
@@ -605,7 +611,9 @@ class Exhibition_Controller extends Base_Controller {
 	}
 
 	public function get_profile($id = null){
-
+		if(!isset(Auth::exhibitor()->id)){
+			return Redirect::to('exhibitor/login');
+		}
 		if(is_null($id)){
 			$this->crumb = new Breadcrumb();
 		}

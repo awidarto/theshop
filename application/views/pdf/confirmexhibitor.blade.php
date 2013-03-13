@@ -1,6 +1,6 @@
 <html>
 <head>
-<style>
+<style type="text/css">
 
 body{
 	font-size: 11px;
@@ -72,7 +72,13 @@ hr{
 .odd td{
 	background-color: #dadada;
 }
+td.detailsitem{
+	color: #4a4a4a;
+	font-size: 10px;
+}
+
 </style>
+
 </head>
 
 <body>
@@ -168,9 +174,31 @@ hr{
 					N
 				@endif
 			</td>
-			<td>&nbsp;</td>
+			<td class="detailsitem">
+				<?php
+				
+				if( $data['electricsubtotal']!=''&& $data['electricsubtotal']!=0){
+					
+					$i = -1;
+					$m = 0;
+					$toprint='';
+					$details = Config::get('eventreg.electriclist');
+					for($n=0;$n<=8;$n++){
+						$i++;
+						$m++;
+						
+						if($data['electric'.$m.''] !='' && $data['electric'.$m.''] !=0){
+							$toprint .= $data['electric'.$m.''].'&nbsp;&nbsp; x &nbsp;&nbsp;'.$details[$i].'&nbsp;&nbsp; = &nbsp;&nbsp;$ '.$data['rowelectric'.$m.''].'<br/>';
+
+						}
+					}
+					echo $toprint;
+
+				}
+				?>
+			</td>
 			<td class="alignright">
-				<span class="floatleft">USD</span>
+				<span class="floatleft">USD </span>
 				<?php
 				if($data['electricsubtotal']!= 0 && $data['electricsubtotal']!= ''):
 					echo number_format($data['electricsubtotal'], 2, ',', ' ');
@@ -187,15 +215,364 @@ hr{
 					N
 				@endif
 			</td>
-			<td>&nbsp;</td>
+			<td class="detailsitem">
+				<?php
+				
+				if( $data['phonesubtotal']!=''&& $data['phonesubtotal']!=0){
+					$i = -1;
+					$m = 0;
+					$toprint='';
+					$details = Config::get('eventreg.phonelist');
+					for($n=0;$n<=1;$n++){
+						$i++;
+						$m++;
+						//$toprint2 .= $details2[$i];
+						//$type.$i = $data['electric'.$i];
+						//$rowtotal.$i = $data['rowelectric'.$i];
+						if($data['phone'.$m.''] !='' && $data['phone'.$m.''] !=0){
+							$toprint .= $data['phone'.$m.''].'&nbsp;&nbsp; x &nbsp;&nbsp;'.$details[$i].'&nbsp;&nbsp;= &nbsp;&nbsp;$ '.$data['rowphone'.$m.''].'<br/>';
+
+						}
+					}
+					echo $toprint;
+
+				}
+				?>
+			</td>
 			<td class="alignright">
-				<span class="floatleft">USD</span>
+				<span class="floatleft">USD </span>
 				<?php
 				if($data['phonesubtotal']!= 0 && $data['phonesubtotal']!= ''):
 					echo number_format($data['phonesubtotal'], 2, ',', ' ');
 				endif;?>
 			</td>
 		</tr>
+
+		<tr class="contentrow">
+		
+			<td>
+				Booth Contractor (special design)
+			</td>
+			<td class="aligncenter">
+				@if( $data['companyContractor']!='')
+					Y
+				@else
+					N
+				@endif
+			</td>
+			<td class="detailsitem">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		
+		<tr class="contentrow odd">
+			<td>
+				Fascia Name (standard stand)
+			</td>
+			<td class="aligncenter">
+				@if( $data['fascianame']!='')
+					Y
+				@else
+					N
+				@endif
+			</td>
+			<td class="detailsitem">{{ isset($data['fascianame'])?$data['fascianame']:'' }}</td>
+			<td>&nbsp;</td>
+		</tr>
+	
+		<tr class="contentrow">
+			<td>
+				Free Exhibitor Pass
+			</td>
+			<td class="aligncenter">
+				@if( $data['freepassname1']!='')
+					Y
+				@else
+					N
+				@endif
+			</td>
+			<td class="detailsitem">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	
+	
+
+		<tr class="contentrow odd">
+			<td>
+				Booth Assistant Pass
+			</td>
+			<td class="aligncenter">
+				@if( $data['boothassistant1']!='')
+					Y
+				@else
+					N
+				@endif
+			</td>
+
+			<td class="detailsitem">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	
+		<tr class="contentrow">
+			<td>
+				Additional Booth Assistant(s) pass
+			</td>
+			<td class="aligncenter">
+				@if( $data['addboothsubtotal']!=0 && $data['addboothsubtotal']!='')
+					Y
+				@else
+					N
+				@endif
+			</td>
+			<td class="detailsitem">
+				<?php
+				
+				if( $data['addboothsubtotal']!=''&& $data['addboothsubtotal']!=0){
+					
+					$toprint = $data['totaladdbooth'].'&nbsp;&nbsp; x &nbsp;&nbsp; Additional Booth = &nbsp;&nbsp;$ '.$data['addboothsubtotal'].'<br/>';
+					
+					echo $toprint;
+
+				}
+				?>
+			</td>
+			<td class="alignright">
+				<span style="float:left;">USD </span><?php
+				if($data['addboothsubtotal']!=0 && $data['addboothsubtotal']!=''):
+					echo number_format($data['addboothsubtotal'], 2, ',', ' ');
+				endif;?>
+			</td>
+		</tr>
+		
+
+		<tr class="contentrow odd">
+			<td>
+				Booth Program Schedule
+			</td>
+			<td class="aligncenter">
+				@if ($data['programdetail1']!=0 || $data['programdetail1']!='' || $data['cocktaildetail1']!=0 || $data['cocktaildetail1']!='')
+					Y
+				@else
+					N
+				@endif
+			</td>
+
+			<td class="detailsitem"></td>
+			<td>&nbsp;</td>
+		</tr>
+	
+	
+
+		<tr class="contentrow">
+			<td>
+				Advertising
+			</td>
+			<td class="aligncenter">
+				@if( $data['advertsubtotal']!=0 && $data['advertsubtotal']!='')
+					Y
+				@else
+					N
+				@endif
+			</td>
+			<td class="detailsitem">
+				<?php
+				
+				if( $data['advertsubtotal']!=''&& $data['advertsubtotal']!=0){
+
+					$toprint = $data['advert'].'&nbsp;&nbsp; x &nbsp;&nbsp;Hanging Banner Above the booth = &nbsp;&nbsp;$ '.$data['rowadvert'].'<br/>';
+					echo $toprint;
+
+				}
+				?>
+			</td>
+			<td class="alignright">
+				<span style="float:left;">USD </span><?php
+				if($data['advertsubtotal']!=0 && $data['advertsubtotal']!=''):
+					echo number_format($data['advertsubtotal'], 2, ',', ' ');
+				endif;?>
+			</td>
+		</tr>
+
+		<tr class="contentrow odd">
+			<td>
+				Furniture Rental
+			</td>
+			<td class="aligncenter">
+				@if( $data['furnituresubtotal']!='' && $data['furnituresubtotal']!=0)
+					Y
+				@else
+					N
+				@endif
+			</td>
+			<td class="detailsitem">
+				<?php
+				
+				if( $data['furnituresubtotal']!=''&& $data['furnituresubtotal']!=0){
+					$i = -1;
+					$m = 0;
+					$toprint='';
+					$details = Config::get('eventreg.furniturelist');
+					for($n=0;$n<=5;$n++){
+						$i++;
+						$m++;
+						//$toprint2 .= $details2[$i];
+						//$type.$i = $data['electric'.$i];
+						//$rowtotal.$i = $data['rowelectric'.$i];
+						if($data['furniture'.$m.''] !='' && $data['furniture'.$m.''] !=0){
+							$toprint .= $data['furniture'.$m.''].'&nbsp;&nbsp; x &nbsp;&nbsp;'.$details[$i].'&nbsp;&nbsp;= &nbsp;&nbsp;$ '.$data['rowfurniture'.$m.''].'<br/>';
+
+						}
+					}
+					echo $toprint;
+
+				}
+				?>
+			</td>
+			<td class="alignright">
+				<span style="float:left;">USD </span><?php
+				if($data['furnituresubtotal']!='' && $data['furnituresubtotal']!=0):
+					echo number_format($data['furnituresubtotal'], 2, ',', ' ');
+				endif;?>
+			</td>
+		</tr>
+
+		<tr class="contentrow">
+			<td>
+				Internet Connection
+			</td>
+			<td class="aligncenter">
+				@if ($data['internetsubtotal']!=0 && $data['internetsubtotal']!='')
+					Y
+				@else
+					N
+				@endif
+			</td>
+			<td class="detailsitem">
+				<?php
+				
+				if( $data['internetsubtotal']!=''&& $data['internetsubtotal']!=0){
+					$i = -1;
+					$m = 0;
+					$toprint='';
+					$details = Config::get('eventreg.internetlist');
+					for($n=0;$n<=1;$n++){
+						$i++;
+						$m++;
+						//$toprint2 .= $details2[$i];
+						//$type.$i = $data['electric'.$i];
+						//$rowtotal.$i = $data['rowelectric'.$i];
+						if($data['internet'.$m.''] !='' && $data['internet'.$m.''] !=0){
+							$toprint .= $data['internet'.$m.''].'&nbsp;&nbsp; x &nbsp;&nbsp;'.$details[$i].'&nbsp;&nbsp;= &nbsp;&nbsp;$ '.$data['rowinternet'.$m.''].'<br/>';
+
+						}
+					}
+					echo $toprint;
+
+				}
+				?>
+			</td>
+			<td class="alignright">
+				<span style="float:left;">USD </span><?php 
+				if ($data['internetsubtotal']!=0 && $data['internetsubtotal']!=''):
+					echo number_format($data['internetsubtotal'], 2, ',', ' ');
+				endif;?>
+			</td>
+		</tr>
+	
+		<tr class="contentrow odd">
+			<td>
+				Kiosk Rental
+			</td>
+			<td class="aligncenter">
+				@if ($data['kiosksubtotal']!=0 && $data['kiosksubtotal']!='')
+					Y
+				@else
+					N
+				@endif
+			</td>
+			<td class="detailsitem">
+				<?php
+				
+				if( $data['kiosksubtotal']!=''&& $data['kiosksubtotal']!=0){
+					$i = -1;
+					$m = 0;
+					$toprint='';
+					$details = Config::get('eventreg.kiosklist');
+					for($n=0;$n<=1;$n++){
+						$i++;
+						$m++;
+						if($data['kiosk'.$m.''] !='' && $data['kiosk'.$m.''] !=0){
+							$toprint .= $data['kiosk'.$m.''].'&nbsp;&nbsp; x &nbsp;&nbsp;'.$details[$i].'&nbsp;&nbsp;= &nbsp;&nbsp;$ '.$data['rowkiosk'].'<br/>';
+
+						}
+					}
+					echo $toprint;
+
+				}
+				?>
+			</td>
+			<td class="alignright">
+				<span style="float:left;">USD </span><?php if($data['kiosksubtotal']!=0 && $data['kiosksubtotal']!=''):
+					echo number_format($data['kiosksubtotal'], 2, ',', ' ');
+					endif;?>
+			</td>
+		</tr>
+
+		<tr class="contentrow">
+			<td colspan="3">
+				Total
+			</td>
+			
+			<td class="alignright">
+				<span style="float:left;">USD </span>{{ number_format($subtotalall, 2, ',', ' ') }}
+			</td>
+		</tr>
+
+		<tr class="contentrow odd" style="line-height:20px;">
+			<td colspan="3" class="alignright">
+				Late Order Surcharge 30%<br/>
+				On-Site Order Surcharge 50%<br/>
+				PPn (VAT) Tax 10%
+			</td>
+			
+			<td class="alignright" style="line-height:20px;">
+				USD &nbsp;{{ number_format($lateorderfee, 2, ',', ' ') }}<br/>
+				
+				USD &nbsp;{{ number_format($onsitefee, 2, ',', ' ') }}<br/>
+				
+				USD &nbsp;{{ number_format($ppn, 2, ',', ' ') }}
+			</td>
+		</tr>
+
+		<tr class="contentrow">
+			<td colspan="3">
+				<strong>TOTAL PAYMENT</strong><br/>
+			</td>
+			
+			<td class="alignright">
+				<strong><span style="float:left;">USD </span>{{ number_format($grandtotal, 2, ',', ' ') }}</strong>
+			</td>
+		</tr>
+
+		<tr class="contentrow">
+			<td colspan="3">
+				&nbsp;
+			</td>
+			
+			<td class="alignright">
+				&nbsp;
+			</td>
+		</tr>
+		
+		<tr class="contentrow">
+			<td colspan="3">
+				INVOICE ISSUED DATE : <?php echo date('l jS F Y');?>
+			</td>
+			
+			<td class="alignright">
+				&nbsp;
+			</td>
+		</tr>
+
 	</table>
 	
 	<div >

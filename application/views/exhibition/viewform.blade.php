@@ -6,7 +6,12 @@
   <h3>{{$title}}</h3>
 </div>
 <div class="alert alert-warning">
-     Organizer has approved your form, you can only read right now
+      @if($userdata['formstatus']=='approved')
+        Organizer has approved your form, you can only read right now
+      @elseif($userdata['formstatus']=='submitted')
+        You already submitted the form, you can only read right now
+      @endif
+
 </div>
 {{$form->open('exhibition/','POST',array('class'=>'addAttendeeForm'))}}
 {{ $form->hidden('id',$data['_id'])}}

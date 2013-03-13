@@ -57,7 +57,9 @@ return array(
 
 		'formstatus'=>array(
 			'open'=>'Open',
+			'revision'=>'Revision',
 			'approved'=>'Approved',
+			'paid'=>'Paid'
 			/*'reset'=>'Reset Password',
 			'golfinfo'=>'Golf Payment Information',
 			'convinfo'=>'Convention Payment Information',
@@ -289,8 +291,41 @@ return array(
 			'address'=>''
 		),
 
+		'electriclist' =>array(
+			'2A / 1 ph / 440 Watt',
+			'4A / 1 ph / 880 Watt',
+			'6A / 1 ph / 1.320 Watt',
+			'10A / 1 ph / 2.200 Watt</em>',
+			'16A / 1 ph / 3.520 Watt',
+			'32A / 1 ph / 7.040 Watt',
+			'16A / 3 ph / 10.560 Watt',
+			'32A / 3 ph / 21.120 Watt</em>',
+			'60A / 3 ph / 39.600 Watt'
+		),
 
+		'phonelist' =>array(
+			'Dial 9',
+			'Hotline'
+		),
 
+		'furniturelist' =>array(
+			'Folding chair white',
+			'Upright chair red',
+			'Barstool with backrest',
+			'Reception desk',
+			'Lockable cupboard',
+			'Round table with glass top'
+		),
+
+		'internetlist' =>array(
+			'Package : 1 Mbps',
+			'Package : 2 Mbps'
+		),
+
+		'kiosklist' =>array(
+			'Type 1 : Infostar ',
+			'Type 2 : Elegance '
+		)
 
 
 	);

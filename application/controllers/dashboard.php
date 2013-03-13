@@ -81,6 +81,18 @@ class Dashboard_Controller extends Base_Controller {
 
 		$stat['ExhibitorTotal'] = $exhibitor->count();
 
+		$stat['formSumitted'] = $exhibitor->count(array('formstatus'=>'submitted'));
+
+		$stat['cendrawasih'] = $exhibitor->count(array('hall'=>'Cendrawasih Hall'));
+		$stat['assembly'] = $exhibitor->count(array('hall'=>'Assembly Hall'));
+		$stat['halla'] = $exhibitor->count(array('hall'=>'Hall A'));
+		$stat['mainlobby'] = $exhibitor->count(array('hall'=>'Main Lobby'));
+
+		$stat['form_cendrawasih'] = $exhibitor->count(array('hall'=>'Cendrawasih Hall','formstatus'=>'submitted'));
+		$stat['form_assembly'] = $exhibitor->count(array('hall'=>'Assembly Hall','formstatus'=>'submitted'));
+		$stat['form_halla'] = $exhibitor->count(array('hall'=>'Hall A','formstatus'=>'submitted'));
+		$stat['form_mainlobby'] = $exhibitor->count(array('hall'=>'Main Lobby','formstatus'=>'submitted'));
+
 		$stat['Attendee'] = $attendee->count();
 
 		$stat['Golf'] = $attendee->count(array('golf'=>'Yes'));

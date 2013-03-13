@@ -4,6 +4,14 @@
 <div id="viewformcontainer">
 {{$form->open('exhibition/','POST',array('class'=>'addAttendeeForm'))}}
 {{ $form->hidden('id',$data['_id'])}}
+<?php 
+
+$dir = URL::base().'/storage/operationalforms';
+$id = $data['_id']->__toString();
+$path = $dir.'/confirmexhibitor'.$id.'.pdf'; 
+
+?>
+<a class="actionright icon-" href="{{ $path }}" target="_blank"><i>&#x0052;</i> <span>download form</span></a>
 <div class="row-fluid">
   <div class="adminview span12">
     <div id="wizard" class="swMain">
