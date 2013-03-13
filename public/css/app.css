@@ -599,3 +599,17 @@ thead#searchinput tr td input.search_init{
 	background-color: red;
 	text-decoration: underline;
 }
+
+.spacer{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	clear: both;
+	float: none;
+}
+
+#onsite_paginate{
+	float: left;
+	position: relative;
+	top: 15px;
+	right: 0;
+}

@@ -32,14 +32,14 @@
 |
 */
 
-Route::controller(array('register','exhibition','report','booth','import','export','dashboard','attendee','exhibitor','official','visitor','user','message','search','activity','category','content','ajax'));
+Route::controller(array('register','exhibition','report','booth','import','export','dashboard','onsite','attendee','exhibitor','official','visitor','user','message','search','activity','category','content','ajax'));
 
 Route::get('/',function(){
     if(Auth::check()){
         if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
            return Redirect::to('dashboard');
         }else if(Auth::user()->role == 'onsite'){
-           return Redirect::to('dashboard');
+           return Redirect::to('onsite');
         }
     }else{
        return Redirect::to('content/public/general');

@@ -57,7 +57,7 @@ class Official_Controller extends Base_Controller {
 
 		$searchinput = false; // no searchinput form on footer
 
-		if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
+		if(Auth::user()->role == 'root' || Auth::user()->role == 'super' || Auth::user()->role == 'onsite'){
 			return View::make('tables.simple')
 				->with('title','Officials')
 				->with('newbutton','New Official')
@@ -76,7 +76,7 @@ class Official_Controller extends Base_Controller {
 				->nest('row','official.rowdetail');
 		}else{
 			return View::make('official.restricted')
-							->with('title',$title);			
+							->with('title','Officials');			
 		}
 	}
 
