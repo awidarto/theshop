@@ -11,7 +11,8 @@
     {{ $form->hidden('id',$user['_id'])}}
     {{ $form->hidden('registrationnumber',$user['registrationnumber'])}}
     {{ $form->hidden('totalUSD','',array('id'=>'totalUSDInput','class'=>'paymentSettle'))}}
-{{ $form->hidden('totalIDR','',array('id'=>'totalIDRInput','class'=>'paymentSettle'))}}
+    {{ $form->hidden('totalIDR','',array('id'=>'totalIDRInput','class'=>'paymentSettle'))}}
+    
 <div class="row-fluid formNewAttendee">
     <div class="span6">
         <fieldset>

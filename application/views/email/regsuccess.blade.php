@@ -115,6 +115,10 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
+			<td><strong>Payment should be made in FULL AMOUNT.</strong></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
@@ -122,6 +126,7 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 			<td style="padding:10px;" colspan="2"><strong>Attend on Industrial Dinner (16 May 2013)</strong></td>
 			<td style="padding:10px;"><strong>{{ $data['attenddinner'] }}</strong></td>
 		</tr>
+
 	@elseif(isset($paymentstatus) && $paymentstatus=='free')
 	@else
 		@if($data['regtype'] == 'PO')
@@ -208,6 +213,10 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 
 		<tr>
 			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><strong>Payment should be made in FULL AMOUNT.</strong></td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
