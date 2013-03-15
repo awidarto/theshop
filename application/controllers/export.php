@@ -224,7 +224,7 @@ class Export_Controller extends Base_Controller {
 						}
 
 						if($row['golf']=='Yes'){
-								$golffee = 2500000;
+								$golffee = strval(2500000);
 								$row[$dataheader[39]] = $golffee;
 						}else{
 							$row[$dataheader[39]] = '';
@@ -440,7 +440,7 @@ class Export_Controller extends Base_Controller {
 						}
 
 						if($row['golf']=='Yes'){
-								$golffee = 2500000;
+								$golffee = strval(2500000);
 								$row[$dataheader[39]] = $golffee;
 						}else{
 							$row[$dataheader[39]] = '';
