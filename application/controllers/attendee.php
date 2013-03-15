@@ -1006,7 +1006,7 @@ class Attendee_Controller extends Base_Controller {
 				$changecount ++;
 			}
 			else if(!isset($att['regPO']) && $type == 'PO'){
-				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPO'=>550)));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPO'=>500)));
 				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPD'=>'')));
 				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSD'=>'')));
 				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSO'=>'')));
