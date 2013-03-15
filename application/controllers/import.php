@@ -350,6 +350,12 @@ class Import_Controller extends Base_Controller {
 	}
 
 	public function post_commit($importid){
+
+		$conventionrate = Config::get('eventreg.conventionrate');
+		$golfrate = Config::get('eventreg.golffee');
+		$dateA = date('Y-m-d G:i'); 
+		$earlybirddate = Config::get('eventreg.earlybirdconventiondate'); 
+
 		$data = Input::all();
 
 		//print_r($data);
@@ -498,24 +504,96 @@ class Import_Controller extends Base_Controller {
 						$tocommit['golf'] == $attobj['golf'];
 
 					}else{
-						if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
-							$tocommit['totalIDR'] = '4500000';
-							$tocommit['totalUSD'] = '';
-						}elseif ($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'Yes'){
-							$tocommit['totalIDR'] = '7000000';
-							$tocommit['totalUSD'] = '';
-						}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'No'){
-							$tocommit['totalIDR'] = '';
-							$tocommit['totalUSD'] = '500';
-						}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'Yes'){
-							$tocommit['totalIDR'] = '2500000';
-							$tocommit['totalUSD'] = '500';
-						}elseif ($tocommit['regtype'] == 'SD'){
-							$tocommit['totalIDR'] = '400000';
-							$tocommit['totalUSD'] = '';
-						}elseif ($tocommit['regtype'] == 'SO'){
-							$tocommit['totalIDR'] = '';
-							$tocommit['totalUSD'] = '120';
+						if(strtotime($dateA) > strtotime($earlybirddate)){
+							//normalrate valid
+							if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
+								$tocommit['totalIDR'] = $conventionrate['PD-normal'];
+								$tocommit['totalUSD'] = '';
+								$tocommit['regPD'] = $conventionrate['PD-normal'];
+								$tocommit['regPO'] = '';
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'Yes'){
+								$tocommit['totalIDR'] = $conventionrate['PD-normal']+$golfrate;
+								$tocommit['totalUSD'] = '';
+								$tocommit['regPD'] = $conventionrate['PD-normal'];
+								$tocommit['regPO'] = '';
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'No'){
+								$tocommit['totalIDR'] = '';
+								$tocommit['totalUSD'] = $conventionrate['PO-normal'];
+								$tocommit['regPD'] = '';
+								$tocommit['regPO'] = $conventionrate['PO-normal'];
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'Yes'){
+								$tocommit['totalIDR'] = $golfrate;
+								$tocommit['totalUSD'] = $conventionrate['PO-normal'];
+								$tocommit['regPD'] = '';
+								$tocommit['regPO'] = $conventionrate['PO-normal'];
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'SD'){
+								$tocommit['totalIDR'] = $conventionrate['SD'];
+								$tocommit['totalUSD'] = '';
+								$tocommit['regPD'] = '';
+								$tocommit['regPO'] = '';
+								$tocommit['regSD'] = $conventionrate['SD'];
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'SO'){
+								$tocommit['totalIDR'] = '';
+								$tocommit['totalUSD'] = $conventionrate['SO'];
+								$tocommit['regPD'] = '';
+								$tocommit['regPO'] = '';
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = $conventionrate['SO'];
+							}
+						}else{
+
+							if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
+								$tocommit['totalIDR'] = $conventionrate['PD-earlybird'];
+								$tocommit['totalUSD'] = '';
+								$tocommit['regPD'] = $conventionrate['PD-earlybird'];
+								$tocommit['regPO'] = '';
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'Yes'){
+								$tocommit['totalIDR'] = $conventionrate['PD-earlybird']+$golfrate;
+								$tocommit['totalUSD'] = '';
+								$tocommit['regPD'] = $conventionrate['PD-earlybird'];
+								$tocommit['regPO'] = '';
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'No'){
+								$tocommit['totalIDR'] = '';
+								$tocommit['totalUSD'] = $conventionrate['PO-earlybird'];
+								$tocommit['regPD'] = '';
+								$tocommit['regPO'] = $conventionrate['PO-earlybird'];
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'Yes'){
+								$tocommit['totalIDR'] = $golfrate;
+								$tocommit['totalUSD'] = $conventionrate['PO-earlybird'];
+								$tocommit['regPD'] = '';
+								$tocommit['regPO'] = $conventionrate['PO-earlybird'];
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'SD'){
+								$tocommit['totalIDR'] = $conventionrate['SD'];
+								$tocommit['totalUSD'] = '';
+								$tocommit['regPD'] = '';
+								$tocommit['regPO'] = '';
+								$tocommit['regSD'] = $conventionrate['SD'];
+								$tocommit['regSO'] = '';
+							}elseif ($tocommit['regtype'] == 'SO'){
+								$tocommit['totalIDR'] = '';
+								$tocommit['totalUSD'] = $conventionrate['SO'];
+								$tocommit['regPD'] = '';
+								$tocommit['regPO'] = '';
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = $conventionrate['SO'];
+							}
 						}
 					}
 
@@ -586,24 +664,97 @@ class Import_Controller extends Base_Controller {
 						$tocommit['golfSequence'] = $gseq['seq'];
 					}
 
-					if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
-						$tocommit['totalIDR'] = '4500000';
-						$tocommit['totalUSD'] = '';
-					}elseif ($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'Yes'){
-						$tocommit['totalIDR'] = '7000000';
-						$tocommit['totalUSD'] = '';
-					}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'No'){
-						$tocommit['totalIDR'] = '';
-						$tocommit['totalUSD'] = '500';
-					}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'Yes'){
-						$tocommit['totalIDR'] = '2500000';
-						$tocommit['totalUSD'] = '500';
-					}elseif ($tocommit['regtype'] == 'SD'){
-						$tocommit['totalIDR'] = '400000';
-						$tocommit['totalUSD'] = '';
-					}elseif ($tocommit['regtype'] == 'SO'){
-						$tocommit['totalIDR'] = '';
-						$tocommit['totalUSD'] = '120';
+					if(strtotime($dateA) > strtotime($earlybirddate)){
+						//normalrate valid
+						if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
+							$tocommit['totalIDR'] = $conventionrate['PD-normal'];
+							$tocommit['totalUSD'] = '';
+							$tocommit['regPD'] = $conventionrate['PD-normal'];
+							$tocommit['regPO'] = '';
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'Yes'){
+							$tocommit['totalIDR'] = $conventionrate['PD-normal']+$golfrate;
+							$tocommit['totalUSD'] = '';
+							$tocommit['regPD'] = $conventionrate['PD-normal'];
+							$tocommit['regPO'] = '';
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'No'){
+							$tocommit['totalIDR'] = '';
+							$tocommit['totalUSD'] = $conventionrate['PO-normal'];
+							$tocommit['regPD'] = '';
+							$tocommit['regPO'] = $conventionrate['PO-normal'];
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'Yes'){
+							$tocommit['totalIDR'] = $golfrate;
+							$tocommit['totalUSD'] = $conventionrate['PO-normal'];
+							$tocommit['regPD'] = '';
+							$tocommit['regPO'] = $conventionrate['PO-normal'];
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'SD'){
+							$tocommit['totalIDR'] = $conventionrate['SD'];
+							$tocommit['totalUSD'] = '';
+							$tocommit['regPD'] = '';
+							$tocommit['regPO'] = '';
+							$tocommit['regSD'] = $conventionrate['SD'];
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'SO'){
+							$tocommit['totalIDR'] = '';
+							$tocommit['totalUSD'] = $conventionrate['SO'];
+							$tocommit['regPD'] = '';
+							$tocommit['regPO'] = '';
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = $conventionrate['SO'];
+						}
+
+					}else{
+						
+						if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
+							$tocommit['totalIDR'] = $conventionrate['PD-earlybird'];
+							$tocommit['totalUSD'] = '';
+							$tocommit['regPD'] = $conventionrate['PD-earlybird'];
+							$tocommit['regPO'] = '';
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'Yes'){
+							$tocommit['totalIDR'] = $conventionrate['PD-earlybird']+$golfrate;
+							$tocommit['totalUSD'] = '';
+							$tocommit['regPD'] = $conventionrate['PD-earlybird'];
+							$tocommit['regPO'] = '';
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'No'){
+							$tocommit['totalIDR'] = '';
+							$tocommit['totalUSD'] = $conventionrate['PO-earlybird'];
+							$tocommit['regPD'] = '';
+							$tocommit['regPO'] = $conventionrate['PO-earlybird'];
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'PO' && $tocommit['golf'] == 'Yes'){
+							$tocommit['totalIDR'] = $golfrate;
+							$tocommit['totalUSD'] = $conventionrate['PO-earlybird'];
+							$tocommit['regPD'] = '';
+							$tocommit['regPO'] = $conventionrate['PO-earlybird'];
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'SD'){
+							$tocommit['totalIDR'] = $conventionrate['SD'];
+							$tocommit['totalUSD'] = '';
+							$tocommit['regPD'] = '';
+							$tocommit['regPO'] = '';
+							$tocommit['regSD'] = $conventionrate['SD'];
+							$tocommit['regSO'] = '';
+						}elseif ($tocommit['regtype'] == 'SO'){
+							$tocommit['totalIDR'] = '';
+							$tocommit['totalUSD'] = $conventionrate['SO'];
+							$tocommit['regPD'] = '';
+							$tocommit['regPO'] = '';
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = $conventionrate['SO'];
+						}
 					}
 
 					if($obj = $attendee->insert($tocommit)){

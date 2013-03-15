@@ -259,7 +259,7 @@ class Register_Controller extends Base_Controller {
 					$data['regPD'] = '';
 					$data['regPO'] = '';
 					$data['regSD'] = '';
-					$data['regSO'] = $conventionrate['SO'];;
+					$data['regSO'] = $conventionrate['SO'];
 
 				}
 			}

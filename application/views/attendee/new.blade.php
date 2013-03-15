@@ -41,12 +41,13 @@
 
         <fieldset>
             <legend>Registration Type</legend>
+                <small>Normal rate</small>
                 <div class="row-fluid">
                     <div class="span6">
                         Professional / Delegate Domestic
                     </div>   
                     <div class="span6">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD',true,array('class'=>'paymentSettle regType')) }} 
+                      {{ $form->radio('regtype','IDR 5.000.000','PD',true,array('class'=>'paymentSettle regType')) }} 
                     </div>   
                 </div>
 
@@ -55,7 +56,7 @@
                         Professional / Delegate Overseas
                     </div>   
                     <div class="span6">
-                      {{ $form->radio('regtype','USD 500','PO',false,array('class'=>'paymentSettle regType')) }} 
+                      {{ $form->radio('regtype','USD 550','PO',false,array('class'=>'paymentSettle regType')) }} 
                     </div>   
                 </div>
 

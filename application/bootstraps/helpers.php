@@ -126,4 +126,10 @@ function fixfilename($filename)
 
 	return $label;
 }
+
+function formatrp($angka){
+	$rupiah=number_format($angka,2,',','.');
+	return $rupiah;
+}
+
 ?>

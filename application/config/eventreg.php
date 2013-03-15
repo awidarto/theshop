@@ -700,7 +700,9 @@ return array(
 			'role'=> 'attendee',
 			'salutation'=> '',
 			'zip'=> '',
-			'zipInvoice'=> ''
+			'zipInvoice'=> '',
+
+
 			//normalize
 
 
@@ -743,10 +745,10 @@ return array(
 			'cityInvoice'=> '',
 			'zipInvoice'=> '',
 			'countryInvoice'=> '',
-			'reg PD'=>'',
-			'reg PO'=>'',
-			'reg SD'=>'',
-			'reg SO'=>'',
+			'regPD'=>'',
+			'regPO'=>'',
+			'regSD'=>'',
+			'regSO'=>'',
 			'foc'=>'',
 			'attenddinner'=> '',
 			'Golf'=> '',

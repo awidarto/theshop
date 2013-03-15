@@ -136,21 +136,22 @@ class Export_Controller extends Base_Controller {
 						//regfee
 						$regtype = $row['regtype'];
 						$feeregtype = Config::get('eventreg.convetionfee');
-						$type = $feeregtype[$regtype];
+						
 
 						if($regtype == 'PD'){
 							if($row['conventionPaymentStatus']!='free'){
-								$row[$dataheader[33]] =$type;
+								$row[$dataheader[33]] =strval($row['regPD']);
 							}else{
 								$row[$dataheader[33]] ='';
 							}
 							$row[$dataheader[34]] ='';
 							$row[$dataheader[35]] ='';
 							$row[$dataheader[36]] ='';
+
 						}elseif ($regtype == 'PO') {
 							$row[$dataheader[33]] ='';
 							if($row['conventionPaymentStatus']!='free'){
-								$row[$dataheader[34]] =$type;
+								$row[$dataheader[34]] =strval($row['regPO']);
 							}else{
 								$row[$dataheader[34]] ='';
 							}
@@ -160,7 +161,7 @@ class Export_Controller extends Base_Controller {
 							$row[$dataheader[33]] ='';
 							$row[$dataheader[34]] ='';
 							if($row['conventionPaymentStatus']!='free'){
-								$row[$dataheader[35]] =$type;
+								$row[$dataheader[35]] =strval($row['regSD']);
 							}else{
 								$row[$dataheader[35]] ='';
 							}
@@ -170,12 +171,14 @@ class Export_Controller extends Base_Controller {
 							$row[$dataheader[34]] ='';
 							$row[$dataheader[35]] ='';
 							if($row['conventionPaymentStatus']!='free'){
-								$row[$dataheader[36]] =$type;
+								$row[$dataheader[36]] =strval($row['regSO']);
 							}else{
 								$row[$dataheader[36]] ='';
 							}
 							
 						}
+
+
 
 						//FOC
 						if($row['conventionPaymentStatus']=='free'){
@@ -184,7 +187,8 @@ class Export_Controller extends Base_Controller {
 							$row[$dataheader[37]] ='No';
 						}
 						
-						
+						$row[$dataheader[40]] = strval($row['totalIDR']);
+						$row[$dataheader[41]] = strval($row['totalUSD']);
 
 						//PIC
 						$haspic = $row['cache_id'];
@@ -346,21 +350,22 @@ class Export_Controller extends Base_Controller {
 						//regfee
 						$regtype = $row['regtype'];
 						$feeregtype = Config::get('eventreg.convetionfee');
-						$type = $feeregtype[$regtype];
+						
 
 						if($regtype == 'PD'){
 							if($row['conventionPaymentStatus']!='free'){
-								$row[$dataheader[33]] =$type;
+								$row[$dataheader[33]] =strval($row['regPD']);
 							}else{
 								$row[$dataheader[33]] ='';
 							}
 							$row[$dataheader[34]] ='';
 							$row[$dataheader[35]] ='';
 							$row[$dataheader[36]] ='';
+
 						}elseif ($regtype == 'PO') {
 							$row[$dataheader[33]] ='';
 							if($row['conventionPaymentStatus']!='free'){
-								$row[$dataheader[34]] =$type;
+								$row[$dataheader[34]] =strval($row['regPO']);
 							}else{
 								$row[$dataheader[34]] ='';
 							}
@@ -370,7 +375,7 @@ class Export_Controller extends Base_Controller {
 							$row[$dataheader[33]] ='';
 							$row[$dataheader[34]] ='';
 							if($row['conventionPaymentStatus']!='free'){
-								$row[$dataheader[35]] =$type;
+								$row[$dataheader[35]] =strval($row['regSD']);
 							}else{
 								$row[$dataheader[35]] ='';
 							}
@@ -380,12 +385,14 @@ class Export_Controller extends Base_Controller {
 							$row[$dataheader[34]] ='';
 							$row[$dataheader[35]] ='';
 							if($row['conventionPaymentStatus']!='free'){
-								$row[$dataheader[36]] =$type;
+								$row[$dataheader[36]] =strval($row['regSO']);
 							}else{
 								$row[$dataheader[36]] ='';
 							}
 							
 						}
+
+
 
 						//FOC
 						if($row['conventionPaymentStatus']=='free'){
@@ -393,6 +400,9 @@ class Export_Controller extends Base_Controller {
 						}else{
 							$row[$dataheader[37]] ='No';
 						}
+						
+						$row[$dataheader[40]] = strval($row['totalIDR']);
+						$row[$dataheader[41]] = strval($row['totalUSD']);
 						
 						
 

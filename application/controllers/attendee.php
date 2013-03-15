@@ -764,24 +764,116 @@ class Attendee_Controller extends Base_Controller {
 			$data['invoice_address_conv'] = '';
 			$data['addressInvoice'] = '';
 
-			if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
-				$data['totalIDR'] = '4500000';
-				$data['totalUSD'] = '';
-			}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
-				$data['totalIDR'] = '7000000';
-				$data['totalUSD'] = '';
-			}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
-				$data['totalIDR'] = '';
-				$data['totalUSD'] = '500';
-			}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
-				$data['totalIDR'] = '2500000';
-				$data['totalUSD'] = '500';
-			}elseif ($data['regtype'] == 'SD'){
-				$data['totalIDR'] = '400000';
-				$data['totalUSD'] = '';
-			}elseif ($data['regtype'] == 'SO'){
-				$data['totalIDR'] = '';
-				$data['totalUSD'] = '120';
+			//check date first
+			$dateA = date('Y-m-d G:i'); 
+			
+			$earlybirddate = Config::get('eventreg.earlybirdconventiondate'); 
+			$conventionrate = Config::get('eventreg.conventionrate');
+			$golfrate = Config::get('eventreg.golffee');
+
+			if(strtotime($dateA) > strtotime($earlybirddate)){ 
+				//normal rate valid
+
+				if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+					$data['totalIDR'] = $conventionrate['PD-normal'];
+					$data['totalUSD'] = '';
+					$data['regPD'] = $conventionrate['PD-normal'];
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+					$data['totalIDR'] = $conventionrate['PD-normal']+$golfrate;
+					$data['totalUSD'] = '';
+					$data['regPD'] = $conventionrate['PD-normal'];
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+					$data['totalIDR'] = '';
+					$data['totalUSD'] = $conventionrate['PO-normal'];
+					$data['regPD'] = '';
+					$data['regPO'] = $conventionrate['PO-normal'];
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+					$data['totalIDR'] = $golfrate;
+					$data['totalUSD'] = $conventionrate['PO-normal'];
+					$data['regPD'] = '';
+					$data['regPO'] = $conventionrate['PO-normal'];
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'SD'){
+					$data['totalIDR'] = $conventionrate['SD'];
+					$data['totalUSD'] = '';
+					$data['regPD'] = '';
+					$data['regPO'] = '';
+					$data['regSD'] = $conventionrate['SD'];
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'SO'){
+					$data['totalIDR'] = '';
+					$data['totalUSD'] = $conventionrate['SO'];
+					$data['regPD'] = '';
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = $conventionrate['SO'];;
+
+				}
+			}else{
+
+				if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+					$data['totalIDR'] = $conventionrate['PD-earlybird'];
+					$data['totalUSD'] = '';
+					$data['regPD'] = $conventionrate['PD-earlybird'];
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+					$data['totalIDR'] = $conventionrate['PD-earlybird']+$golfrate;
+					$data['totalUSD'] = '';
+					$data['regPD'] = $conventionrate['PD-earlybird'];
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+					$data['totalIDR'] = '';
+					$data['totalUSD'] = $conventionrate['PD-earlybird'];
+					$data['regPD'] = '';
+					$data['regPO'] = $conventionrate['PO-earlybird'];
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+					$data['totalIDR'] = $golfrate;
+					$data['totalUSD'] = $conventionrate['PD-earlybird'];
+					$data['regPD'] = '';
+					$data['regPO'] = $conventionrate['PO-earlybird'];
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'SD'){
+					$data['totalIDR'] = $conventionrate['SD'];
+					$data['totalUSD'] = '';
+					$data['regPD'] = '';
+					$data['regPO'] = '';
+					$data['regSD'] = $conventionrate['SD'];
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'SO'){
+					$data['totalIDR'] = '';
+					$data['totalUSD'] = $conventionrate['SO'];
+					$data['regPD'] = '';
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = $conventionrate['SO'];;
+
+				}
 			}
 
 
@@ -852,6 +944,118 @@ class Attendee_Controller extends Base_Controller {
 			unset($data['csrf_token']);
 			unset($data['id']);
 
+			//check date first
+			$dateA = date('Y-m-d G:i'); 
+			
+			$earlybirddate = Config::get('eventreg.earlybirdconventiondate'); 
+			$conventionrate = Config::get('eventreg.conventionrate');
+			$golfrate = Config::get('eventreg.golffee');
+
+			if(strtotime($dateA) > strtotime($earlybirddate)){ 
+				//normal rate valid
+
+				if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+					$data['totalIDR'] = $conventionrate['PD-normal'];
+					$data['totalUSD'] = '';
+					$data['regPD'] = $conventionrate['PD-normal'];
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+					$data['totalIDR'] = $conventionrate['PD-normal']+$golfrate;
+					$data['totalUSD'] = '';
+					$data['regPD'] = $conventionrate['PD-normal'];
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+					$data['totalIDR'] = '';
+					$data['totalUSD'] = $conventionrate['PO-normal'];
+					$data['regPD'] = '';
+					$data['regPO'] = $conventionrate['PO-normal'];
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+					$data['totalIDR'] = $golfrate;
+					$data['totalUSD'] = $conventionrate['PO-normal'];
+					$data['regPD'] = '';
+					$data['regPO'] = $conventionrate['PO-normal'];
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'SD'){
+					$data['totalIDR'] = $conventionrate['SD'];
+					$data['totalUSD'] = '';
+					$data['regPD'] = '';
+					$data['regPO'] = '';
+					$data['regSD'] = $conventionrate['SD'];
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'SO'){
+					$data['totalIDR'] = '';
+					$data['totalUSD'] = $conventionrate['SO'];
+					$data['regPD'] = '';
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = $conventionrate['SO'];;
+
+				}
+			}else{
+
+				if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+					$data['totalIDR'] = $conventionrate['PD-earlybird'];
+					$data['totalUSD'] = '';
+					$data['regPD'] = $conventionrate['PD-earlybird'];
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+					$data['totalIDR'] = $conventionrate['PD-earlybird']+$golfrate;
+					$data['totalUSD'] = '';
+					$data['regPD'] = $conventionrate['PD-earlybird'];
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+					$data['totalIDR'] = '';
+					$data['totalUSD'] = $conventionrate['PD-earlybird'];
+					$data['regPD'] = '';
+					$data['regPO'] = $conventionrate['PO-earlybird'];
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+					$data['totalIDR'] = $golfrate;
+					$data['totalUSD'] = $conventionrate['PD-earlybird'];
+					$data['regPD'] = '';
+					$data['regPO'] = $conventionrate['PO-earlybird'];
+					$data['regSD'] = '';
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'SD'){
+					$data['totalIDR'] = $conventionrate['SD'];
+					$data['totalUSD'] = '';
+					$data['regPD'] = '';
+					$data['regPO'] = '';
+					$data['regSD'] = $conventionrate['SD'];
+					$data['regSO'] = '';
+
+				}elseif ($data['regtype'] == 'SO'){
+					$data['totalIDR'] = '';
+					$data['totalUSD'] = $conventionrate['SO'];
+					$data['regPD'] = '';
+					$data['regPO'] = '';
+					$data['regSD'] = '';
+					$data['regSO'] = $conventionrate['SO'];;
+
+				}
+			}
+
 			$user = new Attendee();
 
 			if(isset($data['registrationnumber']) && $data['registrationnumber'] != ''){
@@ -888,6 +1092,9 @@ class Attendee_Controller extends Base_Controller {
 				$data['golfPaymentStatus'] = 'unpaid';
 			}
 
+			if($data['golf'] == 'No'){
+				$data['golfPaymentStatus'] = '-';
+			}
 			$data['registrationnumber'] = implode('-',$reg_number);
 
 			if($user->update(array('_id'=>$id),array('$set'=>$data))){
@@ -1035,6 +1242,172 @@ class Attendee_Controller extends Base_Controller {
 
 	}
 
+	public function get_addTotalpayment(){
+
+		$attendee = new Attendee();
+
+		$attendees = $attendee->find();
+		$changecount = 0;
+
+		foreach($attendees as $att){
+			$_id = $att['_id'];
+			$type = $att['regtype'];
+			$golf = $att['golf'];
+			$payment = $att['conventionPaymentStatus'];
+			$changecount = 0;
+
+
+
+			if(!isset($att['totalIDR'])){
+				if($payment!='free'){
+					$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>'')));
+					$changecount++;
+				}
+			}
+
+			if(!isset($att['totalUSD'])){
+				if($payment!='free'){
+					$attendee->update(array('_id'=>$_id),array('$set'=>array('totalUSD'=>'')));
+					$changecount++;
+				}
+			}
+			
+
+		}
+
+		return View::make('attendee.normalizeearly')
+				->with('changecount',$changecount)
+				->with('title','Normalize Early');
+	}
+
+	public function get_removeTotalFree(){
+
+		$attendee = new Attendee();
+
+		$attendees = $attendee->find();
+		$changecount = 0;
+
+		foreach($attendees as $att){
+			$_id = $att['_id'];
+			$type = $att['regtype'];
+			$payment = $att['conventionPaymentStatus'];
+			$changecount = 0;
+
+			if($payment=='free'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalUSD'=>'-','totalIDR'=>'-')));
+				
+			}
+			$changecount++;
+
+		}
+
+		return View::make('attendee.normalizeearly')
+				->with('changecount',$changecount)
+				->with('title','Normalize Early');
+	}
+
+
+	public function get_normalrate(){
+
+		$attendee = new Attendee();
+
+		$attendees = $attendee->find();
+		$changecount = 0;
+
+		foreach($attendees as $att){
+			$_id = $att['_id'];
+			$type = $att['regtype'];
+			$payment = $att['conventionPaymentStatus'];
+			$changecount = 0;
+			$golf = $att['golf'];
+			$totalidr = $att['totalIDR'];
+			$totalusd = $att['totalIDR'];
+
+			if($totalidr=='400'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>400000)));
+				$changecount++;
+				
+			}elseif ($totalidr=='4.500.000') {
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>4500000)));
+				$changecount++;
+			
+			}elseif ($totalidr=='7.000.000') {
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>7000000)));
+				$changecount++;
+			}elseif ($totalidr =='' && $type == 'PD') {
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>4500000)));
+				$changecount++;
+			}elseif ($totalusd =='' && $type == 'PO') {
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('totalUSD'=>500)));
+				$changecount++;
+			}
+			
+
+		}
+
+		return View::make('attendee.normalizeearly')
+				->with('changecount',$changecount)
+				->with('title','Normalize Early');
+	}
+
+
+	public function get_normalizeTotalpayment(){
+
+		$attendee = new Attendee();
+
+		$attendees = $attendee->find();
+		$changecount = 0;
+
+		foreach($attendees as $att){
+			$_id = $att['_id'];
+			$type = $att['regtype'];
+			$golf = $att['golf'];
+			$payment = $att['conventionPaymentStatus'];
+			$changecount = 0;
+
+
+
+			if($att['totalIDR']=='' && $payment!='free' && ($type!='PO' || $type!='SO') ){
+				if($payment!='free'){
+					if($type = 'PD' && $golf='No'){
+						$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>4500000)));
+						$changecount  ++;
+					}elseif ($type = 'PD' && $golf='Yes') {
+						$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>7000000)));
+						$changecount  ++;
+					}elseif ($type = 'SD' ) {
+						$attendee->update(array('_id'=>$_id),array('$set'=>array('totalIDR'=>400000)));
+						$changecount  ++;
+					}else{
+
+					}
+				}
+			}
+
+			if($att['totalUSD']='' && $payment!='free' && ($type!='PD' || $type!='SD')){
+				if($payment!='free'){
+					if($type = 'PO' && $golf='No'){
+						$attendee->update(array('_id'=>$_id),array('$set'=>array('totalUSD'=>500)));
+						$changecount  ++;
+					}elseif ($type = 'PO' && $golf='Yes') {
+						$attendee->update(array('_id'=>$_id),array('$set'=>array('totalUSD'=>500,'totalIDR'=>2500000)));
+						$changecount  ++;
+					}elseif ($type = 'SO' ) {
+						$attendee->update(array('_id'=>$_id),array('$set'=>array('totalUSD'=>120)));
+						$changecount  ++;
+					}else{
+
+					}
+				}
+			}
+			
+
+		}
+
+		return View::make('attendee.normalizeearly')
+				->with('changecount',$changecount)
+				->with('title','Normalize Early');
+	}
 
 	public function get_addSequencetoCollection(){
 		$attendee = new Attendee();

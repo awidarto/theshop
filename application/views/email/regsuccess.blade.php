@@ -1,11 +1,8 @@
 <p>
 <?php
-function formatrp($angka){
-	$rupiah=number_format($angka,2,',','.');
-	return $rupiah;
-}
+
 setlocale(LC_MONETARY, "en_US");
-$conventionrate = Config::get('eventreg.conventionrateinitial');
+
 //check date first
 $dateA = date('Y-m-d G:i'); 
 

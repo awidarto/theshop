@@ -1,3 +1,24 @@
+
+<?php
+
+setlocale(LC_MONETARY, "en_US");
+
+//check date first
+
+$golfrate = Config::get('eventreg.golffee');
+
+//define first regtype
+
+
+
+$totalIDRtax = 0.10*$data['totalIDR'];
+$totalIDR = $data['totalIDR']+$totalIDRtax;
+
+$totalUSDtax = 0.10*$data['totalUSD'];
+$totalUSD = $data['totalUSD']+$totalUSDtax;
+
+?>
+
 <p><?php
 	echo 'Jakarta, '.date('l jS F Y');
 ?>
@@ -18,28 +39,29 @@ Your profile has been updated successfully. Please find below summary of your pr
 <p><strong><u>CONVENTION REGISTRATION</u></strong></p>
 
 <table>
+
 	@if($data['regtype'] == 'PO')
 		<tr>
 			<td style="padding:10px;"><strong>Professional / Delegate Overseas</strong></td>
-			<td style="padding:10px;"><strong>USD 500</strong></td>
+			<td style="padding:10px;"><strong>USD {{ money_format(" %!n ", $data['regPO']) }}</strong></td>
 			<td style="padding:10px;"><strong>IDR - </strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'PD')
 		<tr>
 			<td style="padding:10px;"><strong>Professional / Delegate Domestic</strong></td>
 			<td style="padding:10px;"><strong>USD - </strong></td>
-			<td style="padding:10px;"><strong>IDR 4.500.000</strong></td>
+			<td style="padding:10px;"><strong>IDR {{ formatrp($data['regPD']) }}</strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'SD')
 		<tr>
 			<td style="padding:10px;"><strong>Student Domestic</strong></td>
 			<td style="padding:10px;"><strong>USD - </strong></td>
-			<td style="padding:10px;"><strong>IDR 400.000</strong></td>
+			<td style="padding:10px;"><strong>IDR {{ formatrp($data['regSD']) }}</strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'SO')
 		<tr>
 			<td style="padding:10px;"><strong>Student Overseas</strong></td>
-			<td style="padding:10px;"><strong>USD 120</strong></td>
+			<td style="padding:10px;"><strong>USD {{ money_format(" %!n ", $data['regSO']) }}</strong></td>
 			<td style="padding:10px;"><strong>IDR - </strong></td>
 		</tr>
 	@endif
@@ -48,7 +70,7 @@ Your profile has been updated successfully. Please find below summary of your pr
 		<tr>
 			<td style="padding:10px;border-bottom:1px solid #000;"><strong>Golf Tournament</strong></td>
 			<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
-			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR 2.500.000</strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR {{ formatrp($golfrate) }}</strong></td>
 		</tr>
 	@else
 		<tr>
@@ -57,40 +79,47 @@ Your profile has been updated successfully. Please find below summary of your pr
 			<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR - </strong></td>
 		</tr>
 	@endif
+
+	<tr>
+		<td style="padding:10px;border-bottom:1px solid #000;"><strong>VAT</strong></td>
+		<td style="padding:10px;border-bottom:1px solid #000;"><strong>10% </strong></td>
+		<td style="padding:10px;border-bottom:1px solid #000;"><strong>&nbsp;</strong></td>
+	</tr>
+	
 	@if($data['regtype'] == 'PO' && $data['golf'] == 'Yes')
 		<tr>
 			<td style="padding:10px;"><strong>Grand Total</strong></td>
-			<td style="padding:10px;"><strong>USD 500</strong></td>
-			<td style="padding:10px;"><strong>IDR 2.500.000</strong></td>
+			<td style="padding:10px;"><strong>USD {{ money_format(" %!n ", $totalUSD) }}</strong></td>
+			<td style="padding:10px;"><strong>IDR {{ formatrp($totalIDR) }} </strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'PD' && $data['golf'] == 'Yes')
 		<tr>
 			<td style="padding:10px;"><strong>Grand Total</strong></td>
 			<td style="padding:10px;"><strong>USD - </strong></td>
-			<td style="padding:10px;"><strong>IDR 7.000.000</strong></td>
+			<td style="padding:10px;"><strong>IDR {{ formatrp($totalIDR) }}</strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'PO' && $data['golf'] == 'No')
 		<tr>
 			<td style="padding:10px;"><strong>Grand Total</strong></td>
-			<td style="padding:10px;"><strong>USD 500</strong></td>
+			<td style="padding:10px;"><strong>USD {{ money_format(" %!n ", $totalUSD) }}</strong></td>
 			<td style="padding:10px;"><strong>IDR - </strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'PD' && $data['golf'] == 'No')
 		<tr>
 			<td style="padding:10px;"><strong>Grand Total</strong></td>
 			<td style="padding:10px;"><strong>USD - </strong></td>
-			<td style="padding:10px;"><strong>IDR 4.500.000</strong></td>
+			<td style="padding:10px;"><strong>IDR {{ formatrp($totalIDR) }}</strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'SD')
 		<tr>
 			<td style="padding:10px;"><strong>Grand Total</strong></td>
 			<td style="padding:10px;"><strong>USD - </strong></td>
-			<td style="padding:10px;"><strong>IDR 400.000</strong></td>
+			<td style="padding:10px;"><strong>IDR {{ formatrp($totalIDR) }}</strong></td>
 		</tr>
 	@elseif($data['regtype'] == 'SO')
 		<tr>
 			<td style="padding:10px;"><strong>Grand Total</strong></td>
-			<td style="padding:10px;"><strong>USD 120</strong></td>
+			<td style="padding:10px;"><strong>USD {{ money_format(" %!n ", $totalUSD) }}</strong></td>
 			<td style="padding:10px;"><strong>IDR - </strong></td>
 		</tr>
 	@endif
@@ -99,7 +128,7 @@ Your profile has been updated successfully. Please find below summary of your pr
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td><strong>* Fees above exclude VAT 10%</strong></i></td>
+			<td><strong>Payment should be made in FULL AMOUNT.</strong></i></td>
 			<td>&nbsp;</td>
 		</tr>
 		

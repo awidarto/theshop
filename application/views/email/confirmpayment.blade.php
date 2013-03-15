@@ -1,8 +1,5 @@
 <?php
-function formatrp($angka){
-	$rupiah=number_format($angka,2,',','.');
-	return $rupiah;
-}
+
 setlocale(LC_MONETARY, "en_US");
 
 ?>
@@ -102,10 +99,10 @@ setlocale(LC_MONETARY, "en_US");
 			<div style="width:20%;position:relative;display:block;float:left;height:40px;padding:10px;">
 				@if($data['regtype'] == 'PO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %i ", $PO_rate) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $data['regPO']) }}</span>
 				@elseif($data['regtype'] == 'SO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;"> {{ money_format(" %i ", $SO_rate) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;"> {{ money_format(" %!n ", $data['regSO']) }}</span>
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
@@ -140,10 +137,10 @@ setlocale(LC_MONETARY, "en_US");
 
 				@if($data['regtype'] == 'PO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %i ", $data['regPO']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $data['regPO']) }}</span>
 				@elseif($data['regtype'] == 'SO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %i ", $data['regSO']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $data['regSO']) }}</span>
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
@@ -195,10 +192,10 @@ setlocale(LC_MONETARY, "en_US");
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
 				@if($data['regtype'] == 'PO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %i ", $data['regSO']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $data['regSO']) }}</span>
 				@elseif($data['regtype'] == 'SO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %i ", $data['regSO']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $data['regSO']) }}</span>
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
