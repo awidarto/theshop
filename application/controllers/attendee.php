@@ -986,6 +986,55 @@ class Attendee_Controller extends Base_Controller {
 
 	}
 
+	//
+	public function get_normalizeEarlybird(){
+		$attendee = new Attendee();
+
+		$attendees = $attendee->find();
+		$changecount = 0;
+
+		foreach($attendees as $att){
+			$_id = $att['_id'];
+			$type = $att['regtype'];
+
+
+			if(!isset($att['regPD']) && $type == 'PD'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPD'=>4500000)));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPO'=>'')));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSD'=>'')));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSO'=>'')));
+				$changecount ++;
+			}
+			else if(!isset($att['regPO']) && $type == 'PO'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPO'=>550)));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPD'=>'')));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSD'=>'')));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSO'=>'')));
+				$changecount ++;
+			}
+			else if(!isset($att['regSD']) && $type == 'SD'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSD'=>400000)));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPO'=>'')));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPD'=>'')));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSO'=>'')));
+				$changecount ++;	
+			}
+			else if(!isset($att['regSO']) && $type == 'SO'){
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSO'=>120)));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPO'=>'')));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regSD'=>'')));
+				$attendee->update(array('_id'=>$_id),array('$set'=>array('regPD'=>'')));	
+				$changecount ++;
+			}
+
+		}
+
+		return View::make('attendee.normalizeearly')
+				->with('changecount',$changecount)
+				->with('title','Normalize Early');
+
+	}
+
 
 	public function get_addSequencetoCollection(){
 		$attendee = new Attendee();

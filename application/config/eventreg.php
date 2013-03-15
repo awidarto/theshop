@@ -71,12 +71,25 @@ return array(
 
 		'golfquota'=>100,
 
+		'conventionrate'=>array(
+			'PD-earlybird'=>4500000,
+			'PD-normal'=>5000000,
+			'PO-earlybird'=>500,
+			'PO-normal'=>550,
+			'SD'=>400000,
+			'SO'=>120
+		),
+		
+		
+		'earlybirdconventiondate'=>'2013-03-16 00:01',
+
 		'convetionfee'=>array(
 			'PO'=>500,
 			'PD'=>4500000,
 			'SD'=>400000,
 			'SO'=>120
 		),
+
 		'golffee'=>2500000,
 		'valid_heads'=>array(
 			'no',
@@ -321,6 +334,10 @@ return array(
 		'internetlist' =>array(
 			'Package : 1 Mbps',
 			'Package : 2 Mbps'
+		),
+		'kiosklist' =>array(
+			'Type 1 : Infostar ',
+			'Type 2 : Elegance '
 		),
 
 		'exhibitor_valid_heads'=>array(
@@ -749,14 +766,7 @@ return array(
 			'PIC country'=> '',
 			'groupname'=> '',
 			'address'=>''
-		),
-
-		'kiosklist' =>array(
-			'Type 1 : Infostar ',
-			'Type 2 : Elegance '
 		)
-
-
 	);
 
 

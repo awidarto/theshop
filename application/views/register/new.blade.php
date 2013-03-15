@@ -4,6 +4,7 @@
 @section('content')
 <div class="tableHeader">
 <h3>{{$title}}</h3>
+
 </div>
     @if (Session::has('notify_result'))
         <div class="alert alert-error">
@@ -180,16 +181,30 @@
                       <span>After 15 March 2013</span>
                     </div>
                 </div>
-
+                <?php //check date first
+                  $dateA = date('Y-m-d G:i'); 
+                  
+                  $earlybirddate = Config::get('eventreg.earlybirdconventiondate'); 
+                  
+                  
+                ?>
                 <div class="row">
                     <div class="four columns">
                         Professional / Delegate Domestic
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','IDR 4.500.000','PD',true,array('class'=>'regType professional paymentSettle')) }}
+                      @if(strtotime($dateA) > strtotime($earlybirddate))
+                        {{ $form->radio('regtypeEarly','IDR 4.500.000','PD',false,array('class'=>'disableRadio')) }}
+                      @else
+                        {{ $form->radio('regtype','IDR 4.500.000','PD',true,array('class'=>'regType professional paymentSettle')) }}                 
+                      @endif
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtypeNormal','IDR 5.000.000','PD',false,array('class'=>'disableRadio')) }}
+                      @if(strtotime($dateA) > strtotime($earlybirddate))
+                        {{ $form->radio('regtype','IDR 5.000.000','PD',true,array('class'=>'regType professional paymentSettle')) }}
+                      @else
+                        {{ $form->radio('regtypeNormal','IDR 5.000.000','PD',false,array('class'=>'disableRadio')) }}
+                      @endif
                     </div>
                 </div>
 
@@ -198,10 +213,18 @@
                         Professional / Delegate Overseas
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','USD 500','PO',false,array('class'=>'regType professional paymentSettle')) }}
+                      @if(strtotime($dateA) > strtotime($earlybirddate))
+                        {{ $form->radio('regtypeEarly','USD 500','PO',false,array('class'=>'disableRadio')) }}
+                      @else
+                        {{ $form->radio('regtype','USD 500','PO',false,array('class'=>'regType professional paymentSettle')) }}
+                      @endif
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtypeNormal','USD 550','PD',false,array('class'=>'disableRadio')) }}
+                      @if(strtotime($dateA) > strtotime($earlybirddate))
+                        {{ $form->radio('regtype','USD 550','PO',false,array('class'=>'regType professional paymentSettle')) }}
+                      @else
+                        {{ $form->radio('regtypeNormal','USD 550','PO',false,array('class'=>'disableRadio')) }}
+                      @endif
                     </div>
 
                 </div>
@@ -211,10 +234,19 @@
                         Student Domestic
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','IDR 400.000','SD',false,array('class'=>'regType student paymentSettle')) }}
+                      @if(strtotime($dateA) > strtotime($earlybirddate))
+                        {{ $form->radio('regtypeEarly','IDR 400.000','SD',false,array('class'=>'disableRadio')) }}
+                      @else
+                        {{ $form->radio('regtype','IDR 400.000','SD',false,array('class'=>'regType student paymentSettle')) }}
+                      @endif
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtypeNormal','IDR 400.000','PD',false,array('class'=>'disableRadio')) }}
+                      @if(strtotime($dateA) > strtotime($earlybirddate))
+                        {{ $form->radio('regtype','IDR 400.000','SD',false,array('class'=>'regType student paymentSettle')) }}
+                      @else
+                        {{ $form->radio('regtypeNormal','IDR 400.000','SD',false,array('class'=>'disableRadio')) }}
+                      @endif
+
                     </div>
                 </div>
 
@@ -223,10 +255,20 @@
                         Student Overseas
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtype','USD 120','SO',false,array('class'=>'regType student paymentSettle')) }}
+                      @if(strtotime($dateA) > strtotime($earlybirddate))
+                        {{ $form->radio('regtypeNormal','USD 120','SO',false,array('class'=>'disableRadio')) }}
+                      @else
+                        {{ $form->radio('regtype','USD 120','SO',false,array('class'=>'regType student paymentSettle')) }}
+                      @endif
+                      
                     </div>
                     <div class="three columns">
-                      {{ $form->radio('regtypeNormal','USD 120','PD',false,array('class'=>'disableRadio')) }}
+                      @if(strtotime($dateA) > strtotime($earlybirddate))
+                        {{ $form->radio('regtype','USD 120','SO',false,array('class'=>'regType student paymentSettle')) }}
+                      @else
+                        {{ $form->radio('regtypeEarly','USD 120','SO',false,array('class'=>'disableRadio')) }}
+                      @endif
+                      
                     </div>
                 </div>
         </fieldset>
@@ -433,6 +475,11 @@
 </script>
 
 <script type="text/javascript">
+
+<?php 
+  $dateA = date('Y-m-d G:i'); 
+  $earlybirddate = Config::get('eventreg.earlybirdconventiondate'); 
+?>
 $(function() {
 
   $("#s2id_field_countryInvoice").select2("val", "Indonesia");
@@ -551,50 +598,100 @@ $(function() {
     var Golffee   = '2.500.000';
     var totalUSD   = '';
     var totalIDR   = '';
+    
+
     if($('.regType:checked').val() == 'PO'){
-      //alert($('.field_golfType:checked').val());
-      if($('.field_golfType:checked').val() == 'No'){
-        $('#feeRegUSD').text('500');
-        $('#feeRegIDR').text('-');
-        $('#feeGolf').text('-');
-        $('#totalUSD').text('500');
-        $('#totalIDR').text('-');
-        $('#totalUSDInput').val('500');
-        $('#totalIDRInput').val('-');
-      }else{
+      <?php //check date first
+      if(strtotime($dateA) > strtotime($earlybirddate)):
+      ?>
         //alert($('.field_golfType:checked').val());
-        $('#feeRegUSD').text('500');
-        $('#feeRegIDR').text('-');
-        $('#feeGolf').text('2.500.000');
-        $('#totalUSD').text('500');
-        $('#totalIDR').text('2.500.000');
-        $('#totalUSDInput').val('500');
-        $('#totalIDRInput').val('2.500.000');
-        
-      }
+        if($('.field_golfType:checked').val() == 'No'){
+          $('#feeRegUSD').text('550');
+          $('#feeRegIDR').text('-');
+          $('#feeGolf').text('-');
+          $('#totalUSD').text('550');
+          $('#totalIDR').text('-');
+          $('#totalUSDInput').val('550');
+          $('#totalIDRInput').val('-');
+        }else{
+          //alert($('.field_golfType:checked').val());
+          $('#feeRegUSD').text('550');
+          $('#feeRegIDR').text('-');
+          $('#feeGolf').text('2.500.000');
+          $('#totalUSD').text('550');
+          $('#totalIDR').text('2.500.000');
+          $('#totalUSDInput').val('550');
+          $('#totalIDRInput').val('2.500.000');
+          
+        }
+      <?php else:?>
+        //alert($('.field_golfType:checked').val());
+        if($('.field_golfType:checked').val() == 'No'){
+          $('#feeRegUSD').text('500');
+          $('#feeRegIDR').text('-');
+          $('#feeGolf').text('-');
+          $('#totalUSD').text('500');
+          $('#totalIDR').text('-');
+          $('#totalUSDInput').val('500');
+          $('#totalIDRInput').val('-');
+        }else{
+          //alert($('.field_golfType:checked').val());
+          $('#feeRegUSD').text('500');
+          $('#feeRegIDR').text('-');
+          $('#feeGolf').text('2.500.000');
+          $('#totalUSD').text('500');
+          $('#totalIDR').text('2.500.000');
+          $('#totalUSDInput').val('500');
+          $('#totalIDRInput').val('2.500.000');
+          
+        }
+      <?php endif;?>
     }
 
     if($('.regType:checked').val() == 'PD'){
-      //alert($('.field_golfType:checked').val());
-      if($('.field_golfType:checked').val() == 'No'){
-        $('#feeRegUSD').text('-');
-        $('#feeRegIDR').text('4.500.000');
-        $('#feeGolf').text('-');
-        $('#totalUSD').text('-');
-        $('#totalIDR').text('4.500.000');
-        $('#totalUSDInput').val('-');
-        $('#totalIDRInput').val('4.500.000');
+      <?php //check date first
+      if(strtotime($dateA) > strtotime($earlybirddate)):
+      ?>
+        if($('.field_golfType:checked').val() == 'No'){
+          $('#feeRegUSD').text('-');
+          $('#feeRegIDR').text('5.000.000');
+          $('#feeGolf').text('-');
+          $('#totalUSD').text('-');
+          $('#totalIDR').text('5.000.000');
+          $('#totalUSDInput').val('-');
+          $('#totalIDRInput').val('5.000.000');
 
-      }else{
-        // /alert($('.field_golfType:checked').val());
-        $('#feeRegIDR').text('4.500.000');
-        $('#feeRegUSD').text('-');
-        $('#feeGolf').text('2.500.000');
-        $('#totalUSD').text('-');
-        $('#totalIDR').text('7.000.000');
-        $('#totalUSDInput').val('-');
-        $('#totalIDRInput').val('7.000.000');
-      }
+        }else{
+          // /alert($('.field_golfType:checked').val());
+          $('#feeRegIDR').text('5.000.000');
+          $('#feeRegUSD').text('-');
+          $('#feeGolf').text('2.500.000');
+          $('#totalUSD').text('-');
+          $('#totalIDR').text('7.500.000');
+          $('#totalUSDInput').val('-');
+          $('#totalIDRInput').val('7.500.000');
+        }
+      <?php else:?>
+        if($('.field_golfType:checked').val() == 'No'){
+          $('#feeRegUSD').text('-');
+          $('#feeRegIDR').text('4.500.000');
+          $('#feeGolf').text('-');
+          $('#totalUSD').text('-');
+          $('#totalIDR').text('4.500.000');
+          $('#totalUSDInput').val('-');
+          $('#totalIDRInput').val('4.500.000');
+
+        }else{
+          // /alert($('.field_golfType:checked').val());
+          $('#feeRegIDR').text('4.500.000');
+          $('#feeRegUSD').text('-');
+          $('#feeGolf').text('2.500.000');
+          $('#totalUSD').text('-');
+          $('#totalIDR').text('7.000.000');
+          $('#totalUSDInput').val('-');
+          $('#totalIDRInput').val('7.000.000');
+        }
+      <?php endif;?>
     }
 
     if($('.regType:checked').val() == 'SD'){
@@ -619,13 +716,29 @@ $(function() {
 
   }
   //first total
-  $('#feeRegUSD').text('-');
-  $('#feeRegIDR').text('4.500.000');
-  $('#feeGolf').text('-');
-  $('#totalUSD').text('-');
-  $('#totalIDR').text('4.500.000');
-  $('#totalUSDInput').val('');
-  $('#totalIDRInput').val('4.500.000');
+
+  <?php //check date first
+    
+    if(strtotime($dateA) > strtotime($earlybirddate)):
+  ?>
+    
+    $('#feeRegUSD').text('-');
+    $('#feeRegIDR').text('5.000.000');
+    $('#feeGolf').text('-');
+    $('#totalUSD').text('-');
+    $('#totalIDR').text('5.000.000');
+    $('#totalUSDInput').val('');
+    $('#totalIDRInput').val('5.000.000');
+  <?php else:?>
+    $('#feeRegUSD').text('-');
+    $('#feeRegIDR').text('4.500.000');
+    $('#feeGolf').text('-');
+    $('#totalUSD').text('-');
+    $('#totalIDR').text('4.500.000');
+    $('#totalUSDInput').val('');
+    $('#totalIDRInput').val('4.500.000');
+
+  <?php endif;?> 
 
   $('.paymentSettle').change(
       function(){

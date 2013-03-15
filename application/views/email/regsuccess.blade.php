@@ -1,4 +1,41 @@
-<p><?php
+<p>
+<?php
+function formatrp($angka){
+	$rupiah=number_format($angka,2,',','.');
+	return $rupiah;
+}
+setlocale(LC_MONETARY, "en_US");
+$conventionrate = Config::get('eventreg.conventionrateinitial');
+//check date first
+$dateA = date('Y-m-d G:i'); 
+
+$earlybirddate = Config::get('eventreg.earlybirdconventiondate'); 
+$conventionrate = Config::get('eventreg.conventionrate');
+$golfrate = Config::get('eventreg.golffee');
+
+//define first regtype
+
+if(strtotime($dateA) > strtotime($earlybirddate)){
+	$PD_rate = $conventionrate['PD-normal'];
+	$PO_rate = $conventionrate['PO-normal'];
+	$SD_rate = $conventionrate['SD'];
+	$SO_rate = $conventionrate['SO'];
+}else{
+
+	$PD_rate = $conventionrate['PD-earlybird'];
+	$PO_rate = $conventionrate['PO-earlybird'];
+	$SD_rate = $conventionrate['SD'];
+	$SO_rate = $conventionrate['SO'];
+}
+
+$totalIDRtax = 0.10*$data['totalIDR'];
+$totalIDR = $data['totalIDR']+$totalIDRtax;
+
+$totalUSDtax = 0.10*$data['totalUSD'];
+$totalUSD = $data['totalUSD']+$totalUSDtax;
+
+?>
+<?php
 	echo 'Jakarta, '.date('l jS F Y');
 ?>
 </p>
@@ -34,25 +71,25 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 		@if($data['regtype'] == 'PO')
 			<tr>
 				<td style="padding:10px;"><strong>Professional / Delegate Overseas</strong></td>
-				<td style="padding:10px;"><strong>USD 500</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $PO_rate) }}</strong></td>
 				<td style="padding:10px;"><strong>IDR - </strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PD')
 			<tr>
 				<td style="padding:10px;"><strong>Professional / Delegate Domestic</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 4.500.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp($PD_rate) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'SD')
 			<tr>
 				<td style="padding:10px;"><strong>Student Domestic</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 400.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp($SD_rate) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'SO')
 			<tr>
 				<td style="padding:10px;"><strong>Student Overseas</strong></td>
-				<td style="padding:10px;"><strong>USD 120</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $SO_rate) }}</strong></td>
 				<td style="padding:10px;"><strong>IDR - </strong></td>
 			</tr>
 		@endif
@@ -61,7 +98,7 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 			<tr>
 				<td style="padding:10px;border-bottom:1px solid #000;"><strong>Golf Tournament</strong></td>
 				<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
-				<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR 2.500.000</strong></td>
+				<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR {{ formatrp($golfrate) }}</strong></td>
 			</tr>
 		@else
 			<tr>
@@ -70,42 +107,47 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 				<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR - </strong></td>
 			</tr>
 		@endif
+		<tr>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>VAT</strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>10% </strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>&nbsp;</strong></td>
+		</tr>
 		@if($data['regtype'] == 'PO' && $data['golf'] == 'Yes')
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
-				<td style="padding:10px;"><strong>USD 500</strong></td>
-				<td style="padding:10px;"><strong>IDR 2.500.000</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $totalUSD ) }}</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp( $totalIDR ) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PD' && $data['golf'] == 'Yes')
 
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 7.000.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp( $totalIDR ) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PO' && $data['golf'] == 'No')
 			
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
-				<td style="padding:10px;"><strong>USD 500</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $totalUSD ) }}</strong></td>
 				<td style="padding:10px;"><strong>IDR - </strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PD' && $data['golf'] == 'No')
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 4.500.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp( $totalIDR ) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'SD')
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 400.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp( $totalIDR ) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'SO')
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
-				<td style="padding:10px;"><strong>USD 120</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $totalUSD ) }}</strong></td>
 				<td style="padding:10px;"><strong>IDR - </strong></td>
 			</tr>
 		@endif
@@ -128,29 +170,30 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 		</tr>
 
 	@elseif(isset($paymentstatus) && $paymentstatus=='free')
+	
 	@else
 		@if($data['regtype'] == 'PO')
 			<tr>
 				<td style="padding:10px;"><strong>Professional / Delegate Overseas</strong></td>
-				<td style="padding:10px;"><strong>USD 500</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $PO_rate) }}</strong></td>
 				<td style="padding:10px;"><strong>IDR - </strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PD')
 			<tr>
 				<td style="padding:10px;"><strong>Professional / Delegate Domestic</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 4.500.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp($PD_rate) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'SD')
 			<tr>
 				<td style="padding:10px;"><strong>Student Domestic</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 400.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp($SD_rate) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'SO')
 			<tr>
 				<td style="padding:10px;"><strong>Student Overseas</strong></td>
-				<td style="padding:10px;"><strong>USD 120</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $SO_rate) }}</strong></td>
 				<td style="padding:10px;"><strong>IDR - </strong></td>
 			</tr>
 		@endif
@@ -159,7 +202,7 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 			<tr>
 				<td style="padding:10px;border-bottom:1px solid #000;"><strong>Golf Tournament</strong></td>
 				<td style="padding:10px;border-bottom:1px solid #000;"><strong>USD - </strong></td>
-				<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR 2.500.000</strong></td>
+				<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR {{ formatrp($golfrate) }}</strong></td>
 			</tr>
 		@else
 			<tr>
@@ -168,45 +211,49 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 				<td style="padding:10px;border-bottom:1px solid #000;"><strong>IDR - </strong></td>
 			</tr>
 		@endif
+
+		<tr>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>VAT</strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>10% </strong></td>
+			<td style="padding:10px;border-bottom:1px solid #000;"><strong>&nbsp;</strong></td>
+		</tr>
+
 		@if($data['regtype'] == 'PO' && $data['golf'] == 'Yes')
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
-				<td style="padding:10px;"><strong>USD 500</strong></td>
-				<td style="padding:10px;"><strong>IDR 2.500.000</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $totalUSD ) }}</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp( $totalIDR ) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PD' && $data['golf'] == 'Yes')
+
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 7.000.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp( $totalIDR ) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PO' && $data['golf'] == 'No')
+			
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
-				<td style="padding:10px;"><strong>USD 500</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $totalUSD ) }}</strong></td>
 				<td style="padding:10px;"><strong>IDR - </strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'PD' && $data['golf'] == 'No')
 			<tr>
-				<td style="padding:10px;"><strong>VAT </strong></td>
-				<td style="padding:10px;"><strong>&nbsp;</strong></td>
-				<td style="padding:10px;"><strong>10%</strong></td>
-			</tr>
-			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 4.950.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp( $totalIDR ) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'SD')
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
 				<td style="padding:10px;"><strong>USD - </strong></td>
-				<td style="padding:10px;"><strong>IDR 400.000</strong></td>
+				<td style="padding:10px;"><strong>IDR {{ formatrp( $totalIDR ) }}</strong></td>
 			</tr>
 		@elseif($data['regtype'] == 'SO')
 			<tr>
 				<td style="padding:10px;"><strong>Grand Total</strong></td>
-				<td style="padding:10px;"><strong>USD 120</strong></td>
+				<td style="padding:10px;"><strong>{{ money_format(" %i ", $totalUSD ) }}</strong></td>
 				<td style="padding:10px;"><strong>IDR - </strong></td>
 			</tr>
 		@endif
@@ -226,7 +273,7 @@ Thank you for registering to 37th IPA Convention & Exhibition. Please find below
 		<tr>
 			<td style="padding:10px;" colspan="2"><strong>Attend on Industrial Dinner (16 May 2013)</strong></td>
 			<td style="padding:10px;"><strong>{{ $data['attenddinner'] }}</strong></td>
-		</tr>	
+		</tr>
 	@endif
 </table>
 </p>
