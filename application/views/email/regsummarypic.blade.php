@@ -10,18 +10,27 @@ $earlybirddate = Config::get('eventreg.earlybirdconventiondate');
 $conventionrate = Config::get('eventreg.conventionrate');
 $golfrate = Config::get('eventreg.golffee');
 
-if(strtotime($dateA) > strtotime($earlybirddate)){
-	$PD_rate = $conventionrate['PD-normal'];
-	$PO_rate = $conventionrate['PO-normal'];
-	$SD_rate = $conventionrate['SD'];
-	$SO_rate = $conventionrate['SO'];
+/*if(strtotime($dateA) > strtotime($earlybirddate)){
+	if (isset($data['overrideratenormal']) && ($data['overrideratenormal']=='yes')){
+		$PD_rate = $conventionrate['PD-earlybird'];
+		$PO_rate = $conventionrate['PO-earlybird'];
+		$SD_rate = $conventionrate['SD'];
+		$SO_rate = $conventionrate['SO'];
+
+	}else{
+		$PD_rate = $conventionrate['PD-normal'];
+		$PO_rate = $conventionrate['PO-normal'];
+		$SD_rate = $conventionrate['SD'];
+		$SO_rate = $conventionrate['SO'];
+	}
+
 }else{
 
 	$PD_rate = $conventionrate['PD-earlybird'];
 	$PO_rate = $conventionrate['PO-earlybird'];
 	$SD_rate = $conventionrate['SD'];
 	$SO_rate = $conventionrate['SO'];
-}
+}*/
 
 
 ?>
@@ -60,74 +69,86 @@ $POCount = 0;
 $SDCount = 0;
 $SOCount = 0;
 
+$PDRateCount = 0;
+$PORateCount = 0;
+$SORateCount = 0;
+$SDRateCount = 0;
+
+
 foreach($attendee as $data):
 	$no ++;
 	$golfCount = 0;
 
 	if($data['regtype'] == 'PD'):
 	$PDCount ++;
+	$PDRateCount += $data['regPD'];
 	
 ?>
-	<tr style="border:1px solid #545454;border-top:0;">
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">IDR {{ formatrp($PD_rate) }}</td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp; </td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
-		<?php if($data['golf'] == 'Yes'): ?>
-			<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
-			<?php $golfCount++ ?>
-		<?php else: ?>
-			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
-		<?php endif; ?>
-	</tr>
+		<tr style="border:1px solid #545454;border-top:0;">
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">IDR {{ formatrp($data['regPD']) }}</td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp; </td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
+			<?php if($data['golf'] == 'Yes'): ?>
+				<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
+				<?php $golfCount++ ?>
+			<?php else: ?>
+				<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
+			<?php endif; ?>
+		</tr>
 <?php
 	elseif ($data['regtype'] == 'PO'):
 
 	$POCount ++;
+	$PORateCount += $data['regPO'];
+
 ?>
-	<tr style="border:1px solid #545454;border-top:0;">
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">USD {{  money_format(" %!n ", $PO_rate ) }}</td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
-		<?php if($data['golf'] == 'Yes'): ?>
-			<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
-			<?php $golfCount++ ?>
-		<?php else: ?>
+		<tr style="border:1px solid #545454;border-top:0;">
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
-		<?php endif; ?>
-	</tr>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">USD {{  money_format(" %!n ", $data['regPO'] ) }}</td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
+			<?php if($data['golf'] == 'Yes'): ?>
+				<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
+				<?php $golfCount++ ?>
+			<?php else: ?>
+				<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
+			<?php endif; ?>
+		</tr>
 
 <?php
 	elseif ($data['regtype'] == 'SO'):
 
 	$SOCount ++;
+	$SORateCount += $data['regSO'];
+
 ?>
-	<tr style="border:1px solid #545454;border-top:0;">
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">USD {{  money_format(" %!n ", $SO_rate ) }}</td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
-		<?php if($data['golf'] == 'Yes'): ?>
-			<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
-			<?php $golfCount++ ?>
-		<?php else: ?>
+		<tr style="border:1px solid #545454;border-top:0;">
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
-		<?php endif; ?>
-	</tr>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">USD {{  money_format(" %!n ", $data['regSO'] ) }}</td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
+			<?php if($data['golf'] == 'Yes'): ?>
+				<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
+				<?php $golfCount++ ?>
+			<?php else: ?>
+				<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
+			<?php endif; ?>
+		</tr>
 
 <?php
 	elseif ($data['regtype'] == 'SD'):
 
 	$SDCount ++;
+	$SDRateCount += $data['regSD'];
 ?>
 	<tr style="border:1px solid #545454;border-top:0;">
 		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
 		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">IDR {{ formatrp($SD_rate) }}</td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">IDR {{ formatrp($data['regSD']) }}</td>
 		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp; </td>
 		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
 		<?php if($data['golf'] == 'Yes'): ?>
@@ -142,10 +163,15 @@ foreach($attendee as $data):
 ?>
 
 <?php endforeach;
-	$totalConvFeePD = $PDCount*$PD_rate;
+	/*$totalConvFeePD = $PDCount*$PD_rate;
 	$totalConvFeePO = $POCount*$PO_rate;
 	$totalConvFeeSD = $SDCount*$SD_rate;
-	$totalConvFeeSO = $SOCount*$SO_rate;
+	$totalConvFeeSO = $SOCount*$SO_rate;*/
+	$totalConvFeePD = $PDRateCount;
+	$totalConvFeePO = $PORateCount;
+	$totalConvFeeSD = $SDRateCount;
+	$totalConvFeeSO = $SORateCount;
+	
 	$totalGolfFee = $golfCount*$golfrate;
 	
 	$rp=formatrp($totalConvFeePD+$totalConvFeeSD);
