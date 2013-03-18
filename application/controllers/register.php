@@ -311,6 +311,198 @@ class Register_Controller extends Base_Controller {
 
 	}
 
+	public function get_checkout(){
+
+		$type = 'attendee';
+
+		$this->crumb->add('register/payment/'.$type,'Convention Payment Checkout');
+
+		$form = new Formly();
+		$form->framework = 'zurb';
+
+		$attendee = new Attendee();
+
+		$golfcount = $attendee->count(array('golf'=>'Yes'));
+
+		return View::make('register.checkout')
+			->with('form',$form)
+			->with('type','attendee')
+			->with('ajaxpost','register/checkout')
+			->with('crumb',$this->crumb)
+			->with('golfcount',$golfcount)
+			->with('title',ucfirst($type).' Payment Checkout');
+
+	}
+
+	public function post_checkout(){
+
+	    $rules = array(
+	    	'name_on_card' => 'required',
+	    	'first_name' => 'required',
+	    	'last_name' => 'required',
+	        'email' => 'required|email',
+	        'contact_phone' => 'required',
+	        'mobile_phone' => 'required',
+	        'home_phone' => 'required',
+	        'work_phone' => 'required',
+	        'address' => 'required',
+	        'billing_address' => 'required',
+	        'billing_zip' => 'required',
+	        'city' => 'required',
+	        'zip' => 'required'
+	    );
+
+	    $validation = Validator::make($input = Input::all(), $rules);
+
+	    if($validation->fails()){
+
+	    	return Response::json(array('status'=>'ERR:VALIDATION','description'=>$validation->errors));
+
+	    }else{
+	    	$co = new Checkout();
+
+	    	$data = Input::get();
+
+	    	$paydata = $data;
+
+	    	$data['attendee_id'] = Auth::attendee()->id;
+
+	    	if($sess = $co->insert($data)){
+
+	    		//print_r($sess); this is an array
+
+	    		// namaitem, unit price, quantity, sub-total;
+	    		$items = array();
+
+	    		$conv = Config::get('eventreg.currencyconversion');
+
+	    		$golffee = Config::get('eventreg.golffee');
+
+	    		$totalamount = 0;
+
+	    		switch(Auth::attendee()->regtype){
+	    			case 'PO':
+						$convfee = Auth::attendee()->regPO * $conv;
+	    				$item[] = 'Convention Type : Professional Overseas,'.$convfee.',1,'.$convfee;
+
+	    				$totalamount = $convfee;
+
+	    				if(Auth::attendee()->golf == 'Yes'){
+		    				$item[] = 'Golf Attendance,'.$golffee.',1,'.$golffee;
+	    					$totalamount += $golffee;
+	    				}
+
+	    				$itemline = implode(';',$item);
+
+	    				break;
+
+	    			case 'SO':
+
+						$convfee = Auth::attendee()->regSO * $conv;
+	    				$item = 'Convention Type : Student Overseas,'.$convfee.',1,'.$convfee;
+
+	    				$totalamount = $convfee;
+
+	    				$itemline = $item;
+
+	    				break;
+
+	    			case 'PD':
+
+						$convfee = Auth::attendee()->regPD;
+	    				$item[] = 'Convention Type : Professional Domestic,'.$convfee.',1,'.$convfee;
+	    				$totalamount = $convfee;
+
+	    				if(Auth::attendee()->golf == 'Yes'){
+		    				$item[] = 'Golf Attendance,'.$golffee.',1,'.$golffee;
+	    					$totalamount += $golffee;
+	    				}
+
+	    				$vat = Auth::attendee()->totalIDR * 0.1;
+
+    					$totalamount += $vat;
+
+	    				$item[] = 'VAT 10%,'.$vat.',1,'.$vat;
+
+	    				$itemline = implode(';',$item);
+
+	    				break;
+
+	    			case 'SD':
+
+						$convfee = Auth::attendee()->regPD;
+	    				$item[] = 'Convention Type : Professional Domestic,'.$convfee.',1,'.$convfee;
+	    				$totalamount = $convfee;
+
+	    				$vat = Auth::attendee()->totalIDR * 0.1;
+    					$totalamount += $vat;
+
+	    				$item[] = 'VAT 10%,'.$vat.',1,'.$vat;
+
+	    				$itemline = implode(';',$item);
+
+	    				break;
+	    		}
+
+	    		$paydata['item_list'] = $itemline;
+	    		$paydata['amount'] = $totalamount;
+	    		$paydata['invoice_no'] = Auth::attendee()->id;
+	    		$paydata['session_id'] = $sess['_id']->__toString();
+
+				$gw_url = Config::get('kickstart.paymentgw_url');
+
+				$params = array();
+
+				foreach($paydata as $key=>$val){
+					$params[] = $key.'='.$val;
+				}
+
+				$params = implode('&',$params);
+
+				$gw_url = $gw_url.'?'.$params;
+
+
+				/*
+
+	    		// 1. initialize
+				$curl = curl_init();
+
+				// 2. set the options, including the url
+				curl_setopt($curl, CURLOPT_URL, $gw_url);
+				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($curl, CURLOPT_HEADER, 0);
+
+				// 3. execute and fetch the resulting HTML output
+				
+				if($output = curl_exec($curl)){
+					$co->update(array('_id'=>$sess['_id']),array('$set'=>array('curl_out'=>$output,'out_url'=>$gw_url)));
+
+					$result = array('status'=>'OK','description'=>'Payment Accepted');
+				}else{
+					$co->update(array('_id'=>$sess['_id']),array('$set'=>array('curl_out'=>$output,'out_url'=>$gw_url,'curl_err'=>curl_error($curl))));
+
+					$result = array('status'=>'ERR:CONN','description'=>'Connection Error');
+
+				}
+
+				// 4. free up the curl handle
+				curl_close($curl);
+
+				*/
+
+		    	return Response::json(array('status'=>'OK','description'=>'Payment Accepted','redirect'=>$gw_url));
+
+	    	}else{
+		    	return Response::json(array('status'=>'ERR:UNSAVED','description'=>'Payment Can Not Be Saved'));
+	    	}
+	    }
+
+	}
+
+	public function get_pg(){
+		
+	}
+
 	public function get_payment($type){
 
 		if(!Auth::attendee()){

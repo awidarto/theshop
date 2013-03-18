@@ -137,4 +137,7 @@ return array(
     ),
     'invalidchars'=>array('%','&','|','\'','(',')','/'),
 
+    'paymentgw_url'=>'http://dyandratiket.com/get_data.php',
+    
+
 );
