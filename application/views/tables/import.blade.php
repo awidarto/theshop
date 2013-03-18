@@ -149,6 +149,24 @@
 
 				</div>
 
+				<div class="span3">
+			        <fieldset>
+			            <legend>Use Early Bird Rate</legend>
+
+			                <div class="row-fluid">
+			                    <div class="span4">
+			                      {{ $form->radio('earlybird','Yes','Yes') }}
+			                    </div>
+			                    <div class="span4">
+			                      {{ $form->radio('earlybird','No','No',true) }}
+			                    </div>
+			                    <div class="span4"></div>
+			                </div>
+
+			        </fieldset>
+
+				</div>
+
 			</div>
 			<hr />
 			<div class="row-fluid">
