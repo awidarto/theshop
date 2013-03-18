@@ -500,7 +500,13 @@ class Register_Controller extends Base_Controller {
 	}
 
 	public function get_pg(){
-		
+		$data = Input::get();
+		//no_invoice=123123&amount=10000.00&statuscode=00
+
+		$no_invoice = $data['no_invoice']; // sementara ini isinya attendee _id dalam bentuk string
+		$amount = $data['amount'];
+		$statuscode = $data['statuscode']; // 00 = OK, selain itu Error
+
 	}
 
 	public function get_payment($type){
