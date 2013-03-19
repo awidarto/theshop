@@ -137,7 +137,7 @@ td.detailsitem{
 
 	<table id="header">
 		<tr>
-			<td rowspan="3" id="logo"><img src="http://localhost/eventreg/public/images/ipa-logo.jpg"></td>
+			<td rowspan="3" id="logo"><img src="http://www.ipaconvex.com/images/ipa-logo.jpg"></td>
 		</tr>
 		<tr colspan="15">
 			<td><h2>CONFIRMATION OF OPERATIONAL FORMS</h2>
