@@ -91,12 +91,42 @@ td.detailsitem{
 	$grandtotal = $subtotalall+$lateorderfee+$onsitefee+$ppn;
 	$freepasscount = 0;
 	$boothassistantcount = 0;
+
+
+	$booths = new Booth();
+	
+	
+	$booth = '';
+
+
+	if(isset($user['boothid'])){
+		$_boothID = new MongoId($user['boothid']);
+		$booth = $booths->get(array('_id'=>$_boothID));
+	}
+
+	$sizebooth = $booth['size'];
+
+    if($sizebooth >= 9 && $sizebooth <= 18){
+      $pass = 2;
+    }else if($sizebooth >= 18 && $sizebooth <= 27){
+      $pass = 4;
+    }else if($sizebooth >= 27 && $sizebooth <= 36){
+      $pass = 6;
+    }else if($sizebooth >= 36 && $sizebooth <= 45){
+      $pass = 8;
+    }else if($sizebooth >= 45){
+      $pass = 10;
+    }else{
+      $pass = 10;
+    }
+
+
 	//check how much Free exhibitor pass
-	for($i=1;$i<11;$i++){
+	/*for($i=1;$i<11;$i++){
 		if($data['freepassname'.$i.'']!=''){
 			$freepasscount++;
 		}
-	}
+	}*/
 
 	for($i=1;$i<11;$i++){
 		if($data['boothassistant'.$i.'']!=''){
@@ -306,9 +336,9 @@ td.detailsitem{
 			</td>
 			<td class="detailsitem">
 				<?php
-				if( $freepasscount!=0){
+				if( $pass!=0){
 					
-					$toprint = $freepasscount.'&nbsp;&nbsp; Exhibitor Pass (FREE) Registered <br/>';
+					$toprint = $pass.'&nbsp;&nbsp; Exhibitor Pass (FREE) Registered <br/>';
 					
 					echo $toprint;
 
