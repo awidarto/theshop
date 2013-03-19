@@ -506,7 +506,19 @@ class Import_Controller extends Base_Controller {
 					}else{
 						if(strtotime($dateA) > strtotime($earlybirddate)){
 
-							if($data['earlybird'] == 'No'){
+							if($data['foc']=='Yes'){
+							
+								$tocommit['totalIDR'] = '-';
+								$tocommit['totalUSD'] = '-';
+								$tocommit['regPD'] = '';
+								$tocommit['regPO'] = '';
+								$tocommit['regSD'] = '';
+								$tocommit['regSO'] = '';
+								$tocommit['conventionPaymentStatus'] = 'free';
+								$tocommit['golfPaymentStatus'] = 'free';
+
+							}elseif($data['earlybird'] == 'No'){
+
 								$tocommit['overrideratenormal'] = 'no';
 								//normalrate valid
 								if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
@@ -552,6 +564,9 @@ class Import_Controller extends Base_Controller {
 									$tocommit['regSD'] = '';
 									$tocommit['regSO'] = $conventionrate['SO'];
 								}
+
+								
+
 							}else{
 
 								$tocommit['overrideratenormal'] = 'yes';
@@ -717,7 +732,19 @@ class Import_Controller extends Base_Controller {
 
 					if(strtotime($dateA) > strtotime($earlybirddate)){
 
-						if($data['earlybird'] == 'No'){
+						if($data['foc']=='Yes'){
+
+							$tocommit['totalIDR'] = '-';
+							$tocommit['totalUSD'] = '-';
+							$tocommit['regPD'] = '';
+							$tocommit['regPO'] = '';
+							$tocommit['regSD'] = '';
+							$tocommit['regSO'] = '';
+							$tocommit['conventionPaymentStatus'] = 'free';
+							$tocommit['golfPaymentStatus'] = 'free';
+
+						}elseif($data['earlybird'] == 'No'){
+							
 							$tocommit['overrideratenormal'] = 'no';
 							//normalrate valid
 							if($tocommit['regtype'] == 'PD' && $tocommit['golf'] == 'No'){
@@ -763,6 +790,7 @@ class Import_Controller extends Base_Controller {
 								$tocommit['regSD'] = '';
 								$tocommit['regSO'] = $conventionrate['SO'];
 							}
+								
 
 						}else{
 

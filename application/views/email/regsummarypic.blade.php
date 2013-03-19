@@ -87,11 +87,23 @@ foreach($attendee as $data):
 		<tr style="border:1px solid #545454;border-top:0;">
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
-			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">IDR {{ formatrp($data['regPD']) }}</td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">
+				@if($data['conventionPaymentStatus']!='free')
+					IDR {{ formatrp($data['regPD']) }}
+				@else
+					IDR FREE
+				@endif
+			</td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp; </td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
 			<?php if($data['golf'] == 'Yes'): ?>
-				<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
+				<td style="padding:3px 7px 2px 7px;">
+					@if($data['conventionPaymentStatus']!='free')
+						IDR {{ formatrp($golfrate) }}
+					@else
+						IDR FREE
+					@endif
+				</td>
 				<?php $golfCount++ ?>
 			<?php else: ?>
 				<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
@@ -108,10 +120,23 @@ foreach($attendee as $data):
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
-			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">USD {{  money_format(" %!n ", $data['regPO'] ) }}</td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">
+				@if($data['conventionPaymentStatus']!='free')
+					USD {{  money_format(" %!n ", $data['regPO'] ) }}
+				@else
+					USD FREE
+				@endif
+				
+			</td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
 			<?php if($data['golf'] == 'Yes'): ?>
-				<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
+				<td style="padding:3px 7px 2px 7px;">
+					@if($data['conventionPaymentStatus']!='free')
+						IDR {{ formatrp($golfrate) }}
+					@else
+						IDR FREE
+					@endif
+				</td>
 				<?php $golfCount++ ?>
 			<?php else: ?>
 				<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
@@ -129,10 +154,23 @@ foreach($attendee as $data):
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
-			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">USD {{  money_format(" %!n ", $data['regSO'] ) }}</td>
+			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">
+				@if($data['conventionPaymentStatus']!='free')
+					USD {{  money_format(" %!n ", $data['regSO'] ) }}
+				@else
+					USD FREE
+				@endif
+				
+			</td>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
 			<?php if($data['golf'] == 'Yes'): ?>
-				<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
+				<td style="padding:3px 7px 2px 7px;">
+					@if($data['conventionPaymentStatus']!='free')
+						IDR {{ formatrp($golfrate) }}
+					@else
+						IDR FREE
+					@endif
+				</td>
 				<?php $golfCount++ ?>
 			<?php else: ?>
 				<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>
@@ -148,11 +186,24 @@ foreach($attendee as $data):
 	<tr style="border:1px solid #545454;border-top:0;">
 		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $no ?></td>
 		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['salutation'].' '.$data['firstname'].' '.$data['lastname'] ?></td>
-		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">IDR {{ formatrp($data['regSD']) }}</td>
+		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">
+			@if($data['conventionPaymentStatus']!='free')
+				IDR {{ formatrp($data['regSD']) }}
+			@else
+				IDR FREE
+			@endif
+			
+		</td>
 		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp; </td>
 		<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;"><?php echo $data['attenddinner'] ?> </td>
 		<?php if($data['golf'] == 'Yes'): ?>
-			<td style="padding:3px 7px 2px 7px;">IDR {{ formatrp($golfrate) }}</td>
+			<td style="padding:3px 7px 2px 7px;">
+				@if($data['conventionPaymentStatus']!='free')
+					IDR {{ formatrp($golfrate) }}
+				@else
+					IDR FREE
+				@endif
+			</td>
 			<?php $golfCount++ ?>
 		<?php else: ?>
 			<td style="padding:3px 7px 2px 7px;border:1px solid #545454;margin:0;">&nbsp;</td>

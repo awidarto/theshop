@@ -13,12 +13,17 @@ $golfrate = Config::get('eventreg.golffee');
 //define first regtype
 
 if(strtotime($dateA) > strtotime($earlybirddate)){
-	if (isset($data['overrideratenormal']) && ($data['overrideratenormal']=='yes')){
+	if ($data['conventionPaymentStatus']=='free'){
+		$PD_rate = 0;
+		$PO_rate = 0;
+		$SD_rate = 0;
+		$SO_rate = 0;
+
+	}elseif (isset($data['overrideratenormal']) && ($data['overrideratenormal']=='yes')) {
 		$PD_rate = $conventionrate['PD-earlybird'];
 		$PO_rate = $conventionrate['PO-earlybird'];
 		$SD_rate = $conventionrate['SD'];
 		$SO_rate = $conventionrate['SO'];
-
 	}else{
 		$PD_rate = $conventionrate['PD-normal'];
 		$PO_rate = $conventionrate['PO-normal'];

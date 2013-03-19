@@ -166,7 +166,29 @@
 			        </fieldset>
 
 				</div>
+				<div class="span2">&nbsp;</div>
 
+
+			</div>
+			<div class="row-fluid">
+				<div class="span1">&nbsp;</div>
+				<div class="span3">
+			        <fieldset>
+			            <legend>FOC</legend>
+
+			                <div class="row-fluid">
+			                    <div class="span4">
+			                      {{ $form->radio('foc','Yes','Yes') }}
+			                    </div>
+			                    <div class="span4">
+			                      {{ $form->radio('foc','No','No',true) }}
+			                    </div>
+			                    <div class="span4"></div>
+			                </div>
+
+			        </fieldset>
+
+				</div>
 			</div>
 			<hr />
 			<div class="row-fluid">
