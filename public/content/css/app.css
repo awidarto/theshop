@@ -937,3 +937,10 @@ float: left;
 width: 20px;
 color: #717171;
 }
+.swMain ul.anchor li a small{
+	width:35px;
+}
+.hideTable{
+  display: none;
+}
+

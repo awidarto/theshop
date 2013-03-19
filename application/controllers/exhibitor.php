@@ -613,6 +613,27 @@ class Exhibitor_Controller extends Base_Controller {
 
 		$formData = new Operationalform();
 
+
+
+	
+		
+
+		$_id = new MongoId($id);
+
+		$userdata = $user->get(array('_id'=>$_id));
+
+
+		$booths = new Booth();
+		
+		
+		$booth = '';
+
+
+		if(isset($userdata['boothid'])){
+			$_boothID = new MongoId($userdata['boothid']);
+			$booth = $booths->get(array('_id'=>$_boothID));
+		}
+
 		
 		
 
@@ -640,7 +661,9 @@ class Exhibitor_Controller extends Base_Controller {
 
 		return View::make('exhibitor.viewform')
 					->with('form',$form)
+					->with('userdata',$userdata)
 					->with('data',$user_form)
+					->with('booth',$booth)
 					->with('id',$id)
 					->with('crumb',$this->crumb)
 					->with('title','Operational Form Submission');

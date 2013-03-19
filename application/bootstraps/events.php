@@ -163,14 +163,14 @@ Event::listen('exhibition.postoperationalform',function($id,$exhibitorid){
             ->with('data',$data)
             ->with('user',$user)
             ->render();
-
+    
     $pdf = new Pdf();
 
     $pdf->make($doc);
 
-    $newdir = realpath(Config::get('kickstart.storageExhibitor'));
+    $newdir = realpath(Config::get('kickstart.storage'));
 
-    $path = $newdir.'/confirmexhibitor'.$id.'.pdf';
+    $path = $newdir.'/operationalforms/confirmexhibitor'.$exhibitorid.'.pdf';
 
     $pdf->render();
 
