@@ -2,7 +2,38 @@
 
 setlocale(LC_MONETARY, "en_US");
 
+$regtype = $data['regtype'];
+switch ($regtype) {
+    case 'PD':
+        $totalIDRtax = 0.10*$data['regPD'];
+		$totalIDR = $data['regPD']+$totalIDRtax;
+		$totalUSDtax = '';
+		$totalUSD = '';
+        break;
+    case 'SD':
+        $totalIDRtax = 0.10*$data['regSD'];
+		$totalIDR = $data['regPD']+$totalIDRtax;
+		$totalUSDtax = '';
+		$totalUSD = '';
+        break;
+    case 'PO':
+        $totalIDRtax = '';
+		$totalIDR = '';
+		$totalUSDtax = 0.10*$data['regPO'];
+		$totalUSD = $data['regPO']+$totalUSDtax;
+        break;
+
+    case 'SO':
+        $totalIDRtax = '';
+		$totalIDR = '';
+		$totalUSDtax = 0.10*$data['regSO'];
+		$totalUSD = $data['regSO']+$totalUSDtax;
+        break;
+}
+
+
 ?>
+
 <div style="width:100%;position:relative;display:block;font-family:Helvetica,Arial,Sans-serif;font-size:13px;">
 	<div style="width:100%;position:relative;display:block;">
 		<div style="position:relative;display:inline-block;float:left;margin:0 30px 20px 0;"><img src="http://www.ipaconvex.com/images/ipa-logo.jpg"></div>
@@ -101,7 +132,7 @@ setlocale(LC_MONETARY, "en_US");
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $data['regPO']) }}</span>
 				@elseif($data['regtype'] == 'SO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $data['regSO']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;"> {{ money_format(" %!n ", $data['regSO']) }}</span>
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
@@ -112,20 +143,39 @@ setlocale(LC_MONETARY, "en_US");
 
 	<div style="width:100%;position:relative;display:block; float:left;border:1px solid #000;border-top:none;">
 		<div style="width:100%;position:relative;display:block;float:left;">
-			<div style="width:50%;position:relative;display:inline-block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
-				<strong>GOLF TOURNAMENT</strong><br/>
+			<div style="width:50%;position:relative;display:inline-block;float:left;border-right:1px solid #000;height:20px;padding:10px;text-align:left;">
+				<strong>VAT 10%</strong><br/>
 			</div>
-			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:40px;padding:10px;">
+			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
 				
-				<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-				<span style="width:50%;position:relative;display:block;float:left;text-align:right;">2.500.000,00</span>
+				@if($data['regtype'] == 'PD')
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp($totalIDRtax) }}</span>
+				@elseif($data['regtype'] == 'SD')
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp($totalIDRtax) }}</span>
+				@else
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				@endif
+
+
 				
 			</div>
 
-			<div style="width:20%;position:relative;display:block;float:left;height:40px;padding:10px;">
-				
-				<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-				<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
+
+				@if($data['regtype'] == 'PO')
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $totalUSDtax) }}</span>
+				@elseif($data['regtype'] == 'SO')
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $totalUSDtax) }}</span>
+				@else
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				@endif
+
 				
 			</div>
 		</div>
@@ -138,10 +188,13 @@ setlocale(LC_MONETARY, "en_US");
 			</div>
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
 				
-				@if($data['totalIDR'] != '')
+				@if($data['regtype'] == 'PD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp ($data['totalIDR']) }}</span>
-				@else				
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp($totalIDR) }}</span>
+				@elseif($data['regtype'] == 'SD')
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp($totalIDR) }}</span>
+				@else
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				@endif
@@ -152,9 +205,12 @@ setlocale(LC_MONETARY, "en_US");
 
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
 
-				@if($data['totalUSD'] != '')
+				@if($data['regtype'] == 'PO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $data['totalUSD']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $totalUSD) }}</span>
+				@elseif($data['regtype'] == 'SO')
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $totalUSD) }}</span>
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
@@ -190,25 +246,30 @@ setlocale(LC_MONETARY, "en_US");
 				<strong>TOTAL PAYMENT DUE</strong><br/>
 			</div>
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
-				@if($data['totalIDR'] != '')
+				@if($data['regtype'] == 'PD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp ($data['totalIDR']) }}</span>
-				@else				
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp($totalIDR) }}</span>
+				@elseif($data['regtype'] == 'SD')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp($totalIDR) }}</span>	
+				@else
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>	
 				@endif
 
 			</div>
 
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
-				@if($data['totalUSD'] != '')
+				@if($data['regtype'] == 'PO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $data['totalUSD']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $totalUSD) }}</span>
+				@elseif($data['regtype'] == 'SO')
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $totalUSD) }}</span>
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				@endif
-
 
 				
 			</div>

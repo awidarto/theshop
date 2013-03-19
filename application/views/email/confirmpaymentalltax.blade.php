@@ -2,6 +2,34 @@
 
 setlocale(LC_MONETARY, "en_US");
 
+$regtype = $data['regtype'];
+switch ($regtype) {
+    case 'PD':
+        $totalIDRtax = 0.10*$data['totalIDR'];
+		$totalIDR = $data['totalIDR']+$totalIDRtax;
+		$totalUSDtax = '';
+		$totalUSD = '';
+        break;
+    case 'SD':
+        $totalIDRtax = 0.10*$data['totalIDR'];
+		$totalIDR = $data['totalIDR']+$totalIDRtax;
+		$totalUSDtax = '';
+		$totalUSD = '';
+        break;
+    case 'PO':
+        $totalIDRtax = '';
+		$totalIDR = '';
+		$totalUSDtax = 0.10*$data['totalUSD'];
+		$totalUSD = $data['totalUSD']+$totalUSDtax;
+        break;
+
+    case 'SO':
+        $totalIDRtax = '';
+		$totalIDR = '';
+		$totalUSDtax = 0.10*$data['totalUSD'];
+		$totalUSD = $data['totalUSD']+$totalUSDtax;
+        break;
+}
 ?>
 <div style="width:100%;position:relative;display:block;font-family:Helvetica,Arial,Sans-serif;font-size:13px;">
 	<div style="width:100%;position:relative;display:block;">
@@ -133,6 +161,38 @@ setlocale(LC_MONETARY, "en_US");
 
 	<div style="width:100%;position:relative;display:block; float:left;border:1px solid #000;border-top:none;">
 		<div style="width:100%;position:relative;display:block;float:left;">
+			<div style="width:50%;position:relative;display:inline-block;float:left;border-right:1px solid #000;height:20px;padding:10px;text-align:left;">
+				<strong>VAT 10%</strong><br/>
+			</div>
+			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
+				
+				@if($data['totalIDR'] != '')
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp ($totalIDRtax) }}</span>
+				@else				
+					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				@endif
+
+			</div>
+
+			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
+				
+				@if($data['totalUSD'] != '')
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $totalUSDtax) }}</span>
+				@else
+					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
+				@endif
+
+				
+			</div>
+		</div>
+	</div>
+
+	<div style="width:100%;position:relative;display:block; float:left;border:1px solid #000;border-top:none;">
+		<div style="width:100%;position:relative;display:block;float:left;">
 			<div style="width:50%;position:relative;display:inline-block;float:left;border-right:1px solid #000;height:20px;padding:10px;text-align:right;">
 				<strong>TOTAL PAYMENT</strong><br/>
 			</div>
@@ -140,7 +200,7 @@ setlocale(LC_MONETARY, "en_US");
 				
 				@if($data['totalIDR'] != '')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp ($data['totalIDR']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp ($totalIDR) }}</span>
 				@else				
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
@@ -154,7 +214,7 @@ setlocale(LC_MONETARY, "en_US");
 
 				@if($data['totalUSD'] != '')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $data['totalUSD']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $totalUSD) }}</span>
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
@@ -192,7 +252,7 @@ setlocale(LC_MONETARY, "en_US");
 			<div style="width:20%;position:relative;display:block;float:left;border-right:1px solid #000;height:20px;padding:10px;">
 				@if($data['totalIDR'] != '')
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp ($data['totalIDR']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ formatrp ($totalIDR) }}</span>
 				@else				
 					<span style="width:50%;position:relative;display:block;float:left;">IDR</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
@@ -203,12 +263,11 @@ setlocale(LC_MONETARY, "en_US");
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
 				@if($data['totalUSD'] != '')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $data['totalUSD']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{  money_format(" %!n ", $totalUSD) }}</span>
 				@else
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">&nbsp;</span>
 				@endif
-
 
 				
 			</div>

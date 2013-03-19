@@ -769,7 +769,10 @@ return array(
 			'PIC zipcode'=> '',
 			'PIC country'=> '',
 			'groupname'=> '',
-			'address'=>''
+			'address'=>'',
+			'conventionPaymentStatus'=>'',
+			'golfPaymentStatus'=>'',
+			'notes'=>''
 		)
 	);
 

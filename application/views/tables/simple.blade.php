@@ -154,7 +154,11 @@
 	</div>
 	<div class="modal-body">
 
-		{{ Form::select('paystatus', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselect'))}}
+		{{ Form::select('paystatus', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselect','class'=>'payselect'))}}
+		<br/>
+		<br/>
+		{{ Form::select('printtax', array('dontprinttax'=>'Dont display tax','printtax'=>'Display tax'),null,array('class'=>'taxdisplaystatus','id'=>'taxdisplaystatusConv','style'=>'display:none;'))}}
+		<br/>
 		<span id="paystatusindicator"></span>
 
 	</div>
@@ -188,7 +192,11 @@
 	</div>
 	<div class="modal-body">
 
-		{{ Form::select('paystatusgolf', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselectgolf'))}}
+		{{ Form::select('paystatusgolf', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselectgolf','class'=>'payselect'))}}
+		<br/>
+		<br/>
+		{{ Form::select('printtax', array('dontprinttax'=>'Dont display tax','printtax'=>'Display tax'),null,array('class'=>'taxdisplaystatus','id'=>'taxdisplaystatusGolf','style'=>'display:none;'))}}
+		<br/>
 		<span id="paystatusindicator"></span>
 
 	</div>
@@ -240,7 +248,11 @@
 	</div>
 	<div class="modal-body">
 
-		{{ Form::select('paystatusgolfconvention', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselectgolfconvention'))}}
+		{{ Form::select('paystatusgolfconvention', Config::get('eventreg.paystatus'),null,array('id'=>'paystatusselectgolfconvention','class'=>'payselect'))}}
+		<br/>
+		<br/>
+		{{ Form::select('printtax', array('dontprinttax'=>'Dont display tax','printtax'=>'Display tax'),null,array('class'=>'taxdisplaystatus','id'=>'taxdisplaystatusAll','style'=>'display:none;'))}}
+		<br/>
 		<span id="paystatusindicator"></span>
 
 	</div>
@@ -328,6 +340,18 @@
 	}
 
     $(document).ready(function(){
+    	
+    	//display tax print
+    	$('.payselect').on('change', function() {
+  			if(this.value == 'paid'){
+  				$('.taxdisplaystatus').show();
+  				$('.taxdisplaystatus').val('dontprinttax');
+  			}else{
+  				$('.taxdisplaystatus').hide();
+  			}
+		});
+
+
 
     	$.fn.dataTableExt.oApi.fnStandingRedraw = function(oSettings) {
 		    if(oSettings.oFeatures.bServerSide === false){
@@ -521,6 +545,7 @@
 
 		$('#savepaystatus').click(function(){
 			var paystat = $('#paystatusselect').val();
+			var taxdisplaystatus = $('#taxdisplaystatusConv').val();
 			$('#savepaystatus').text('Processing..');
 			$('#savepaystatus').attr("disabled", true);	
 
@@ -529,7 +554,7 @@
 				$ajaxpay = (isset($ajaxpay))?$ajaxpay:'/';
 			?>
 
-			$.post('{{ URL::to($ajaxpay) }}',{'id':current_pay_id,'paystatus': paystat}, function(data) {
+			$.post('{{ URL::to($ajaxpay) }}',{'id':current_pay_id,'paystatus': paystat,'taxdisplaystatus':taxdisplaystatus}, function(data) {
 				if(data.status == 'OK'){
 					//redraw table
 					oTable.fnStandingRedraw();
@@ -539,6 +564,8 @@
 					$('#savepaystatus').attr("disabled", false);	
 					
 					$('#paystatusselect').val('unpaid');
+					$('.taxdisplaystatus').hide();
+					$('.taxdisplaystatus').val('dontprinttax');
 
 					$('#updatePayment').modal('toggle');
 
@@ -576,6 +603,7 @@
 
 		$('#savepaystatusGolf').click(function(){
 			var paystat = $('#paystatusselectgolf').val();
+			var taxdisplaystatus = $('#taxdisplaystatusGolf').val();
 			$('#savepaystatusGolf').text('Processing..');
 			$('#savepaystatusGolf').attr("disabled", true);	
 
@@ -584,7 +612,7 @@
 				$ajaxpay = (isset($ajaxpay))?$ajaxpay:'/';
 			?>
 
-			$.post('{{ URL::to($ajaxpaygolf) }}',{'id':current_pay_id,'paystatusgolf': paystat}, function(data) {
+			$.post('{{ URL::to($ajaxpaygolf) }}',{'id':current_pay_id,'paystatusgolf': paystat,'taxdisplaystatus':taxdisplaystatus}, function(data) {
 				if(data.status == 'OK'){
 					//redraw table
 
@@ -594,7 +622,8 @@
 					$('#savepaystatusGolf').attr("disabled", false);	
 
 					$('#paystatusselectgolf').val('unpaid');
-
+					$('.taxdisplaystatus').hide();
+					$('.taxdisplaystatus').val('dontprinttax');
 					$('#updatePaymentGolf').modal('toggle');
 
 				}
@@ -604,6 +633,7 @@
 
 		$('#savepaystatusGolfConvention').click(function(){
 			var paystat = $('#paystatusselectgolfconvention').val();
+			var taxdisplaystatus = $('#taxdisplaystatusAll').val();
 			$('#savepaystatusGolfConvention').text('Processing..');
 			$('#savepaystatusGolfConvention').attr("disabled", true);	
 
@@ -612,7 +642,7 @@
 				$ajaxpay = (isset($ajaxpay))?$ajaxpay:'/';
 			?>
 
-			$.post('{{ URL::to($ajaxpaygolfconvention) }}',{'id':current_pay_id,'paystatusgolfconvention': paystat}, function(data) {
+			$.post('{{ URL::to($ajaxpaygolfconvention) }}',{'id':current_pay_id,'paystatusgolfconvention': paystat,'taxdisplaystatus':taxdisplaystatus}, function(data) {
 				if(data.status == 'OK'){
 					//redraw table
 
@@ -622,6 +652,8 @@
 					$('#savepaystatusGolfConvention').attr("disabled", false);	
 
 					$('#paystatusselectgolfconvention').val('unpaid');
+					$('.taxdisplaystatus').hide();
+					$('.taxdisplaystatus').val('dontprinttax');
 
 					$('#updatePaymentGolfConvention').modal('toggle');
 

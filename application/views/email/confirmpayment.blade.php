@@ -1,7 +1,11 @@
 <?php
 
 setlocale(LC_MONETARY, "en_US");
+$totalIDRtax = 0.10*$data['totalIDR'];
+$totalIDR = $data['totalIDR']+$totalIDRtax;
 
+$totalUSDtax = 0.10*$data['totalUSD'];
+$totalUSD = $data['totalUSD']+$totalUSDtax;
 ?>
 
 <div style="width:100%;position:relative;display:block;font-family:Helvetica,Arial,Sans-serif;font-size:13px;">
@@ -192,7 +196,7 @@ setlocale(LC_MONETARY, "en_US");
 			<div style="width:20%;position:relative;display:block;float:left;height:20px;padding:10px;">
 				@if($data['regtype'] == 'PO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
-					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $data['regSO']) }}</span>
+					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $data['regPO']) }}</span>
 				@elseif($data['regtype'] == 'SO')
 					<span style="width:50%;position:relative;display:block;float:left;">USD</span>
 					<span style="width:50%;position:relative;display:block;float:left;text-align:right;">{{ money_format(" %!n ", $data['regSO']) }}</span>

@@ -466,6 +466,7 @@ class Attendee_Controller extends Base_Controller {
 	public function post_paystatus(){
 		$id = Input::get('id');
 		$paystatus = Input::get('paystatus');
+		$displaytax = Input::get('taxdisplaystatus');
 
 		$user = new Attendee();
 
@@ -484,7 +485,11 @@ class Attendee_Controller extends Base_Controller {
 				if($paystatus == 'paid'){
 					$data = $user->get(array('_id'=>$_id));
 
-					$body = View::make('email.confirmpayment')->with('data',$data)->render();
+					if($displaytax == 'printtax' ){
+						$body = View::make('email.confirmpaymenttax')->with('data',$data)->render();
+					}else{
+						$body = View::make('email.confirmpayment')->with('data',$data)->render();
+					}
 
 
 					Message::to($data['email'])
@@ -508,6 +513,7 @@ class Attendee_Controller extends Base_Controller {
 	public function post_paystatusgolf(){
 		$id = Input::get('id');
 		$paystatus = Input::get('paystatusgolf');
+		$displaytax = Input::get('taxdisplaystatus');
 
 		$user = new Attendee();
 
@@ -526,8 +532,11 @@ class Attendee_Controller extends Base_Controller {
 				if($paystatus == 'paid'){
 					$data = $user->get(array('_id'=>$_id));
 
-					$body = View::make('email.confirmpaymentgolf')->with('data',$data)->render();
-
+					if($displaytax == 'printtax' ){
+						$body = View::make('email.confirmpaymentgolftax')->with('data',$data)->render();
+					}else{
+						$body = View::make('email.confirmpaymentgolf')->with('data',$data)->render();
+					}
 
 					Message::to($data['email'])
 					    ->from(Config::get('eventreg.reg_admin_email'), Config::get('eventreg.reg_admin_name'))
@@ -550,6 +559,7 @@ class Attendee_Controller extends Base_Controller {
 	public function post_paystatusgolfconvention(){
 		$id = Input::get('id');
 		$paystatus = Input::get('paystatusgolfconvention');
+		$displaytax = Input::get('taxdisplaystatus');
 
 		$user = new Attendee();
 
@@ -569,7 +579,11 @@ class Attendee_Controller extends Base_Controller {
 				if($paystatus == 'paid'){
 					$data = $user->get(array('_id'=>$_id));
 
-					$body = View::make('email.confirmpaymentall')->with('data',$data)->render();
+					if($displaytax == 'printtax' ){
+						$body = View::make('email.confirmpaymentalltax')->with('data',$data)->render();
+					}else{
+						$body = View::make('email.confirmpaymentall')->with('data',$data)->render();
+					}
 
 
 					Message::to($data['email'])
