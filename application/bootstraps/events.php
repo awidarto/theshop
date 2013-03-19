@@ -168,7 +168,7 @@ Event::listen('exhibition.postoperationalform',function($id,$exhibitorid){
 
     $pdf->make($doc);
 
-    $newdir = realpath(Config::get('kickstart.storage'));
+    $newdir = realpath(Config::get('kickstart.storageExhibitor'));
 
     $path = $newdir.'/confirmexhibitor'.$id.'.pdf';
 

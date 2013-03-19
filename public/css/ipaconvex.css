@@ -646,3 +646,6 @@ border-spacing: 0px;
 table.withborder tr td{
   border: 1px solid #d6d6d6;
 }
+.hideTable{
+  display: none;
+}

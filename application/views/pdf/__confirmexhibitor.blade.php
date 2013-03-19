@@ -89,20 +89,6 @@ td.detailsitem{
 	$onsitefee = 0;
 	$ppn = (10 * $subtotalall)/100;
 	$grandtotal = $subtotalall+$lateorderfee+$onsitefee+$ppn;
-	$freepasscount = 0;
-	$boothassistantcount = 0;
-	//check how much Free exhibitor pass
-	for($i=1;$i<11;$i++){
-		if($data['freepassname'.$i.'']!=''){
-			$freepasscount++;
-		}
-	}
-
-	for($i=1;$i<11;$i++){
-		if($data['boothassistant'.$i.'']!=''){
-			$boothassistantcount++;
-		}
-	}
 ?>
 
 	<table id="header">
@@ -295,7 +281,7 @@ td.detailsitem{
 	
 		<tr class="contentrow">
 			<td>
-				Exhibitor Pass (FREE)
+				Free Exhibitor Pass
 			</td>
 			<td class="aligncenter">
 				@if( $data['freepassname1']!='')
@@ -304,17 +290,7 @@ td.detailsitem{
 					N
 				@endif
 			</td>
-			<td class="detailsitem">
-				<?php
-				if( $freepasscount!=0){
-					
-					$toprint = $freepasscount.'&nbsp;&nbsp; Exhibitor Pass (FREE) Registered <br/>';
-					
-					echo $toprint;
-
-				}
-				?>
-			</td>
+			<td class="detailsitem">&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
 	
@@ -322,7 +298,7 @@ td.detailsitem{
 
 		<tr class="contentrow odd">
 			<td>
-				Additional Exhibitor Pass (FREE)
+				Booth Assistant Pass
 			</td>
 			<td class="aligncenter">
 				@if( $data['boothassistant1']!='')
@@ -332,23 +308,13 @@ td.detailsitem{
 				@endif
 			</td>
 
-			<td class="detailsitem">
-				<?php
-				if( $boothassistantcount!=0){
-					
-					$toprint = $boothassistantcount.'&nbsp;&nbsp; Additional Exhibitor Pass (FREE) Registered <br/>';
-					
-					echo $toprint;
-
-				}
-				?>
-			</td>
+			<td class="detailsitem">&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
 	
 		<tr class="contentrow">
 			<td>
-				Additional Exhibitor Pass (PAYABLE)
+				Additional Booth Assistant(s) pass
 			</td>
 			<td class="aligncenter">
 				@if( $data['addboothsubtotal']!=0 && $data['addboothsubtotal']!='')
@@ -551,7 +517,31 @@ td.detailsitem{
 			</td>
 		</tr>
 
-		
+		<tr class="contentrow">
+			<td colspan="3">
+				Total
+			</td>
+			
+			<td class="alignright">
+				<span style="float:left;">USD </span>{{ number_format($subtotalall, 2, ',', ' ') }}
+			</td>
+		</tr>
+
+		<tr class="contentrow odd" style="line-height:20px;">
+			<td colspan="3" class="alignright">
+				Late Order Surcharge 30%<br/>
+				On-Site Order Surcharge 50%<br/>
+				PPn (VAT) Tax 10%
+			</td>
+			
+			<td class="alignright" style="line-height:20px;">
+				USD &nbsp;{{ number_format($lateorderfee, 2, ',', ' ') }}<br/>
+				
+				USD &nbsp;{{ number_format($onsitefee, 2, ',', ' ') }}<br/>
+				
+				USD &nbsp;{{ number_format($ppn, 2, ',', ' ') }}
+			</td>
+		</tr>
 
 		<tr class="contentrow">
 			<td colspan="3">
@@ -559,7 +549,7 @@ td.detailsitem{
 			</td>
 			
 			<td class="alignright">
-				<strong><span style="float:left;">USD </span>{{ number_format($subtotalall, 2, ',', ' ') }}</strong>
+				<strong><span style="float:left;">USD </span>{{ number_format($grandtotal, 2, ',', ' ') }}</strong>
 			</td>
 		</tr>
 

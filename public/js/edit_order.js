@@ -101,6 +101,7 @@ function calcProdSubTotal() {
     $("#product-subtotal").text(CommaFormatted(prodSubTotal));
     $("#electricsubtotal").val(prodSubTotal);
 
+
 }
 
 function calcTax() {
@@ -135,6 +136,7 @@ function calcOrderTotal() {
 
     var productSubtotal = $("#product-subtotal").text() || 0;
     var taxTotal = $("#product-tax").text() || 0;
+    //var taxTotal = "0";
         
     var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
         
@@ -306,7 +308,8 @@ $(function() {
         var orderTotal = 0;
 
         var productSubtotal = $("#subTotalPhone").text() || 0;
-        var taxTotal = $("#faxTotalPhone").text() || 0;
+        //var taxTotal = $("#faxTotalPhone").text() || 0;
+        var taxTotal = '0';
             
         var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
             
@@ -361,6 +364,7 @@ $(function() {
         // Find the pricing
         var multiplier = $el
             .parent()
+            .parent()
             .attr('price');
             
         
@@ -369,6 +373,7 @@ $(function() {
         
             $el
                 .removeClass("warning")
+                .parent()
                 .parent()
                 .find(".row-total-input-furniture")
                 .val("");
@@ -384,6 +389,7 @@ $(function() {
             
             $el
                 .removeClass("warning")
+                .parent()
                 .parent()
                 .find(".row-total-input-furniture")
                 .val(rowTotal);
@@ -449,6 +455,7 @@ $(function() {
 
         var productSubtotal = $("#subTotalFurniture").text() || 0;
         var taxTotal = $("#faxTotalFurniture").text() || 0;
+        var taxTotal = "0";
             
         var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
             
@@ -588,7 +595,8 @@ $(function() {
         var orderTotal = 0;
 
         var productSubtotal = $("#subTotalInternet").text() || 0;
-        var taxTotal = $("#faxTotalInternet").text() || 0;
+        //var taxTotal = $("#faxTotalInternet").text() || 0;
+        var taxTotal = '0';
             
         var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
             
@@ -682,7 +690,8 @@ $(function() {
         var orderTotal = 0;
 
         var productSubtotal = $("#subTotalKiosk").text() || 0;
-        var taxTotal = $("#faxTotalKiosk").text() || 0;
+        //var taxTotal = $("#faxTotalKiosk").text() || 0;
+        var taxTotal = '0';
             
         var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
             
@@ -795,7 +804,8 @@ $(function() {
         var orderTotal = 0;
 
         var productSubtotal = $("#subTotalAdvert").text() || 0;
-        var taxTotal = $("#faxTotalAdvert").text() || 0;
+        //var taxTotal = $("#faxTotalAdvert").text() || 0;
+        var taxTotal = '0';
             
         var orderTotal = parseInt(CleanNumber(productSubtotal)) + parseInt(CleanNumber(taxTotal));    
             

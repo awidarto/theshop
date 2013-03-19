@@ -295,10 +295,28 @@ class Exhibition_Controller extends Base_Controller {
 		if(!Auth::exhibitor()){
 			return Redirect::to('exhibition/login');
 		}
+
+		$exhibitor = new Exhibitor();
+		$booths = new Booth();
+		
+		$userid = Auth::exhibitor()->id;
+
+		$_id = new MongoId($userid);
+		
+		$booth = '';
+
+		$userdata = $exhibitor->get(array('_id'=>$_id));
+
+		if(isset($userdata['boothid'])){
+			$_boothID = new MongoId($userdata['boothid']);
+			$booth = $booths->get(array('_id'=>$_boothID));
+		}
+
 		$this->crumb->add('exhibition','Operational Form');
 
 		$form = new Formly();
 		return View::make('exhibition.operationalform')
+					->with('booth',$booth)
 					->with('form',$form)
 					->with('crumb',$this->crumb)
 					->with('title','Operational Form');
@@ -308,9 +326,6 @@ class Exhibition_Controller extends Base_Controller {
 
 	public function post_operationalform(){
 
-		//print_r(Session::get('permission'));
-
-	   
 
 		$data = Input::get();
 
@@ -340,8 +355,6 @@ class Exhibition_Controller extends Base_Controller {
 		$data['createdDate'] = new MongoDate();
 		$data['lastUpdate'] = new MongoDate();
 
-		
-		
 
 		$exhibitor = new Exhibitor();
 
@@ -375,7 +388,24 @@ class Exhibition_Controller extends Base_Controller {
 		//security purposes
 		if(Auth::exhibitor()->formstatus != 'approved'){
 
-			//$id = new MongoId($id);
+
+			$exhibitor = new Exhibitor();
+
+			$_id = new MongoId($id);
+
+			$userdata = $exhibitor->get(array('_id'=>$_id));
+
+
+			$booths = new Booth();
+			
+			
+			$booth = '';
+
+
+			if(isset($userdata['boothid'])){
+				$_boothID = new MongoId($userdata['boothid']);
+				$booth = $booths->get(array('_id'=>$_boothID));
+			}
 
 			$user_form = $formoperational->get(array('userid'=>$id));
 
@@ -397,6 +427,7 @@ class Exhibition_Controller extends Base_Controller {
 			$form->framework = 'zurb';
 
 			return View::make('exhibition.editform')
+						->with('booth',$booth)
 						->with('data',$user_form)
 						->with('form',$form)
 						->with('crumb',$this->crumb)
@@ -470,6 +501,18 @@ class Exhibition_Controller extends Base_Controller {
 		$userdata = $exhibitor->get(array('_id'=>$_id));
 
 
+		$booths = new Booth();
+		
+		
+		$booth = '';
+
+
+		if(isset($userdata['boothid'])){
+			$_boothID = new MongoId($userdata['boothid']);
+			$booth = $booths->get(array('_id'=>$_boothID));
+		}
+
+
 		$user_form = $formoperational->get(array('userid'=>$id));
 
 		if (isset($user_form['programdate1']) && $user_form['programdate1']!='') {$user_form['programdate1'] = date('d-m-Y', $user_form['programdate1']->sec); }
@@ -490,6 +533,7 @@ class Exhibition_Controller extends Base_Controller {
 		$form->framework = 'zurb';
 
 		return View::make('exhibition.viewform')
+					->with('booth',$booth)
 					->with('data',$user_form)
 					->with('userdata',$userdata)
 					->with('form',$form)

@@ -5,11 +5,161 @@
 </div>
 {{$form->open('exhibition/operationalform','POST',array('class'=>'addAttendeeForm'))}}
 <div id="wizard" class="swMain">
+  <ul>
+    <li><a href="#step-1">
+          <small>step</small>
+          <label class="stepNumber">1</label>
+      </a></li>
+    <li><a href="#step-2">
+          <small>step</small>
+          <label class="stepNumber">2</label>
+      </a></li>
+    <li><a href="#step-3">
+          <small>step</small>
+          <label class="stepNumber">3</label>
+       </a></li>
+    <li><a href="#step-4">
+          <small>step</small>
+          <label class="stepNumber">4</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-5">
+          <small>step</small>
+          <label class="stepNumber">5</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-6">
+          <small>step</small>
+          <label class="stepNumber">6</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-7">
+          <small>step</small>
+          <label class="stepNumber">7</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-8">
+          <small>step</small>
+          <label class="stepNumber">8</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-9">
+          <small>step</small>
+          <label class="stepNumber">9</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-10">
+          <small>step</small>
+          <label class="stepNumber">10</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-11">
+          <small>step</small>
+          <label class="stepNumber">11</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-12">
+          <small>step</small>
+          <label class="stepNumber">12</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-13">
+          <small>step</small>
+          <label class="stepNumber">13</label>
+      </a>
+    </li>
+    <li>
+      <a href="#step-14">
+          <small>step</small>
+          <label class="stepNumber">14</label>
+      </a>
+    </li>
 
-  @include('partials.operationalform.headformempty')
+  </ul>
 
   <div id="step-1">
-   @include('partials.operationalform.step1')
+   <h2 class="StepTitle"></h2>
+    <div id="page-wrap">
+      <div id="boothcontractor">
+          <h4>Terms & Conditions:</h4>
+          <ol>
+            <li>Please check your booth requirements  to your booth contractor or organizer.</li>
+            <li>Only filled the required forms.</li>
+            <li>Remember only to submit if your requirements are final. <strong>The forms cannot be modified if already submitted.</strong></li>
+            <li>The organizer will issue an invoice of the total amount of the additional facilities request based on filled forms after the exhibitors finalize it.</li>
+            <li><strong>On-site orders will be subject to 10% surcharge and must be paid in cash.</strong></li>
+          </ol>
+      </div>
+      <table id="order-table" class="withborder">
+        <tr>
+          <th colspan="4">USEFUL CONTACTS</th>
+        </tr>
+        <tr class="odd">
+          <td rowspan="2">1.</td>
+          <td rowspan="2">Main Lobby</td>
+          <td>Trisa</td>
+          <td>trisa@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Rachel</td>
+          <td>rachel.pardede@dyandra.com</td>
+        </tr>
+
+        <tr class="odd">
+          <td rowspan="2">2.</td>
+          <td rowspan="2">Assembly Hall</td>
+          <td>Trias </td>
+          <td>trias.nugrahasanah@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Talitha</td>
+          <td>talitha.sabrina@dyandra.com</td>
+        </tr>
+
+         <tr class="odd">
+          <td rowspan="2">3.</td>
+          <td rowspan="2">Cendrawasih Room</td>
+          <td>Dian</td>
+          <td>dian@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Anita</td>
+          <td>anita.afriani@dyandra.com</td>
+        </tr>
+         
+
+        <tr class="odd">
+          <td>4.</td>
+          <td>Hall A</td>
+          <td>Tia</td>
+          <td>tia.hamidah@dyandra.com</td>
+        </tr>
+        
+        <tr class="odd">
+          <td rowspan="2">5.</td>
+          <td rowspan="2">Hall B / Operasional</td>
+          <td>Raymond</td>
+          <td>raymond@dyandra.com</td>
+        </tr>
+        <tr class="odd">
+          <td>Rain</td>
+          <td>rain.januardo@dyandra.com</td>
+        </tr>
+        
+      </table>
+      <br/>
+      <br/>
+      <br/>
+    </div>
   </div>
 
   <div id="step-2">
@@ -27,7 +177,7 @@
             <tr class="odd">
                 <td>1</td>
                 <td class="product-title">2A / 1 ph / 440 Watt</td>
-                <td class="price-per-pallet">USD <span>89</span></td>
+                <td class="price-per-pallet">USD <span>79</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="sparkle-num-pallets" name="electric1"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric1"></input>
@@ -37,7 +187,7 @@
             <tr class="even">
                 <td>2</td>
                 <td class="product-title">4A / 1 ph / 880 Watt</td>
-                <td class="price-per-pallet">USD <span>177</span></td>
+                <td class="price-per-pallet">USD <span>158</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mvp-num-pallets" name="electric2"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="turface-mvp-row-total" disabled="disabled"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric2"></input>
@@ -46,7 +196,7 @@
             <tr class="odd">
                 <td>3</td>
                 <td class="product-title">6A / 1 ph / 1.320 Watt</td>
-                <td class="price-per-pallet">USD <span>265</span></td>
+                <td class="price-per-pallet">USD <span>236</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-pro-league-num-pallets" name="electric3"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-row-total" disabled="disabled"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric3"></input>
@@ -56,7 +206,7 @@
             <tr class="odd">
                 <td>4</td>
                 <td class="product-title">10A / 1 ph / 2.200 Watt</em></td>
-                <td class="price-per-pallet">USD <span>442</span></td>
+                <td class="price-per-pallet">USD <span>393</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-quick-dry-num-pallets" name="electric4"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="turface-quick-dry-row-total" disabled="disabled"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric4"></input>
@@ -65,7 +215,7 @@
             <tr class="even">
                 <td>5</td>
                 <td class="product-title">16A / 1 ph / 3.520 Watt</td>
-                <td class="price-per-pallet">USD <span>706</span></td>
+                <td class="price-per-pallet">USD <span>629</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mound-clay-red-num-pallets" name="electric5"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="turface-mound-clay-red-row-total" disabled="disabled"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric5"></input>
@@ -74,7 +224,7 @@
             <tr class="odd">
                 <td>6</td>
                 <td class="product-title">32A / 1 ph / 7.040 Watt</td>
-                <td class="price-per-pallet">USD <span>1412</span></td>
+                <td class="price-per-pallet">USD <span>1257</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-red-num-pallets" name="electric6"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-red-row-total" disabled="disabled"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric6"></input>
@@ -83,7 +233,7 @@
             <tr class="even">
                 <td>7</td>
                 <td class="product-title">16A / 3 ph / 10.560 Watt</td>
-                <td class="price-per-pallet">USD <span>2118</span></td>
+                <td class="price-per-pallet">USD <span>1886</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-drying-agent-num-pallets" name="electric7"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-drying-agent-row-total" disabled="disabled"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric7"></input>
@@ -92,7 +242,7 @@
             <tr class="odd">
                 <td>8</td>
                 <td class="product-title">32A / 3 ph / 21.120 Watt</em></td>
-                <td class="price-per-pallet">USD <span>4235</span></td>
+                <td class="price-per-pallet">USD <span>3772</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-professional-num-pallets" name="electric8"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-professional-row-total" disabled="disabled"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric8"></input>
@@ -101,13 +251,18 @@
             <tr class="even">
                 <td>9</td>
                 <td class="product-title">60A / 3 ph / 39.600 Watt</td>
-                <td class="price-per-pallet">USD <span>7941</span></td>
+                <td class="price-per-pallet">USD <span>7072</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-top-dressing-num-pallets" name="electric9"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-top-dressing-row-total" disabled="disabled"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric9"></input>
 
                 </td>
             </tr>
+            <!--<tr>
+                <td colspan="5" style="text-align: right;">
+                    Product SUBTOTAL: <input type="text" class="total-box" value="$0" id="product-subtotal" disabled="disabled"></input>
+                </td>
+            </tr>-->
         </table>
 
         <table id="operationalfee" class="orderform">
@@ -119,30 +274,30 @@
             </tr>
             <tr class="odd">
                 <td class="instalationfee" colspan"2" style="padding-left:30px;">Installation fee</td>
-                <td class="textcentertable">USD 30</td>
+                <td class="textcentertable">USD 23</td>
                 <td class="textcentertable">1</td>
-                <td class="textcentertable">USD 30</td>
-                <input type="hidden" id="operationalfeeelectric" value="30" name="electricinstallfee"></input>
+                <td class="textcentertable">USD 23</td>
+                <input type="hidden" id="operationalfeeelectric" value="23" name="electricinstallfee"></input>
             </tr>
         </table>
 
         <table id="total-electric">
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Total (USD)</td>
             <td class="result">USD <span id="product-subtotal"></span></td>
             <input type="hidden" id="electricsubtotal" name="electricsubtotal"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
             <td class="result">USD</td>
             <input type="hidden" id="electriclate" name="electriclate"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
             <td class="result">USD</td>
             <input type="hidden" id="electriconsite" name="electriconsite"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
             <td class="result">USD<span id="product-tax"></span></td>
             <input type="hidden" id="electrictax" name="electrictax"></input>
@@ -156,7 +311,17 @@
         
         <div class="clear"></div>
 
-        @include('partials.operationalform.step2')
+        <div>
+            <h4>Terms & Conditions:</h4>
+            <ol>
+              <li>Every order of the electricity power will be charged with Installation fee. </li>
+              <li>Rental price during the exhibition starts at 9.00 am until 9.00 pm.</li>
+              <li>Every on-site order request for electricity installation must be paid in cash.</li>
+              <li>24 hours electrical requirement will be charged double.</li>
+              <li>Orders without payment will not be executed.</li>
+              <li>As stocks are limited, late orders will be subjected to a 30% surcharge after 14 April 2013 and 50% surcharge for onsite orders.</li>
+            </ol>
+        </div>
         
     </div>
   </div>
@@ -202,22 +367,22 @@
         </table>
 
         <table class="total-table">
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Total (USD)</td>
             <td class="result">USD <span id="subTotalPhone"></span></td>
             <input type="hidden" class="" id="phonesubtotal" name="phonesubtotal"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
             <td class="result">USD</td>
             <input type="hidden" class="" id="" name="phonelate"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
             <td class="result">USD</td>
             <input type="hidden" class="" id="" name="phoneonsite"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
             <td class="result">USD<span id="faxTotalPhone"></span></td>
             <input type="hidden" class="" id="phonetax" name="phonetax"></input>
@@ -230,31 +395,285 @@
         </table>
         
         <div class="clear"></div>
-        @include('partials.operationalform.step3')
-        
+
+        <div>
+            <h4>Terms & Conditions:</h4>
+            <ol>
+              <li>Rental price during the exhibition starts at 9.00 am until 9.00 pm. </li>
+              <li>Please submit a drawing which indicates specific location for the telephone.</li>
+              <li>Telephone handset must be returned after the exhibition ends</li>
+              <li>On-site order for telephone cannot be granted</li>
+              <li>Orders without payment will not be executed</li>
+              <li>As stocks are limited, late orders will be subject to a 30% surcharge after 14 April 2013</li>
+            </ol>
+        </div>
         
     </div>
   </div>
 
   <div id="step-4">
-      @include('partials.operationalform.step4')
+      <h2 class="StepTitle">BOOTH CONTRACTOR (SPECIAL DESIGN ONLY)</h2>   
+      <div id="boothcontractor">
+        <br/>
+        <p>I (as the exhibitor) hereby inform you the details of contractor that will be responsible for my booth construction:</p>
+        {{ $form->text('companyContractor','Company','',array('class'=>'text','id'=>'firstname')) }}
+        <div class="clear"></div>
+        {{ $form->text('picContractor','Person in Charge','',array('class'=>'text')) }}
+        <div class="clear"></div>
+        {{ $form->text('adress','Address','',array('class'=>'text')) }}
+        <div class="clear"></div>
+        {{ $form->text('phone','Phone','',array('class'=>'text')) }}
+        <div class="clear"></div>
+        {{ $form->text('fax','Fax','',array('class'=>'text')) }}
+        <div class="clear"></div>
+        {{ $form->text('mobile','Mobile Phone','',array('class'=>'text')) }}
+        <div class="clear"></div>
+        {{ $form->text('email','Email','',array('class'=>'text')) }}
+        <div class="clear"></div>
+        <br/>
+        <div>
+          We (as the exhibitor) assure that:<br/>
+          <ol>
+            <li>We hereby agree to comply with the Organizing Committee Terms and Conditions regarding Personnel Protective  Equipment</li>
+            <li>We shall be responsible for any damages of the exhibition venue caused by our booth construction, displayed products/materials, or casualties/injuries that reflects our negligence on safety and security.</li>
+            <li>We shall pay 50% from the total value on the application form (Form A) if our design and construction breaks the rule and regulation written on the exhibition manual book.</li>
+          </ol>
+        </div>
+        <hr/>
+        <br/>
+        <br/>
+        <div class="terms">
+           <strong>Terms & Conditions:</strong>
+            <ol>
+              <li>Exhibitor or booth contractor must submit a copy of complete booth design before <strong>14 April 2013</strong></li>
+              <li>The design must be approved both by the organizer and IPA committee before going to production phase.</li>
+              <li>Contractors are obliged to wear contractor’s own uniform during Set Up and Dismantling period.</li>
+            </ol>
+        </div>
+
+      </div>
   </div>
 
   <div id="step-5">
-    @include('partials.operationalform.step5')
+    <h2 class="StepTitle">FASCIA NAME (STANDARD BOOTH ONLY)</h2>   
+    <div id="boothcontractor">
+      <br/>
+      <p>If your company will be using standard booth (standard shell scheme) as illustrated below:</p>
+      {{ HTML::image('images/exhibitor/stdBooth.png','',array('class'=>'booothImage')) }}
+      <ol class="left boothDetail">
+        <li>Wall partition (1mL x 2.49mH) for in-line / <br/>standard (non-corner) booth </li>
+        <li>Aluminum system fascia board (0.35mH)  </li>
+        <li>2 (two) units standard folded chairs. </li>
+        <li>1 MCB 2A/Single/Phase and 1 single electrical power outlet </li>
+        <li>1 (one) aluminum system reception desk <br/>(1.030mL x 0.50mW x 0.75mH)  </li>
+        <li>Standard light illumination.  </li>
+        <li>1 (one) waste paper basket </li>
+        <li>Needle punch carpet (grey colors) </li>
+        <li>1 (one) Standing Brochure Rack A4 </li>
+        <li>Additional / costum requirements will be charged separately</li>
+      </ol>
+      <div class="clear"></div>
+      Please write the company name to appear on fascia name (maximum 26 characters).<br/><br/>
+      {{ $form->text('fascianame','','',array('id'=>'fascianame','class'=>'blockDisplay')) }}
+      <div class="clear"></div>
+      <span id="text_counter"></span>
+      <br/>
+      <small>* Please fill-in the details by typing in block letters, the organizer won’t be held responsible for illegible handwriting.</small><br/>
+      <small>* Please inform us, if you have special enquiries for your standard shell booth.</small>
+      <br/>
+      <br/>
+    </div>                     
   </div>
 
   <div id="step-6">
-     @include('partials.operationalform.step6')
+    <h2 class="StepTitle">FREE EXHIBITOR PASS</h2>   
+    <div id="boothcontractor">
+      <br/>
+      <p>Exhibitors have an entitlement for a certain number of free “Barcode ID CARD” as indicated here-below:</p>
+      <table class="regularTable exhibitorpass">
+        <tr>
+          <td style="width:30px;">9</td>
+          <td style="width:150px;">Sqm booth space for</td>
+          <td style="width:20px;">:</td>
+          <td style="width:30px;">2</td>
+          <td >people</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td>Sqm booth space for</td>
+          <td>:</td>
+          <td>4</td>
+          <td>people</td>
+        </tr>
+        <tr>
+          <td>27</td>
+          <td>Sqm booth space for</td>
+          <td>:</td>
+          <td>6</td>
+          <td>people</td>
+        </tr>
+        <tr>
+          <td>36</td>
+          <td>Sqm booth space for</td>
+          <td>:</td>
+          <td>8</td>
+          <td>people</td>
+        </tr>
+        <tr>
+          <td>45</td>
+          <td>Sqm booth space for</td>
+          <td>:</td>
+          <td>10</td>
+          <td>people</td>
+        </tr>
+      </table>
+      <div class="clear"></div>
+      <p>Please list below the names of EXHIBITOR’S FREE PASS HOLDERS you wish to register and send by email to the hall PIC(s)</p>
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th>No.</th>            
+            <th>Names of Exhibitor’s Free Pass Holders</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. </td>
+            <td><input name="freepassname1" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>2. </td>
+            <td><input name="freepassname2" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>3. </td>
+            <td><input name="freepassname3" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>4. </td>
+            <td><input name="freepassname4" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>5. </td>
+            <td><input name="freepassname5" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>6. </td>
+            <td><input name="freepassname6" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>7. </td>
+            <td><input name="freepassname7" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>8. </td>
+            <td><input name="freepassname8" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>9. </td>
+            <td><input name="freepassname9" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>10. </td>
+            <td><input name="freepassname10" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+        </tbody>
+      </table>
+      <br/>
+      <strong>Terms & Conditions:</strong><br/>
+      <ol>
+        <li>Exhibitor Pass entitled lunch and coffee break during 3 days of exhibition</li>
+        <li>Exhibitor pass (ID Card) does not include free entry to the <strong>Conference‘s Plenary Session, but can attend the TPC</strong></li>
+      </ol>
+      <br/>
+      <br/>
+    </div>                     
   </div>
 
   <div id="step-7">
-    @include('partials.operationalform.step7')                 
+    <h2 class="StepTitle">BOOTH ASSISTANT PASS</h2>   
+    <div id="boothcontractor">
+      <br/>
+      <h4>Terms & Conditions:</h4>
+      <ol>
+        <li>Booth Assistant's Pass is valid for 3 days. </li>
+        <li>Booth Assistant's Pass are permitted to assist Exhibitor in Exhibition areas only, and is <strong>not entitled to participate on the Conference‘s Plenary Session nor the  TPC.</strong></li>
+        <li>Booth assistants Pass are free of charge (include coffee break, exclude lunch) at the maximum of 10 persons.</li>
+        <li>More than 10 will be charged USD 35 per pass (include coffee break, exclude lunch)</li>
+        <li>There is no limit to the purchase of the number of Additional Booth Assistant(s).</li>
+      </ol>
+      <p><strong>Please list below the names of BOOTH ASSISTANT PASS HOLDERS you wish to register and send by email to the hall PIC(s)</strong></p>
+      <div class="clear"></div>      
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th>No.</th>            
+            <th>Names of Booth Assistant Pass Holders</th>
+          </tr>
+        </thead>
+        <tbody id="listadditionalbooth">
+          <tr>
+            <td>1. </td>
+            <td><input name="boothassistant1" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>2. </td>
+            <td><input name="boothassistant2" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>3. </td>
+            <td><input name="boothassistant3" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>4. </td>
+            <td><input name="boothassistant4" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>5. </td>
+            <td><input name="boothassistant5" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>6. </td>
+            <td><input name="boothassistant6" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>7. </td>
+            <td><input name="boothassistant7" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>8. </td>
+            <td><input name="boothassistant8" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>9. </td>
+            <td><input name="boothassistant9" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <tr>
+            <td>10. </td>
+            <td><input name="boothassistant10" type="text" class="passholderbooth" id="" placeholder="Type name here"></input></td>
+          </tr>
+          <input name="noaddpass" id="noaddpass" type="hidden" value="10"></input>
+        </tbody>
+      </table>
+      <a href="javascript:void(0);" id="add-field" class="buttonBrown">Add field</a>
+      
+      <br/>
+      <br/>
+    </div>                     
   </div>
 
   <div id="step-8">
-    
-      @include('partials.operationalform.step8')    
+    <h2 class="StepTitle">ADDITIONAL EXHIBITOR PASS</h2>   
+    <div id="boothcontractor">
+      <br/>
+      <h4>Terms & Conditions:</h4>
+      <ol>
+        <li>Additional Booth Assistant(s) pass is charged USD 35 per pass (include coffee break, exclude lunch)</li>
+        <li>Additional Booth Assistant(s) is valid for 3 days. </li>
+        <li>Additional Booth Assistant(s)  Pass are permitted to assist Exhibitor in Exhibition areas only, and is <strong>not entitled to participate on the Conference‘s Plenary Session nor the TPC.</strong></li>
+        <li>Booth assistants are free of charge (include coffee break, exclude lunch) at the maximum of 10 persons.</li>
+      </ol>
+
       <table id="order-table">
           <tr>
                <th>Price/UNIT</th>
@@ -276,22 +695,22 @@
       
 
       <table id="total-addbooth" class="total-table">
-        <tr class="hideTable">
+        <tr>
           <td class="grayTable alignRight">Total (USD)</td>
           <td class="result">USD <span id="subTotalAddbooth"></span></td>
           <input type="hidden" class="" id="addboothsubtotal" name="addboothsubtotal"></input>
         </tr>
-        <tr class="hideTable">
+        <tr>
           <td class="grayTable alignRight">Late Order Surcharge 30%</td>
           <td class="result">USD</td>
           <input type="hidden" class="" id="" name="addboothlate"></input>
         </tr>
-        <tr class="hideTable">
+        <tr>
           <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
           <td class="result">USD</td>
           <input type="hidden" class="" id="" name="addboothonsite"></input>
         </tr>
-        <tr class="hideTable">
+        <tr>
           <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
           <td class="result">USD<span id="faxTotalAddbooth"></span></td>
           <input type="hidden" class="" id="addboothtax" name="addboothtax"></input>
@@ -326,7 +745,120 @@
   </div>
 
   <div id="step-9">
-    @include('partials.operationalform.step9')
+    <h2 class="StepTitle">BOOTH PROGRAM SCHEDULE</h2>   
+    <div id="boothcontractor">
+      <br/>
+      <p>In order to ensure the best possible environment for exhibitors and attendees, please indicate here-below the activities that you intend to hold during the exhibition</p>
+      <div class="clear"></div>
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th style="width:50px;">No.</th>
+            <th>Booth Program</th>
+            <th style="width:130px;">Date</th>
+            <th style="width:130px;">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td><input name="programdetail1" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="programdate1"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="programtime1"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td><input name="programdetail2" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="programdate2"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="programtime2"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+          <tr>
+            <td>3.</td>
+            <td><input name="programdetail3" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="programdate3"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="programtime3"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+          <tr>
+            <td>4.</td>
+            <td><input name="programdetail4" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="programdate4"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="programtime4"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+          <tr>
+            <td>5.</td>
+            <td><input name="programdetail5" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="programdate5"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="programtime5"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+          <tr>
+            <td>6.</td>
+            <td><input name="programdetail6" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="programdate6"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="programtime6"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th style="width:50px;">No.</th>
+            <th>Cocktail Party Program</th>
+            <th style="width:130px;">Date</th>
+            <th style="width:130px;">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td><input name="cocktaildetail1" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="cocktaildate1"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="cocktailtime1"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td><input name="cocktaildetail2" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="cocktaildate2"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="cocktailtime2"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+          <tr>
+            <td>3.</td>
+            <td><input name="cocktaildetail3" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="cocktaildate3"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="cocktailtime3"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+          <tr>
+            <td>4.</td>
+            <td><input name="cocktaildetail4" type="text" class="passholderbooth" id="" placeholder="Details here"></input></td>
+            <td><input name="cocktaildate4"   type="text" class="passholderbooth date" id="" placeholder="dd-mm-yyyy"></input></td>
+            <td><input name="cocktailtime4"   type="text" class="passholderbooth" id="" placeholder="2:00 PM"></input></td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <br/>
+      <br/>
+      <div class="terms">
+        <strong>Terms & Conditions:</strong>
+        <ol>
+          <li><u>This form is only applied after Program Technical Meeting for each hall.</u></li>
+          <li><u>Live Performance may only start <u>after 4 PM</u> on the first day during cocktail hour.</u></li>
+          <li>Every on-site order request for electricity installation must be paid in cash.</li>
+          <li><u>NO LIVE PERFORMANCE</u> is allowed on the 2nd and 3rd day.</li>
+          <li>Compliance with this requirement will become an element in the best booth judgment.</li>
+        </ol>
+        <br/>
+        <strong>Regulation for noise level:</strong>
+        <ol>
+          <li>There will be 3 (three) times warning if exhibitor produces sound volume more than the maximum limit.(maximum 80 db)</li>
+          <li>If exhibitor still ignores the warning, then the Organizer has the right to cut off the exhibitor’s electrical power.</li>
+        </ol>
+        <span>Please sign below indicating that you have read and understood the regulation above.</span>
+      </div>      
+      <br/>
+      <br/>
+    </div>                     
   </div>  
 
   <div id="step-10">
@@ -342,8 +874,8 @@
             </tr>
             <tr class="odd">
                 <td>1</td>
-                <td class="product-title"><strong>Hanging Banner – Above the booth (1 side image)</strong><br/><br/>
-                &nbsp;&nbsp;&nbsp;•  Size : 1m x 3m (portrait).<br/>
+                <td class="product-title"><strong>Hanging Banner – Above the booth</strong><br/><br/>
+                &nbsp;&nbsp;&nbsp;• Size : 1,05m x 4m (portrait).<br/>
                 </td>
                 <td class="price-per-pallet">USD <span>200</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input-advert" id="sparkle-num-pallets" name="advert"></input></td>
@@ -358,22 +890,22 @@
         
 
         <table id="total-electric">
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Total (USD)</td>
             <td class="result">USD <span id="subTotalAdvert"></span></td>
             <input type="hidden" class="" id="advertsubtotal" name="advertsubtotal"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
             <td class="result">USD</td>
             <input type="hidden" class="" id="" name="advertlate"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
             <td class="result">USD</td>
             <input type="hidden" class="" id="" name="advertonsite"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
             <td class="result">USD<span id="faxTotalAdvert"></span></td>
             <input type="hidden" class="" id="adverttax" name="adverttax"></input>
@@ -385,7 +917,17 @@
           </tr>
         </table>
         
-        @include('partials.operationalform.step10') 
+        <div class="clear"></div>
+
+        <div>
+            <h4>Terms & Conditions:</h4>
+            <ol>
+              <li>Exhibitors must provide their own promotional material.</li>
+              <li>First come first serve basis is applied.</li>
+              <li>Payment must be in cash on setup days or the showdays.</li>
+              <li>The placement of hanging banner above the exhibitor’s booth depends on the availability of the roof hanger point, makes reservation before order.</li>
+            </ol>
+        </div>
         
     </div>
   </div>
@@ -477,26 +1019,23 @@
       <div class="clear"></div>
       <br/>
       <br/>
-      <small>* Please inform us if you have special needs.</small>
-      <br/>
-      <br/>
       <table id="total-furniture" class="total-table">
-        <tr class="hideTable">
+        <tr>
           <td class="grayTable alignRight">Total (USD)</td>
           <td class="result">USD <span id="subTotalFurniture"></span></td>
           <input name="furnituresubtotal" id="furnituresubtotal" type="hidden"></input>
         </tr>
-        <tr class="hideTable">
+        <tr>
           <td class="grayTable alignRight">Late Order Surcharge 30%</td>
           <td class="result">USD</td>
           <input name="furniturelate" id="furniturelate" type="hidden"></input>
         </tr>
-        <tr class="hideTable">
+        <tr>
           <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
           <td class="result">USD</td>
           <input name="furnitureonsite" id="furnitureonsite" type="hidden"></input>
         </tr>
-        <tr class="hideTable">
+        <tr>
           <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
           <td class="result">USD<span id="faxTotalFurniture"></span></td>
           <input name="furnituretax" id="furnituretax" type="hidden"></input>
@@ -510,7 +1049,6 @@
       <br/>
       <br/>
       <br/>
-       @include('partials.operationalform.step11')  
       <br/>
     </div>                     
   </div>  
@@ -527,7 +1065,7 @@
             </tr>
             <tr class="odd">
                 <td><strong>Package : 1 Mbps</strong></td>
-                <td class="price-per-pallet">USD <span>230</span></td>
+                <td class="price-per-pallet">USD <span>380</span></td>
                 <td class="num-pallets"><input name="internet1"    type="text" class="num-pallets-input-internet" id="sparkle-num-pallets"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled"></input>
                   <input name="rowinternet1" class="row-total-input-internet-hidden" type="hidden" id="rowinternet1"></input>
@@ -535,7 +1073,7 @@
             </tr>
             <tr class="even">
                 <td><strong>Package : 2 Mbps</strong></td>
-                <td class="price-per-pallet">USD <span>460</span></td>
+                <td class="price-per-pallet">USD <span>760</span></td>
                 <td class="num-pallets"><input name="internet2"    type="text" class="num-pallets-input-internet" id="sparkle-num-pallets"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input-internet" id="sparkle-row-total" disabled="disabled"></input>
                   <input name="rowinternet2" class="row-total-input-internet-hidden" type="hidden" id="rowinternet2"></input>
@@ -558,24 +1096,24 @@
         </table>
 
         
-        <span class="left" style="margin-top:20px;margin-left:30px;"><small>Our official internet provider for 37th IPA Convex is <br/><strong>PT Hipernet IndoData</strong>(Hypernet)</small></span>
+        <span class="left" style="margin-top:20px;margin-left:30px;"><small>Our official internet provider for 37th IPA Convex is <br/><strong>PT. Hypernet.</strong></small></span>
         <table id="total-internet" class="total-table">
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Total (USD)</td>
             <td class="result">USD <span id="subTotalInternet"></span></td>
             <input name="internetsubtotal" id="internetsubtotal" type="hidden" class="" ></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
             <td class="result">USD</td>
             <input name="internetlate" id="internetlate" type="hidden" class="" ></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
             <td class="result">USD</td>
             <input name="internetonsite" id="internetonsite" type="hidden" class="" ></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
             <td class="result">USD<span id="faxTotalInternet"></span></td>
             <input name="internettax" id="internettax" type="hidden" class="" ></input>
@@ -586,8 +1124,18 @@
             <input name="internetgrandtotal" id="internetgrandtotal" type="hidden" class="" ></input>
           </tr>
         </table>
-        @include('partials.operationalform.step12')
         
+        <div class="clear"></div>
+
+        <div>
+            <h4>Terms & Conditions:</h4>
+            <ol>
+              <li>Rental price during the exhibition starts at 9.00 am until 9.00 pm.</li>
+              <li>Orders without payment will not be executed.</li>
+              <li>Networking, computers, switches and Ethernet card/interface are to be provided by client</li>
+              <li>On-site order for internt cannot be granted</li>
+            </ol>
+        </div>
         
     </div>
   </div>
@@ -641,22 +1189,22 @@
         <br/>
         <br/>
         <table id="total-kiosk" class="total-table">
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Total (USD)</td>
             <td class="result">USD <span id="subTotalKiosk"></span></td>
             <input type="hidden" name="kiosksubtotal" id="kiosksubtotal"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">Late Order Surcharge 30%</td>
             <td class="result">USD</td>
             <input type="hidden" name="kiosklate" id="kiosklate"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">On-Site Order Surcharge 50%</td>
             <td class="result">USD</td>
             <input type="hidden" name="kioskonsite" id="kioskonsite"></input>
           </tr>
-          <tr class="hideTable">
+          <tr>
             <td class="grayTable alignRight">PPn (VAT) Tax 10%</td>
             <td class="result">USD<span id="faxTotalKiosk"></span></td>
             <input type="hidden" name="kiosktax" id="kiosktax"></input>
@@ -667,17 +1215,42 @@
             <input type="hidden" name="kioskgrandtotal" id="kioskgrandtotal"></input>
           </tr>
         </table>
-        @include('partials.operationalform.step13')
+        
+        <div class="clear"></div>
+
+        <div>
+            <h4>Terms & Conditions:</h4>
+            <ol>
+              <li>Software for contents is not included.</li>
+              <li>Price is already include PPN</li>
+              <li>Limited stock, only 10 pieces  are available (first come first serve)</li>
+            </ol>
+        </div>
+        
     </div>
   </div>
 
   <div id="step-14">
-    @include('partials.operationalform.step14')
+    <h2 class="StepTitle">REMINDER</h2>
+    <div id="page-wrap">
+        
+        <div id="boothcontractor" style="font-size:13px;">
+          <br/>
+          <br/>
+          <p>Please do re-check before you finalize filling the operational forms.Any changes will takes time to processed.<br/>
+          There’s additional charges for changes made after the deadline :<br/>
+          Late Order fee 30%<br/>
+          On-Site Order 50%</p>
+
+          <p>I, as the PIC, representing my company, have read and shall comply with the provision set forth related to terms and condition explained.</p>
+
+        </div>
+        
+    </div>
   </div>  
   
 </div>
 {{$form->close()}}
-
 <script type="text/javascript">
   $(document).ready(function() {
         $('#wizard').smartWizard({
