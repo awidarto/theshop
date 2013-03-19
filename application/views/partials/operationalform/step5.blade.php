@@ -16,6 +16,8 @@
     
   </ol>
   <div class="clear"></div>
+  <p>*the final design for the standard booth shell will be informed later.</p>
+  
   Please write down the company’s name you wish to appear on the fascia name (maximum 26 characters).<br/><br/>
   {{ $form->text('fascianame','','',array('id'=>'fascianame','class'=>'blockDisplay')) }}
   <div class="clear"></div>

@@ -27,52 +27,63 @@
             <tr class="odd">
                 <td>1</td>
                 <td class="product-title">2A / 1 ph / 440 Watt</td>
-                <td class="price-per-pallet">USD <span>89</span></td>
+                <td class="price-per-pallet">USD <span>79</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="sparkle-num-pallets" name="electric1" value="{{ $data['electric1'] }}"></input></span></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled" value="{{ $data['rowelectric1'] }}"></input></span></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled" value="{{ $data['rowelectric1'] }}"></input></span>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric1"></input>
+                </td>
                 
             </tr>
             <tr class="even">
                 <td>2</td>
                 <td class="product-title">4A / 1 ph / 880 Watt</td>
-                <td class="price-per-pallet">USD <span>177</span></td>
+                <td class="price-per-pallet">USD <span>158</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mvp-num-pallets" name="electric2" value="{{ $data['electric2'] }}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="turface-mvp-row-total" disabled="disabled" value="{{ $data['rowelectric2'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="turface-mvp-row-total" disabled="disabled" value="{{ $data['rowelectric2'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric2"></input>
+                </td>
             </tr>
             <tr class="odd">
                 <td>3</td>
                 <td class="product-title">6A / 1 ph / 1.320 Watt</td>
-                <td class="price-per-pallet">USD <span>265</span></td>
+                <td class="price-per-pallet">USD <span>236</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-pro-league-num-pallets" name="electric3" value="{{ $data['electric3'] }}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-row-total" disabled="disabled" value="{{ $data['rowelectric3'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-row-total" disabled="disabled" value="{{ $data['rowelectric3'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric3"></input>
+                </td>
             </tr>
            
             <tr class="odd">
                 <td>4</td>
                 <td class="product-title">10A / 1 ph / 2.200 Watt</em></td>
-                <td class="price-per-pallet">USD <span>442</span></td>
+                <td class="price-per-pallet">USD <span>393</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-quick-dry-num-pallets" name="electric4" value="{{ $data['electric4'] }}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="turface-quick-dry-row-total" disabled="disabled" value="{{ $data['rowelectric4'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="turface-quick-dry-row-total" disabled="disabled" value="{{ $data['rowelectric4'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric4"></input>
+                </td>
             </tr>
             <tr class="even">
                 <td>5</td>
                 <td class="product-title">16A / 1 ph / 3.520 Watt</td>
-                <td class="price-per-pallet">USD <span>706</span></td>
+                <td class="price-per-pallet">USD <span>629</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mound-clay-red-num-pallets" name="electric5" value="{{ $data['electric5'] }}"></input></td>
-                <td class="row-total"><input type="text" class="row-total-input" id="turface-mound-clay-red-row-total" disabled="disabled" value="{{ $data['rowelectric5'] }}"></input></td>
+                <td class="row-total"><input type="text" class="row-total-input" id="turface-mound-clay-red-row-total" disabled="disabled" value="{{ $data['rowelectric5'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric5"></input>
+                </td>
             </tr>
             <tr class="odd">
                 <td>6</td>
                 <td class="product-title">32A / 1 ph / 7.040 Watt</td>
-                <td class="price-per-pallet">USD <span>1412</span></td>
+                <td class="price-per-pallet">USD <span>1257</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-red-num-pallets" name="electric6" value="{{ $data['electric6'] }}"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-red-row-total" disabled="disabled" value="{{ $data['rowelectric6'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric6"></input>
                 </td>
             </tr>
             <tr class="even">
                 <td>7</td>
                 <td class="product-title">16A / 3 ph / 10.560 Watt</td>
-                <td class="price-per-pallet">USD <span>2118</span></td>
+                <td class="price-per-pallet">USD <span>1886</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-drying-agent-num-pallets" name="electric7" value="{{ $data['electric7'] }}"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-drying-agent-row-total" disabled="disabled" value="{{ $data['rowelectric7'] }}"></input>
                   <input type="hidden" class="" id="sparkle-row-total" name="rowelectric7" value="{{ $data['rowelectric7'] }}"></input>
@@ -81,17 +92,19 @@
             <tr class="odd">
                 <td>8</td>
                 <td class="product-title">32A / 3 ph / 21.120 Watt</em></td>
-                <td class="price-per-pallet">USD <span>4235</span></td>
+                <td class="price-per-pallet">USD <span>3772</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-professional-num-pallets" name="electric8" value="{{ $data['electric8'] }}"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-professional-row-total" disabled="disabled" value="{{ $data['rowelectric8'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric8"></input>
                 </td>
             </tr>
             <tr class="even">
                 <td>9</td>
                 <td class="product-title">60A / 3 ph / 39.600 Watt</td>
-                <td class="price-per-pallet">USD <span>7941</span></td>
+                <td class="price-per-pallet">USD <span>7072</span></td>
                 <td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-top-dressing-num-pallets" name="electric9" value="{{ $data['electric9'] }}"></input></td>
                 <td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-top-dressing-row-total" disabled="disabled" value="{{ $data['rowelectric9'] }}"></input>
+                  <input type="hidden" class="" id="sparkle-row-total" name="rowelectric9"></input>
                 </td>
             </tr>
             <!--<tr>
@@ -110,10 +123,10 @@
             </tr>
             <tr class="odd">
                 <td class="instalationfee" colspan"2" style="padding-left:30px;">Installation fee</td>
-                <td class="textcentertable">USD 30</td>
+                <td class="textcentertable">USD 23</td>
                 <td class="textcentertable">1</td>
-                <td class="textcentertable">USD 30</td>
-                <input type="hidden" id="operationalfeeelectric" value="30" name="electricinstallfee"></input>
+                <td class="textcentertable">USD 23</td>
+                <input type="hidden" id="operationalfeeelectric" value="23" name="electricinstallfee"></input>
             </tr>
         </table>
 
@@ -169,7 +182,7 @@
                     • Service coverage: local call only (within Jakarta).<br/>
                     • Price includes call credit & installation.
                     </td>
-                    <td class="price-per-pallet">USD <span>250</span></td>
+                    <td class="price-per-pallet">USD <span>225</span></td>
                     <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="sparkle-num-pallets" name="phone1" value="{{$data['phone1']}}"></input></td>
                     <td class="row-total"><input type="text" class="row-total-input-phone" id="sparkle-row-total" disabled="disabled" value="{{$data['rowphone1']}}"></input>
                       <input type="hidden" class="row-total-input" id="" name="rowphone1" value="{{$data['rowphone1']}}"></input>
@@ -183,7 +196,7 @@
                     • Price includes call credit & installation.<br/>
                     • Call back is not applicable.<br/></td>
                     
-                    <td class="price-per-pallet">USD <span>400</span></td>
+                    <td class="price-per-pallet">USD <span>358</span></td>
                     <td class="num-pallets"><input type="text" class="num-pallets-input-phone" id="turface-mvp-num-pallets" name="phone2" value="{{$data['phone2']}}"></input></td>
                     <td class="row-total"><input type="text" class="row-total-input-phone" id="turface-mvp-row-total" disabled="disabled" value="{{$data['rowphone2']}}"></input>
                       <input type="hidden" class="row-total-input" id="" name="rowphone2" value="{{$data['rowphone2']}}"></input>

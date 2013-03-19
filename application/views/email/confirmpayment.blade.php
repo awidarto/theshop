@@ -6,7 +6,7 @@ setlocale(LC_MONETARY, "en_US");
 
 <div style="width:100%;position:relative;display:block;font-family:Helvetica,Arial,Sans-serif;font-size:13px;">
 	<div style="width:100%;position:relative;display:block;">
-		<div style="position:relative;display:inline-block;float:left;margin:0 30px 20px 0;"><img src="http://localhost/eventreg/public/images/ipa-logo.jpg"></div>
+		<div style="position:relative;display:inline-block;float:left;margin:0 30px 20px 0;"><img src="http://www.ipaconvex.com/images/ipa-logo.jpg"></div>
 		<div style="width:80%;position:relative;display:inline-block;float:left;">
 			<h2 style="display:inline-block;margin:15px 0 0 7px;">CONFIRMATION OF REGISTRATION</h2><br/>
 			<h3 style="display:inline-block;margin:0 0 0 4px;">THE 37TH IPA CONVENTION AND EXHIBITION 2013</h3><br/>

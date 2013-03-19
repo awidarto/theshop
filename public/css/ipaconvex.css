@@ -516,6 +516,7 @@ td.result span{
 }
 #boothcontractor{
   padding:8px;
+  position: relative;
 }
 
 .stepContainer .content{
@@ -649,3 +650,23 @@ table.withborder tr td{
 .hideTable{
   display: none;
 }
+
+.downloadWorkerForm{
+  background: #b60002 url('../images/doc-ico.png') no-repeat 10px center;
+  font-size: 12px;
+  display: inline-block;
+  color: #fff;
+  padding: 10px 20px 10px 50px;
+}
+.containerdownloadWorkerForm{
+  position: relative;
+  margin:10px 0 20px 8px;
+  display: block;
+
+}
+.containerdownloadWorkerForm a{
+  display: block;
+  margin-bottom: 5px;
+  width:200px;
+}
+

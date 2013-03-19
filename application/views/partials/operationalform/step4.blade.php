@@ -1,6 +1,7 @@
 <h2 class="StepTitle">BOOTH CONTRACTOR (SPECIAL DESIGN ONLY)</h2>   
   <div id="boothcontractor">
     <br/>
+    
     <p>We, the exhibitor, hereby inform the detail of the contractor that will be accountable and responsible for our booth construction: </p>
     {{ $form->text('companyContractor','Contractor Company','',array('class'=>'text','id'=>'firstname')) }}
     <div class="clear"></div>
@@ -17,6 +18,11 @@
     {{ $form->text('email','Email','',array('class'=>'text')) }}
     <div class="clear"></div>
     <br/>
+    <div class="containerdownloadWorkerForm">
+      <?php  $urlXLS = URL::to_asset('37th-IPA-Worker-Registration-Form.xlsx'); ?>
+      {{ HTML::link($urlXLS,'Download Working Pass ID.xls',array('class'=>'downloadWorkerForm registType'))}}
+      <small>*please email the names of the working pass ID holder to your PO hall (as in page 1)</small>
+    </div>
     <div>
       We (as the exhibitor) assure that:<br/>
       <ol>
