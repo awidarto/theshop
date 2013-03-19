@@ -78,6 +78,7 @@
                     </div>   
                 </div>
         </fieldset>
+        
         <fieldset>
             <legend>Need Invitation Letter from IPA Committee for Visa arrangement<br/>(for international participants only)</legend>
 
@@ -138,6 +139,23 @@
                 </div>
 
         </fieldset>
+        <fieldset>
+            <legend><strong>Use Early Bird Rates</strong></legend>
+
+                <div class="row-fluid">
+                    <div class="span2">
+                      {{ $form->radio('overrideratenormal','Yes','yes') }} 
+                    </div>   
+                    <div class="span2">
+                      {{ $form->radio('overrideratenormal','No','no',true) }} 
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+
+        </fieldset>
+
+        
+
     </div>
 
     <div class="span6">

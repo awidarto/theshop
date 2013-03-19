@@ -81,6 +81,9 @@
                     </div>   
                 </div>
         </fieldset>
+
+        
+
         <fieldset>
             <legend>Will attend the Industrial Dinner on 16 May 2013</legend>
 
@@ -112,6 +115,29 @@
                         {{ $form->radio('golf','No','No',false,array('class'=>'paymentSettle field_golfType')) }} 
                       @else
                         {{ $form->radio('golf','No','No',true,array('class'=>'paymentSettle field_golfType')) }} 
+                      @endif
+                    </div>   
+                    <div class="span8"></div>
+                </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend><strong>Use Early Bird Rates</strong></legend>
+
+                <div class="row-fluid">
+                    <div class="span2">
+                      @if(isset($user['overrideratenormal']) && $user['overrideratenormal']=='yes')
+                        {{ $form->radio('overrideratenormal','Yes','yes',true) }} 
+                      @else
+                        {{ $form->radio('overrideratenormal','Yes','yes') }} 
+                      @endif
+                    </div>   
+                    <div class="span2">
+                      @if(isset($user['overrideratenormal']) && $user['overrideratenormal']=='yes')
+                        {{ $form->radio('overrideratenormal','No','no') }} 
+                      @else
+                        {{ $form->radio('overrideratenormal','No','no',true) }} 
                       @endif
                     </div>   
                     <div class="span8"></div>

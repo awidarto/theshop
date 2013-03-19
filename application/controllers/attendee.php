@@ -773,55 +773,108 @@ class Attendee_Controller extends Base_Controller {
 
 			if(strtotime($dateA) > strtotime($earlybirddate)){ 
 				//normal rate valid
+				if($data['overrideratenormal'] == 'no'){
+					if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+						$data['totalIDR'] = $conventionrate['PD-normal'];
+						$data['totalUSD'] = '';
+						$data['regPD'] = $conventionrate['PD-normal'];
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = '';
 
-				if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
-					$data['totalIDR'] = $conventionrate['PD-normal'];
+					}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+						$data['totalIDR'] = $conventionrate['PD-normal']+$golfrate;
+						$data['totalUSD'] = '';
+						$data['regPD'] = $conventionrate['PD-normal'];
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = '';
+
+					}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+						$data['totalIDR'] = '';
+						$data['totalUSD'] = $conventionrate['PO-normal'];
+						$data['regPD'] = '';
+						$data['regPO'] = $conventionrate['PO-normal'];
+						$data['regSD'] = '';
+						$data['regSO'] = '';
+
+					}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+						$data['totalIDR'] = $golfrate;
+						$data['totalUSD'] = $conventionrate['PO-normal'];
+						$data['regPD'] = '';
+						$data['regPO'] = $conventionrate['PO-normal'];
+						$data['regSD'] = '';
+						$data['regSO'] = '';
+
+					}elseif ($data['regtype'] == 'SD'){
+						$data['totalIDR'] = $conventionrate['SD'];
+						$data['totalUSD'] = '';
+						$data['regPD'] = '';
+						$data['regPO'] = '';
+						$data['regSD'] = $conventionrate['SD'];
+						$data['regSO'] = '';
+
+					}elseif ($data['regtype'] == 'SO'){
+						$data['totalIDR'] = '';
+						$data['totalUSD'] = $conventionrate['SO'];
+						$data['regPD'] = '';
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = $conventionrate['SO'];;
+
+					}
+				}else{
+
+					//back using early bird rate
+					if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+					$data['totalIDR'] = $conventionrate['PD-earlybird'];
 					$data['totalUSD'] = '';
-					$data['regPD'] = $conventionrate['PD-normal'];
+					$data['regPD'] = $conventionrate['PD-earlybird'];
 					$data['regPO'] = '';
 					$data['regSD'] = '';
 					$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
-					$data['totalIDR'] = $conventionrate['PD-normal']+$golfrate;
-					$data['totalUSD'] = '';
-					$data['regPD'] = $conventionrate['PD-normal'];
-					$data['regPO'] = '';
-					$data['regSD'] = '';
-					$data['regSO'] = '';
+					}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+						$data['totalIDR'] = $conventionrate['PD-earlybird']+$golfrate;
+						$data['totalUSD'] = '';
+						$data['regPD'] = $conventionrate['PD-earlybird'];
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
-					$data['totalIDR'] = '';
-					$data['totalUSD'] = $conventionrate['PO-normal'];
-					$data['regPD'] = '';
-					$data['regPO'] = $conventionrate['PO-normal'];
-					$data['regSD'] = '';
-					$data['regSO'] = '';
+					}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+						$data['totalIDR'] = '';
+						$data['totalUSD'] = $conventionrate['PD-earlybird'];
+						$data['regPD'] = '';
+						$data['regPO'] = $conventionrate['PO-earlybird'];
+						$data['regSD'] = '';
+						$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
-					$data['totalIDR'] = $golfrate;
-					$data['totalUSD'] = $conventionrate['PO-normal'];
-					$data['regPD'] = '';
-					$data['regPO'] = $conventionrate['PO-normal'];
-					$data['regSD'] = '';
-					$data['regSO'] = '';
+					}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+						$data['totalIDR'] = $golfrate;
+						$data['totalUSD'] = $conventionrate['PD-earlybird'];
+						$data['regPD'] = '';
+						$data['regPO'] = $conventionrate['PO-earlybird'];
+						$data['regSD'] = '';
+						$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'SD'){
-					$data['totalIDR'] = $conventionrate['SD'];
-					$data['totalUSD'] = '';
-					$data['regPD'] = '';
-					$data['regPO'] = '';
-					$data['regSD'] = $conventionrate['SD'];
-					$data['regSO'] = '';
+					}elseif ($data['regtype'] == 'SD'){
+						$data['totalIDR'] = $conventionrate['SD'];
+						$data['totalUSD'] = '';
+						$data['regPD'] = '';
+						$data['regPO'] = '';
+						$data['regSD'] = $conventionrate['SD'];
+						$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'SO'){
-					$data['totalIDR'] = '';
-					$data['totalUSD'] = $conventionrate['SO'];
-					$data['regPD'] = '';
-					$data['regPO'] = '';
-					$data['regSD'] = '';
-					$data['regSO'] = $conventionrate['SO'];;
+					}elseif ($data['regtype'] == 'SO'){
+						$data['totalIDR'] = '';
+						$data['totalUSD'] = $conventionrate['SO'];
+						$data['regPD'] = '';
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = $conventionrate['SO'];;
 
+					}
 				}
 			}else{
 
@@ -954,53 +1007,108 @@ class Attendee_Controller extends Base_Controller {
 			if(strtotime($dateA) > strtotime($earlybirddate)){ 
 				//normal rate valid
 
-				if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
-					$data['totalIDR'] = $conventionrate['PD-normal'];
+				if(isset($data['overrideratenormal']) && $data['overrideratenormal'] == 'no'){
+					if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+						$data['totalIDR'] = $conventionrate['PD-normal'];
+						$data['totalUSD'] = '';
+						$data['regPD'] = $conventionrate['PD-normal'];
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = '';
+
+					}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+						$data['totalIDR'] = $conventionrate['PD-normal']+$golfrate;
+						$data['totalUSD'] = '';
+						$data['regPD'] = $conventionrate['PD-normal'];
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = '';
+
+					}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+						$data['totalIDR'] = '';
+						$data['totalUSD'] = $conventionrate['PO-normal'];
+						$data['regPD'] = '';
+						$data['regPO'] = $conventionrate['PO-normal'];
+						$data['regSD'] = '';
+						$data['regSO'] = '';
+
+					}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+						$data['totalIDR'] = $golfrate;
+						$data['totalUSD'] = $conventionrate['PO-normal'];
+						$data['regPD'] = '';
+						$data['regPO'] = $conventionrate['PO-normal'];
+						$data['regSD'] = '';
+						$data['regSO'] = '';
+
+					}elseif ($data['regtype'] == 'SD'){
+						$data['totalIDR'] = $conventionrate['SD'];
+						$data['totalUSD'] = '';
+						$data['regPD'] = '';
+						$data['regPO'] = '';
+						$data['regSD'] = $conventionrate['SD'];
+						$data['regSO'] = '';
+
+					}elseif ($data['regtype'] == 'SO'){
+						$data['totalIDR'] = '';
+						$data['totalUSD'] = $conventionrate['SO'];
+						$data['regPD'] = '';
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = $conventionrate['SO'];;
+
+					}
+				}else{
+
+					
+					if($data['regtype'] == 'PD' && $data['golf'] == 'No'){
+					$data['totalIDR'] = $conventionrate['PD-earlybird'];
 					$data['totalUSD'] = '';
-					$data['regPD'] = $conventionrate['PD-normal'];
+					$data['regPD'] = $conventionrate['PD-earlybird'];
 					$data['regPO'] = '';
 					$data['regSD'] = '';
 					$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
-					$data['totalIDR'] = $conventionrate['PD-normal']+$golfrate;
-					$data['totalUSD'] = '';
-					$data['regPD'] = $conventionrate['PD-normal'];
-					$data['regPO'] = '';
-					$data['regSD'] = '';
-					$data['regSO'] = '';
+					}elseif ($data['regtype'] == 'PD' && $data['golf'] == 'Yes'){
+						$data['totalIDR'] = $conventionrate['PD-earlybird']+$golfrate;
+						$data['totalUSD'] = '';
+						$data['regPD'] = $conventionrate['PD-earlybird'];
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
-					$data['totalIDR'] = '';
-					$data['totalUSD'] = $conventionrate['PO-normal'];
-					$data['regPD'] = '';
-					$data['regPO'] = $conventionrate['PO-normal'];
-					$data['regSD'] = '';
-					$data['regSO'] = '';
+					}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'No'){
+						$data['totalIDR'] = '';
+						$data['totalUSD'] = $conventionrate['PD-earlybird'];
+						$data['regPD'] = '';
+						$data['regPO'] = $conventionrate['PO-earlybird'];
+						$data['regSD'] = '';
+						$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
-					$data['totalIDR'] = $golfrate;
-					$data['totalUSD'] = $conventionrate['PO-normal'];
-					$data['regPD'] = '';
-					$data['regPO'] = $conventionrate['PO-normal'];
-					$data['regSD'] = '';
-					$data['regSO'] = '';
+					}elseif ($data['regtype'] == 'PO' && $data['golf'] == 'Yes'){
+						$data['totalIDR'] = $golfrate;
+						$data['totalUSD'] = $conventionrate['PD-earlybird'];
+						$data['regPD'] = '';
+						$data['regPO'] = $conventionrate['PO-earlybird'];
+						$data['regSD'] = '';
+						$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'SD'){
-					$data['totalIDR'] = $conventionrate['SD'];
-					$data['totalUSD'] = '';
-					$data['regPD'] = '';
-					$data['regPO'] = '';
-					$data['regSD'] = $conventionrate['SD'];
-					$data['regSO'] = '';
+					}elseif ($data['regtype'] == 'SD'){
+						$data['totalIDR'] = $conventionrate['SD'];
+						$data['totalUSD'] = '';
+						$data['regPD'] = '';
+						$data['regPO'] = '';
+						$data['regSD'] = $conventionrate['SD'];
+						$data['regSO'] = '';
 
-				}elseif ($data['regtype'] == 'SO'){
-					$data['totalIDR'] = '';
-					$data['totalUSD'] = $conventionrate['SO'];
-					$data['regPD'] = '';
-					$data['regPO'] = '';
-					$data['regSD'] = '';
-					$data['regSO'] = $conventionrate['SO'];;
+					}elseif ($data['regtype'] == 'SO'){
+						$data['totalIDR'] = '';
+						$data['totalUSD'] = $conventionrate['SO'];
+						$data['regPD'] = '';
+						$data['regPO'] = '';
+						$data['regSD'] = '';
+						$data['regSO'] = $conventionrate['SO'];;
+
+					}
 
 				}
 			}else{
