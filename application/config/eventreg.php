@@ -71,6 +71,8 @@ return array(
 
 		'golfquota'=>100,
 
+		'currencyconversion'=>9800,
+		
 		'conventionrate'=>array(
 			'PD-earlybird'=>4500000,
 			'PD-normal'=>5000000,
