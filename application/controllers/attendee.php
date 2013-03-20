@@ -743,23 +743,24 @@ class Attendee_Controller extends Base_Controller {
 
 			unset($data['foc']);
 
-			$reg_number[] = 'C';
-			$reg_number[] = $data['regtype'];
-			$reg_number[] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
+			$reg_number[0] = 'C';
+			$reg_number[1] = $data['regtype'];
+			$reg_number[2] = ($data['attenddinner'] == 'Yes')?str_pad(Config::get('eventreg.galadinner'), 2,'0',STR_PAD_LEFT):'00';
 
 			$seq = new Sequence();
 
 			$rseq = $seq->find_and_modify(array('_id'=>'attendee'),array('$inc'=>array('seq'=>1)),array('seq'=>1),array('new'=>true));
+
+			$reg_number[3] = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 
 			$regsequence = str_pad($rseq['seq'], 6, '0',STR_PAD_LEFT);
 
 			//$reg_number[] = $regsequence;
 
 			$data['regsequence'] = $regsequence;
+
 			$data['registrationnumber'] = implode('-',$reg_number);
 
-
-			//golf sequencer
 			$data['golfSequence'] = 0;
 
 			if($data['golf'] == 'Yes'){
