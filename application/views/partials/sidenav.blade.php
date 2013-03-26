@@ -1,41 +1,90 @@
 @section('sidenav')
-	<?php
-		$role = Auth::user()->role;
-		$permissions = Auth::user()->permissions;
 
-        /*
-        <dd><a href="{{ URL::to('document') }}"><i class="foundicon-page sidemenu"></i> <br/>Documents</a></dd>
-        <dd><a href="{{ URL::to('opportunity') }}"><i class="foundicon-heart sidemenu"></i> <br/>Opportunity</a></dd>
-        <dd><a href="{{ URL::to('tender') }}"><i class="foundicon-idea sidemenu"></i> <br/>Tender</a></dd>
-        <dd><a href="{{ URL::to('qc') }}"><i class="foundicon-checkmark sidemenu"></i> <br/>Quality</a></dd>
-
-        @if(Auth::permit('document'))
-            <dd><a href="{{ URL::to('warehouse') }}"><i class="foundicon-cart sidemenu"></i> <br/>Warehouse</a></dd>
-        @endif
-
-        <dd><a href="{{ URL::to('finance') }}"><i class="foundicon-graph sidemenu"></i> <br/>Finance</a></dd>
-        <dd><a href="{{ URL::to('hr') }}"><i class="foundicon-people sidemenu"></i> <br/>HRD</a></dd>
-        <dd><a href="{{ URL::to('activity/download') }}"><i class="foundicon-down-arrow sidemenu"></i> <br/>Download</a></dd>
-        <dd><a href="{{ URL::to('activity/upload') }}"><i class="foundicon-up-arrow sidemenu"></i> <br/>Upload</a></dd>
-        <dd><a href="{{ URL::to('user/people') }}"><i class="foundicon-address-book sidemenu"></i> <br/>People</a></dd>
-
-        */
-
-	?>
-    <div class="one columns mobile">     
-      <dl class="vertical tabs">
-        <dd><a href="{{ URL::base() }}"><i class="foundicon-home sidemenu"></i> <br/>Home</a></dd>
-        <dd><a href="{{ URL::to('requests/incoming') }}"><i class="foundicon-down-arrow sidemenu"></i> <br/>Incoming Requests</a></dd>
-        <dd><a href="{{ URL::to('requests/outgoing') }}"><i class="foundicon-up-arrow sidemenu"></i> <br/>Outgoing Requests</a></dd>
-        <dd><a href="{{ URL::to('message') }}"><i class="foundicon-mail sidemenu"></i> <br/>Messages</a></dd>
-        <dd><a href="{{ URL::to('opportunity') }}"><i class="foundicon-idea sidemenu"></i> <br/>Opportunity</a></dd>
-        <dd><a href="{{ URL::to('tender') }}"><i class="foundicon-idea sidemenu"></i> <br/>Tender</a></dd>
-        <dd><a href="{{ URL::to('project') }}"><i class="foundicon-idea sidemenu"></i> <br/>Projects</a></dd>
-        <dd><a href="{{ URL::to('employee') }}"><i class="foundicon-people sidemenu"></i> <br/>Human Resources</a></dd>
-        <dd><a href="{{ URL::to('user/profile') }}"><i class="foundicon-settings sidemenu"></i> <br/>Profile</a></dd>
-        <dd><a href="{{ URL::to('search') }}"><i class="foundicon-search sidemenu"></i> <br/>Search</a></dd>
-        <dd><a href="{{ URL::to('content/view/help') }}"><i class="foundicon-smiley sidemenu"></i> <br/>Help</a></dd>
-      </dl>          
-    </div>
-
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar nav-collapse collapse">
+            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+            <div class="slide hide">
+                <i class="icon-angle-left"></i>
+            </div>
+            <form class="sidebar-search" />
+                <div class="input-box">
+                    <input type="text" class="" placeholder="Search" />
+                    <input type="button" class="submit" value=" " />
+                </div>
+            </form>
+            <div class="clearfix"></div>
+            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+            <!-- BEGIN SIDEBAR MENU -->
+            <ul>
+                <li class="active">
+                    <a href="index.html">
+                    <i class="icon-home"></i> Dashboard
+                    <span class="selected"></span>
+                    </a>                    
+                </li>
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                    <i class="icon-bookmark-empty"></i> UI Features
+                    <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="ui_general.html">General</a></li>
+                        <li><a class="" href="ui_buttons.html">Buttons</a></li>
+                        <li><a class="" href="ui_tabs_accordions.html">Tabs & Accordions</a></li>
+                        <li><a class="" href="ui_typography.html">Typography</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                    <i class="icon-table"></i> Form Stuff
+                    <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="form_layout.html">Form Layouts</a></li>
+                        <li><a class="" href="form_component.html">Form Components</a></li>
+                        <li><a class="" href="form_wizard.html">Form Wizard</a></li>
+                        <li><a class="" href="form_validation.html">Form Validation</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                    <i class="icon-th-list"></i> Data Tables
+                    <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="table_basic.html">Basic Tables</a></li>
+                        <li><a class="" href="table_managed.html">Managed Tables</a></li>
+                    </ul>
+                </li>
+                <li><a class="" href="grids.html"><i class="icon-th"></i> Grids & Portlets</a></li>
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                    <i class="icon-map-marker"></i> Maps
+                    <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="maps_google.html">Google Maps</a></li>
+                        <li><a class="" href="maps_vector.html">Vector Maps</a></li>
+                    </ul>
+                </li>
+                <li><a class="" href="charts.html"><i class="icon-bar-chart"></i> Visual Charts</a></li>
+                <li><a class="" href="calendar.html"><i class="icon-calendar"></i> Calendar</a></li>
+                <li><a class="" href="gallery.html"><i class="icon-camera"></i> Gallery</a></li>
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                    <i class="icon-briefcase"></i> Extra
+                    <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="extra_pricing_table.html">Pricing Tables</a></li>
+                        <li><a class="" href="extra_404.html">404 Page</a></li>
+                        <li><a class="" href="extra_500.html">500 Page</a></li>
+                        <li><a class="" href="extra_blank.html">Blank Page</a></li>
+                    </ul>
+                </li>
+                <li><a class="" href="login.html"><i class="icon-user"></i> Login Page</a></li>
+            </ul>
+            <!-- END SIDEBAR MENU -->
+        </div>
+        <!-- END SIDEBAR -->
 @endsection

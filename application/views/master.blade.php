@@ -9,137 +9,111 @@
     <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Mobile viewport optimized: h5bp.com/viewport -->
-    <meta name="viewport" content="width=device-width">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <title>{{ Config::get('site.title') }}</title>
 
 
 
     <!-- remove or comment this line if you want to use the local fonts -->
+  
+  {{ HTML::style('metronic/bootstrap/css/bootstrap.min.css') }}
+  {{ HTML::style('metronic/css/metro.css') }}
+  {{ HTML::style('metronic/bootstrap/css/bootstrap-responsive.min.css') }}
+  {{ HTML::style('metronic/font-awesome/css/font-awesome.css') }}
+  {{ HTML::style('metronic/css/style.css') }}
+  {{ HTML::style('metronic/css/style_responsive.css') }}
+  {{ HTML::style('metronic/css/style_default.css',array('id'=>'style_color')) }}
+  {{ HTML::style('metronic/gritter/css/jquery.gritter.css') }}
+  {{ HTML::style('metronic/uniform/css/uniform.default.css') }}
+  {{ HTML::style('metronic/bootstrap-daterangepicker/daterangepicker.css') }}
+  {{ HTML::style('metronic/fullcalendar/fullcalendar/bootstrap-fullcalendar.css') }}
+  {{ HTML::style('metronic/jqvmap/jqvmap/jqvmap.css') }}
 
-
-    {{ HTML::style('content/css/opensans.css') }}
-    {{ HTML::style('content/css/bootstrap.css') }}
-    {{ HTML::style('content/css/bootstrap-responsive.css') }}
-    {{ HTML::style('content/css/bootmetro.css') }}
-    {{ HTML::style('content/css/bootmetro-tiles.css') }}
-    {{ HTML::style('content/css/bootmetro-charms.css') }}
-    {{ HTML::style('content/css/metro-ui-light.css') }}
-    {{ HTML::style('content/css/icomoon.css') }}
-    {{ HTML::style('css/smart_wizard.css') }}
-    {{ HTML::style('content/css/app.css') }}
-
-    {{ HTML::style('css/jquery-datatables/TableTools.css')}}
-
-    {{ HTML::style('css/flick/jquery-ui-1.9.2.custom.min.css') }}
-    <!--  these two css are to use only for documentation -->
-
-    {{ HTML::style('css/select2.css') }}
-    {{ HTML::style('content/css/demo.css') }}
-    <link rel="stylesheet" type="text/css" href="{{URL::base()}}/scripts/google-code-prettify/prettify.css" >
-
-    <!-- Le fav and touch icons -->
-
-
-    <!-- All JavaScript at the bottom, except for Modernizr and Respond.
-      Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
-      For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
-
-    {{ HTML::script('scripts/modernizr-2.6.1.min.js') }}
-    {{ HTML::script('js/jquery-1.8.3.min.js') }}
-    {{ HTML::script('js/jquery-ui-1.9.2.custom.min.js') }}
-
-    {{ HTML::script('js/select2.min.js') }}   
+  
 </head>
 
-<body>
+<body class="fixed-top">
+
+  @yield('header')
 
   <!-- Header and Nav -->
   
-  <header id="nav-bar" class="container-fluid">
-      <div class="row-fluid">
-         <div class="span8">
-            <div id="header-container">
-              {{ HTML::image('images/ipa-logo-small.png','ipalogo',array('class'=>'logo-header')) }}
-              <h5>{{ Config::get('site.title')}}</h5>
-              @yield('topnav')
-            </div>
-         </div>
-         <div id="top-info" class="pull-right">
-           <a href="#" class="pull-left">
-              @yield('identity')
-              <div class="top-info-block">
-                 <b class="icon-user"></b>
-              </div>
-           </a>
-           <hr class="separator pull-left"/>
-           <a id="settings" class="pull-left" href="#">
-              <b class="icon-settings"></b>
-           </a>
+  <!-- BEGIN CONTAINER -->
+  <div class="page-container row-fluid">
+    @yield('sidenav')
+
+    <!-- BEGIN PAGE -->
+    <div class="page-content">
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <div id="portlet-config" class="modal hide">
+          <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button"></button>
+            <h3>Widget Settings</h3>
+          </div>
+          <div class="modal-body">
+            <p>Here will be a configuration form</p>
+          </div>
         </div>
+        <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+          @yield('content')
+        </div>
+      <!-- END PAGE CONTAINER-->  
     </div>
-  </header>
-
-  <div class="container-fluid">
-      @if(isset($crumb))
-        {{ $this->crumb->generate('bootstrap') }}
-      @endif
-
-      <div class="row-fluid">
-        @yield('content')
-      </div>
+    <!-- END PAGE -->
+    
+  
+  
+  <div class="footer">
+    2013 &copy; thanks letbit.
+    <div class="span pull-right">
+      <span class="go-top"><i class="icon-angle-up"></i></span>
+    </div>
   </div>
   
-  <!--<div id="charms" class="win-ui-dark">
-    <div id="theme-charms-section" class="charms-section">
-       <div class="charms-header">
-          <a href="#" class="close-charms win-command">
-             <span class="win-commandimage win-commandring">&#xe05d;</span>
-          </a>
-          <h2>Settings</h2>
-       </div>
- 
-       <div class="row-fluid">
-          <div class="span12">
- 
-             <form class="">
-                <label for="win-theme-select">Change theme:</label>
-                <select id="win-theme-select" class="">
-                   <option value="metro-ui-semilight">Semi-Light</option>
-                   <option value="metro-ui-light">Light</option>
-                   <option value="metro-ui-dark">Dark</option>
-                </select>
-             </form>
-          </div>
-       </div>
-    </div>
-  </div>-->
 
-  {{ HTML::script('js/jquery.dataTables.min.js') }}
-
-  {{ HTML::script('js/jquery-datatables/TableTools.min.js')}}
-
-  {{ HTML::script('js/underscore-1.1.5.js') }}
-
-  {{ HTML::script('js/jquery.tagsinput.min.js') }}
   
-
-  {{ HTML::script('js/jquery.fancybox.js') }}
-
-  {{ HTML::script('scripts/google-code-prettify/prettify.js') }}
-  {{ HTML::script('scripts/jquery.mousewheel.js') }}
-  {{ HTML::script('scripts/jquery.scrollTo.js') }}
-  {{ HTML::script('scripts/bootstrap.min.js') }}
-  {{ HTML::script('scripts/bootmetro.js') }}
-  {{ HTML::script('scripts/bootmetro-charms.js') }}
-  {{ HTML::script('scripts/demo.js') }}
-  {{ HTML::script('scripts/holder.js') }}
-  {{ HTML::script('js/pnu.js') }}
- 
- <script type="text/javascript">
-    $(".metro").metro();
-    base = '{{ URL::base() }}/';
- </script>
+  <!-- END FOOTER -->
+  <!-- BEGIN JAVASCRIPTS -->
+  <!-- Load javascripts at bottom, this will reduce page load time -->
+  {{ HTML::script('metronic/js/jquery-1.8.3.min.js') }}
+  
+  <!--[if lt IE 9]>
+  <script src="assets/"></script>
+  {{ HTML::script('metronic/js/excanvas.js') }}
+  {{ HTML::script('metronic/js/respond.js') }}
+  
+  <![endif]--> 
+  {{ HTML::script('metronic/breakpoints/breakpoints.js') }}
+  {{ HTML::script('metronic/jquery-slimscroll/jquery-ui-1.9.2.custom.min.js') }}
+  {{ HTML::script('metronic/jquery-slimscroll/jquery.slimscroll.min.js') }}
+  {{ HTML::script('metronic/fullcalendar/fullcalendar/fullcalendar.min.js') }}
+  {{ HTML::script('metronic/bootstrap/js/bootstrap.min.js') }}
+  {{ HTML::script('metronic/js/jquery.blockui.js') }}
+  {{ HTML::script('metronic/js/jquery.cookie.js') }}
+  {{ HTML::script('metronic/jqvmap/jqvmap/jquery.vmap.js') }}
+  {{ HTML::script('metronic/jqvmap/jqvmap/maps/jquery.vmap.russia.js') }}
+  {{ HTML::script('metronic/jqvmap/jqvmap/maps/jquery.vmap.world.js') }}
+  {{ HTML::script('metronic/jqvmap/jqvmap/maps/jquery.vmap.europe.js') }}
+  {{ HTML::script('metronic/jqvmap/jqvmap/maps/jquery.vmap.germany.js') }}
+  {{ HTML::script('metronic/jqvmap/jqvmap/maps/jquery.vmap.usa.js') }}
+  {{ HTML::script('metronic/jqvmap/jqvmap/data/jquery.vmap.sampledata.js') }}
+  {{ HTML::script('metronic/flot/jquery.flot.js') }}
+  {{ HTML::script('metronic/flot/jquery.flot.resize.js') }}
+  {{ HTML::script('metronic/gritter/js/jquery.gritter.js') }}
+  {{ HTML::script('metronic/uniform/jquery.uniform.min.js') }}
+  {{ HTML::script('metronic/bootstrap-daterangepicker/date.js') }}
+  {{ HTML::script('metronic/bootstrap-daterangepicker/daterangepicker.js') }}
+  {{ HTML::script('metronic/js/app.js') }}
+   
+  <script>
+    jQuery(document).ready(function() {   
+      App.setPage("index");  // set current page
+      App.init(); // init the rest of plugins and elements
+    });
+  </script>
 
 
 </body>
