@@ -1,6 +1,6 @@
 <?php
 return array(
-	'title' => 'THE 37th IPA CONVENTION and EXHIBITION 2013',
+	'title' => 'THE SHOP',
 	
 	'register_success' => 'Registration Success',
 	'register_failed' => 'Registration Success',
